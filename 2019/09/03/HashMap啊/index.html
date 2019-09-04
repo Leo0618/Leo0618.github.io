@@ -1,0 +1,386 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+<head><meta name="generator" content="Hexo 3.9.0">
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="上帝之手">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="theme-version" content="1.2.3">
+    <meta name="root" content="/blog/">
+    <link rel="dns-prefetch" href="https://okfood.vip/blog">
+    <!--SEO-->
+
+<meta name="keywords" content="数据结构">
+
+
+<meta name="description" content="为什么用HashMap？
+HashMap是一个散列桶（数组和链表），它存储的内容是键值对(key-value)映射
+HashMap采用了数组和链表的数据结构，能在查询和修改方便继承了数组的线性查...">
+
+
+<meta name="robots" content="all">
+<meta name="google" content="all">
+<meta name="googlebot" content="all">
+<meta name="verify" content="all">
+    <!--Title-->
+
+<title>
+    
+    HashMap啊 |
+    
+    上帝之手
+</title>
+
+<link rel="alternate" href="/blog/atom.xml" title="上帝之手" type="application/atom+xml">
+
+
+<link rel="icon" href="/blog/img/avatar_circle.png">
+
+    
+
+<link rel="stylesheet" href="/blog/css/bootstrap.min.css?rev=3.3.7">
+<link rel="stylesheet" href="/blog/css/font-awesome.min.css?rev=4.7.0">
+<link rel="stylesheet" href="/blog/css/style.css?rev=@@hash">
+    
+
+
+
+    
+
+</head></html>
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+<body>
+    <header class="main-header"  style="background-image:url(
+    /blog/img/banner.jpg)"
+     >
+    <div class="main-header-box">
+        <a class="header-avatar" href="#" title='Leo'>
+            <img src="/blog/img/avatar.jpg" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+            
+            <img src="/blog/img/branding.png" alt="博客-Leo" class="img-responsive center-block">
+            
+        </div>
+    </div>
+</header>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                        <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="https://okfood.vip/blog">
+                        上帝之手</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/blog/"><i class="fa "></i>
+                                首页</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/blog/categories/Java/"><i class="fa "></i>
+                                Java</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/blog/categories/Android/"><i class="fa "></i>
+                                Android</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/blog/categories/后端/"><i class="fa "></i>
+                                后端</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/blog/categories/工具/"><i class="fa "></i>
+                                工具</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/blog/archives/"><i class="fa "></i>
+                                时间轴</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="HashMap啊">
+            
+            HashMap啊
+            
+        </h1>
+        <div class="post-meta">
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a class="category-link" href="/blog/categories/Java/">Java</a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            <a class="tag-link" href="/blog/tags/数据结构/">数据结构</a>
+            
+        </span>
+    </span>
+    
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta">
+            2019/09/03</span>
+    </span>
+    
+    <span class="fa-wrap">
+        <i class="fa fa-eye"></i>
+        <span id="busuanzi_value_page_pv"></span>
+    </span>
+    
+    
+</div>
+        
+        
+    </div>
+    
+    <div class="post-body post-content">
+        <h3 id="为什么用HashMap？"><a href="#为什么用HashMap？" class="headerlink" title="为什么用HashMap？"></a>为什么用HashMap？</h3><ul>
+<li>HashMap是一个散列桶（数组和链表），它存储的内容是键值对(key-value)映射</li>
+<li>HashMap采用了数组和链表的数据结构，能在查询和修改方便继承了数组的线性查找和链表的寻址修改</li>
+<li>HashMap是非synchronized，所以HashMap很快</li>
+<li>HashMap可以接受null键和值，而Hashtable则不能（原因就是equlas()方法需要对象，因为HashMap是后出的API经过处理才可以）</li>
+</ul>
+<p>111</p>
+<p><img src="/images/pasted-0.png" alt="upload successful"></p>
+<p>222</p>
+<h3 id="HashMap的工作原理是什么？"><a href="#HashMap的工作原理是什么？" class="headerlink" title="HashMap的工作原理是什么？"></a>HashMap的工作原理是什么？</h3><p>HashMap是基于hashing的原理，我们使用put(key, value)存储对象到HashMap中，使用get(key)从HashMap中获取对象。当我们给put()方法传递键和值时，我们先对键调用hashCode()方法，计算并返回的hashCode是用于找到Map数组的bucket位置来储存Node 对象。这里关键点在于指出，HashMap是在bucket中储存键对象和值对象，作为Map.Node 。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/2091835-eae39843370ae1e5.jpeg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<h3 id="HashMap具体的存取过程："><a href="#HashMap具体的存取过程：" class="headerlink" title="HashMap具体的存取过程："></a>HashMap具体的存取过程：</h3><ul>
+<li>put键值对的方法，过程如下（JDK1.8）</li>
+</ul>
+<p><img src="https://upload-images.jianshu.io/upload_images/2091835-5c36cc0ad9c357fb.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<p>①、判断键值对数组table[i]是否为空或为null，否则执行resize()进行扩容(初始化赋值)</p>
+<p>②、根据键值key计算hash值得到插入的数组索引i，如果table[i]==null，直接新建节点添加，转⑥，如果table[i]不为空，转向③</p>
+<p>③、判断table[i]的首个元素是否和key一样，如果相同直接覆盖value，否则转向④，这里的相同指的是hashCode以及equals</p>
+<p>④、判断table[i] 是否为treeNode，即table[i] 是否是红黑树，如果是红黑树，则直接在树中插入键值对，否则转向⑤</p>
+<p>⑤、遍历table[i]，判断链表长度是否超过阀值( TREEIFY THRESHOLD==8)，大于8的话把链表转换为红黑树，在红黑树中执行插入操作，否则进行链表的插入操作，链表长度低于6，会把红黑树转回链表；遍历过程中若发现key已经存在直接覆盖value即可</p>
+<p>⑥、插入成功后，判断实际存在的键值对数量size是否超多了最大容量threshold，如果超过，就需要 resize（扩容2倍后重排）</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/2091835-1090e18345db5910.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<ul>
+<li>get键值对的方法，过程如下（JDK1.8）</li>
+</ul>
+<p><img src="https://upload-images.jianshu.io/upload_images/2091835-f05733e581d5c7cb.jpeg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<p>①、指定key 通过hash函数得到key的hash值：int hash=key.hashCode()</p>
+<p>②、调用内部方法 getNode()，得到桶号(一般为hash值对桶数求模：int index =hash % tab.length;</p>
+<p>jdk1.6版本后使用位运算替代模运算，int index=( tab.length - 1）&amp; hash ;</p>
+<p>③、比较桶的内部元素是否与key相等，若都不相等，则没有找到；相等，则取出相等记录的value。</p>
+<p>④、如果得到 key 所在的桶的头结点恰好是红黑树节点，就调用红黑树节点的 getTreeNode() 方法，否则就遍历链表节点。getTreeNode 方法使通过调用树形节点的 find()方法进行查找。由于之前添加时已经保证这个树是有序的，因此查找时基本就是折半查找，效率很高。</p>
+<p>⑤、如果对比节点的哈希值和要查找的哈希值相等，就会判断 key 是否相等，相等就直接返回；不相等就从子树中递归查找。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/2091835-a904633bca1a32f2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<h3 id="有什么方法可以减少碰撞？"><a href="#有什么方法可以减少碰撞？" class="headerlink" title="有什么方法可以减少碰撞？"></a>有什么方法可以减少碰撞？</h3><ul>
+<li>扰动函数可以减少碰撞，原理是如果两个不相等的对象返回不同的hashcode的话，那么碰撞的几率就会小些，这就意味着存链表结构减小，这样取值的话就不会频繁调用equal方法，这样就能提高HashMap的性能。（扰动即Hash方法内部的算法实现，目的是让不同对象返回不同hashcode。）</li>
+<li>使用不可变的、声明作final的对象，并且采用合适的equals()和hashCode()方法的话，将会减少碰撞的发生。不可变性使得能够缓存不同键的hashcode，这将提高整个获取对象的速度，使用String，Interger这样的wrapper类作为键是非常好的选择。为什么String, Interger这样的wrapper类适合作为键？因为String是final的，而且已经重写了equals()和hashCode()方法了。不可变性是必要的，因为为了要计算hashCode()，就要防止键值改变，如果键值在放入时和获取时返回不同的hashcode的话，那么就不能从HashMap中找到你想要的对象。</li>
+</ul>
+<h3 id="HashMap中hash函数怎么是是实现的"><a href="#HashMap中hash函数怎么是是实现的" class="headerlink" title="HashMap中hash函数怎么是是实现的?"></a>HashMap中hash函数怎么是是实现的?</h3><p>我们可以看到在hashmap中要找到某个元素，需要根据key的hash值来求得对应数组中的位置。如何计算这个位置就是hash算法。前面说过hashmap的数据结构是数组和链表的结合，所以我们当然希望这个hashmap里面的元素位置尽量的分布均匀些，尽量使得每个位置上的元素数量只有一个，那么当我们用hash算法求得这个位置的时候，马上就可以知道对应位置的元素就是我们要的，而不用再去遍历链表。 所以我们首先想到的就是把hashcode对数组长度取模运算，这样一来，元素的分布相对来说是比较均匀的。但是，“模”运算的消耗还是比较大的，能不能找一种更快速，消耗更小的方式，我们来看看JDK1.8的源码是怎么做的</p>
+<pre><code>static final int hash(Object key) {
+    int h;
+    return (key == null) ? 0 : (h = key.hashCode()) ^ (h &gt;&gt;&gt; 16);
+}</code></pre><p>返回散列值也就是hashcode与其无符号右移16位后进行异或。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/2091835-35941edd72c1ad05.jpeg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<p>简单来说就是</p>
+<ul>
+<li>高16bit不变，低16bit和高16bit做了一个异或(得到的hashcode转化为32位的二进制，前16位和后16位低16bit和高16bit做了一个异或)</li>
+<li>(n-1) &amp; hash –&gt; 得到下标</li>
+</ul>
+<h3 id="拉链法导致的链表过深问题为什么不用二叉查找树代替，而选择红黑树？为什么不一直使用红黑树？"><a href="#拉链法导致的链表过深问题为什么不用二叉查找树代替，而选择红黑树？为什么不一直使用红黑树？" class="headerlink" title="拉链法导致的链表过深问题为什么不用二叉查找树代替，而选择红黑树？为什么不一直使用红黑树？"></a>拉链法导致的链表过深问题为什么不用二叉查找树代替，而选择红黑树？为什么不一直使用红黑树？</h3><p>之所以选择红黑树是为了解决二叉查找树的缺陷，二叉查找树在特殊情况下会变成一条线性结构（这就跟原来使用链表结构一样了，造成很深的问题），遍历查找会非常慢。而红黑树在插入新数据后可能需要通过左旋，右旋、变色这些操作来保持平衡，引入红黑树就是为了查找数据快，解决链表查询深度的问题，我们知道红黑树属于平衡二叉树，但是为了保持“平衡”是需要付出代价的，但是该代价所损耗的资源要比遍历线性链表要少，所以当长度大于8的时候，会使用红黑树，如果链表长度很短的话，根本不需要引入红黑树，引入反而会慢。</p>
+<h3 id="说说你对红黑树的见解？"><a href="#说说你对红黑树的见解？" class="headerlink" title="说说你对红黑树的见解？"></a>说说你对红黑树的见解？</h3><p><img src="https://upload-images.jianshu.io/upload_images/2091835-a1cd99e2ae3e7412.jpeg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<p>1、每个节点非红即黑</p>
+<p>2、根节点总是黑色的</p>
+<p>3、如果节点是红色的，则它的子节点必须是黑色的（反之不一定）</p>
+<p>4、每个叶子节点都是黑色的空节点（NIL节点）</p>
+<p>5、从根节点到叶节点或空子节点的每条路径，必须包含相同数目的黑色节点（即相同的黑色高度）</p>
+<h3 id="解决hash-碰撞还有那些办法？"><a href="#解决hash-碰撞还有那些办法？" class="headerlink" title="解决hash 碰撞还有那些办法？"></a>解决hash 碰撞还有那些办法？</h3><p>a. 链地址法：将哈希表的每个单元作为链表的头结点，所有哈希地址为 i 的元素构成一个同义词链表。即发生冲突时就把该关键字链在以该单元为头结点的链表的尾部。</p>
+<p>b. 开放定址法：即发生冲突时，去寻找下一个空的哈希地址。只要哈希表足够大，总能找到空的哈希地址。</p>
+<p>c. 再哈希法：即发生冲突时，由其他的函数再计算一次哈希值。</p>
+<p>d. 建立公共溢出区：将哈希表分为基本表和溢出表，发生冲突时，将冲突的元素放入溢出表。</p>
+<p>HashMap 就是使用链地址法来解决冲突的（jdk8中采用平衡树来替代链表存储冲突的元素，但hash() 方法原理相同）。当两个对象的hashcode相同时，它们的bucket位置相同，碰撞就会发生。此时，可以将 put 进来的 K- V 对象插入到链表的尾部。对于储存在同一个bucket位置的链表对象，可通过键对象的equals()方法用来找到键值对。</p>
+<h3 id="如果HashMap的大小超过了负载因子-load-factor-定义的容量，怎么办？"><a href="#如果HashMap的大小超过了负载因子-load-factor-定义的容量，怎么办？" class="headerlink" title="如果HashMap的大小超过了负载因子(load factor)定义的容量，怎么办？"></a>如果HashMap的大小超过了负载因子(load factor)定义的容量，怎么办？</h3><p>默认的负载因子大小为0.75，也就是说，当一个map填满了75%的bucket时候，和其它集合类(如ArrayList等)一样，将会创建原来HashMap大小的两倍的bucket数组，来重新调整map的大小，并将原来的对象放入新的bucket数组中。这个过程叫作reHashing，因为它调用hash方法找到新的bucket位置。这个值只可能在两个地方，一个是原下标的位置，另一种是在下标为&lt;原下标+原容量&gt;的位置</p>
+<h3 id="重新调整HashMap大小存在什么问题吗？"><a href="#重新调整HashMap大小存在什么问题吗？" class="headerlink" title="重新调整HashMap大小存在什么问题吗？"></a>重新调整HashMap大小存在什么问题吗？</h3><ul>
+<li>当重新调整HashMap大小的时候，确实存在条件竞争，因为如果两个线程都发现HashMap需要重新调整大小了，它们会同时试着调整大小。在调整大小的过程中，存储在链表中的元素的次序会反过来，因为移动到新的bucket位置的时候，HashMap并不会将元素放在链表的尾部，而是放在头部，这是为了避免尾部遍历(tail traversing)。如果条件竞争发生了，那么就死循环了。(多线程的环境下不使用HashMap）</li>
+<li>为什么多线程会导致死循环，它是怎么发生的？<br>HashMap的容量是有限的。当经过多次元素插入，使得HashMap达到一定饱和度时，Key映射位置发生冲突的几率会逐渐提高。这时候，HashMap需要扩展它的长度，也就是进行Resize。1.扩容：创建一个新的Entry空数组，长度是原数组的2倍。2.ReHash：遍历原Entry数组，把所有的Entry重新Hash到新数组。</li>
+</ul>
+
+    </div>
+    
+    <div class="reward" ontouchstart>
+    <div class="reward-wrap">赏
+        <div class="reward-box">
+            
+            <span class="reward-type">
+                <img class="alipay" src="/blog/img/alipay.jpg"><b>支付宝打赏</b>
+            </span>
+            
+            
+            <span class="reward-type">
+                <img class="wechat" src="/blog/img/reward-wepay.jpg"><b>微信打赏</b>
+            </span>
+            
+        </div>
+    </div>
+    <p class="reward-tip">
+        赞赏是不耍流氓的鼓励
+    </p>
+</div>
+    
+    <div class="post-footer">
+        <div>
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+<div class="article-nav prev-next-wrap clearfix">
+    
+    
+    <a href="/blog/2018/08/08/Flutter-Img-Sync使用指南/" class="next-post btn btn-default" title='Flutter-Img-Sync使用指南'>
+        <span class="hidden-lg">下一篇</span>
+        <span class="hidden-xs">
+            Flutter-Img-Sync使用指南</span><i class="fa fa-angle-right fa-fw"></i>
+    </a>
+    
+</div>
+
+<div id="comments">
+    
+<link rel="stylesheet" href="https://cdn.bootcss.com/gitalk/1.4.1/gitalk.min.css">
+<script src="//cdn.bootcss.com/gitalk/1.4.1/gitalk.min.js"></script>
+<script src="//cdn.bootcss.com/blueimp-md5/2.9.0/js/md5.min.js"></script>
+<div id="gitalk-container"></div>
+<script type="text/javascript">
+var gitalk = new Gitalk({
+    // Gitalk配置
+    language: "zh-CN",
+    clientID: "f05e3bd33d99726c651c",
+    clientSecret: "bdf5a306e9be091289d146c21bb770c45a3e26c6",
+    repo: "hexo_blog_leo",
+    owner: "leo0618",
+    admin: ["leo0618"],
+    id: md5(location.pathname),
+    distractionFreeMode: true
+});
+gitalk.render('gitalk-container');
+</script>
+
+</div>
+
+                </main>
+                
+                    <aside id="article-toc" role="navigation" class="col-md-4">
+    <div class="widget">
+        <h3 class="title">
+            文章目录
+        </h3>
+        
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#为什么用HashMap？"><span class="toc-text">为什么用HashMap？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#HashMap的工作原理是什么？"><span class="toc-text">HashMap的工作原理是什么？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#HashMap具体的存取过程："><span class="toc-text">HashMap具体的存取过程：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#有什么方法可以减少碰撞？"><span class="toc-text">有什么方法可以减少碰撞？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#HashMap中hash函数怎么是是实现的"><span class="toc-text">HashMap中hash函数怎么是是实现的?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#拉链法导致的链表过深问题为什么不用二叉查找树代替，而选择红黑树？为什么不一直使用红黑树？"><span class="toc-text">拉链法导致的链表过深问题为什么不用二叉查找树代替，而选择红黑树？为什么不一直使用红黑树？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#说说你对红黑树的见解？"><span class="toc-text">说说你对红黑树的见解？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#解决hash-碰撞还有那些办法？"><span class="toc-text">解决hash 碰撞还有那些办法？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#如果HashMap的大小超过了负载因子-load-factor-定义的容量，怎么办？"><span class="toc-text">如果HashMap的大小超过了负载因子(load factor)定义的容量，怎么办？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#重新调整HashMap大小存在什么问题吗？"><span class="toc-text">重新调整HashMap大小存在什么问题吗？</span></a></li></ol>
+        
+    </div>
+</aside>
+                
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+<a id="back-to-top" class="icon-btn hide">
+    <i class="fa fa-chevron-up"></i>
+</a>
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="busuanzi">
+    
+</div>
+            </div>
+            <div class="col-sm-12">
+                <span>Copyright &copy;
+                    2014
+                </span> |
+                <span>
+                    Powered by <a href="https://okfood.vip" class="copyright-links" target="_blank" rel="nofollow">Leo</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="/blog/assets/tagcanvas.min.js?rev=2.9"></script>
+<script>
+var tagOption = {
+    textColour: '#444', // 字体颜色
+    outlineMethod: 'block', // 选中模式
+    outlineColour: '#FFDAB9', // 选中模式的颜色
+    interval: 30 || 30, // 动画帧之间的时间间隔，值越大，转动幅度越大
+    textHeight: 13,
+    outlineRadius: 3,
+    freezeActive: true || '', // 选中的标签是否继续滚动
+    frontSelect: true || '', // 不选标签云后部的标签
+    initial: [0.1, -0.1],
+    depth: 0.5,
+    decel: 0.95,
+    maxSpeed: 0.03,
+    reverse: true || '', // 是否反向触发
+    fadeIn: 500, // 进入动画时间
+    wheelZoom: false || '' // 是否启用鼠标滚轮
+}
+TagCanvas.Start('tag-cloud-3d', '', tagOption);
+</script>
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<script src="/blog/js/app.js?rev=@@hash"></script>
+</body>
+</html>
