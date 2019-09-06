@@ -1,0 +1,346 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+<head><meta name="generator" content="Hexo 3.9.0">
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="上帝之手-Work makes the workman">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="theme-version" content="1.2.3">
+    <meta name="root" content="/blog/">
+    <link rel="dns-prefetch" href="https://okfood.vip/blog">
+    <!--SEO-->
+
+<meta name="keywords" content="html,css">
+
+
+<meta name="description" content="CSS层叠样式表将网页中的样式分离出来，完全由CSS来控制，增强样式的复用性及可扩展性。格式：
+选择器{属性名：属性值;属性名：属性值… }
+css和html代码相结合的四种方式1.每个html...">
+
+
+<meta name="robots" content="all">
+<meta name="google" content="all">
+<meta name="googlebot" content="all">
+<meta name="verify" content="all">
+    <!--Title-->
+
+<title>
+    
+    CSS层叠样式表 |
+    
+    上帝之手-Work makes the workman
+</title>
+
+<link rel="alternate" href="/blog/atom.xml" title="上帝之手-Work makes the workman" type="application/atom+xml">
+
+
+<link rel="icon" href="/blog/img/avatar_circle.png">
+
+    
+
+<link rel="stylesheet" href="/blog/css/bootstrap.min.css?rev=3.3.7">
+<link rel="stylesheet" href="/blog/css/font-awesome.min.css?rev=4.7.0">
+<link rel="stylesheet" href="/blog/css/style.css?rev=@@hash">
+<link rel="stylesheet" href="/blog/assets/google-code-prettify/prettify.css">
+    
+
+
+
+    
+
+</head></html>
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+<body>
+    <header class="main-header"  style="background-image:url(
+    /blog/img/banner.jpg)"
+     >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/blog/" title='Leo'>
+            <img src="/blog/img/avatar.jpg" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+            
+            <img src="/blog/img/branding.png" alt="博客-Leo" class="img-responsive center-block">
+            
+        </div>
+    </div>
+</header>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                        <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="https://okfood.vip/blog">
+                        上帝之手-Work makes the workman</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/blog/"><i class="fa "></i>
+                                首页</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/blog/categories/Java/"><i class="fa "></i>
+                                Java</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/blog/categories/Android/"><i class="fa "></i>
+                                Android</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/blog/categories/前端/"><i class="fa "></i>
+                                前端</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/blog/categories/后端/"><i class="fa "></i>
+                                后端</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/blog/categories/算法/"><i class="fa "></i>
+                                算法</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/blog/archives/"><i class="fa "></i>
+                                时间轴</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="CSS层叠样式表">
+            
+            CSS层叠样式表
+            
+        </h1>
+        <div class="post-meta">
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a class="category-link" href="/blog/categories/前端/">前端</a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            <a class="tag-link" href="/blog/tags/css/">css</a> <a class="tag-link" href="/blog/tags/html/">html</a>
+            
+        </span>
+    </span>
+    
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta">
+            2014/06/25</span>
+    </span>
+    
+    
+</div>
+        
+        
+    </div>
+    
+    <div class="post-body post-content">
+        <h1 id="CSS层叠样式表"><a href="#CSS层叠样式表" class="headerlink" title="CSS层叠样式表"></a>CSS层叠样式表</h1><p>将网页中的样式分离出来，完全由CSS来控制，增强样式的复用性及可扩展性。<br>格式：</p>
+<p>选择器{属性名：属性值;属性名：属性值… }</p>
+<h2 id="css和html代码相结合的四种方式"><a href="#css和html代码相结合的四种方式" class="headerlink" title="css和html代码相结合的四种方式"></a>css和html代码相结合的四种方式</h2><p>1.每个html标签都有一个style属性</p>
+<p>2.当页面有多个标签有相同的样式时，可以进行复用</p>
+<pre><code>&lt;style&gt;
+    css代码
+&lt;/style&gt;</code></pre><p>3.当有多个页面中的标签的样式相同时，还可以将样式单独封装成一个CSS文件，通过在每个页面中定义</p>
+<pre><code>&lt;style&gt;
+    @import url(&quot;1.css&quot;);
+&lt;/style&gt;</code></pre><p>4.通过html中head标签中的link标签连接一个CSS文件</p>
+<pre><code>&lt;link rel=&quot;stylesheet&quot; href=&quot;1.css&quot; /&gt;</code></pre><p>技巧：为了提高相同样式的复用性以及可扩展性，可以将多个标签样式进行单独定义并封装成CSS</p>
+<pre><code>p.css,div.css...</code></pre><p>在一个CSS文件中使用CSS的import将多个标签样式文件导入，然后在html页面上，使用link标签导入这个总的CSS文件即可</p>
+<pre><code>1.css
+@import url(&quot;p.css&quot;);
+@import url(&quot;div.css&quot;);
+
+&lt;link rel=&quot;stylesheet&quot; href=&quot;1.css&quot; /&gt;</code></pre><hr>
+<h2 id="选择器"><a href="#选择器" class="headerlink" title="选择器"></a>选择器</h2><p>其实就是样式要作用的标签容器。当样式分离后，html作用在于用标签封装数据，然后将CSS加载到指定标签上。</p>
+<h3 id="选择器分类"><a href="#选择器分类" class="headerlink" title="选择器分类"></a>选择器分类</h3><p>1.标签选择器：就是html中的每一个标签名。</p>
+<p>2.类选择器：就是每一个标签中的class属性。用 . 表示，只用来给CSS所使用，可以对不同标签进行相同样式设定</p>
+<p>3.ID选择器：就是每一个标签中的ID属性。但是要保证ID唯一性，用#来标识，ID不仅可以被CSS所使用还可以被javascript所使用。</p>
+<h3 id="选择器优先级"><a href="#选择器优先级" class="headerlink" title="选择器优先级"></a>选择器优先级</h3><p>ID&gt;class&gt;标签</p>
+<h3 id="扩展选择器"><a href="#扩展选择器" class="headerlink" title="扩展选择器"></a>扩展选择器</h3><p>1.关联选择器：就是对标签中的标签镜像样式定义。选择器 选择器…</p>
+<p>2.组合选择器：对多个选择器进行相同样式定义。将多个选择器通过，隔开的形式。</p>
+<p>3.伪元素选择器：就是元素的一种状态。</p>
+<pre><code>a:link：超链接被点前状态
+a:visited：超链接点击后状态
+a:hover：悬停在超链接上
+a:active：点击超链接时</code></pre><p>在定义这些状态时，有一个顺序：L V H A</p>
+<pre><code>p:first-letter
+p:first-line
+:focus：IE6不支持，但FF支持。</code></pre><h3 id="CSS滤镜"><a href="#CSS滤镜" class="headerlink" title="CSS滤镜"></a>CSS滤镜</h3><p>通过一些代码完成丰富的样式</p>
+<p>当使用到CSS的更多属性是还需要查阅CSS API</p>
+<p>网页设计的时候。div+css</p>
+<pre><code>div:行级区域
+span:块级区域
+p:行级区域，p中不能嵌套div</code></pre>
+    </div>
+    
+    <div class="reward" ontouchstart>
+    <div class="reward-wrap">赏
+        <div class="reward-box">
+            
+            <span class="reward-type">
+                <img class="alipay" src="/blog/img/alipay.jpg"><b>支付宝打赏</b>
+            </span>
+            
+            
+            <span class="reward-type">
+                <img class="wechat" src="/blog/img/reward-wepay.jpg"><b>微信打赏</b>
+            </span>
+            
+        </div>
+    </div>
+    <p class="reward-tip">
+        赞赏是不耍流氓的鼓励
+    </p>
+</div>
+    
+    <div class="post-footer">
+        <div>
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+<div class="article-nav prev-next-wrap clearfix">
+    
+    <a href="/blog/2014/07/13/JavaScript及基本语法/" class="pre-post btn btn-default" title='JavaScript及基本语法'>
+        <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+        <span class="hidden-xs">
+            JavaScript及基本语法</span>
+    </a>
+    
+    
+    <a href="/blog/2014/06/05/Html标签/" class="next-post btn btn-default" title='Html标签'>
+        <span class="hidden-lg">下一篇</span>
+        <span class="hidden-xs">
+            Html标签</span><i class="fa fa-angle-right fa-fw"></i>
+    </a>
+    
+</div>
+
+<div id="comments">
+    
+<p>评论系统未开启，无法评论！</p>
+
+</div>
+
+                </main>
+                
+                    <aside id="article-toc" role="navigation" class="col-md-4">
+    <div class="widget">
+        <h3 class="title">
+            文章目录
+        </h3>
+        
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#CSS层叠样式表"><span class="toc-text">CSS层叠样式表</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#css和html代码相结合的四种方式"><span class="toc-text">css和html代码相结合的四种方式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#选择器"><span class="toc-text">选择器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#选择器分类"><span class="toc-text">选择器分类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#选择器优先级"><span class="toc-text">选择器优先级</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#扩展选择器"><span class="toc-text">扩展选择器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CSS滤镜"><span class="toc-text">CSS滤镜</span></a></li></ol></li></ol></li></ol>
+        
+    </div>
+</aside>
+                
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+<a id="back-to-top" class="icon-btn hide">
+    <i class="fa fa-chevron-up"></i>
+</a>
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="busuanzi">
+    
+</div>
+            </div>
+            <div class="col-sm-12">
+                <span>Copyright &copy;
+                    2014
+                </span> |
+                <span>
+                    Powered by <a href="https://okfood.vip" class="copyright-links" target="_blank" rel="nofollow">Leo</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="/blog/assets/tagcanvas.min.js?rev=2.9"></script>
+<script>
+var tagOption = {
+    textColour: '#444', // 字体颜色
+    outlineMethod: 'block', // 选中模式
+    outlineColour: '#FFDAB9', // 选中模式的颜色
+    interval: 30 || 30, // 动画帧之间的时间间隔，值越大，转动幅度越大
+    textHeight: 13,
+    outlineRadius: 3,
+    freezeActive: true || '', // 选中的标签是否继续滚动
+    frontSelect: true || '', // 不选标签云后部的标签
+    initial: [0.1, -0.1],
+    depth: 0.5,
+    decel: 0.95,
+    maxSpeed: 0.03,
+    reverse: true || '', // 是否反向触发
+    fadeIn: 500, // 进入动画时间
+    wheelZoom: false || '' // 是否启用鼠标滚轮
+}
+TagCanvas.Start('tag-cloud-3d', '', tagOption);
+</script>
+
+
+<script src="/blog/assets/google-code-prettify/prettify.js?"></script>
+<script src="/blog/js/app.js?rev=@@hash"></script>
+</body>
+</html>

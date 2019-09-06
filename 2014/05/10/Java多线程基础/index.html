@@ -1,0 +1,995 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+<head><meta name="generator" content="Hexo 3.9.0">
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="上帝之手-Work makes the workman">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="theme-version" content="1.2.3">
+    <meta name="root" content="/blog/">
+    <link rel="dns-prefetch" href="https://okfood.vip/blog">
+    <!--SEO-->
+
+<meta name="keywords" content="JavaSE">
+
+
+<meta name="description" content="多线程进程：正在进行中的程序。其实进程就是一个应用程序运行时的内存分配空间。
+线程：其实就是进程中一个程序执行控制单元，一条执行路径。进程负责的是应用程序的空间的标示。线程负责的是应用程序的执行...">
+
+
+<meta name="robots" content="all">
+<meta name="google" content="all">
+<meta name="googlebot" content="all">
+<meta name="verify" content="all">
+    <!--Title-->
+
+<title>
+    
+    Java多线程基础 |
+    
+    上帝之手-Work makes the workman
+</title>
+
+<link rel="alternate" href="/blog/atom.xml" title="上帝之手-Work makes the workman" type="application/atom+xml">
+
+
+<link rel="icon" href="/blog/img/avatar_circle.png">
+
+    
+
+<link rel="stylesheet" href="/blog/css/bootstrap.min.css?rev=3.3.7">
+<link rel="stylesheet" href="/blog/css/font-awesome.min.css?rev=4.7.0">
+<link rel="stylesheet" href="/blog/css/style.css?rev=@@hash">
+<link rel="stylesheet" href="/blog/assets/google-code-prettify/prettify.css">
+    
+
+
+
+    
+
+</head></html>
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+<body>
+    <header class="main-header"  style="background-image:url(
+    /blog/img/banner.jpg)"
+     >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/blog/" title='Leo'>
+            <img src="/blog/img/avatar.jpg" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+            
+            <img src="/blog/img/branding.png" alt="博客-Leo" class="img-responsive center-block">
+            
+        </div>
+    </div>
+</header>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                        <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="https://okfood.vip/blog">
+                        上帝之手-Work makes the workman</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/blog/"><i class="fa "></i>
+                                首页</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/blog/categories/Java/"><i class="fa "></i>
+                                Java</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/blog/categories/Android/"><i class="fa "></i>
+                                Android</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/blog/categories/前端/"><i class="fa "></i>
+                                前端</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/blog/categories/后端/"><i class="fa "></i>
+                                后端</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/blog/categories/算法/"><i class="fa "></i>
+                                算法</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/blog/archives/"><i class="fa "></i>
+                                时间轴</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="Java多线程基础">
+            
+            Java多线程基础
+            
+        </h1>
+        <div class="post-meta">
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a class="category-link" href="/blog/categories/Java/">Java</a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            <a class="tag-link" href="/blog/tags/JavaSE/">JavaSE</a>
+            
+        </span>
+    </span>
+    
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta">
+            2014/05/10</span>
+    </span>
+    
+    
+</div>
+        
+        
+    </div>
+    
+    <div class="post-body post-content">
+        <h1 id="多线程"><a href="#多线程" class="headerlink" title="多线程"></a>多线程</h1><p><strong>进程</strong>：正在进行中的程序。其实进程就是一个应用程序运行时的内存分配空间。</p>
+<p><strong>线程</strong>：其实就是进程中一个程序执行控制单元，一条执行路径。进程负责的是应用程序的空间的标示。线程负责的是应用程序的执行顺序。</p>
+<p>一个进程至少有一个线程在运行，当一个进程中出现多个线程时，就称这个应用程序是多线程应用程序，每个线程在栈区中都有自己的执行空间，自己的方法区、自己的变量。</p>
+<p>jvm在启动的时，首先有一个主线程，负责程序的执行，调用的是main函数。主线程执行的代码都在main方法中。</p>
+<p>当产生垃圾时，收垃圾的动作，是不需要主线程来完成，因为这样，会出现主线程中的代码执行会停止，会去运行垃圾回收器代码，效率较低，所以由单独一个线程来负责垃圾回收。 </p>
+<p>随机性的原理：因为cpu的快速切换造成，哪个线程获取到了cpu的执行权，哪个线程就执行。</p>
+<p>返回当前线程的名称：Thread.currentThread().getName()</p>
+<p>线程的名称是由：Thread-编号定义的。编号从0开始。</p>
+<p>线程要运行的代码都统一存放在了run方法中。</p>
+<p>线程要运行必须要通过类中指定的方法开启。start方法。（启动后，就多了一条执行路径）</p>
+<p>start方法：1）、启动了线程；2）、让jvm调用了run方法。</p>
+<h2 id="创建线程的第一种方式"><a href="#创建线程的第一种方式" class="headerlink" title="创建线程的第一种方式"></a>创建线程的第一种方式</h2><p>继承Thread ，由子类复写run方法。</p>
+<p>步骤：</p>
+<ol>
+<li>定义类继承Thread类；</li>
+<li>目的是复写run方法，将要让线程运行的代码都存储到run方法中；</li>
+<li>通过创建Thread类的子类对象，创建线程对象；</li>
+<li>调用线程的start方法，开启线程，并执行run方法。</li>
+</ol>
+<p>例如：</p>
+<pre><code>class Demo extends Thread//定义类继承Thread类
+{
+    public void run()//复写run方法
+    {
+        for(int x=0;x&lt;60;x++)
+        System.out.println(&quot;demo run---&quot;+x);
+    }
+}
+
+class  ThreadDemo
+{
+    public static void main(String[] args) 
+    {
+        Demo d = new Demo();//创建线程对象
+        d.start();//调用线程的start方法，开启线程
+
+        //以下是主函数线程执行程序
+        for(int x=0;x&lt;50;x++)
+            System.out.println(&quot;Hello World!---&quot;+x);
+    }
+}</code></pre><p><strong>线程状态：</strong></p>
+<p>被创建：start()</p>
+<p>运行：具备执行资格，同时具备执行权；</p>
+<p>冻结：sleep(time),wait()—notify()唤醒；线程释放了执行权，同时释放执行资格；</p>
+<p>临时阻塞状态：线程具备cpu的执行资格，没有cpu的执行权；</p>
+<p>消亡：stop()</p>
+<p><img src="https://raw.githubusercontent.com/Leo0618/images/master/20.png" alt></p>
+<h2 id="创建线程的第二种方式"><a href="#创建线程的第二种方式" class="headerlink" title="创建线程的第二种方式"></a>创建线程的第二种方式</h2><p>实现一个接口Runnable。</p>
+<p>步骤：</p>
+<ol>
+<li>定义类实现Runnable接口。</li>
+<li>覆盖接口中的run方法（用于封装线程要运行的代码）。</li>
+<li>通过Thread类创建线程对象；</li>
+<li>将实现了Runnable接口的子类对象作为实际参数传递给Thread类中的构造函数。为什么要传递呢？因为要让线程对象明确要运行的run方法所属的对象。</li>
+<li>调用Thread对象的start方法。开启线程，并运行Runnable接口子类中的run方法。</li>
+</ol>
+<p>例如：</p>
+<pre><code>class Ticket implements Runnable //定义类实现Runnable接口
+{
+    private int tick = 50;
+    public void run()//覆盖接口中的run方法
+    {
+        while(true)
+        {
+            if(tick&gt;0)
+            System.out.println(Thread.currentThread().getName()+&quot;..sale:&quot;+tick--);
+        }
+    }    
+}
+
+class TicketDemo 
+{
+    public static void main(String[] args) 
+    {
+        /*
+        通过Thread类创建线程对象,
+        并将实现了Runnable接口的子类对象作为实际参数传递给Thread类中的构造函数
+        */
+        Thread t1 = new Thread(new Ticket());
+        Thread t2 = new Thread(new Ticket());
+        Thread t3 = new Thread(new Ticket());
+        Thread t4 = new Thread(new Ticket());
+
+        t1.start();//开启线程
+        t2.start();
+        t3.start();
+        t4.start();
+    }
+}
+
+Ticket t = new Ticket();
+
+/*
+
+直接创建Ticket对象，并不是创建线程对象。
+
+因为创建对象只能通过new Thread类，或者new Thread类的子类才可以。
+
+所以最终想要创建线程。既然没有了Thread类的子类，就只能用Thread类。
+
+*/
+
+Thread t1 = new Thread(t); //创建线程。
+
+/*
+
+只要将t作为Thread类的构造函数的实际参数传入即可完成线程对象和t之间的关联
+
+为什么要将t传给Thread类的构造函数呢？其实就是为了明确线程要运行的代码run方法。
+
+*/
+
+t1.start();</code></pre><h2 id="为什么要有Runnable接口的出现？"><a href="#为什么要有Runnable接口的出现？" class="headerlink" title="为什么要有Runnable接口的出现？"></a>为什么要有Runnable接口的出现？</h2><p>1：通过继承Thread类的方式，可以完成多线程的建立。但是这种方式有一个局限性，如果一个类已经有了自己的父类，就不可以继承Thread类，因为java单继承的局限性。</p>
+<p>可是该类中的还有部分代码需要被多个线程同时执行。这时怎么办呢？</p>
+<p>只有对该类进行额外的功能扩展，java就提供了一个接口Runnable。这个接口中定义了run方法，其实run方法的定义就是为了存储多线程要运行的代码。</p>
+<p>所以，通常创建线程都用第二种方式。</p>
+<p>因为实现Runnable接口可以避免单继承的局限性。</p>
+<p>2：其实是将不同类中需要被多线程执行的代码进行抽取。将多线程要运行的代码的位置单独定义到接口中。为其他类进行功能扩展提供了前提。</p>
+<p>所以Thread类在描述线程时，内部定义的run方法，也来自于Runnable接口。</p>
+<p>实现Runnable接口可以避免单继承的局限性。而且，继承Thread，是可以对Thread类中的方法，进行子类复写的。但是不需要做这个复写动作的话，只为定义线程代码存放位置，实现Runnable接口更方便一些。所以Runnable接口将线程要执行的任务封装成了对象。</p>
+<pre><code>Try {
+
+Thread.sleep(10);
+
+}catch(InterruptedException e){}// 当刻意让线程稍微停一下，模拟cpu切换情况。</code></pre><h2 id="多线程安全问题的原因"><a href="#多线程安全问题的原因" class="headerlink" title="多线程安全问题的原因"></a>多线程安全问题的原因</h2><p>通过图解：发现一个线程在执行多条语句时，并运算同一个数据时，在执行过程中，其他线程参与进来，并操作了这个数据。导致到了错误数据的产生。</p>
+<p>涉及到两个因素：</p>
+<ol>
+<li>多个线程在操作共享数据。</li>
+<li>有多条语句对共享数据进行运算。</li>
+</ol>
+<p>原因：这多条语句，在某一个时刻被一个线程执行时，还没有执行完，就被其他线程执行了。</p>
+<h2 id="解决安全问题的原理"><a href="#解决安全问题的原理" class="headerlink" title="解决安全问题的原理"></a>解决安全问题的原理</h2><p>只要将操作共享数据的语句在某一时段让一个线程执行完，在执行过程中，其他线程不能进来执行就可以解决这个问题。</p>
+<p>如何进行多句操作共享数据代码的封装呢？</p>
+<p>java中提供了一个解决方式：就是同步代码块。</p>
+<p>格式：</p>
+<pre><code>synchronized(对象) {  // 任意对象都可以。这个对象就是锁。
+    需要被同步的代码；
+}</code></pre><p>同步：</p>
+<p>好处：解决了线程安全问题。</p>
+<p>弊端：相对降低性能，因为判断锁需要消耗资源，产生了死锁。</p>
+<p>定义同步是有前提的：</p>
+<ol>
+<li>必须要有两个或者两个以上的线程，才需要同步。</li>
+<li>多个线程必须保证使用的是同一个锁。</li>
+</ol>
+<h2 id="同步的第二种表现形式"><a href="#同步的第二种表现形式" class="headerlink" title="同步的第二种表现形式"></a>同步的第二种表现形式</h2><p>同步函数：其实就是将同步关键字定义在函数上，让函数具备了同步性。</p>
+<p>同步函数是用的哪个锁呢？</p>
+<p>通过验证，函数都有自己所属的对象this，所以同步函数所使用的锁就是this锁。</p>
+<p>当同步函数被static修饰时，这时的同步用的是哪个锁呢？</p>
+<p>静态函数在加载时所属于类，这时有可能还没有该类产生的对象，但是该类的字节码文件加载进内存就已经被封装成了对象，这个对象就是该类的字节码文件对象。</p>
+<p>所以静态加载时，只有一个对象存在，那么静态同步函数就使用的这个对象。</p>
+<p>这个对象就是 类名.class</p>
+<h2 id="同步代码块和同步函数的区别"><a href="#同步代码块和同步函数的区别" class="headerlink" title="同步代码块和同步函数的区别"></a>同步代码块和同步函数的区别</h2><p>同步代码块使用的锁可以是任意对象。</p>
+<p>同步函数使用的锁是this，静态同步函数的锁是该类的字节码文件对象。</p>
+<p>在一个类中只有一个同步，可以使用同步函数。如果有多同步，必须使用同步代码块，来确定不同的锁。所以同步代码块相对灵活一些。</p>
+<hr>
+<p>★考点问题：请写一个延迟加载的单例模式？写懒汉式；当出现多线程访问时怎么解决？加同步，解决安全问题；效率高吗？不高；怎样解决？通过双重判断的形式解决。</p>
+<p>//懒汉式：延迟加载方式。</p>
+<p>当多线程访问懒汉式时，因为懒汉式的方法内对共性数据进行多条语句的操作。所以容易出现线程安全问题。为了解决，加入同步机制，解决安全问题。但是却带来了效率降低。</p>
+<p>为了效率问题，通过双重判断的形式解决。</p>
+<pre><code>/*
+单例设计模式
+//饿汉式：
+class Single
+{
+    private static final Single s = new Single();
+    private Single(){}
+    public static Single getInstance()
+    {
+        return s;
+    }
+}
+*/
+
+//懒汉式：
+class Single
+{
+    private static Single s = null;
+    private Single(){}
+    public static Single Instance()//锁是谁？字节码文件对象；
+    {
+        if(s==null)
+        {    
+            synchronized(Single.class)
+            {
+                if(s==null)
+                    s = new Single();
+                return s;
+            }
+        }
+    }
+}
+
+class  SingleDemo
+{
+    public static void main(String[] args) 
+    {
+        System.out.println(&quot;Hello World!&quot;);
+    }
+}</code></pre><p>同步死锁：通常只要将同步进行嵌套，就可以看到现象。同步函数中有同步代码块，同步代码块中还有同步函数。</p>
+<p>举例如下：</p>
+<pre><code>class Test implements Runnable
+{
+    private boolean flag;
+    Test(boolean flag)
+    {
+        this.flag = flag;
+    }
+    public void run()
+    {
+        while(true)
+        {
+            if(flag)
+            {
+                synchronized(MyLock.lockb)
+                {
+                    System.out.println(&quot;if lock b&quot;);
+                    synchronized(MyLock.locka)
+                    {
+                        System.out.println(&quot;if lock a&quot;);
+                    }
+                }
+            }
+            else
+            {
+                synchronized(MyLock.locka)
+                {
+                    System.out.println(&quot;else lock a&quot;);
+                    synchronized(MyLock.lockb)
+                    {
+                        System.out.println(&quot;else lock b&quot;);
+                    }
+                }
+            }
+        }
+    }
+}
+
+class MyLock
+{
+    static Object locka = new Object();
+    static Object lockb = new Object();
+}
+
+class  DeadLockTest
+{
+    public static void main(String[] args) 
+    {
+        Thread t1 = new Thread(new Test(true));
+        Thread t2 = new Thread(new Test(false));
+        t1.start();
+        t2.start();
+    }
+}</code></pre><p>线程间通信：思路：多个线程在操作同一个资源，但是操作的动作却不一样。</p>
+<ol>
+<li>将资源封装成对象。</li>
+<li>将线程执行的任务(任务其实就是run方法。)也封装成对象。</li>
+</ol>
+<p>等待唤醒机制：涉及的方法：</p>
+<ul>
+<li>wait:将同步中的线程处于冻结状态。释放了执行权，释放了资格。同时将线程对象存储到线程池中。</li>
+<li>notify：唤醒线程池中某一个等待线程。</li>
+<li>notifyAll:唤醒的是线程池中的所有线程。</li>
+</ul>
+<p>注意：</p>
+<ol>
+<li>这些方法都需要定义在同步中。 </li>
+<li>因为这些方法必须要标示所属的锁。你要知道 A锁上的线程被wait了,那这个线程就相当于处于A锁的线程池中，只能A锁的notify唤醒。</li>
+<li>这三个方法都定义在Object类中。为什么操作线程的方法定义在Object类中？</li>
+</ol>
+<p>因为这三个方法都需要定义同步内，并标示所属的同步锁，既然被锁调用，而锁又可以是任意对象，那么能被任意对象调用的方法一定定义在Object类中。</p>
+<p><strong>wait和sleep区别</strong>： 分析这两个方法：从执行权和锁上来分析：</p>
+<p>wait：可以指定时间也可以不指定时间。不指定时间，只能由对应的notify或者notifyAll来唤醒。</p>
+<p>sleep：必须指定时间，时间到自动从冻结状态转成运行状态(临时阻塞状态)。</p>
+<p>wait：线程会释放执行权，而且线程会释放锁。</p>
+<p>Sleep：线程会释放执行权，但不是不释放锁。</p>
+<p> 举例如下：</p>
+<pre><code>/*
+线程间通信：
+其实就是多个线程操作同一个资源，但是操作的动作不同
+*/
+class Res
+{
+    private String name;
+    private String sex;
+    private boolean flag = false;
+    public synchronized void set(String name,String sex)
+    {
+        if(flag)
+            try{this.wait();}catch(Exception e){}
+        this.name = name;
+        this.sex = sex;
+        flag = true;
+        this.notify();
+    }
+    public synchronized void out()
+    {
+        if(!flag)
+            try{this.wait();}catch(Exception e){}
+        System.out.println(this.name+&quot;...&quot;+this.sex);
+        flag = false;
+        this.notify();
+    }
+}
+class Input implements Runnable
+{
+    private Res r;
+    Input(Res r)
+    {
+        this.r = r;
+    }
+    public void run()
+    {
+        int x = 0;
+        while(true)
+        {            
+            if(x==0)
+                r.set(&quot;mike&quot;,&quot;man&quot;);
+            else
+                r.set(&quot;丽丽&quot;,&quot;女女女&quot;);                
+            x = (x+1)%2;
+        }
+    }
+}
+class Output implements Runnable
+{
+    private Res r ;
+    Output(Res r)
+    {
+        this.r = r;
+    }
+    public void run()
+    {
+        while(true)
+        {
+            r.out();
+        }
+    }
+}
+
+class  InputOutputDemo1
+{
+    public static void main(String[] args) 
+    {
+        Res r = new Res();//建立资源
+        new Thread(new Input(r)).start();
+        new Thread(new Output(r)).start();
+    }
+}</code></pre><p>线程的停止：通过stop方法就可以停止线程。但是这个方式过时了。</p>
+<p>停止线程：原理就是：让线程运行的代码结束，也就是结束run方法。</p>
+<p>怎么结束run方法？一般run方法里肯定定义循环。所以只要结束循环即可。</p>
+<p>第一种方式：定义循环的结束标记。</p>
+<p>第二种方式：如果线程处于了冻结状态，是不可能读到标记的，这时就需要通过Thread类中的interrupt方法，将其冻结状态强制清除。让线程恢复具备执行资格的状态，让线程可以读到标记，并结束。</p>
+<p>举例如下：</p>
+<pre><code>/*
+stop方法已经过时
+如何停止线程？
+只有一种，run方法结束
+开启多线程运行，运行代码通常是循环结构
+只要控制住循环，就可以让run方法结束，也就是线程结束
+特殊情况：
+当线程处于冻结状态
+就不会读取到标记，那么线程就不会结束
+当没有指定的方式让冻结的线程恢复带运行状态时，这时需要对冻结进行清除
+强制让线程恢复到运行状态中来，这样就可以操作标记让线程结束
+Thread类提供该方法 interrupt();
+*/
+class StopThread implements Runnable
+{
+    private boolean flag = true;
+    public synchronized void run()
+    {
+        while(flag)
+        {
+            try
+            {
+                wait();
+            }
+            catch (InterruptedException e)
+            {
+                System.out.println(Thread.currentThread().getName()+&quot;.....Exception&quot;);
+                flag = false;
+            }
+            System.out.println(Thread.currentThread().getName()+&quot;.....run&quot;);
+        }
+    }
+    public void changeFlag()
+    {
+        flag = false;
+    }
+}
+
+
+class StopThreadDemo 
+{
+    public static void main(String[] args) 
+    {
+        StopThread st = new StopThread();
+        Thread t1 = new Thread(st);
+        Thread t2 = new Thread(st);
+        t1.setDaemon(true);
+        t2.setDaemon(true);
+
+        t1.start();
+        t2.start();
+
+        int num = 0;
+        while(true)
+        {
+            if(num++ == 60)
+            {
+//                st.changeFlag();
+        //        t1.interrupt();
+        //        t2.interrupt();
+                break;
+            }
+            System.out.println(Thread.currentThread().getName()+&quot;............main&quot;+num);
+        }
+        System.out.println(&quot;over&quot;);
+    }
+}</code></pre><p>———&lt; java.lang.Thread &gt;———-</p>
+<ul>
+<li>interrupt()：中断线程。</li>
+<li>setPriority(int newPriority)：更改线程的优先级。</li>
+<li>getPriority()：返回线程的优先级。</li>
+<li>toString()：返回该线程的字符串表示形式，包括线程名称、优先级和线程组。</li>
+<li>Thread.yield()：暂停当前正在执行的线程对象，并执行其他线程。</li>
+<li>setDaemon(true)：将该线程标记为守护线程或用户线程。将该线程标记为守护线程或用户线程。当正在运行的线程都是守护线程时，Java 虚拟机退出。该方法必须在启动线程前调用。</li>
+<li>join：临时加入一个线程的时候可以使用join方法。</li>
+</ul>
+<p>当A线程执行到了B线程的join方式。A线程处于冻结状态，释放了执行权，B开始执行。A什么时候执行呢？只有当B线程运行结束后，A才从冻结状态恢复运行状态执行。</p>
+<p>举例：</p>
+<pre><code>/*
+join：
+当A线程执行到了B线程的join（）方法时，A就会等待，等B线程执行完，A才会执行
+join可以用来临时加入线程执行
+*/
+class Demo implements Runnable
+{
+    public void run()
+    {
+        for(int x=0;x&lt;70;x++)
+        {
+            System.out.println(Thread.currentThread().getName()+&quot;.....&quot;+x);
+            Thread.yield();
+        }
+    }
+}
+
+class  JoinDemo
+{
+    public static void main(String[] args) throws InterruptedException
+    {
+        Demo d = new Demo();
+
+        Thread t1 = new Thread(d);
+        Thread t2 = new Thread(d);
+
+        t1.start();
+    //    t1.join();
+        t2.start();
+
+        for(int x=0;x&lt;80;x++)
+        {
+            //System.out.println(&quot;main.....&quot;+x);
+        }
+        System.out.println(&quot;over&quot;);
+    }
+}</code></pre><p>Lock接口：多线程在JDK1.5版本升级时，推出一个接口Lock接口。</p>
+<p>解决线程安全问题使用同步的形式，(同步代码块，要么同步函数)其实最终使用的都是锁机制。</p>
+<p>到了后期版本，直接将锁封装成了对象。线程进入同步就是具备了锁，执行完，离开同步，就是释放了锁。</p>
+<p>在后期对锁的分析过程中，发现，获取锁，或者释放锁的动作应该是锁这个事物更清楚。所以将这些动作定义在了锁当中，并把锁定义成对象。</p>
+<p>所以同步是隐示的锁操作，而Lock对象是显示的锁操作，它的出现就替代了同步。</p>
+<p>在之前的版本中使用Object类中wait、notify、notifyAll的方式来完成的。那是因为同步中的锁是任意对象，所以操作锁的等待唤醒的方法都定义在Object类中。</p>
+<p>而现在锁是指定对象Lock。所以查找等待唤醒机制方式需要通过Lock接口来完成。而Lock接口中并没有直接操作等待唤醒的方法，而是将这些方式又单独封装到了一个对象中。这个对象就是Condition，将Object中的三个方法进行单独的封装。并提供了功能一致的方法 await()、signal()、signalAll()体现新版本对象的好处。</p>
+<p>举例：比较下面两个程序</p>
+<pre><code>/*
+对于多个生产者和消费者
+为什么定义while判断标记？
+原因：让被唤醒的线程再一次判断标记
+为什么定义notifyAll？
+因为需要唤醒对方线程。
+只用notify，容易出现只唤醒本方线程的情况，导致程序中的所有线程都等待
+*/
+
+class Res
+{
+    private String name;
+    private int count;
+    private boolean flag = false;
+    public synchronized void produce(String name)
+    {
+        while(flag)
+            try{this.wait();}catch(Exception e){}
+        this.name = name+&quot;---&quot;+count++;
+        System.out.println(Thread.currentThread().getName()+&quot;...生产者...&quot;+this.name);
+        flag = true;
+        this.notifyAll();
+    }
+    public synchronized void consume()
+    {
+        while(!flag)
+            try{this.wait();}catch(Exception e){}
+        System.out.println(Thread.currentThread().getName()+&quot;.....消费者.....&quot;+this.name);
+        flag = false;
+        this.notifyAll();
+    }
+}
+
+class Producer implements Runnable
+{
+    private Res r;
+    Producer(Res r)
+    {
+        this.r = r;
+    }
+    public void run()
+    {
+        while(true)
+        {            
+            r.produce(&quot;商品&quot;);
+        }
+    }
+}
+
+class Consumer implements Runnable
+{
+    private Res r ;
+    Consumer(Res r)
+    {
+        this.r = r;
+    }
+    public void run()
+    {
+        while(true)
+        {
+            r.consume();
+        }
+    }
+}
+
+class  ProducerConsumerDemo
+{
+    public static void main(String[] args) 
+    {
+        Res r = new Res();//建立资源
+
+        Producer pro = new Producer(r);
+        Consumer con = new Consumer(r);
+
+        Thread t1 = new Thread(pro);
+        Thread t2 = new Thread(pro);
+        Thread t3 = new Thread(con);
+        Thread t4 = new Thread(con);
+
+        t1.start();
+        t2.start();
+        t3.start();
+        t4.start();
+
+    }
+}
+/*
+JDK1.5中提供了多线程升级解决方案
+将同步Synchronized替换成实现Lock操作
+将Object中的wait,notify,notifyAll替换成了condition对象
+该对象可以Lock锁，进行获取
+在该示例中，实现了本方只唤醒对方的操作    
+*/
+
+import java.util.concurrent.locks.*;
+
+class Res
+{
+    private String name;
+    private int count = 1;
+    private boolean flag = false;
+
+    private Lock lock = new ReentrantLock();
+
+    private Condition condition_pro = lock.newCondition();//一个锁可对应多个condition
+    private Condition condition_con = lock.newCondition();
+
+    public void produce(String name)throws InterruptedException
+    {
+        lock.lock();//获取锁
+        try
+        {
+            if(flag)
+                condition_pro.await();//本方等待，需要抛出异常
+
+            this.name = name+&quot;---&quot;+count++;
+            System.out.println(Thread.currentThread().getName()+&quot;...生产者...&quot;+this.name);
+            flag = true;
+
+            condition_con.signal();//唤醒对方
+        }
+        finally
+        {
+            lock.unlock();//解锁，一定执行
+        }    
+    }
+
+    public synchronized void consume()throws InterruptedException
+    {
+        lock.lock();
+        try
+        {
+            if(!flag)
+            condition_con.await();
+
+            System.out.println(Thread.currentThread().getName()+&quot;.....消费者.....&quot;+this.name);
+            flag = false;
+
+            condition_pro.signal();
+        }
+        finally
+        {
+            lock.unlock();
+        }
+    }
+}
+
+class Producer implements Runnable
+{
+    private Res r;
+    Producer(Res r)
+    {
+        this.r = r;
+    }
+    public void run()
+    {
+        while(true)
+        {        
+            try
+            {
+                r.produce(&quot;商品&quot;);
+            }
+            catch (Exception e)
+            {
+            }    
+        }
+    }
+}
+
+class Consumer implements Runnable
+{
+    private Res r ;
+    Consumer(Res r)
+    {
+        this.r = r;
+    }
+    public void run()
+    {
+        while(true)
+        {
+            try
+            {
+                r.consume();
+            }
+            catch (Exception e)
+            {
+            }    
+        }
+    }
+}
+
+class  ProducerConsumerDemo1
+{
+    public static void main(String[] args) 
+    {
+        Res r = new Res();//建立资源
+
+        Producer pro = new Producer(r);
+        Consumer con = new Consumer(r);
+
+        Thread t1 = new Thread(pro);
+        Thread t2 = new Thread(pro);
+        Thread t3 = new Thread(con);
+        Thread t4 = new Thread(con);
+
+        t1.start();
+        t2.start();
+        t3.start();
+        t4.start();
+    }
+}</code></pre>
+    </div>
+    
+    <div class="reward" ontouchstart>
+    <div class="reward-wrap">赏
+        <div class="reward-box">
+            
+            <span class="reward-type">
+                <img class="alipay" src="/blog/img/alipay.jpg"><b>支付宝打赏</b>
+            </span>
+            
+            
+            <span class="reward-type">
+                <img class="wechat" src="/blog/img/reward-wepay.jpg"><b>微信打赏</b>
+            </span>
+            
+        </div>
+    </div>
+    <p class="reward-tip">
+        赞赏是不耍流氓的鼓励
+    </p>
+</div>
+    
+    <div class="post-footer">
+        <div>
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+<div class="article-nav prev-next-wrap clearfix">
+    
+    <a href="/blog/2014/05/11/Java String、StringBuffer、StringBuilder/" class="pre-post btn btn-default" title='Java String、StringBuffer、StringBuilder'>
+        <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+        <span class="hidden-xs">
+            Java String、StringBuffer、StringBuilder</span>
+    </a>
+    
+    
+    <a href="/blog/2014/05/09/Java异常、package/" class="next-post btn btn-default" title='Java异常、package'>
+        <span class="hidden-lg">下一篇</span>
+        <span class="hidden-xs">
+            Java异常、package</span><i class="fa fa-angle-right fa-fw"></i>
+    </a>
+    
+</div>
+
+<div id="comments">
+    
+<p>评论系统未开启，无法评论！</p>
+
+</div>
+
+                </main>
+                
+                    <aside id="article-toc" role="navigation" class="col-md-4">
+    <div class="widget">
+        <h3 class="title">
+            文章目录
+        </h3>
+        
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#多线程"><span class="toc-text">多线程</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#创建线程的第一种方式"><span class="toc-text">创建线程的第一种方式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#创建线程的第二种方式"><span class="toc-text">创建线程的第二种方式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#为什么要有Runnable接口的出现？"><span class="toc-text">为什么要有Runnable接口的出现？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#多线程安全问题的原因"><span class="toc-text">多线程安全问题的原因</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#解决安全问题的原理"><span class="toc-text">解决安全问题的原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#同步的第二种表现形式"><span class="toc-text">同步的第二种表现形式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#同步代码块和同步函数的区别"><span class="toc-text">同步代码块和同步函数的区别</span></a></li></ol></li></ol>
+        
+    </div>
+</aside>
+                
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+<a id="back-to-top" class="icon-btn hide">
+    <i class="fa fa-chevron-up"></i>
+</a>
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="busuanzi">
+    
+</div>
+            </div>
+            <div class="col-sm-12">
+                <span>Copyright &copy;
+                    2014
+                </span> |
+                <span>
+                    Powered by <a href="https://okfood.vip" class="copyright-links" target="_blank" rel="nofollow">Leo</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="/blog/assets/tagcanvas.min.js?rev=2.9"></script>
+<script>
+var tagOption = {
+    textColour: '#444', // 字体颜色
+    outlineMethod: 'block', // 选中模式
+    outlineColour: '#FFDAB9', // 选中模式的颜色
+    interval: 30 || 30, // 动画帧之间的时间间隔，值越大，转动幅度越大
+    textHeight: 13,
+    outlineRadius: 3,
+    freezeActive: true || '', // 选中的标签是否继续滚动
+    frontSelect: true || '', // 不选标签云后部的标签
+    initial: [0.1, -0.1],
+    depth: 0.5,
+    decel: 0.95,
+    maxSpeed: 0.03,
+    reverse: true || '', // 是否反向触发
+    fadeIn: 500, // 进入动画时间
+    wheelZoom: false || '' // 是否启用鼠标滚轮
+}
+TagCanvas.Start('tag-cloud-3d', '', tagOption);
+</script>
+
+
+<script src="/blog/assets/google-code-prettify/prettify.js?"></script>
+<script src="/blog/js/app.js?rev=@@hash"></script>
+</body>
+</html>

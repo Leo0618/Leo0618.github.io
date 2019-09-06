@@ -1,0 +1,529 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+<head><meta name="generator" content="Hexo 3.9.0">
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="上帝之手-Work makes the workman">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="theme-version" content="1.2.3">
+    <meta name="root" content="/blog/">
+    <link rel="dns-prefetch" href="https://okfood.vip/blog">
+    <!--SEO-->
+
+<meta name="keywords" content="JavaSE">
+
+
+<meta name="description" content="JDK下载安装及环境变量设置
+从官网可以下载到JDK，目前java已出java8最新版本。
+
+和普通的安装软件差不多，按照步骤顺利安装，默认按照JDK的时候已经在jdk目录下安装了JRE，最后会...">
+
+
+<meta name="robots" content="all">
+<meta name="google" content="all">
+<meta name="googlebot" content="all">
+<meta name="verify" content="all">
+    <!--Title-->
+
+<title>
+    
+    Java基础：上 |
+    
+    上帝之手-Work makes the workman
+</title>
+
+<link rel="alternate" href="/blog/atom.xml" title="上帝之手-Work makes the workman" type="application/atom+xml">
+
+
+<link rel="icon" href="/blog/img/avatar_circle.png">
+
+    
+
+<link rel="stylesheet" href="/blog/css/bootstrap.min.css?rev=3.3.7">
+<link rel="stylesheet" href="/blog/css/font-awesome.min.css?rev=4.7.0">
+<link rel="stylesheet" href="/blog/css/style.css?rev=@@hash">
+<link rel="stylesheet" href="/blog/assets/google-code-prettify/prettify.css">
+    
+
+
+
+    
+
+</head></html>
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+<body>
+    <header class="main-header"  style="background-image:url(
+    /blog/img/banner.jpg)"
+     >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/blog/" title='Leo'>
+            <img src="/blog/img/avatar.jpg" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+            
+            <img src="/blog/img/branding.png" alt="博客-Leo" class="img-responsive center-block">
+            
+        </div>
+    </div>
+</header>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                        <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="https://okfood.vip/blog">
+                        上帝之手-Work makes the workman</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/blog/"><i class="fa "></i>
+                                首页</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/blog/categories/Java/"><i class="fa "></i>
+                                Java</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/blog/categories/Android/"><i class="fa "></i>
+                                Android</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/blog/categories/前端/"><i class="fa "></i>
+                                前端</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/blog/categories/后端/"><i class="fa "></i>
+                                后端</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/blog/categories/算法/"><i class="fa "></i>
+                                算法</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/blog/archives/"><i class="fa "></i>
+                                时间轴</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="Java基础：上">
+            
+            Java基础：上
+            
+        </h1>
+        <div class="post-meta">
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a class="category-link" href="/blog/categories/Java/">Java</a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            <a class="tag-link" href="/blog/tags/JavaSE/">JavaSE</a>
+            
+        </span>
+    </span>
+    
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta">
+            2014/03/29</span>
+    </span>
+    
+    
+</div>
+        
+        
+    </div>
+    
+    <div class="post-body post-content">
+        <h2 id="JDK下载安装及环境变量设置"><a href="#JDK下载安装及环境变量设置" class="headerlink" title="JDK下载安装及环境变量设置"></a>JDK下载安装及环境变量设置</h2><ul>
+<li><p>从官网可以下载到JDK，目前java已出java8最新版本。</p>
+</li>
+<li><p>和普通的安装软件差不多，按照步骤顺利安装，默认按照JDK的时候已经在jdk目录下安装了JRE，最后会询问你是否安装独立的JRE，初期学习可以不用安装，完成即可。</p>
+</li>
+<li><p>java环境配置（永久性）</p>
+<ul>
+<li>右击计算机，选择属性，单击高级系统设置，弹出系统属性对话框。</li>
+<li>选择高级，单击环境变量，弹出环境变量对话框。</li>
+<li>在系统变量中单击新建变量名为JAVA_HOME，变量值为D:\Java\jdk1.8.0（根据自己Java安装地址进行设置），单击确定按钮。</li>
+<li>找到Path变量，光标定位到最前面，添加%JAVA_HOME%\bin;（注意有分号），单击确定按钮。</li>
+<li>一直单击确定按钮退出即可。</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>java环境配置（临时性）</li>
+</ul>
+<pre><code>    set：用于查看本机的所有环境变量的信息。
+
+    set 变量名：查看具体一个环境变量的值。
+
+    set 变量名=具体值：给指定变量定义具体值。
+
+    想要在原有环境变量值的基础上添加新值呢？</code></pre><p>首先，通过%变量名%操作符获取到原有环境变量的值；然后加上新值后在定义给该变量名即可。</p>
+<p>举例：给path环境变量加入新值</p>
+<p>set  path = 新值；%path%</p>
+<p>注意：这种配置方式只在当前dos窗口有效。窗口关闭，配置消失。</p>
+<p>进入命令行，输入set path=D:\Java\jdk1.8.0;%path% (自己JAVA的地址)</p>
+<ul>
+<li>classpath环境变量设置</li>
+</ul>
+<p>set classpath=c:\myclass（自己class文件路径），如果没配置，虚拟机就在你当前位置下查找，如果设置了classpath就在设置的位置找。</p>
+<p>set classpath=.;c:\myclass在设置位置找，找不到再到当前位置查找</p>
+<p>注意：JDK 1.5以后classpath可以不用设置。</p>
+<h2 id="常用的几种dos命令行"><a href="#常用的几种dos命令行" class="headerlink" title="常用的几种dos命令行"></a>常用的几种dos命令行</h2><pre><code>dir：列出当前目录下的文件以及文件夹
+
+md：创建目录
+
+rd：删除目录
+
+cd：进入指定目录
+
+cd..：退回到上一级目录
+
+cd\：退回到根目录
+
+del：删除文件
+
+cls：清屏
+
+exit：退出dos命令行</code></pre><h2 id="注释"><a href="#注释" class="headerlink" title="注释"></a>注释</h2><pre><code>注释不会被JVM编译，只是为代码加上一些程序员懂的文字。
+
+单行注释：//后面的数据内容一整行都被JVM忽略。
+
+多行注释：/**/多行行注释可以嵌套单行注释，不能嵌套多行注释。
+
+文档注释：/***/生成文档注释。</code></pre><h2 id="标识符、关键字"><a href="#标识符、关键字" class="headerlink" title="标识符、关键字"></a>标识符、关键字</h2><h3 id="Java中的标识符"><a href="#Java中的标识符" class="headerlink" title="Java中的标识符"></a>Java中的标识符</h3><ol>
+<li>变量，方法，类和对象的名称都是标识符，程序员需要标识和使用的东西都需要标识符。</li>
+<li>在Java语言里标识符以字母或下划线、$符号开头，后面字符可以是字母、数字、下划线、$符号。（其他符号都不能用来命名标识符）</li>
+<li>标识符对字母大小写非常敏感，必须区分大小写，但是没有长度限制。</li>
+<li>关键字不能用作标识符命名。</li>
+<li>标识符中不能包含空格。</li>
+<li>标识符是由Unicode字符组成的，因此可以使用汉字作为标识符(不推荐，尽量不用)。</li>
+</ol>
+<p>eg:</p>
+<ul>
+<li><p>包(文件夹，用于区分同名的类)全部小写。如果多级包，用.分开。举例：</p>
+<pre><code>  com 一级包
+
+  leo.dev 二级包
+
+  注意：www.leo.com(域名反写)</code></pre></li>
+<li><p>类和接口，如果是一个单词,首字母大写。举例：</p>
+<pre><code>  Demo，Test，Student</code></pre><p>  如果是多个单词，每个单词的首字母大写。举例：</p>
+<pre><code>  HelloWorld，StudyJava</code></pre></li>
+<li><p>变量和方法,如果是一个单词，首字母小写。举例：</p>
+<pre><code>  main()，name，age.show().method()</code></pre><p>  如果是多个单词，从第二个单词开始每个单词的首字母大写。举例：</p>
+<pre><code>  showName()，studentName()</code></pre></li>
+<li><p>常量，全部大写，如果多个单词组成，用 _ 连接。举例：</p>
+<pre><code>  PI，STUDENT_MAX_AGE</code></pre></li>
+</ul>
+<h3 id="关键字"><a href="#关键字" class="headerlink" title="关键字"></a>关键字</h3><p>Java中一些赋以特定的含义、并用做专门用途的单词称为关键字，也可叫保留字，关键字不能作为普通的标识符使用；所有Java关键字都是小写的，IF、THIS、NEW等都不是Java关键字；goto和const虽然从未使用，但也作被为Java保留关键字。</p>
+<p>关键字含义说明：</p>
+<p><img src="https://raw.githubusercontent.com/Leo0618/images/master/10.png" alt></p>
+<h2 id="常量、变量"><a href="#常量、变量" class="headerlink" title="常量、变量"></a>常量、变量</h2><h3 id="常量"><a href="#常量" class="headerlink" title="常量"></a>常量</h3><p>常量就是程序里持续不变的值，是不能改变的数据。</p>
+<p>声明常量的格式如下：</p>
+<p>final 类型 常量名[，常量名]=值；</p>
+<p>Java中的常量包括整型常量、浮点型常量、布尔常量、字符常量等。</p>
+<p><strong>整型常量：</strong></p>
+<p>十进制：不能以0开头，多个0～9之间的数字</p>
+<p>十六进制: 以0x或0X开头  0x8a    0X56d</p>
+<p>八进制：必须以0开头   034    0376</p>
+<p>长整型：必须以L结尾  87L   345L</p>
+<p><strong>浮点数常量：</strong></p>
+<p>float型：2e3f   0.6f   </p>
+<p>double型：4.1d   1.23d</p>
+<p><strong>布尔常量：</strong>true 和 false</p>
+<p><strong>字符常量：</strong> ‘a’   ‘5’   </p>
+<p><strong>字符串常量：</strong>“hello”    “8698”    “\nmain”  转义字符\n表示换行</p>
+<p><strong>null常量：</strong>null，表示对象的引用为空。</p>
+<h3 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h3><p>在java语言中存储一个数据信息，必须将它保存到一个变量中。变量在使用前必须有定义，即有确定的类型和名称。</p>
+<p>特点：变量空间可以重复使用</p>
+<p>变量空间的开辟需要什么要素呢？</p>
+<p>1，这个空间要存储什么数据？数据类型。</p>
+<p>2，这个空间叫什么名字啊？变量名称。</p>
+<p>3，这个空间的第一次的数据是什么？ 变量的初始化值。</p>
+<p>变量的作用域和生存期：</p>
+<p>变量的作用域：</p>
+<pre><code>作用域从变量定义的位置开始，到该变量所在的那对大括号结束。</code></pre><p>生命周期：</p>
+<pre><code>变量从定义的位置开始就在内存中活了；
+
+变量到达它所在的作用域的时候就在内存中消失了。</code></pre><p>声明变量的语法：</p>
+<p>类型  变量名[, 变量名][=初值];</p>
+<pre><code>例如：int  i; char  c;  float  a,  b,  c;</code></pre><p>变量的声明有三种形式：</p>
+<p>1、 声明变量。</p>
+<pre><code>例如:  int i;</code></pre><p>2、 变量赋值。在变量赋值之前要先声明变量。</p>
+<pre><code>例如：int i;
+     i=5;</code></pre><p>3、 变量的初始化。</p>
+<pre><code>例如：int i = 8;</code></pre><h2 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h2><h3 id="数据类型分类"><a href="#数据类型分类" class="headerlink" title="数据类型分类"></a>数据类型分类</h3><p><img src="https://raw.githubusercontent.com/Leo0618/images/master/11.png" alt></p>
+<p>Java中主要有8中基本数据类型，分别是boolean，byte，short，int，long，char，float，double，具体如下：</p>
+<ul>
+<li><p><strong>boolean</strong>：（布尔型）数据值只有true或false，适用于逻辑计算。</p>
+</li>
+<li><p><strong>byte</strong>：byte型（字节型）数据在内存中占用<strong>1个字节</strong>，表示的存储数据范围为：-128~127。</p>
+</li>
+<li><p><strong>char</strong>：char型（字符型）数据在内存中占用<strong>2个字节</strong>。char型数据用来表示通常意义上的字符，每个字符占2个字节，Java字符采用Unicode编码，它的前128字节编码与ASCII兼容字符的存储范围在\u0000~\uFFFF，在定义字符型的数据时候要注意加’ ‘，比如 ‘1’表示字符’1’而不是数值1， </p>
+</li>
+<li><p><strong>short</strong>：short型（短整型）数据在内存中占用<strong>2个字节</strong>。</p>
+</li>
+<li><p><strong>int</strong>：int型（整型）数据在内存中占用<strong>4个字节</strong>。</p>
+</li>
+<li><p><strong>long</strong>：long型（长整型）数据在内存中占用<strong>8个字节</strong>。</p>
+</li>
+<li><p><strong>float</strong>：float型（单精度浮点型）数据在内存中占用<strong>4个字节</strong>。（float精度为7-8位）</p>
+</li>
+<li><p><strong>double</strong>：double型（双精度浮点型）数据在内存中占用<strong>8个字节</strong>。</p>
+</li>
+</ul>
+<p>Java中所有的基本数据类型都有固定的存储范围和所占内存空间的大小，而不受具体操作系统的影响，来保证Java程序的可移植性。整形数据默认为int数据类型，浮点型默认为double数据类型，如果要表示long型数据或float型数据，要在相应的数值后面加上l、f或L、F，否则会出现编译问题。</p>
+<h3 id="基本数据类型之间的兼容性"><a href="#基本数据类型之间的兼容性" class="headerlink" title="基本数据类型之间的兼容性"></a>基本数据类型之间的兼容性</h3><p>基本数据类型之间的转换：“小”的数据类型可以直接赋给“大”的数据类型。“大”的不能赋值给“小”的数据类型（会出现编译错误）。</p>
+<p>数据类型大小关系如下：</p>
+<p>整数类：long &gt; int &gt; short &gt; byte   </p>
+<p>浮点型：double &gt; float </p>
+<p>整型数据类型可以赋给浮点数据类型比如：</p>
+<p>float&lt;—short    float &lt;—int        float&lt;—long        double&lt;—long    </p>
+<p>注意：</p>
+<ul>
+<li><p>char 可以赋给long和int ，但是不能赋给short 和byte（编译错误） 。</p>
+</li>
+<li><p>char 可以赋给float和double。</p>
+</li>
+<li><p>当整数型常量被声明为long类型时，只能赋值给long型变量。</p>
+</li>
+<li><p>当整数型常量在0~65535之间时，可以被赋值给char型变量。</p>
+</li>
+<li><p>char型常量可以被赋值给整数类变量，只要整数变量的类型可以容纳char型文字常量所表示的数值。</p>
+</li>
+<li><p>浮点型常量默认为double型，而double型常量不能赋值给float型变量。</p>
+</li>
+<li><p>boolean与其他数据类型没有兼容性。</p>
+</li>
+</ul>
+<h3 id="数据类型转换"><a href="#数据类型转换" class="headerlink" title="数据类型转换"></a>数据类型转换</h3><ol>
+<li><p>自动类型转换（隐式类型转换）</p>
+<p> 需要同时满足两个条件：</p>
+<ul>
+<li>两种类型彼此兼容</li>
+<li>目标类型的取值范围要大于源类型(byte,short,char) –&gt; int –&gt; long –&gt; float –&gt; double</li>
+</ul>
+</li>
+<li><p>强制类型转换（显示类型转换）</p>
+<p> 当两种类型不兼容，或目标取值类型范围小于源类型时，自动类型转换无法进行，需要进行强制类型转换。</p>
+<p> 数据类型强制转换的格式为：（数据类型）数据表达式；</p>
+<p> 例如：int i = 5;  byte b = (byte)i;</p>
+</li>
+<li><p>boolean类型不参与转换（因为boolean值是常量，默认只有俩个值，要么true，要么false）</p>
+</li>
+</ol>
+<h2 id="运算符"><a href="#运算符" class="headerlink" title="运算符"></a>运算符</h2><p>算术运算符、关系运算符、赋值运算符、逻辑运算符、位运算符、条件运算符</p>
+<ul>
+<li>算术运算符</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/Leo0618/images/master/12.png" alt></p>
+<p>例如：5/2结果为2两个整数之间的相除（/）运算结果还是整数，其结果是除的结果的整数部分。<br>要获得实数结果，运算中至少一个浮点数。</p>
+<p>例如：5/2.0结果为2.5</p>
+<ul>
+<li>关系运算符</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/Leo0618/images/master/13.png" alt></p>
+<ul>
+<li>赋值运算符</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/Leo0618/images/master/14.png" alt></p>
+<ul>
+<li>逻辑运算符</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/Leo0618/images/master/15.png" alt></p>
+<p>在使用短路与（&amp;&amp;）时，如果第一个操作数（或表达式）为“假”，则不再计算第二个操作数（或表达式），直接返回“假”。</p>
+<p>在使用短路或（||）时，如果第一个操作数（或表达式）为“真”，则不再计算第二个操作数（或表达式），直接返回“真”。</p>
+<p>逻辑运算符只能用于布尔（boolean）类型之间；其结果值为布尔（boolean）类型。</p>
+<ul>
+<li>位运算符</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/Leo0618/images/master/16.png" alt></p>
+<p>位运算符只可用于整数类型、char类型，不可应用于浮点类型。</p>
+<ul>
+<li><p>条件运算符</p>
+<p>  条件运算符是一个三目运算符，也是唯一的一个三元运算符，符号为“? :”,在程序中能实现简单的判断功能。</p>
+<p>  语法格式：表达式1？表达式2：表达式3</p>
+<p>  其中表示1是一个布尔表达式，如果表达式1结果为true，则执行表达式2，否则执行表达式3。</p>
+<p>  举例说明：</p>
+<pre><code>  求a，b的最大值。
+
+  int a=4,b=6,max;
+
+  max=a&gt;b?a:b;//将a和b中的较大值赋给max</code></pre></li>
+</ul>
+
+    </div>
+    
+    <div class="reward" ontouchstart>
+    <div class="reward-wrap">赏
+        <div class="reward-box">
+            
+            <span class="reward-type">
+                <img class="alipay" src="/blog/img/alipay.jpg"><b>支付宝打赏</b>
+            </span>
+            
+            
+            <span class="reward-type">
+                <img class="wechat" src="/blog/img/reward-wepay.jpg"><b>微信打赏</b>
+            </span>
+            
+        </div>
+    </div>
+    <p class="reward-tip">
+        赞赏是不耍流氓的鼓励
+    </p>
+</div>
+    
+    <div class="post-footer">
+        <div>
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+<div class="article-nav prev-next-wrap clearfix">
+    
+    <a href="/blog/2014/04/27/Java基础：下/" class="pre-post btn btn-default" title='Java基础：下'>
+        <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+        <span class="hidden-xs">
+            Java基础：下</span>
+    </a>
+    
+    
+    <a href="/blog/2014/03/27/认识Java/" class="next-post btn btn-default" title='认识Java'>
+        <span class="hidden-lg">下一篇</span>
+        <span class="hidden-xs">
+            认识Java</span><i class="fa fa-angle-right fa-fw"></i>
+    </a>
+    
+</div>
+
+<div id="comments">
+    
+<p>评论系统未开启，无法评论！</p>
+
+</div>
+
+                </main>
+                
+                    <aside id="article-toc" role="navigation" class="col-md-4">
+    <div class="widget">
+        <h3 class="title">
+            文章目录
+        </h3>
+        
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#JDK下载安装及环境变量设置"><span class="toc-text">JDK下载安装及环境变量设置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#常用的几种dos命令行"><span class="toc-text">常用的几种dos命令行</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#注释"><span class="toc-text">注释</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#标识符、关键字"><span class="toc-text">标识符、关键字</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Java中的标识符"><span class="toc-text">Java中的标识符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#关键字"><span class="toc-text">关键字</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#常量、变量"><span class="toc-text">常量、变量</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#常量"><span class="toc-text">常量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#变量"><span class="toc-text">变量</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#数据类型"><span class="toc-text">数据类型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#数据类型分类"><span class="toc-text">数据类型分类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#基本数据类型之间的兼容性"><span class="toc-text">基本数据类型之间的兼容性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#数据类型转换"><span class="toc-text">数据类型转换</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#运算符"><span class="toc-text">运算符</span></a></li></ol>
+        
+    </div>
+</aside>
+                
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+<a id="back-to-top" class="icon-btn hide">
+    <i class="fa fa-chevron-up"></i>
+</a>
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="busuanzi">
+    
+</div>
+            </div>
+            <div class="col-sm-12">
+                <span>Copyright &copy;
+                    2014
+                </span> |
+                <span>
+                    Powered by <a href="https://okfood.vip" class="copyright-links" target="_blank" rel="nofollow">Leo</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="/blog/assets/tagcanvas.min.js?rev=2.9"></script>
+<script>
+var tagOption = {
+    textColour: '#444', // 字体颜色
+    outlineMethod: 'block', // 选中模式
+    outlineColour: '#FFDAB9', // 选中模式的颜色
+    interval: 30 || 30, // 动画帧之间的时间间隔，值越大，转动幅度越大
+    textHeight: 13,
+    outlineRadius: 3,
+    freezeActive: true || '', // 选中的标签是否继续滚动
+    frontSelect: true || '', // 不选标签云后部的标签
+    initial: [0.1, -0.1],
+    depth: 0.5,
+    decel: 0.95,
+    maxSpeed: 0.03,
+    reverse: true || '', // 是否反向触发
+    fadeIn: 500, // 进入动画时间
+    wheelZoom: false || '' // 是否启用鼠标滚轮
+}
+TagCanvas.Start('tag-cloud-3d', '', tagOption);
+</script>
+
+
+<script src="/blog/assets/google-code-prettify/prettify.js?"></script>
+<script src="/blog/js/app.js?rev=@@hash"></script>
+</body>
+</html>

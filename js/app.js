@@ -112,5 +112,13 @@ window.onload = function() {
             }
         });
     };
-
+	var codeTags=document.getElementsByTagName("pre");
+	if(codeTags.length>0){
+		for(var i = 0; i < codeTags.length; i++){
+			var codeTag = codeTags[i];
+			codeTag.setAttribute("class", "prettyprint linenums");
+			codeTag.setAttribute("style", "overflow:auto;");
+		}
+		prettyPrint();
+	}
 };

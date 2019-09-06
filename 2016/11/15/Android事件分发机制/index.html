@@ -1,0 +1,345 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+<head><meta name="generator" content="Hexo 3.9.0">
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="上帝之手-Work makes the workman">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="theme-version" content="1.2.3">
+    <meta name="root" content="/blog/">
+    <link rel="dns-prefetch" href="https://okfood.vip/blog">
+    <!--SEO-->
+
+<meta name="keywords" content="事件分发">
+
+
+<meta name="description" content="时间类型
+MotionEvent.ACTION_DOWN
+  当我们手指按下屏幕的第一个事件便是ACTION_DOWN了,也就是意味着事件的开始。
+
+MotionEvent.ACTION_MOV...">
+
+
+<meta name="robots" content="all">
+<meta name="google" content="all">
+<meta name="googlebot" content="all">
+<meta name="verify" content="all">
+    <!--Title-->
+
+<title>
+    
+    Android事件分发机制 |
+    
+    上帝之手-Work makes the workman
+</title>
+
+<link rel="alternate" href="/blog/atom.xml" title="上帝之手-Work makes the workman" type="application/atom+xml">
+
+
+<link rel="icon" href="/blog/img/avatar_circle.png">
+
+    
+
+<link rel="stylesheet" href="/blog/css/bootstrap.min.css?rev=3.3.7">
+<link rel="stylesheet" href="/blog/css/font-awesome.min.css?rev=4.7.0">
+<link rel="stylesheet" href="/blog/css/style.css?rev=@@hash">
+<link rel="stylesheet" href="/blog/assets/google-code-prettify/prettify.css">
+    
+
+
+
+    
+
+</head></html>
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+<body>
+    <header class="main-header"  style="background-image:url(
+    /blog/img/banner.jpg)"
+     >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/blog/" title='Leo'>
+            <img src="/blog/img/avatar.jpg" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+            
+            <img src="/blog/img/branding.png" alt="博客-Leo" class="img-responsive center-block">
+            
+        </div>
+    </div>
+</header>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                        <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="https://okfood.vip/blog">
+                        上帝之手-Work makes the workman</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/blog/"><i class="fa "></i>
+                                首页</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/blog/categories/Java/"><i class="fa "></i>
+                                Java</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/blog/categories/Android/"><i class="fa "></i>
+                                Android</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/blog/categories/前端/"><i class="fa "></i>
+                                前端</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/blog/categories/后端/"><i class="fa "></i>
+                                后端</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/blog/categories/算法/"><i class="fa "></i>
+                                算法</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/blog/archives/"><i class="fa "></i>
+                                时间轴</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="Android事件分发机制">
+            
+            Android事件分发机制
+            
+        </h1>
+        <div class="post-meta">
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a class="category-link" href="/blog/categories/Android/">Android</a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            <a class="tag-link" href="/blog/tags/事件分发/">事件分发</a>
+            
+        </span>
+    </span>
+    
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta">
+            2016/11/15</span>
+    </span>
+    
+    
+</div>
+        
+        
+    </div>
+    
+    <div class="post-body post-content">
+        <h2 id="时间类型"><a href="#时间类型" class="headerlink" title="时间类型"></a>时间类型</h2><ul>
+<li><p><strong>MotionEvent.ACTION_DOWN</strong></p>
+<p>  当我们手指按下屏幕的第一个事件便是ACTION_DOWN了,也就是意味着事件的开始。</p>
+</li>
+<li><p><strong>MotionEvent.ACTION_MOVE</strong></p>
+<p>  当我们手指按下屏幕后，在屏幕上滑动的过程，此事件就会不断的触发。</p>
+</li>
+<li><p><strong>MotionEvent.ACTION_UP</strong></p>
+<p>  此事件在我们手指从屏幕抬起的时候会触发。</p>
+</li>
+<li><p><strong>MotionEvent.ACTION_CANCEL</strong></p>
+<p>  这个事件说起来稍微复杂一点，举个栗子：当我们的外层View将事件传递给内层View去处理时，外层View的拦截方法一般会返回false，但是当某个条件触发后，外层View想自己处理接下来的事件，就拦截了事件分发，此时内层View就会收到ACTION_CANCEL的事件。</p>
+</li>
+<li><p><strong>MotionEvent.ACTION_OUTSIDE</strong></p>
+<p>  这个事件我们不常用到，考虑这种场景。我们有一个Diallog弹出，当我们按Dialog以外的屏幕将Dialog消失掉。这个时候可以考虑监听这个事件，要想使用这个事件我们必须对当前的Window设置一个Flag：FLAG_WATCH_OUTSIDE_TOUCH。</p>
+</li>
+</ul>
+<h2 id="几个方法"><a href="#几个方法" class="headerlink" title="几个方法"></a>几个方法</h2><ul>
+<li><p><strong>dispatchTouchEvent(MotionEvent event)</strong></p>
+<p>  这个方法仅在ViewGrope中，会先判断子View是否有调用disallowIntercept父View去拦截事件，如果没有，父View自己会调用onInterceptTouchEvent判断自己是否有拦截，如果拦截事件，将调用父View自己的onTouchEvent方法去处理事件，如果没有拦截事件，事件将继续分发到子View中处理。</p>
+</li>
+<li><p><strong>onInterceptTouchEvent(MotionEvent event)</strong></p>
+<p>  用来申明是否拦截事件继续向下分发，如果返回true，事件将不会继续向下分发，而是交由自己的onTouchEvent方法处理。</p>
+</li>
+<li><p><strong>onTouchEvent(MotionEvent event)</strong></p>
+<p>  显然，这个就是事件处理的方法了。</p>
+</li>
+<li><p><strong>onTouch(MotionEvent event)</strong></p>
+<p>  这个方法是在我们对某一个setOnTouchListener时回调，也就是在传递事件的时候，在交给View本身的onTouchEvent处理之前判断是否有监听的TouchListener，如果有优先调用TouchListener的onTouch方法处理。</p>
+</li>
+</ul>
+<p>ViewGroup有以下三个与事件分发的方法，而View只有dispatchTouchEvent和onTouchEvent。</p>
+<p><img src="https://raw.githubusercontent.com/Leo0618/images/master/34.png" alt></p>
+
+    </div>
+    
+    <div class="reward" ontouchstart>
+    <div class="reward-wrap">赏
+        <div class="reward-box">
+            
+            <span class="reward-type">
+                <img class="alipay" src="/blog/img/alipay.jpg"><b>支付宝打赏</b>
+            </span>
+            
+            
+            <span class="reward-type">
+                <img class="wechat" src="/blog/img/reward-wepay.jpg"><b>微信打赏</b>
+            </span>
+            
+        </div>
+    </div>
+    <p class="reward-tip">
+        赞赏是不耍流氓的鼓励
+    </p>
+</div>
+    
+    <div class="post-footer">
+        <div>
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+<div class="article-nav prev-next-wrap clearfix">
+    
+    <a href="/blog/2016/12/10/Handler机制原理/" class="pre-post btn btn-default" title='Handler机制原理'>
+        <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+        <span class="hidden-xs">
+            Handler机制原理</span>
+    </a>
+    
+    
+    <a href="/blog/2016/11/05/Android APK打包流程/" class="next-post btn btn-default" title='Android APK打包流程'>
+        <span class="hidden-lg">下一篇</span>
+        <span class="hidden-xs">
+            Android APK打包流程</span><i class="fa fa-angle-right fa-fw"></i>
+    </a>
+    
+</div>
+
+<div id="comments">
+    
+<p>评论系统未开启，无法评论！</p>
+
+</div>
+
+                </main>
+                
+                    <aside id="article-toc" role="navigation" class="col-md-4">
+    <div class="widget">
+        <h3 class="title">
+            文章目录
+        </h3>
+        
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#时间类型"><span class="toc-text">时间类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#几个方法"><span class="toc-text">几个方法</span></a></li></ol>
+        
+    </div>
+</aside>
+                
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+<a id="back-to-top" class="icon-btn hide">
+    <i class="fa fa-chevron-up"></i>
+</a>
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="busuanzi">
+    
+</div>
+            </div>
+            <div class="col-sm-12">
+                <span>Copyright &copy;
+                    2014
+                </span> |
+                <span>
+                    Powered by <a href="https://okfood.vip" class="copyright-links" target="_blank" rel="nofollow">Leo</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="/blog/assets/tagcanvas.min.js?rev=2.9"></script>
+<script>
+var tagOption = {
+    textColour: '#444', // 字体颜色
+    outlineMethod: 'block', // 选中模式
+    outlineColour: '#FFDAB9', // 选中模式的颜色
+    interval: 30 || 30, // 动画帧之间的时间间隔，值越大，转动幅度越大
+    textHeight: 13,
+    outlineRadius: 3,
+    freezeActive: true || '', // 选中的标签是否继续滚动
+    frontSelect: true || '', // 不选标签云后部的标签
+    initial: [0.1, -0.1],
+    depth: 0.5,
+    decel: 0.95,
+    maxSpeed: 0.03,
+    reverse: true || '', // 是否反向触发
+    fadeIn: 500, // 进入动画时间
+    wheelZoom: false || '' // 是否启用鼠标滚轮
+}
+TagCanvas.Start('tag-cloud-3d', '', tagOption);
+</script>
+
+
+<script src="/blog/assets/google-code-prettify/prettify.js?"></script>
+<script src="/blog/js/app.js?rev=@@hash"></script>
+</body>
+</html>

@@ -26,7 +26,7 @@
 
 
 
-Step1.添加依赖1impleme...">
+Step1.添加依赖implemen...">
 
 
 <meta name="robots" content="all">
@@ -52,6 +52,7 @@ Step1.添加依赖1impleme...">
 <link rel="stylesheet" href="/blog/css/bootstrap.min.css?rev=3.3.7">
 <link rel="stylesheet" href="/blog/css/font-awesome.min.css?rev=4.7.0">
 <link rel="stylesheet" href="/blog/css/style.css?rev=@@hash">
+<link rel="stylesheet" href="/blog/assets/google-code-prettify/prettify.css">
     
 
 
@@ -185,20 +186,57 @@ Step1.添加依赖1impleme...">
 <a id="more"></a>
 
 
-<h3 id="Step1-添加依赖"><a href="#Step1-添加依赖" class="headerlink" title="Step1.添加依赖"></a>Step1.添加依赖</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">implementation &apos;com.leo618:SplashAuth:0.0.3&apos;</span><br></pre></td></tr></table></figure>
-
-<h3 id="Step2-声明权限，在manifest中声明需要授权的权限。-举个例子如下"><a href="#Step2-声明权限，在manifest中声明需要授权的权限。-举个例子如下" class="headerlink" title="Step2.声明权限，在manifest中声明需要授权的权限。 举个例子如下:"></a>Step2.声明权限，在manifest中声明需要授权的权限。 举个例子如下:</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;uses-permission android:name=&quot;android.permission.WRITE_EXTERNAL_STORAGE&quot; /&gt;</span><br><span class="line">&lt;uses-permission android:name=&quot;android.permission.READ_EXTERNAL_STORAGE&quot; /&gt;</span><br><span class="line">&lt;uses-permission android:name=&quot;android.permission.READ_PHONE_STATE&quot; /&gt;</span><br><span class="line">&lt;uses-permission android:name=&quot;android.permission.CAMERA&quot; /&gt;</span><br></pre></td></tr></table></figure>
-
-<h3 id="Step3-项目manifest中添加提示对话框组件"><a href="#Step3-项目manifest中添加提示对话框组件" class="headerlink" title="Step3.项目manifest中添加提示对话框组件"></a>Step3.项目manifest中添加提示对话框组件</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;activity</span><br><span class="line">     android:name=&quot;com.leo618.splashpermissionsauth.SplashAuthUI&quot;</span><br><span class="line">     android:configChanges=&quot;keyboardHidden|orientation|screenSize&quot;</span><br><span class="line">     android:theme=&quot;@style/SplashPermissionsAuthThemeForSplash&quot; /&gt;</span><br></pre></td></tr></table></figure>
-
-<h3 id="Step4-使用栗子如下-共有三种使用姿势-："><a href="#Step4-使用栗子如下-共有三种使用姿势-：" class="headerlink" title="Step4.使用栗子如下(共有三种使用姿势)："></a>Step4.使用栗子如下(共有三种使用姿势)：</h3><ul>
+<h3 id="Step1-添加依赖"><a href="#Step1-添加依赖" class="headerlink" title="Step1.添加依赖"></a>Step1.添加依赖</h3><pre><code>implementation &#39;com.leo618:SplashAuth:0.0.3&#39;</code></pre><h3 id="Step2-声明权限，在manifest中声明需要授权的权限。-举个例子如下"><a href="#Step2-声明权限，在manifest中声明需要授权的权限。-举个例子如下" class="headerlink" title="Step2.声明权限，在manifest中声明需要授权的权限。 举个例子如下:"></a>Step2.声明权限，在manifest中声明需要授权的权限。 举个例子如下:</h3><pre><code>&lt;uses-permission android:name=&quot;android.permission.WRITE_EXTERNAL_STORAGE&quot; /&gt;
+&lt;uses-permission android:name=&quot;android.permission.READ_EXTERNAL_STORAGE&quot; /&gt;
+&lt;uses-permission android:name=&quot;android.permission.READ_PHONE_STATE&quot; /&gt;
+&lt;uses-permission android:name=&quot;android.permission.CAMERA&quot; /&gt;</code></pre><h3 id="Step3-项目manifest中添加提示对话框组件"><a href="#Step3-项目manifest中添加提示对话框组件" class="headerlink" title="Step3.项目manifest中添加提示对话框组件"></a>Step3.项目manifest中添加提示对话框组件</h3><pre><code>&lt;activity
+     android:name=&quot;com.leo618.splashpermissionsauth.SplashAuthUI&quot;
+     android:configChanges=&quot;keyboardHidden|orientation|screenSize&quot;
+     android:theme=&quot;@style/SplashPermissionsAuthThemeForSplash&quot; /&gt;</code></pre><h3 id="Step4-使用栗子如下-共有三种使用姿势-："><a href="#Step4-使用栗子如下-共有三种使用姿势-：" class="headerlink" title="Step4.使用栗子如下(共有三种使用姿势)："></a>Step4.使用栗子如下(共有三种使用姿势)：</h3><ul>
 <li>1.校验是否授权</li>
 <li>2.请求授权，在onActivityResult中处理结果</li>
 <li>3.校验并请求授权，若存在未授权则启动申请授权，无法处理结果,需要用户再次点击操作触发已授权后的操作</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">public class MainActivity extends AppCompatActivity &#123;</span><br><span class="line"></span><br><span class="line">     @Override</span><br><span class="line">     protected void onCreate(Bundle savedInstanceState) &#123;</span><br><span class="line">         super.onCreate(savedInstanceState);</span><br><span class="line">         setContentView(R.layout.activity_main);</span><br><span class="line">     &#125;</span><br><span class="line"></span><br><span class="line">     private String[] perms = new String[]&#123;</span><br><span class="line">             Manifest.permission.WRITE_EXTERNAL_STORAGE,</span><br><span class="line">             Manifest.permission.READ_EXTERNAL_STORAGE,</span><br><span class="line">             Manifest.permission.READ_PHONE_STATE,</span><br><span class="line">             Manifest.permission.CAMERA,</span><br><span class="line">     &#125;;</span><br><span class="line"></span><br><span class="line">     //1.校验是否授权</span><br><span class="line">     public void check(View view) &#123;</span><br><span class="line">         boolean checkResult = SplashAuthUI.check(this, perms);</span><br><span class="line">         Toast.makeText(this, checkResult ? &quot;全部已授权&quot; : &quot;包含未授权&quot;, Toast.LENGTH_SHORT).show();</span><br><span class="line">     &#125;</span><br><span class="line"></span><br><span class="line">     //2.请求授权，在onActivityResult中处理结果</span><br><span class="line">     public void request(View view) &#123;</span><br><span class="line">         SplashAuthUI.launch(this, 100, perms);</span><br><span class="line">     &#125;</span><br><span class="line"></span><br><span class="line">     @Override</span><br><span class="line">     protected void onActivityResult(int requestCode, int resultCode, Intent data) &#123;</span><br><span class="line">         if(requestCode == 100) &#123;</span><br><span class="line">             String result = resultCode == RESULT_OK ? &quot;授权成功&quot; : &quot;授权失败&quot;;</span><br><span class="line">             Toast.makeText(this, result, Toast.LENGTH_SHORT).show();</span><br><span class="line">         &#125;</span><br><span class="line">     &#125;</span><br><span class="line"></span><br><span class="line">     //3.校验并请求授权，若存在未授权则启动申请授权，无法处理结果,需要用户再次点击操作触发已授权后的操作</span><br><span class="line">     public void checkAndRequest(View view) &#123;</span><br><span class="line">         boolean checkResult = SplashAuthUI.checkAndLaunch(this, perms, true);</span><br><span class="line">         Toast.makeText(this, checkResult ? &quot;全部已授权&quot; : &quot;包含未授权&quot;, Toast.LENGTH_SHORT).show();</span><br><span class="line">     &#125;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+<pre><code>public class MainActivity extends AppCompatActivity {
 
+     @Override
+     protected void onCreate(Bundle savedInstanceState) {
+         super.onCreate(savedInstanceState);
+         setContentView(R.layout.activity_main);
+     }
 
+     private String[] perms = new String[]{
+             Manifest.permission.WRITE_EXTERNAL_STORAGE,
+             Manifest.permission.READ_EXTERNAL_STORAGE,
+             Manifest.permission.READ_PHONE_STATE,
+             Manifest.permission.CAMERA,
+     };
+
+     //1.校验是否授权
+     public void check(View view) {
+         boolean checkResult = SplashAuthUI.check(this, perms);
+         Toast.makeText(this, checkResult ? &quot;全部已授权&quot; : &quot;包含未授权&quot;, Toast.LENGTH_SHORT).show();
+     }
+
+     //2.请求授权，在onActivityResult中处理结果
+     public void request(View view) {
+         SplashAuthUI.launch(this, 100, perms);
+     }
+
+     @Override
+     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+         if(requestCode == 100) {
+             String result = resultCode == RESULT_OK ? &quot;授权成功&quot; : &quot;授权失败&quot;;
+             Toast.makeText(this, result, Toast.LENGTH_SHORT).show();
+         }
+     }
+
+     //3.校验并请求授权，若存在未授权则启动申请授权，无法处理结果,需要用户再次点击操作触发已授权后的操作
+     public void checkAndRequest(View view) {
+         boolean checkResult = SplashAuthUI.checkAndLaunch(this, perms, true);
+         Toast.makeText(this, checkResult ? &quot;全部已授权&quot; : &quot;包含未授权&quot;, Toast.LENGTH_SHORT).show();
+     }
+ }</code></pre>
     </div>
     
     <div class="reward" ontouchstart>
@@ -232,10 +270,10 @@ Step1.添加依赖1impleme...">
 </article>
 <div class="article-nav prev-next-wrap clearfix">
     
-    <a href="/blog/2018/08/28/HashMap之10问/" class="pre-post btn btn-default" title='HashMap之10问'>
+    <a href="/blog/2017/10/16/数据结构与算法简介/" class="pre-post btn btn-default" title='数据结构与算法简介'>
         <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
         <span class="hidden-xs">
-            HashMap之10问</span>
+            数据结构与算法简介</span>
     </a>
     
     
@@ -322,6 +360,7 @@ TagCanvas.Start('tag-cloud-3d', '', tagOption);
 </script>
 
 
+<script src="/blog/assets/google-code-prettify/prettify.js?"></script>
 <script src="/blog/js/app.js?rev=@@hash"></script>
 </body>
 </html>

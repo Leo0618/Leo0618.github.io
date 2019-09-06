@@ -1,0 +1,418 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+<head><meta name="generator" content="Hexo 3.9.0">
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="上帝之手-Work makes the workman">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="theme-version" content="1.2.3">
+    <meta name="root" content="/blog/">
+    <link rel="dns-prefetch" href="https://okfood.vip/blog">
+    <!--SEO-->
+
+<meta name="keywords" content="框架">
+
+
+<meta name="description" content="本文初衷：由于很多Android项目的基础框架大致一致，于是针对主流的Android项目基础需求，严格按照MVC模式进行基类代码封装，以便可以将工程应用到任何一个新项目开发中，或者在代码重构时引...">
+
+
+<meta name="robots" content="all">
+<meta name="google" content="all">
+<meta name="googlebot" content="all">
+<meta name="verify" content="all">
+    <!--Title-->
+
+<title>
+    
+    Android项目基础框架 |
+    
+    上帝之手-Work makes the workman
+</title>
+
+<link rel="alternate" href="/blog/atom.xml" title="上帝之手-Work makes the workman" type="application/atom+xml">
+
+
+<link rel="icon" href="/blog/img/avatar_circle.png">
+
+    
+
+<link rel="stylesheet" href="/blog/css/bootstrap.min.css?rev=3.3.7">
+<link rel="stylesheet" href="/blog/css/font-awesome.min.css?rev=4.7.0">
+<link rel="stylesheet" href="/blog/css/style.css?rev=@@hash">
+<link rel="stylesheet" href="/blog/assets/google-code-prettify/prettify.css">
+    
+
+
+
+    
+
+</head></html>
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+<body>
+    <header class="main-header"  style="background-image:url(
+    /blog/img/banner.jpg)"
+     >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/blog/" title='Leo'>
+            <img src="/blog/img/avatar.jpg" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+            
+            <img src="/blog/img/branding.png" alt="博客-Leo" class="img-responsive center-block">
+            
+        </div>
+    </div>
+</header>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                        <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="https://okfood.vip/blog">
+                        上帝之手-Work makes the workman</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/blog/"><i class="fa "></i>
+                                首页</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/blog/categories/Java/"><i class="fa "></i>
+                                Java</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/blog/categories/Android/"><i class="fa "></i>
+                                Android</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/blog/categories/前端/"><i class="fa "></i>
+                                前端</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/blog/categories/后端/"><i class="fa "></i>
+                                后端</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/blog/categories/算法/"><i class="fa "></i>
+                                算法</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/blog/archives/"><i class="fa "></i>
+                                时间轴</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="Android项目基础框架">
+            
+            Android项目基础框架
+            
+        </h1>
+        <div class="post-meta">
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a class="category-link" href="/blog/categories/Android/">Android</a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            <a class="tag-link" href="/blog/tags/框架/">框架</a>
+            
+        </span>
+    </span>
+    
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta">
+            2015/05/26</span>
+    </span>
+    
+    
+</div>
+        
+        
+    </div>
+    
+    <div class="post-body post-content">
+        <p>本文初衷：由于很多Android项目的基础框架大致一致，于是针对主流的Android项目基础需求，严格按照MVC模式进行基类代码封装，以便可以将工程应用到任何一个新项目开发中，或者在代码重构时引入。框架抽取存在可优化性，以及针对具体场景可针对性低优化，由于代码量少使用起来非常简单，本文就简单介绍，可在底部直接下载源码，分分钟理解源码。欢迎提出意见或建议。</p>
+<hr>
+<h2 id="本项目所遵循的MVC模式"><a href="#本项目所遵循的MVC模式" class="headerlink" title="本项目所遵循的MVC模式"></a>本项目所遵循的MVC模式</h2><p>MVC的概念就不多介绍了，请自行glgoo，或者百度。本项目的MVC模式图如下所示：</p>
+<p><img src="https://imgconvert.csdnimg.cn/aHR0cDovL2ltZy5ibG9nLmNzZG4ubmV0LzIwMTUwNTI2MTUyMzA5MTM5?x-oss-process=image/format,png" alt="MVC模式图"></p>
+<h2 id="大致设计思路"><a href="#大致设计思路" class="headerlink" title="大致设计思路"></a>大致设计思路</h2><p>Activity作为V视图显示层，适配器adapter和数据中心manager作为C控制层，模式对象model及数据库持久化作为Model模型层。由manager作为数据获取的入口，负责数据的获取、处理，将处理好的数据通过IGetDataListener接口回调给适配器，适配器拿到数据填充视图，同时通过接口UIListener回调给Activity进行UI动作刷新。另外manager处理好的数据由继承类进行数据化持久或者内存缓存等操作。</p>
+<ul>
+<li>IGetDataListener接口设计</li>
+</ul>
+<p>工作在主线程，接口定义数据获取开始，获取中以及获取结束的方法，通过这三个方法将异步线程处理的数据进度以及具体内容抛到主线程。</p>
+<pre><code class="java">public interface IGetDataListener&lt;T&gt; {
+    /** 开始获取数据 */
+    public void startLoadData();
+
+    /** 获取到数据 从异步线程抛到这里 */
+    public void loadedData(Map&lt;String, List&lt;T&gt;&gt; datas);
+
+    /** 结束获取数据 */
+    public void loadDataFinish();
+}</code></pre>
+<ul>
+<li>UIListener接口设计</li>
+</ul>
+<p>工作在主线程，类似与IGetDataListener，接口定义数据获取开始，获取中以及获取结束的方法，通过这三个方法将适配器数据量的处理进度与结果通知给UI,让UI刷新所需的功能。</p>
+<pre><code class="java">public static interface UIListener {
+    /** 正在加载数据 */
+    void isLoading();
+
+    /** 总数据个数变化 */
+    void dataCountChanged(int count);
+
+    /** 加载数据完毕 */
+    void loadFinished();
+}</code></pre>
+<ul>
+<li><p>基类抽取封装</p>
+<p> 项目中对Android四大组件进行了必要的封装抽取基类，主要已抽象类加接口的模式设计，便于扩展以及开发。类图如下所示：</p>
+<p> <img src="https://imgconvert.csdnimg.cn/aHR0cDovL2ltZy5ibG9nLmNzZG4ubmV0LzIwMTUwNTI2MTUyNTE5NjEx?x-oss-process=image/format,png" alt="项目结构图"></p>
+</li>
+</ul>
+<ul>
+<li>Application启动入口</li>
+</ul>
+<p>获取主线程的一些信息，包括全局上下文、主线程、主线程handler、主线程Looper、主线程Id,初始化未捕获异常管理器    ，以及异步加载其他初始化数据。    </p>
+<ul>
+<li>Activity基类</li>
+</ul>
+<p>抽象基类，实现IBaseActivity接口，子类只需实现三个方法即可。</p>
+<pre><code>public interface IBaseActivity {
+    /**
+    * 绑定渲染视图的布局文件
+    * 
+    * @return 布局文件资源id
+    */
+    public int bindLayout();
+
+    /** 初始化控件 */
+    public void findViews(final View v);
+
+    /**
+    * 业务处理操作（onCreate方法中被调用）&lt;br/&gt;
+    * 数据逻辑及业务操作在此方法中&lt;br/&gt;
+    * 
+    * @param mContext
+    *            当前Activity对象上下文
+    */
+    public void doBusiness(Context context);
+}</code></pre><ul>
+<li>Fragment基类</li>
+</ul>
+<p>抽象基类，实现IBaseFragment接口，使用V4包，兼容低版本。子类只需实现三个方法即可。</p>
+<pre><code>public interface IBaseFragment {
+    /**
+    * 绑定渲染视图的布局文件
+    * 
+    * @return 布局文件资源id
+    */
+    public int bindLayout();
+
+    /** 初始化控件 (onCreateView方法中调用) */
+    public void findView(final View v);
+
+    /**
+    * 业务处理操作（onViewCreated方法中调用）
+    * 
+    * @param mContext
+    *            当前Activity对象上下文
+    */
+    public void doBusiness(Context context);
+}</code></pre><ul>
+<li><p>Service基类<br>抽象基类</p>
+</li>
+<li><p>BroadcastReceiver基类<br>抽象基类</p>
+</li>
+<li><p>ContentProvider基类<br>抽象基类</p>
+</li>
+<li><p>Exception基类<br>抽象基类    </p>
+</li>
+<li><p>Model基类<br>抽象基类</p>
+</li>
+<li><p>Adapter基类<br>抽象基类，子类需调用refreshData()加载视图数据，在加载过程中会将进度通知到UI显示，该基类定义UIListener接口，该接口负责adapter与UI进行视图交互。</p>
+</li>
+<li><p>DataManager基类<br>抽象基类，该基类定义IGetDataListener接口，该接口负责将异步数据交给主线程的adapter处理。 同时封装了注册、取消注册监听的接口，需要使用者进行注册和取消注册，调用asyncAquireData方法启动数据获取，具体获取数据由子类在requestGetData()方法中实现。并通过sendStartLoadDataMsgToUI()、sendLoadedDataMsgToUI()、sendLoadFinishMsgToUI()三个方法通知UI数据的处理进度。</p>
+</li>
+</ul>
+<hr>
+<p>项目源码下载—&gt;  <a href="http://download.csdn.net/detail/lzj922718/8741051" target="_blank" rel="noopener">http://download.csdn.net/detail/lzj922718/8741051</a></p>
+<hr>
+<p>github项目地址：<a href="https://github.com/Leo0618/Android-BaseProject" target="_blank" rel="noopener">https://github.com/Leo0618/Android-BaseProject</a></p>
+<hr>
+<p>注：本文参考：AJava的主流开源框架demo</p>
+
+    </div>
+    
+    <div class="reward" ontouchstart>
+    <div class="reward-wrap">赏
+        <div class="reward-box">
+            
+            <span class="reward-type">
+                <img class="alipay" src="/blog/img/alipay.jpg"><b>支付宝打赏</b>
+            </span>
+            
+            
+            <span class="reward-type">
+                <img class="wechat" src="/blog/img/reward-wepay.jpg"><b>微信打赏</b>
+            </span>
+            
+        </div>
+    </div>
+    <p class="reward-tip">
+        赞赏是不耍流氓的鼓励
+    </p>
+</div>
+    
+    <div class="post-footer">
+        <div>
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+<div class="article-nav prev-next-wrap clearfix">
+    
+    <a href="/blog/2015/06/18/OkHttp使用教程/" class="pre-post btn btn-default" title='OkHttp使用教程'>
+        <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+        <span class="hidden-xs">
+            OkHttp使用教程</span>
+    </a>
+    
+    
+    <a href="/blog/2015/05/21/自定义控件viewbadger提示红点/" class="next-post btn btn-default" title='自定义控件viewbadger提示红点'>
+        <span class="hidden-lg">下一篇</span>
+        <span class="hidden-xs">
+            自定义控件viewbadger提示红点</span><i class="fa fa-angle-right fa-fw"></i>
+    </a>
+    
+</div>
+
+<div id="comments">
+    
+<p>评论系统未开启，无法评论！</p>
+
+</div>
+
+                </main>
+                
+                    <aside id="article-toc" role="navigation" class="col-md-4">
+    <div class="widget">
+        <h3 class="title">
+            文章目录
+        </h3>
+        
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#本项目所遵循的MVC模式"><span class="toc-text">本项目所遵循的MVC模式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#大致设计思路"><span class="toc-text">大致设计思路</span></a></li></ol>
+        
+    </div>
+</aside>
+                
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+<a id="back-to-top" class="icon-btn hide">
+    <i class="fa fa-chevron-up"></i>
+</a>
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="busuanzi">
+    
+</div>
+            </div>
+            <div class="col-sm-12">
+                <span>Copyright &copy;
+                    2014
+                </span> |
+                <span>
+                    Powered by <a href="https://okfood.vip" class="copyright-links" target="_blank" rel="nofollow">Leo</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="/blog/assets/tagcanvas.min.js?rev=2.9"></script>
+<script>
+var tagOption = {
+    textColour: '#444', // 字体颜色
+    outlineMethod: 'block', // 选中模式
+    outlineColour: '#FFDAB9', // 选中模式的颜色
+    interval: 30 || 30, // 动画帧之间的时间间隔，值越大，转动幅度越大
+    textHeight: 13,
+    outlineRadius: 3,
+    freezeActive: true || '', // 选中的标签是否继续滚动
+    frontSelect: true || '', // 不选标签云后部的标签
+    initial: [0.1, -0.1],
+    depth: 0.5,
+    decel: 0.95,
+    maxSpeed: 0.03,
+    reverse: true || '', // 是否反向触发
+    fadeIn: 500, // 进入动画时间
+    wheelZoom: false || '' // 是否启用鼠标滚轮
+}
+TagCanvas.Start('tag-cloud-3d', '', tagOption);
+</script>
+
+
+<script src="/blog/assets/google-code-prettify/prettify.js?"></script>
+<script src="/blog/js/app.js?rev=@@hash"></script>
+</body>
+</html>

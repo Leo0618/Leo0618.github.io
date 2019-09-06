@@ -1,0 +1,669 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+<head><meta name="generator" content="Hexo 3.9.0">
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="上帝之手-Work makes the workman">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="theme-version" content="1.2.3">
+    <meta name="root" content="/blog/">
+    <link rel="dns-prefetch" href="https://okfood.vip/blog">
+    <!--SEO-->
+
+<meta name="keywords" content="xUtils,开源项目">
+
+
+<meta name="description" content="1. 功能介绍xUtils一个Android公共库框架，主要包括四个部分：View，Db, Http, Bitmap 四个模块。
+
+View模块主要的功能是通过注解绑定UI，资源，事件。
+
+Db...">
+
+
+<meta name="robots" content="all">
+<meta name="google" content="all">
+<meta name="googlebot" content="all">
+<meta name="verify" content="all">
+    <!--Title-->
+
+<title>
+    
+    xUtils框架原理分析 |
+    
+    上帝之手-Work makes the workman
+</title>
+
+<link rel="alternate" href="/blog/atom.xml" title="上帝之手-Work makes the workman" type="application/atom+xml">
+
+
+<link rel="icon" href="/blog/img/avatar_circle.png">
+
+    
+
+<link rel="stylesheet" href="/blog/css/bootstrap.min.css?rev=3.3.7">
+<link rel="stylesheet" href="/blog/css/font-awesome.min.css?rev=4.7.0">
+<link rel="stylesheet" href="/blog/css/style.css?rev=@@hash">
+<link rel="stylesheet" href="/blog/assets/google-code-prettify/prettify.css">
+    
+
+
+
+    
+
+</head></html>
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+<body>
+    <header class="main-header"  style="background-image:url(
+    /blog/img/banner.jpg)"
+     >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/blog/" title='Leo'>
+            <img src="/blog/img/avatar.jpg" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+            
+            <img src="/blog/img/branding.png" alt="博客-Leo" class="img-responsive center-block">
+            
+        </div>
+    </div>
+</header>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                        <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="https://okfood.vip/blog">
+                        上帝之手-Work makes the workman</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/blog/"><i class="fa "></i>
+                                首页</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/blog/categories/Java/"><i class="fa "></i>
+                                Java</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/blog/categories/Android/"><i class="fa "></i>
+                                Android</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/blog/categories/前端/"><i class="fa "></i>
+                                前端</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/blog/categories/后端/"><i class="fa "></i>
+                                后端</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/blog/categories/算法/"><i class="fa "></i>
+                                算法</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/blog/archives/"><i class="fa "></i>
+                                时间轴</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="xUtils框架原理分析">
+            
+            xUtils框架原理分析
+            
+        </h1>
+        <div class="post-meta">
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a class="category-link" href="/blog/categories/Android/">Android</a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            <a class="tag-link" href="/blog/tags/xUtils/">xUtils</a> <a class="tag-link" href="/blog/tags/开源项目/">开源项目</a>
+            
+        </span>
+    </span>
+    
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta">
+            2015/04/27</span>
+    </span>
+    
+    
+</div>
+        
+        
+    </div>
+    
+    <div class="post-body post-content">
+        <h3 id="1-功能介绍"><a href="#1-功能介绍" class="headerlink" title="1. 功能介绍"></a>1. 功能介绍</h3><p>xUtils一个Android公共库框架，主要包括四个部分：View，Db, Http, Bitmap 四个模块。</p>
+<ul>
+<li><p>View模块主要的功能是通过注解绑定UI，资源，事件。</p>
+</li>
+<li><p>Db模块是一个数据库orm框架， 简单的语句就能进行数据的操作。</p>
+</li>
+<li><p>Http模块主要访问网络，支持同步，异步方式的请求，支持文件的下载。</p>
+</li>
+<li><p>Bitmap模块是加载图片以及图片的处理， 支持加载本地，网络图片。而且支持图片的内存和本地缓存。  </p>
+</li>
+</ul>
+<h3 id="2-详细设计"><a href="#2-详细设计" class="headerlink" title="2. 详细设计"></a>2. 详细设计</h3><h4 id="2-1-View模块"><a href="#2-1-View模块" class="headerlink" title="2.1 View模块"></a>2.1 View模块</h4><h5 id="2-1-1-总体设计"><a href="#2-1-1-总体设计" class="headerlink" title="2.1.1 总体设计"></a>2.1.1 总体设计</h5><p>流程和关系较少， 请看下面的详细分析</p>
+<h5 id="2-1-2-流程图"><a href="#2-1-2-流程图" class="headerlink" title="2.1.2 流程图"></a>2.1.2 流程图</h5><p><img src="https://imgconvert.csdnimg.cn/aHR0cDovL2ltZy5ibG9nLmNzZG4ubmV0LzIwMTUwNDI3MTQxNDM1MzU4?x-oss-process=image/format,png" alt="流程图"></p>
+<h5 id="2-1-3-核心类功能介绍"><a href="#2-1-3-核心类功能介绍" class="headerlink" title="2.1.3 核心类功能介绍"></a>2.1.3 核心类功能介绍</h5><p>注解和反射知识是这个模块的主要内容</p>
+<h5 id="1-ViewUtils-java"><a href="#1-ViewUtils-java" class="headerlink" title="1.ViewUtils.java"></a>1.ViewUtils.java</h5><p>View和各种事件的注入以及资源的注入。</p>
+<h6 id="1-主要函数"><a href="#1-主要函数" class="headerlink" title="(1)主要函数"></a>(1)主要函数</h6><pre><code>private static void injectObject(Object handler, ViewFinder finder)     </code></pre><p>第一个参数Object handler代表的是需要注入的对象， 第二个参数是需要注入View（这个View就是handler的成员变量）所在的View或者Activity的包装对象。</p>
+<p>该方法完成了View和各种事件的注入以及资源的注入。主要的原理就是通过反射和注解。  </p>
+<ul>
+<li><p>完成Activity的setContentView。  </p>
+</li>
+<li><p>完成View的注入。  </p>
+</li>
+<li><p>完成资源的注入。  </p>
+</li>
+<li><p>完成各种事件的注入。  </p>
+</li>
+</ul>
+<h5 id="2-ViewFinder-java"><a href="#2-ViewFinder-java" class="headerlink" title="2.ViewFinder.java"></a>2.ViewFinder.java</h5><h6 id="1-主要函数-1"><a href="#1-主要函数-1" class="headerlink" title="(1)主要函数"></a>(1)主要函数</h6><pre><code>public View findViewById(int id, int pid)
+
+public View findViewById(int id)</code></pre><p>如果存在父View， 优先从父View寻找，否则从当前的View或者Activity中寻找。</p>
+<h5 id="3-ResLoader-java"><a href="#3-ResLoader-java" class="headerlink" title="3.ResLoader.java"></a>3.ResLoader.java</h5><pre><code>public static Object loadRes(ResType type, Context context, int id)</code></pre><p>获取资源文件值。支持多种资源的获取。</p>
+<h5 id="4-EventListenerManager-java"><a href="#4-EventListenerManager-java" class="headerlink" title="4.EventListenerManager.java"></a>4.EventListenerManager.java</h5><p>事件的注入， 其中的设计是通过动态代理。</p>
+<pre><code>private final static DoubleKeyValueMap&lt;ViewInjectInfo, Class&lt;?&gt;, Object&gt; 
+
+listenerCache = new DoubleKeyValueMap&lt;ViewInjectInfo, Class&lt;?&gt;, Object&gt;(); </code></pre><p>存放监听事件接口map。 因为有些接口有多个函数， 代理会判断事件接口是否存在， 如果存在只增加代理方法就够了， 避免重新设置监听事件接口。</p>
+<pre><code>public static void addEventMethod(
+            ViewFinder finder,
+            ViewInjectInfo info,
+            Annotation eventAnnotation,
+            Object handler,
+            Method method) </code></pre><p>代理监听事件</p>
+<h5 id="5-注解类"><a href="#5-注解类" class="headerlink" title="5.注解类"></a>5.注解类</h5><h4 id="2-2-Db模块"><a href="#2-2-Db模块" class="headerlink" title="2.2 Db模块"></a>2.2 Db模块</h4><h5 id="2-2-1-总体设计"><a href="#2-2-1-总体设计" class="headerlink" title="2.2.1 总体设计"></a>2.2.1 总体设计</h5><p>流程和关系较少， 请看下面的详细分析</p>
+<h5 id="2-2-2-流程图"><a href="#2-2-2-流程图" class="headerlink" title="2.2.2 流程图"></a>2.2.2 流程图</h5><p><img src="https://imgconvert.csdnimg.cn/aHR0cDovL2ltZy5ibG9nLmNzZG4ubmV0LzIwMTUwNDI3MTQxNTMzNDY4?x-oss-process=image/format,png" alt="流程图"></p>
+<h5 id="2-2-3-核心类功能介绍"><a href="#2-2-3-核心类功能介绍" class="headerlink" title="2.2.3 核心类功能介绍"></a>2.2.3 核心类功能介绍</h5><p>注解、反射和数据库操作知识这个模块的主要内容</p>
+<h5 id="1-DbUtils-java"><a href="#1-DbUtils-java" class="headerlink" title="1.DbUtils.java"></a>1.DbUtils.java</h5><p>主要功能数据库的创建，数据库的增删改查。</p>
+<pre><code>private static HashMap&lt;String, DbUtils&gt; daoMap = new HashMap&lt;String, DbUtils&gt;();</code></pre><p>存放DbUtils实例对象的map，每个数据库对应一个实例， key为数据库的名称。</p>
+<pre><code>private synchronized static DbUtils getInstance(DaoConfig daoConfig)</code></pre><p>采取的是单例模式，根据DaoConfig创建数据库， 中间还涉及到数据库升级。</p>
+<pre><code class="java">
+    delete；
+
+    findAll；
+
+    findById；
+
+    saveOrUpdate；// 当数据库没有时保存， 存在时修改。
+
+    update；
+</code></pre>
+<p>增删改查。</p>
+<h5 id="2-DaoConfig-java"><a href="#2-DaoConfig-java" class="headerlink" title="2.DaoConfig.java"></a>2.DaoConfig.java</h5><pre><code class="java">
+    private String dbName = &quot;xUtils.db&quot;; // default db name数据库名称
+
+    private int dbVersion = 1; //数据库版本
+
+    private DbUpgradeListener dbUpgradeListener; //升级监听事件
+</code></pre>
+<p>数据库配置类。</p>
+<h5 id="3-FindTempCache-java"><a href="#3-FindTempCache-java" class="headerlink" title="3.FindTempCache.java"></a>3.FindTempCache.java</h5><p>在DbUtils的查询数据中</p>
+<pre><code class="java">
+    @SuppressWarnings(&quot;unchecked&quot;)
+
+    public &lt;T&gt; List&lt;T&gt; findAll(Selector selector) throws DbException {
+
+        ....
+
+
+
+        String sql = selector.toString();
+
+        long seq = CursorUtils.FindCacheSequence.getSeq();
+
+        findTempCache.setSeq(seq);
+
+        Object obj = findTempCache.get(sql);//优先从缓存读取
+
+        if (obj != null) {
+
+            return (List&lt;T&gt;) obj;
+
+        }
+
+
+
+        ...
+
+    }
+</code></pre>
+<p>数据库查询数据的缓存。在查询中会优先调用缓存中的数据</p>
+<h5 id="4-SqlInfoBuilder-java"><a href="#4-SqlInfoBuilder-java" class="headerlink" title="4.SqlInfoBuilder.java"></a>4.SqlInfoBuilder.java</h5><p>sql建表、增删改语句的组合。</p>
+<pre><code class="java">
+public static SqlInfo buildCreateTableSqlInfo(DbUtils db, Class&lt;?&gt; entityType)  
+
+public static SqlInfo buildDeleteSqlInfo(DbUtils db, Class&lt;?&gt; entityType, Object idValue)
+
+public static SqlInfo buildDeleteSqlInfo(DbUtils db, Class&lt;?&gt; entityType, WhereBuilder whereBuilder)
+
+public static SqlInfo buildDeleteSqlInfo(DbUtils db, Object entity)
+
+public static SqlInfo buildInsertSqlInfo(DbUtils db, Object entity)
+
+public static SqlInfo buildUpdateSqlInfo(DbUtils db, Object entity, String... updateColumnNames)
+
+public static SqlInfo buildUpdateSqlInfo(DbUtils db, Object entity, WhereBuilder whereBuilder, String... updateColumnNames)
+</code></pre>
+<h5 id="5-SqlInfo-java"><a href="#5-SqlInfo-java" class="headerlink" title="5.SqlInfo.java"></a>5.SqlInfo.java</h5><p>sql语句和值包装对象。</p>
+<h5 id="6-Table-java"><a href="#6-Table-java" class="headerlink" title="6.Table.java"></a>6.Table.java</h5><p>表对象。</p>
+<h5 id="7-Column-java"><a href="#7-Column-java" class="headerlink" title="7.Column.java"></a>7.Column.java</h5><p>表中列对象。</p>
+<h5 id="8-Id-java"><a href="#8-Id-java" class="headerlink" title="8.Id.java"></a>8.Id.java</h5><p>表对应的主键对象。</p>
+<h5 id="9-Selector-java"><a href="#9-Selector-java" class="headerlink" title="9.Selector.java"></a>9.Selector.java</h5><p>sql查询语句的组合。</p>
+<h5 id="10-WhereBuilder-java"><a href="#10-WhereBuilder-java" class="headerlink" title="10.WhereBuilder.java"></a>10.WhereBuilder.java</h5><p>sql条件语句的组合。</p>
+<h5 id="2-3-Http模块"><a href="#2-3-Http模块" class="headerlink" title="2.3 Http模块"></a>2.3 Http模块</h5><h5 id="2-3-1-总体设计"><a href="#2-3-1-总体设计" class="headerlink" title="2.3.1 总体设计"></a>2.3.1 总体设计</h5><p><img src="https://imgconvert.csdnimg.cn/aHR0cDovL2ltZy5ibG9nLmNzZG4ubmV0LzIwMTUwNDI3MTQxNzExNDk0?x-oss-process=image/format,png" alt="整体构建思路"></p>
+<h5 id="2-3-2-流程图"><a href="#2-3-2-流程图" class="headerlink" title="2.3.2 流程图"></a>2.3.2 流程图</h5><p><img src="https://imgconvert.csdnimg.cn/aHR0cDovL2ltZy5ibG9nLmNzZG4ubmV0LzIwMTUwNDI3MTQxNjI3MzM5?x-oss-process=image/format,png" alt="流程图"></p>
+<h5 id="2-3-3-类图"><a href="#2-3-3-类图" class="headerlink" title="2.3.3 类图"></a>2.3.3 类图</h5><p><img src="https://imgconvert.csdnimg.cn/aHR0cDovL2ltZy5ibG9nLmNzZG4ubmV0LzIwMTUwNDI3MTQxNzU3MzE2?x-oss-process=image/format,png" alt="流程图"></p>
+<h5 id="1-HttpUtils-java"><a href="#1-HttpUtils-java" class="headerlink" title="1.HttpUtils.java"></a>1.HttpUtils.java</h5><p>支持异步同步访问网络数据， 断点下载文件。</p>
+<pre><code class="java">
+    //网络数据的缓存。
+
+    public final static HttpCache sHttpCache = new HttpCache();
+
+    //访问网络的HttpClient。
+
+    private final DefaultHttpClient httpClient; 
+
+    private final HttpContext httpContext = new BasicHttpContext();
+
+    //线程池。
+
+    private final static PriorityExecutor EXECUTOR = new PriorityExecutor(DEFAULT_POOL_SIZE);
+</code></pre>
+<pre><code class="java">
+public HttpUtils(int connTimeout, String userAgent) {
+
+        //配置超时时间，UserAgent， http版本信息协议等一些信息
+
+        .....
+
+        //将配置的参数统一放到httpClient中
+
+        httpClient = new DefaultHttpClient(new ThreadSafeClientConnManager(params, schemeRegistry), params);
+
+        ....
+
+
+
+        //下面这个关键，设置拦截器。 默认加上gizp压缩。 通过gizp压缩后的数据传输效率高很多。
+
+        httpClient.addRequestInterceptor(new HttpRequestInterceptor() {
+
+            @Override
+
+            public void process(org.apache.http.HttpRequest httpRequest, HttpContext httpContext) throws org.apache.http.HttpException, IOException {
+
+                if (!httpRequest.containsHeader(HEADER_ACCEPT_ENCODING)) { 
+
+                    httpRequest.addHeader(HEADER_ACCEPT_ENCODING, ENCODING_GZIP);
+
+                }
+
+            }
+
+        });
+
+
+
+        httpClient.addResponseInterceptor(new HttpResponseInterceptor() {
+
+            @Override
+
+            public void process(HttpResponse response, HttpContext httpContext) throws org.apache.http.HttpException, IOException {
+
+                final HttpEntity entity = response.getEntity();
+
+                if (entity == null) {
+
+                    return;
+
+                }
+
+                final Header encoding = entity.getContentEncoding();
+
+                if (encoding != null) {
+
+                    for (HeaderElement element : encoding.getElements()) {
+
+                        if (element.getName().equalsIgnoreCase(&quot;gzip&quot;)) {
+
+                            //这里判断从服务器传输的数据是否需要通过gzip解压。
+
+                            response.setEntity(new GZipDecompressingEntity(response.getEntity())); 
+
+                            return;
+
+                        }
+
+                    }
+
+                }
+
+            }
+
+        });
+
+    }
+
+
+</code></pre>
+<pre><code class="java">
+    //访问网络数据
+
+    private &lt;T&gt; HttpHandler&lt;T&gt; sendRequest(HttpRequest request, RequestParams params, RequestCallBack&lt;T&gt; callBack);
+
+    //下载网络文件
+
+    public HttpHandler&lt;File&gt; download(HttpRequest.HttpMethod method, String url, String target,
+
+                                      RequestParams params, boolean autoResume, boolean autoRename, RequestCallBack&lt;File&gt; callback);
+</code></pre>
+<h5 id="2-HttpRequest-java"><a href="#2-HttpRequest-java" class="headerlink" title="2.HttpRequest.java"></a>2.HttpRequest.java</h5><p>网络请求的包装类。 包括url， 访问请求方法， 参数值等。</p>
+<h5 id="3-RequestCallBack-java"><a href="#3-RequestCallBack-java" class="headerlink" title="3.RequestCallBack.java"></a>3.RequestCallBack.java</h5><p>完成数据请求回调接口。  </p>
+<h5 id="4-HttpHandler-java"><a href="#4-HttpHandler-java" class="headerlink" title="4.HttpHandler.java"></a>4.HttpHandler.java</h5><p>获取网络数据逻辑的实现。这里可以理解为系统内部AsyncTask。</p>
+<p>访问网络数据处理流程图  </p>
+<p><img src="https://imgconvert.csdnimg.cn/aHR0cDovL2ltZy5ibG9nLmNzZG4ubmV0LzIwMTUwNDI3MTQxODMzNjIx?x-oss-process=image/format,png" alt="流程图"></p>
+<h5 id="5-HttpCache-java"><a href="#5-HttpCache-java" class="headerlink" title="5.HttpCache.java"></a>5.HttpCache.java</h5><p>网络数据的缓存，内部包含LruMemoryCache。在获取数据的时候会判断是否过期。</p>
+<h5 id="6-StringDownLoadHandler-java"><a href="#6-StringDownLoadHandler-java" class="headerlink" title="6.StringDownLoadHandler.java"></a>6.StringDownLoadHandler.java</h5><p><code>handleEntity()</code>将网络io流转化为String。</p>
+<h5 id="7-FileDownLoadHandler-java"><a href="#7-FileDownLoadHandler-java" class="headerlink" title="7.FileDownLoadHandler.java"></a>7.FileDownLoadHandler.java</h5><p><code>handleEntity()</code>将网络io流转化为File。</p>
+<h6 id="8-HttpException-java"><a href="#8-HttpException-java" class="headerlink" title="8.HttpException.java"></a>8.HttpException.java</h6><p>统一异常</p>
+<h5 id="2-4-Bitmap模块"><a href="#2-4-Bitmap模块" class="headerlink" title="2.4 Bitmap模块"></a>2.4 Bitmap模块</h5><h5 id="2-4-1-总体设计"><a href="#2-4-1-总体设计" class="headerlink" title="2.4.1 总体设计"></a>2.4.1 总体设计</h5><p><img src="https://imgconvert.csdnimg.cn/aHR0cDovL2ltZy5ibG9nLmNzZG4ubmV0LzIwMTUwNDI3MTQyMTIzMjAx?x-oss-process=image/format,png" alt="总体架构图"></p>
+<h5 id="2-4-2-流程图"><a href="#2-4-2-流程图" class="headerlink" title="2.4.2 流程图"></a>2.4.2 流程图</h5><p>请查看http模块</p>
+<h5 id="2-4-3-类图"><a href="#2-4-3-类图" class="headerlink" title="2.4.3 类图"></a>2.4.3 类图</h5><p><img src="https://imgconvert.csdnimg.cn/aHR0cDovL2ltZy5ibG9nLmNzZG4ubmV0LzIwMTUwNDI3MTQyMDIxNjg4?x-oss-process=image/format,png" alt="类图"></p>
+<h5 id="1-BitmapUtils-java"><a href="#1-BitmapUtils-java" class="headerlink" title="1.BitmapUtils.java"></a>1.BitmapUtils.java</h5><p>图片的异步加载，支持本地和网络图片， 图片的压缩处理， 图片的内存缓存已经本地缓存。</p>
+<pre><code class="java">
+    private BitmapGlobalConfig globalConfig; // 线程池，缓存，和网络的配置
+
+    private BitmapDisplayConfig defaultDisplayConfig; //图片显示的配置
+</code></pre>
+<pre><code class="java">
+    /**
+
+     * @param container 表示需要显示图片的View
+
+     * @param uri 图片的uri
+
+     * @param displayConfig 图片显示的配置
+
+     * @param callBack 图片加载的回调接口
+
+     */
+
+    public &lt;T extends View&gt; void display(T container, String uri, BitmapDisplayConfig displayConfig, BitmapLoadCallBack&lt;T&gt; callBack)
+</code></pre>
+<p>设置图片流程图  </p>
+<p><img src="https://imgconvert.csdnimg.cn/aHR0cDovL2ltZy5ibG9nLmNzZG4ubmV0LzIwMTUwNDI3MTQyMTQ5MDM3?x-oss-process=image/format,png" alt="流程图"></p>
+<p>详细流程图  </p>
+<p><img src="https://imgconvert.csdnimg.cn/aHR0cDovL2ltZy5ibG9nLmNzZG4ubmV0LzIwMTUwNDI3MTQyMjEzMDY2?x-oss-process=image/format,png" alt="Bitmap详细流程图"></p>
+<h5 id="2-BitmapLoadTask-java"><a href="#2-BitmapLoadTask-java" class="headerlink" title="2.BitmapLoadTask.java"></a>2.BitmapLoadTask.java</h5><p>加载图片的异步任务。在<code>doInBackground</code>中读取图片资源</p>
+<h5 id="3-BitmapCache-java"><a href="#3-BitmapCache-java" class="headerlink" title="3.BitmapCache.java"></a>3.BitmapCache.java</h5><pre><code class="java">
+    private LruDiskCache mDiskLruCache; //闪存缓存
+
+    private LruMemoryCache&lt;MemoryCacheKey, Bitmap&gt; mMemoryCache; //运存缓存
+</code></pre>
+<h5 id="1-主要函数-2"><a href="#1-主要函数-2" class="headerlink" title="(1)主要函数"></a>(1)主要函数</h5><pre><code class="java">
+    //下载网络图片， 然后根据配置压缩图片， 将图片缓存。
+
+    public Bitmap downloadBitmap(String uri, BitmapDisplayConfig config, final BitmapUtils.BitmapLoadTask&lt;?&gt; task)
+
+    //从运存缓存中读取bitmap 在获取的时候会判断是否过期
+
+    public Bitmap getBitmapFromMemCache(String uri, BitmapDisplayConfig config)
+
+    //从闪存缓存中读取bitmap
+
+    public Bitmap getBitmapFromDiskCache(String uri, BitmapDisplayConfig config) 
+</code></pre>
+<h5 id="4-BitmapGlobalConfig-java"><a href="#4-BitmapGlobalConfig-java" class="headerlink" title="4.BitmapGlobalConfig.java"></a>4.BitmapGlobalConfig.java</h5><p>配置， 包括线程池， 缓存的大小。  </p>
+<pre><code class="java">
+//闪存缓存的路径
+
+private String diskCachePath;
+
+//运存缓存的最大值
+
+private int memoryCacheSize = 1024 * 1024 * 4; // 4MB
+
+//闪存缓存的最大值
+
+private int diskCacheSize = 1024 * 1024 * 50;  // 50M
+
+//从网络加载数据的线程池
+
+private final static PriorityExecutor BITMAP_LOAD_EXECUTOR = new PriorityExecutor(DEFAULT_POOL_SIZE);
+
+//从闪存读取数据的线程池
+
+private final static PriorityExecutor DISK_CACHE_EXECUTOR = new PriorityExecutor(2);
+
+//bitmap缓存的的时间
+
+private long defaultCacheExpiry = 1000L * 60 * 60 * 24 * 30; // 30 days
+
+//bitmap缓存
+
+private BitmapCache bitmapCache;
+</code></pre>
+<h5 id="5-BitmapDisplayConfig-java"><a href="#5-BitmapDisplayConfig-java" class="headerlink" title="5.BitmapDisplayConfig.java"></a>5.BitmapDisplayConfig.java</h5><pre><code class="java">
+    //图片显示的大小
+
+    private BitmapSize bitmapMaxSize;
+
+    //图片的动画
+
+    private Animation animation;
+
+    // 图片加载过程中的显示图片
+
+    private Drawable loadingDrawable;
+
+    // 图片加载失败的显示图片
+
+    private Drawable loadFailedDrawable;
+
+    // 图片显示的配置色彩
+
+    private Bitmap.Config bitmapConfig = Bitmap.Config.RGB_565;
+</code></pre>
+<h5 id="6-DefaultDownloader-java"><a href="#6-DefaultDownloader-java" class="headerlink" title="6.DefaultDownloader.java"></a>6.DefaultDownloader.java</h5><p>获取bitmap， 支持三种获取路径， 本地文件，资产文件， 和网络图片。</p>
+<h5 id="7-DefaultBitmapLoadCallBack-java"><a href="#7-DefaultBitmapLoadCallBack-java" class="headerlink" title="7.DefaultBitmapLoadCallBack.java"></a>7.DefaultBitmapLoadCallBack.java</h5><p>图片加载完成的的回调， 默认回调将获取的bitmap值传递给view。</p>
+<h3 id="3-杂谈"><a href="#3-杂谈" class="headerlink" title="3. 杂谈"></a>3. 杂谈</h3><p>和Volley框架相比</p>
+<h4 id="相同点："><a href="#相同点：" class="headerlink" title="相同点："></a>相同点：</h4><ul>
+<li><p>1.采用了网络数据缓存机制。  </p>
+</li>
+<li><p>2.通过handler进行线程通信</p>
+</li>
+</ul>
+<h4 id="不同点："><a href="#不同点：" class="headerlink" title="不同点："></a>不同点：</h4><ul>
+<li><ol>
+<li>Volley的Http请求在 android 2.3 版本之前是通过HttpClient ，在之后的版本是通过URLHttpConnection。xUtils都是通过HttpClient请求网络（bitmap模块图片下载是通过URLHttpConnection）。 URLHttpConnection默认支持GZIP压缩，api操作简单。</li>
+</ol>
+</li>
+<li><p>2.Volley将Http请求数据先缓存进byte[]， 然后是分配给不同的请求转化为需要的格式。xUtils是直接转化为想要的格式。 Volley：扩展性好， 但是不能存在大数据请求，否则就OOM。xUtils：不缓存入byte[] 支持大数据的请求， 速度比Volley稍快，但扩展性就低。</p>
+</li>
+<li><p>4.Volley访问网络数据时直接开启固定个数线程访问网络， 在run方法中执行死循环， 阻塞等待请求队列。 xUtils是开启线程池来管理线程。</p>
+</li>
+<li><ol start="5">
+<li>缓存失效策略， volley的所有网络数据支持从http响应头中控制是否缓存和读取缓存失效时间，每个请求可以控制是否缓存和缓存失效时间。 Xutils网络数据请求是统一自定义缓存失效时间。</li>
+</ol>
+</li>
+</ul>
+
+    </div>
+    
+    <div class="reward" ontouchstart>
+    <div class="reward-wrap">赏
+        <div class="reward-box">
+            
+            <span class="reward-type">
+                <img class="alipay" src="/blog/img/alipay.jpg"><b>支付宝打赏</b>
+            </span>
+            
+            
+            <span class="reward-type">
+                <img class="wechat" src="/blog/img/reward-wepay.jpg"><b>微信打赏</b>
+            </span>
+            
+        </div>
+    </div>
+    <p class="reward-tip">
+        赞赏是不耍流氓的鼓励
+    </p>
+</div>
+    
+    <div class="post-footer">
+        <div>
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+<div class="article-nav prev-next-wrap clearfix">
+    
+    <a href="/blog/2015/05/04/Volley框架原理分析/" class="pre-post btn btn-default" title='Volley框架原理分析'>
+        <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+        <span class="hidden-xs">
+            Volley框架原理分析</span>
+    </a>
+    
+    
+    <a href="/blog/2014/07/22/DOM编程及实例/" class="next-post btn btn-default" title='DOM编程及实例'>
+        <span class="hidden-lg">下一篇</span>
+        <span class="hidden-xs">
+            DOM编程及实例</span><i class="fa fa-angle-right fa-fw"></i>
+    </a>
+    
+</div>
+
+<div id="comments">
+    
+<p>评论系统未开启，无法评论！</p>
+
+</div>
+
+                </main>
+                
+                    <aside id="article-toc" role="navigation" class="col-md-4">
+    <div class="widget">
+        <h3 class="title">
+            文章目录
+        </h3>
+        
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-功能介绍"><span class="toc-text">1. 功能介绍</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-详细设计"><span class="toc-text">2. 详细设计</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-1-View模块"><span class="toc-text">2.1 View模块</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#2-1-1-总体设计"><span class="toc-text">2.1.1 总体设计</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-1-2-流程图"><span class="toc-text">2.1.2 流程图</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-1-3-核心类功能介绍"><span class="toc-text">2.1.3 核心类功能介绍</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#1-ViewUtils-java"><span class="toc-text">1.ViewUtils.java</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#1-主要函数"><span class="toc-text">(1)主要函数</span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-ViewFinder-java"><span class="toc-text">2.ViewFinder.java</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#1-主要函数-1"><span class="toc-text">(1)主要函数</span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3-ResLoader-java"><span class="toc-text">3.ResLoader.java</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#4-EventListenerManager-java"><span class="toc-text">4.EventListenerManager.java</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#5-注解类"><span class="toc-text">5.注解类</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-2-Db模块"><span class="toc-text">2.2 Db模块</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#2-2-1-总体设计"><span class="toc-text">2.2.1 总体设计</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-2-2-流程图"><span class="toc-text">2.2.2 流程图</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-2-3-核心类功能介绍"><span class="toc-text">2.2.3 核心类功能介绍</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#1-DbUtils-java"><span class="toc-text">1.DbUtils.java</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-DaoConfig-java"><span class="toc-text">2.DaoConfig.java</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3-FindTempCache-java"><span class="toc-text">3.FindTempCache.java</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#4-SqlInfoBuilder-java"><span class="toc-text">4.SqlInfoBuilder.java</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#5-SqlInfo-java"><span class="toc-text">5.SqlInfo.java</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#6-Table-java"><span class="toc-text">6.Table.java</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#7-Column-java"><span class="toc-text">7.Column.java</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#8-Id-java"><span class="toc-text">8.Id.java</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#9-Selector-java"><span class="toc-text">9.Selector.java</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#10-WhereBuilder-java"><span class="toc-text">10.WhereBuilder.java</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-3-Http模块"><span class="toc-text">2.3 Http模块</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-3-1-总体设计"><span class="toc-text">2.3.1 总体设计</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-3-2-流程图"><span class="toc-text">2.3.2 流程图</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-3-3-类图"><span class="toc-text">2.3.3 类图</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#1-HttpUtils-java"><span class="toc-text">1.HttpUtils.java</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-HttpRequest-java"><span class="toc-text">2.HttpRequest.java</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3-RequestCallBack-java"><span class="toc-text">3.RequestCallBack.java</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#4-HttpHandler-java"><span class="toc-text">4.HttpHandler.java</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#5-HttpCache-java"><span class="toc-text">5.HttpCache.java</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#6-StringDownLoadHandler-java"><span class="toc-text">6.StringDownLoadHandler.java</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#7-FileDownLoadHandler-java"><span class="toc-text">7.FileDownLoadHandler.java</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#8-HttpException-java"><span class="toc-text">8.HttpException.java</span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-4-Bitmap模块"><span class="toc-text">2.4 Bitmap模块</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-4-1-总体设计"><span class="toc-text">2.4.1 总体设计</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-4-2-流程图"><span class="toc-text">2.4.2 流程图</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-4-3-类图"><span class="toc-text">2.4.3 类图</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#1-BitmapUtils-java"><span class="toc-text">1.BitmapUtils.java</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-BitmapLoadTask-java"><span class="toc-text">2.BitmapLoadTask.java</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3-BitmapCache-java"><span class="toc-text">3.BitmapCache.java</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#1-主要函数-2"><span class="toc-text">(1)主要函数</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#4-BitmapGlobalConfig-java"><span class="toc-text">4.BitmapGlobalConfig.java</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#5-BitmapDisplayConfig-java"><span class="toc-text">5.BitmapDisplayConfig.java</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#6-DefaultDownloader-java"><span class="toc-text">6.DefaultDownloader.java</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#7-DefaultBitmapLoadCallBack-java"><span class="toc-text">7.DefaultBitmapLoadCallBack.java</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-杂谈"><span class="toc-text">3. 杂谈</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#相同点："><span class="toc-text">相同点：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#不同点："><span class="toc-text">不同点：</span></a></li></ol></li></ol>
+        
+    </div>
+</aside>
+                
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+<a id="back-to-top" class="icon-btn hide">
+    <i class="fa fa-chevron-up"></i>
+</a>
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="busuanzi">
+    
+</div>
+            </div>
+            <div class="col-sm-12">
+                <span>Copyright &copy;
+                    2014
+                </span> |
+                <span>
+                    Powered by <a href="https://okfood.vip" class="copyright-links" target="_blank" rel="nofollow">Leo</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="/blog/assets/tagcanvas.min.js?rev=2.9"></script>
+<script>
+var tagOption = {
+    textColour: '#444', // 字体颜色
+    outlineMethod: 'block', // 选中模式
+    outlineColour: '#FFDAB9', // 选中模式的颜色
+    interval: 30 || 30, // 动画帧之间的时间间隔，值越大，转动幅度越大
+    textHeight: 13,
+    outlineRadius: 3,
+    freezeActive: true || '', // 选中的标签是否继续滚动
+    frontSelect: true || '', // 不选标签云后部的标签
+    initial: [0.1, -0.1],
+    depth: 0.5,
+    decel: 0.95,
+    maxSpeed: 0.03,
+    reverse: true || '', // 是否反向触发
+    fadeIn: 500, // 进入动画时间
+    wheelZoom: false || '' // 是否启用鼠标滚轮
+}
+TagCanvas.Start('tag-cloud-3d', '', tagOption);
+</script>
+
+
+<script src="/blog/assets/google-code-prettify/prettify.js?"></script>
+<script src="/blog/js/app.js?rev=@@hash"></script>
+</body>
+</html>

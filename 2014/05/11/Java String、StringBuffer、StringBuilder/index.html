@@ -1,0 +1,662 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+<head><meta name="generator" content="Hexo 3.9.0">
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="上帝之手-Work makes the workman">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="theme-version" content="1.2.3">
+    <meta name="root" content="/blog/">
+    <link rel="dns-prefetch" href="https://okfood.vip/blog">
+    <!--SEO-->
+
+<meta name="keywords" content="JavaSE">
+
+
+<meta name="description" content="Stringjava中用String类进行描述。对字符串进行了对象的封装。这样的好处是可以对字符串这种常见数据进行方便的操作。对象封装后，可以定义N多属性和行为。
+如何定义字符串对象呢？Stri...">
+
+
+<meta name="robots" content="all">
+<meta name="google" content="all">
+<meta name="googlebot" content="all">
+<meta name="verify" content="all">
+    <!--Title-->
+
+<title>
+    
+    Java String、StringBuffer、StringBuilder |
+    
+    上帝之手-Work makes the workman
+</title>
+
+<link rel="alternate" href="/blog/atom.xml" title="上帝之手-Work makes the workman" type="application/atom+xml">
+
+
+<link rel="icon" href="/blog/img/avatar_circle.png">
+
+    
+
+<link rel="stylesheet" href="/blog/css/bootstrap.min.css?rev=3.3.7">
+<link rel="stylesheet" href="/blog/css/font-awesome.min.css?rev=4.7.0">
+<link rel="stylesheet" href="/blog/css/style.css?rev=@@hash">
+<link rel="stylesheet" href="/blog/assets/google-code-prettify/prettify.css">
+    
+
+
+
+    
+
+</head></html>
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+<body>
+    <header class="main-header"  style="background-image:url(
+    /blog/img/banner.jpg)"
+     >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/blog/" title='Leo'>
+            <img src="/blog/img/avatar.jpg" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+            
+            <img src="/blog/img/branding.png" alt="博客-Leo" class="img-responsive center-block">
+            
+        </div>
+    </div>
+</header>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                        <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="https://okfood.vip/blog">
+                        上帝之手-Work makes the workman</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/blog/"><i class="fa "></i>
+                                首页</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/blog/categories/Java/"><i class="fa "></i>
+                                Java</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/blog/categories/Android/"><i class="fa "></i>
+                                Android</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/blog/categories/前端/"><i class="fa "></i>
+                                前端</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/blog/categories/后端/"><i class="fa "></i>
+                                后端</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/blog/categories/算法/"><i class="fa "></i>
+                                算法</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/blog/archives/"><i class="fa "></i>
+                                时间轴</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="Java String、StringBuffer、StringBuilder">
+            
+            Java String、StringBuffer、StringBuilder
+            
+        </h1>
+        <div class="post-meta">
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a class="category-link" href="/blog/categories/Java/">Java</a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            <a class="tag-link" href="/blog/tags/JavaSE/">JavaSE</a>
+            
+        </span>
+    </span>
+    
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta">
+            2014/05/11</span>
+    </span>
+    
+    
+</div>
+        
+        
+    </div>
+    
+    <div class="post-body post-content">
+        <h1 id="String"><a href="#String" class="headerlink" title="String"></a>String</h1><p>java中用String类进行描述。对字符串进行了对象的封装。这样的好处是可以对字符串这种常见数据进行方便的操作。对象封装后，可以定义N多属性和行为。</p>
+<p>如何定义字符串对象呢？String s = “abc”;只要是双引号引起的数据都是字符串对象。</p>
+<p>特点：字符串一旦被初始化，就不可以被改变，存放在方法区中的常量池中。</p>
+<p>举例如下：</p>
+<pre><code>class StringDemo 
+{
+    public static void main(String[] args) 
+    {
+        String s1 = &quot;abc&quot;;//s1是一个类类型变量，&quot;abc&quot;是一个对象
+                        //字符串最大一个特点：一旦被初始化就不可以被改变
+        String s2 = new String(&quot;abc&quot;);
+
+        String s3 = &quot;abc&quot;;
+
+        //s1和s2有什么区别？
+        //s1在内存中有一个对象；s2在内存中有两个对象。    
+        System.out.println(s1==s2);
+        System.out.println(s1.equals(s2));
+        System.out.println(s1==s3);
+    }
+}</code></pre><p>字符串的方法：</p>
+<p>1.获取</p>
+<p>1.1字符串中包含的字符数，也就是字符串的长度</p>
+<pre><code>int length();获取长度</code></pre><p>1.2根据位置获取位置上某个字符</p>
+<pre><code>char charAt(int Index);</code></pre><p>1.3根据字符获取该字符在字符串中的位置</p>
+<pre><code>int indexOf(int ch);返回的是ch在字符串中第一次出现的位置
+int indexOf(int ch,int fromIdex);从fromIndex指定位置开始，获取ch在字符串中出现的位置
+
+int indexOf(String str);返回的是str在字符串中第一次出现的位置
+int indexOf(String str,int fromIdex);从fromIndex指定位置开始，获取str在字符串中出现的位置
+lastIndexOf(int ch);</code></pre><p>2.判断</p>
+<p>2.1字符串中是否包含一个字符串</p>
+<pre><code>boolean contains(str);</code></pre><p>特殊之处：indexOf(str)亦可实现此功能。</p>
+<p>2.2字符串中是否有内容</p>
+<pre><code>boolean isEmpty();原理是判断长度师傅哦为0</code></pre><p>2.3字符串是否以指定内容开头</p>
+<pre><code>boolean startsWith(str);</code></pre><p>2.4字符串是否以指定内容结尾</p>
+<pre><code>boolean endsWith(str);</code></pre><p>2.5判断字符串的内容是否相同.复写了Object类中的equals方法</p>
+<pre><code>boolean equals(str)</code></pre><p>2.6判断内容是否相同，并回忽略大小写</p>
+<pre><code>boolean equalsIgnoreCase();</code></pre><p>3.转换</p>
+<p>3.1将字符数组转成字符串</p>
+<p>构造函数：String(char[]);</p>
+<pre><code>String(char[],offset,count);//将字符数组中的一部分转成字符串，offset起始位置，count个数</code></pre><p>静态方法：static String copyValueOf(char[]);</p>
+<pre><code> static String copyValueOf(char[],int offset,int count);
+ static String valueOf(cahr[]);</code></pre><p>3.2将字符串转成字符数组</p>
+<pre><code>char[] toCharArray();</code></pre><p>3.3将字节数组转成字符串</p>
+<pre><code>String(byte[]);
+String(byte[],offset,count);将字节数组中的一部分转成字符串</code></pre><p>3.4将字符串转成字节数组</p>
+<pre><code>byte[] getBytes();</code></pre><p>3.5将基本数据类型转成字符串</p>
+<pre><code>static String valueOf(int);
+static String valueOf(double);</code></pre><p>特殊：字符串和字节数组在转换过程中，是可以指定编码表的</p>
+<p>4.替换</p>
+<pre><code>String replace(oldchar,newchar);</code></pre><p>5.切割</p>
+<pre><code>String[] split(regex);</code></pre><p>6.子串。获取字符串中的一部分</p>
+<pre><code>String substring(begin);
+String substring(begin,end);</code></pre><p>7.转换。去除空格，比较</p>
+<p>7.1将字符串转成大写或者小写</p>
+<pre><code>String toUpperCase();
+String toLowerCase();</code></pre><p>7.2将字符串两端的多个空格去除</p>
+<pre><code>String trim();</code></pre><p>7.3对两个字符串进行自然顺序的比较</p>
+<pre><code>int compareTo(string);</code></pre><p>综合举例如下：</p>
+<pre><code>class StringMethodDemo 
+{
+    //7
+    public static void method_tra()
+    {
+        String str = &quot;  Hello Java!3  &quot;;
+        //1.大小写互换
+        sop(str.toUpperCase());
+        sop(str.toLowerCase());
+        //2.去除空格
+        sop(str.trim());
+        //3.比较
+        String str1 = &quot;  Hello Java!5  &quot;;
+        sop(str.compareTo(str1));
+    }
+    //6
+    public static void method_substring()
+    {
+        String str = &quot;abcdefgh&quot;;
+        sop(str.substring(2));//从指定位置开始至结尾.如果角标不存在，会出现角标越界异常
+        sop(str.substring(1,4));//包含头，不包含尾。s.substring(0,s.length())
+    }
+    //5
+    public static void method_split()
+    {
+        String s = &quot;lisi,zhangsan,wangwu&quot;;
+        String[] arr = s.split(&quot;,&quot;);
+        for(int x=0;x&lt;arr.length;x++)
+            sop(arr[x]);
+    }
+    //4
+    public static void method_replace()
+    {
+        String s = &quot;hello java&quot;;
+        String s1 = s.replace(&#39;a&#39;,&#39;n&#39;);
+        String s2 = s.replace(&quot;java&quot;,&quot;world&quot;);
+        sop(&quot;s=&quot;+s);
+        sop(&quot;s1=&quot;+s1);
+        sop(&quot;s2=&quot;+s2);
+    }
+    //3
+    public static void methid_trans()
+    {
+        //1.字符数组-&gt;字符串
+        char[] arr = {&#39;a&#39;,&#39;b&#39;,&#39;c&#39;,&#39;d&#39;,&#39;e&#39;};
+        String s1 = new String(arr);
+        String s2 = new String(arr,1,2);
+        String s3 = String.copyValueOf(arr);
+        String s4 = String.copyValueOf(arr);
+        sop(&quot;s1=&quot;+s1);
+        sop(&quot;s2=&quot;+s2);
+        sop(&quot;s3=&quot;+s3);
+        sop(&quot;s4=&quot;+s3);
+        //2.字符串-&gt;字符数组
+        String str = &quot;abcd&quot;;
+        char[] chArr = str.toCharArray();
+//        sopArray(chArr);
+        //3.字节数组-&gt;字符串
+        byte[] arr1 = {53,55,47,57};//ASCII值
+        String s5 = new String(arr1);
+        sop(&quot;s5=&quot;+s5);
+        //4.字符串-&gt;字节数组
+        byte[] byt = str.getBytes();
+        sopArray(byt);
+        //5.基本数据类型-&gt;字符串
+        int x = 5;
+        String s6 = String.valueOf(x);
+        sop(&quot;s6=&quot;+s6);
+    }
+    //2
+    public static void method_is()
+    {
+        String str = &quot;ArrayDemo.java&quot;;
+        //判断文件名是否以Array开头
+        sop(str.startsWith(&quot;Array&quot;));
+        //判断文件名是否以Array开头
+        sop(str.endsWith(&quot;java&quot;));
+        //判断文件名是否包含Demo
+        sop(str.contains(&quot;Demo&quot;));
+    }
+    //1
+    public static void method_get()
+    {
+        String str = &quot;abcdsdf&quot;;
+        //长度
+        sop(str.length());
+        //根据索引获取字符
+        sop(str.charAt(4));
+        //根据字符获取索引
+        sop(str.indexOf(&quot;ds&quot;,2));//如果没有找到，返回-1
+        //反向索引一个字符出现的位置
+        sop(str.lastIndexOf(&quot;d&quot;));
+    }
+    public static void main(String[] args) 
+    {
+        method_tra();
+//        method_substring();
+//        method_split();
+//        method_replace();
+//        methid_trans();
+//        method_is();
+//        method_get();
+    }
+
+    public static void sop(Object obj)
+    {
+        System.out.println(obj);
+    }
+    public static void sopArray(byte[] arr)
+    {
+        System.out.print(&quot;[&quot;);
+        for(int x=0;x&lt;arr.length;x++)
+        {
+            if(x!=arr.length-1)
+                System.out.print(arr[x]+&quot;,&quot;);
+            else
+                System.out.println(arr[x]+&quot;]&quot;);
+        }
+    }
+}</code></pre><h1 id="StringBuffer"><a href="#StringBuffer" class="headerlink" title="StringBuffer"></a>StringBuffer</h1><p>构造一个其中不带字符的字符串缓冲区，初始容量为 16 个字符。</p>
+<p>特点：</p>
+<ol>
+<li>可以对字符串内容进行修改。</li>
+<li>是一个容器。</li>
+<li>是可变长度的。</li>
+<li>缓冲区中可以存储任意类型的数据。</li>
+<li>最终需要变成字符串。</li>
+</ol>
+<p>容器通常具备一些固定的方法：</p>
+<p>1，添加。</p>
+<pre><code>StringBuffer append(data):在缓冲区中追加数据。追加到尾部。
+StringBuffer insert(index,data):在指定位置插入数据。</code></pre><p>2，删除。</p>
+<pre><code>StringBuffer delete(start,end);删除从start至end-1范围的元素
+StringBuffer deleteCharAt(index);删除指定位置的元素
+//sb.delete(0,sb.length());//清空缓冲区。</code></pre><p>3，修改。</p>
+<pre><code>StringBuffer replace(start,end,string);将start至end-1替换成string
+void setCharAt(index,char);替换指定位置的字符
+void setLength(len);将原字符串置为指定长度的字符串</code></pre><p>4，查找。（查不到返回-1）</p>
+<pre><code>int indexOf(string); 返回指定子字符串在此字符串中第一次出现处的索引。
+int indexOf(string,int fromIndex);从指定位置开始查找字符串
+int lastIndexOf(string); 返回指定子字符串在此字符串中最右边出现处的索引。
+int lastIndexOf(string,int fromIndex); 从指定的索引开始反向搜索
+string substring(start); 返回start到结尾的子串
+string substring(start,end); 返回start至end-1的子串</code></pre><p>5，反转</p>
+<pre><code>StringBuffer reverse();字符串反转</code></pre><p>6，void getChars(int srcBegin,int srcEnd,cahr[] dat,int dstBegin)</p>
+<p>举例如下：</p>
+<pre><code>class  StringBufferDemo
+{
+    //6
+    public static void method_6()
+    {
+        StringBuilder sb = new StringBuilder(&quot;abcdefg&quot;);
+        char[] chs = new char[8];
+        sb.getChars(1,4,chs,1);
+        for(int x=0;x&lt;chs.length;x++)
+            sop(&quot;chs[&quot;+x+&quot;]=&quot;+chs[x]);
+    }
+    //5
+    public static void method_reverse()
+    {
+        StringBuffer sb = new StringBuffer(&quot;abcdefg&quot;);
+        //反转
+        sb.reverse();
+        sop(sb.toString());
+    }
+    //3
+    public static void method_update()
+    {
+        StringBuffer sb = new StringBuffer(&quot;abcdefg&quot;);
+        //替换
+        sb.replace(1,4,&quot;java&quot;);
+        sop(sb.toString());
+        //改变指定位置字符
+        sb.setCharAt(2,&#39;E&#39;);
+        sop(sb.toString());
+
+    }
+    //2
+    public static void method_delete()
+    {
+        StringBuffer sb = new StringBuffer(&quot;abcdefg&quot;);
+        //删除指定部分
+        sb.delete(1,3);
+        sop(sb.toString());
+        //删除指定位置字符
+        sb.deleteCharAt(2);
+        sop(sb.toString());
+        //清空缓冲区
+        sb.delete(0,sb.length());
+        sop(sb.toString());
+    }
+    //1
+    public static void method_add()
+    {
+        StringBuffer sb = new StringBuffer();
+        //添加
+        sb.append(&quot;abc&quot;).append(true).append(23);
+        sop(sb.toString());
+        //插入
+        sb.insert(2,&quot;QQ&quot;);
+        sop(sb.toString());
+    }
+
+    public static void main(String[] args) 
+    {
+        method_6();
+//        method_reverse();
+//        method_update();
+//        method_delete();
+//        method_add();
+    }
+
+    public static void sop(String str)
+    {
+        System.out.println(str);
+    }
+}</code></pre><h1 id="StringBuilder"><a href="#StringBuilder" class="headerlink" title="StringBuilder"></a>StringBuilder</h1><p>JDK1.5出现StringBuiler；构造一个其中不带字符的字符串生成器，初始容量为 16 个字符。该类被设计用作 StringBuffer 的一个简易替换，用在字符串缓冲区被单个线程使用的时候（这种情况很普遍）。</p>
+<p>方法和StringBuffer一样；</p>
+<p>StringBuffer 和 StringBuilder 的区别：</p>
+<ul>
+<li>StringBuffer线程安全。</li>
+<li>StringBuilder线程不安全。</li>
+</ul>
+<p>单线程操作，使用StringBuilder 效率高。</p>
+<p>多线程操作，使用StringBuffer 安全。</p>
+<p>开发中建议使用StringBuilder </p>
+<h1 id="基本数据类型对象包装类"><a href="#基本数据类型对象包装类" class="headerlink" title="基本数据类型对象包装类"></a>基本数据类型对象包装类</h1><p>基本数据类型对象包装类：是按照面向对象思想将基本数据类型封装成了对象。</p>
+<p>好处：</p>
+<ol>
+<li>可以通过对象中的属性和行为操作基本数据。</li>
+<li>可以实现基本数据类型和字符串之间的转换。</li>
+</ol>
+<p>关键字   对应的类名</p>
+<p>byte   Byte</p>
+<p>short   Short     paserShort(numstring);</p>
+<p>int   Integer   静态方法：parseInt(numstring)</p>
+<p>long   Long</p>
+<p>float   Float</p>
+<p>double    Double</p>
+<p>char   Character</p>
+<p>Boolean   Boolean</p>
+<p>基本数据类型对象包装类：都有 XXX parseXXX 方法</p>
+<p>只有一个类型没有parse方法：Character ；</p>
+<p>Integer对象： </p>
+<p>数字格式的字符串转成基本数据类型的方法：</p>
+<ul>
+<li>将该字符串封装成了Integer对象，并调用对象的方法intValue();</li>
+<li>使用Integer.parseInt(numstring):不用建立对象，直接类名调用；</li>
+</ul>
+<p>将基本类型转成字符串：</p>
+<ul>
+<li>Integer中的静态方法 String toString(int);</li>
+<li>int+” “;</li>
+</ul>
+<p>将一个十进制整数转成其他进制：</p>
+<ul>
+<li>转成二进制：toBinaryString</li>
+<li>转成八进制：toOctalString</li>
+<li>转成十六进制：toHexString</li>
+<li>toString(int num,int radix);</li>
+</ul>
+<p>将其他进制转换十进制：</p>
+<pre><code>parseInt(string,radix); //将给定的数转成指定的基数进制；</code></pre><p> 举例如下：</p>
+<pre><code>class IntegerDemo 
+{
+    public static void main(String[] args) 
+    {
+        sop(&quot;int max:&quot;+Integer.MAX_VALUE);
+
+        int a = Integer.parseInt(&quot;123&quot;);
+        sop(a);
+
+        sop(Integer.toBinaryString(a));
+
+        int num = Integer.parseInt(&quot;3c&quot;,16);
+        sop(num);
+    }
+
+    public static void sop(Object obj)
+    {
+        System.out.println(obj);
+    }
+}</code></pre><p>在jdk1.5版本后，对基本数据类型对象包装类进行升级。在升级中，使用基本数据类型对象包装类可以像使用基本数据类型一样，进行运算。</p>
+<pre><code>Integer i = new Integer(4); //1.5版本之前的写法；
+Integer i = 4; //自动装箱，1.5版本后的写法；
+i = i + 5;
+
+//i对象是不能直接和5相加的，其实底层先将i转成int类型，在和5相加。而转成int类型的操作是隐式的。自动拆箱：拆箱的原理就是i.intValue();i+5运算完是一个int整数。如何赋值给引用类型i呢？其实有对结果进行装箱。
+
+Integer c = 127;
+Integer d = 127;
+System.out.println(c = = d); //true
+
+//在装箱时，如果数值在byte范围之内，那么数值相同，不会产生新的对象，也就是说多个数值相同的引用指向的是同一个对象。</code></pre>
+    </div>
+    
+    <div class="reward" ontouchstart>
+    <div class="reward-wrap">赏
+        <div class="reward-box">
+            
+            <span class="reward-type">
+                <img class="alipay" src="/blog/img/alipay.jpg"><b>支付宝打赏</b>
+            </span>
+            
+            
+            <span class="reward-type">
+                <img class="wechat" src="/blog/img/reward-wepay.jpg"><b>微信打赏</b>
+            </span>
+            
+        </div>
+    </div>
+    <p class="reward-tip">
+        赞赏是不耍流氓的鼓励
+    </p>
+</div>
+    
+    <div class="post-footer">
+        <div>
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+<div class="article-nav prev-next-wrap clearfix">
+    
+    <a href="/blog/2014/05/14/Java集合框架/" class="pre-post btn btn-default" title='Java集合框架'>
+        <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+        <span class="hidden-xs">
+            Java集合框架</span>
+    </a>
+    
+    
+    <a href="/blog/2014/05/10/Java多线程基础/" class="next-post btn btn-default" title='Java多线程基础'>
+        <span class="hidden-lg">下一篇</span>
+        <span class="hidden-xs">
+            Java多线程基础</span><i class="fa fa-angle-right fa-fw"></i>
+    </a>
+    
+</div>
+
+<div id="comments">
+    
+<p>评论系统未开启，无法评论！</p>
+
+</div>
+
+                </main>
+                
+                    <aside id="article-toc" role="navigation" class="col-md-4">
+    <div class="widget">
+        <h3 class="title">
+            文章目录
+        </h3>
+        
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#String"><span class="toc-text">String</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#StringBuffer"><span class="toc-text">StringBuffer</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#StringBuilder"><span class="toc-text">StringBuilder</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#基本数据类型对象包装类"><span class="toc-text">基本数据类型对象包装类</span></a></li></ol>
+        
+    </div>
+</aside>
+                
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+<a id="back-to-top" class="icon-btn hide">
+    <i class="fa fa-chevron-up"></i>
+</a>
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="busuanzi">
+    
+</div>
+            </div>
+            <div class="col-sm-12">
+                <span>Copyright &copy;
+                    2014
+                </span> |
+                <span>
+                    Powered by <a href="https://okfood.vip" class="copyright-links" target="_blank" rel="nofollow">Leo</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="/blog/assets/tagcanvas.min.js?rev=2.9"></script>
+<script>
+var tagOption = {
+    textColour: '#444', // 字体颜色
+    outlineMethod: 'block', // 选中模式
+    outlineColour: '#FFDAB9', // 选中模式的颜色
+    interval: 30 || 30, // 动画帧之间的时间间隔，值越大，转动幅度越大
+    textHeight: 13,
+    outlineRadius: 3,
+    freezeActive: true || '', // 选中的标签是否继续滚动
+    frontSelect: true || '', // 不选标签云后部的标签
+    initial: [0.1, -0.1],
+    depth: 0.5,
+    decel: 0.95,
+    maxSpeed: 0.03,
+    reverse: true || '', // 是否反向触发
+    fadeIn: 500, // 进入动画时间
+    wheelZoom: false || '' // 是否启用鼠标滚轮
+}
+TagCanvas.Start('tag-cloud-3d', '', tagOption);
+</script>
+
+
+<script src="/blog/assets/google-code-prettify/prettify.js?"></script>
+<script src="/blog/js/app.js?rev=@@hash"></script>
+</body>
+</html>

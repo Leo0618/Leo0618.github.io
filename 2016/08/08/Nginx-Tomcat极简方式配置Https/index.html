@@ -50,6 +50,7 @@ Step1.获取证书并下载拷贝获取SSL证书并拷贝至指定目录：方�
 <link rel="stylesheet" href="/blog/css/bootstrap.min.css?rev=3.3.7">
 <link rel="stylesheet" href="/blog/css/font-awesome.min.css?rev=4.7.0">
 <link rel="stylesheet" href="/blog/css/style.css?rev=@@hash">
+<link rel="stylesheet" href="/blog/assets/google-code-prettify/prettify.css">
     
 
 
@@ -186,20 +187,52 @@ Step1.获取证书并下载拷贝获取SSL证书并拷贝至指定目录：方�
 <p>此文以阿里云获取的SSL证书为例。</p>
 <p>获取到证书后，nginx配置文件nginx.conf所在的目录下创建文件夹命名为cert,下载并将xxx.key和xxx.pem文件拷贝至cert文件夹下。</p>
 <h3 id="Step2-配置Nginx支持SSL"><a href="#Step2-配置Nginx支持SSL" class="headerlink" title="Step2.配置Nginx支持SSL"></a>Step2.配置Nginx支持SSL</h3><p>编辑nginx.conf，我得配置文件在/etc/nginx/下面，修改如下配置，主要是ssl_certificate和ssl_certificate_key指向文件位置，xxx改成自己证书文件名称，其他配置可参考Nginx官网进行可选配置。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">upstream tomcat &#123;</span><br><span class="line">	server 127.0.0.1:8080 fail_timeout=0;</span><br><span class="line">&#125;</span><br><span class="line"># HTTPS server</span><br><span class="line">server &#123;</span><br><span class="line">	listen       443 ssl;</span><br><span class="line">	server_name  localhost;</span><br><span class="line">	ssl_certificate   cert/xxx.pem;</span><br><span class="line">	ssl_certificate_key  cert/xxx.key;</span><br><span class="line"></span><br><span class="line">	ssl_session_cache    shared:SSL:1m;</span><br><span class="line">	ssl_session_timeout  5m;</span><br><span class="line"></span><br><span class="line">	ssl_ciphers  HIGH:!aNULL:!MD5;</span><br><span class="line">	ssl_prefer_server_ciphers  on;</span><br><span class="line"></span><br><span class="line">  location / &#123;</span><br><span class="line">	proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;</span><br><span class="line">	proxy_set_header Host $http_host;</span><br><span class="line">	proxy_set_header X-Forwarded-Proto https;</span><br><span class="line">	proxy_redirect off;</span><br><span class="line">	proxy_connect_timeout      240;</span><br><span class="line">	proxy_send_timeout         240;</span><br><span class="line">	proxy_read_timeout         240;</span><br><span class="line">	# note, there is not SSL here! plain HTTP is used</span><br><span class="line">	proxy_pass http://tomcat;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre><code>upstream tomcat {
+    server 127.0.0.1:8080 fail_timeout=0;
+}
+# HTTPS server
+server {
+    listen       443 ssl;
+    server_name  localhost;
+    ssl_certificate   cert/xxx.pem;
+    ssl_certificate_key  cert/xxx.key;
 
-<h3 id="Step3-配置Tomcat支持SSL"><a href="#Step3-配置Tomcat支持SSL" class="headerlink" title="Step3.配置Tomcat支持SSL"></a>Step3.配置Tomcat支持SSL</h3><p>编辑server.xml，我的配置文件位于/www/server/apache-tomcat-8.5.32/conf/下面， </p>
+    ssl_session_cache    shared:SSL:1m;
+    ssl_session_timeout  5m;
+
+    ssl_ciphers  HIGH:!aNULL:!MD5;
+    ssl_prefer_server_ciphers  on;
+
+  location / {
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header Host $http_host;
+    proxy_set_header X-Forwarded-Proto https;
+    proxy_redirect off;
+    proxy_connect_timeout      240;
+    proxy_send_timeout         240;
+    proxy_read_timeout         240;
+    # note, there is not SSL here! plain HTTP is used
+    proxy_pass http://tomcat;
+  }
+}</code></pre><h3 id="Step3-配置Tomcat支持SSL"><a href="#Step3-配置Tomcat支持SSL" class="headerlink" title="Step3.配置Tomcat支持SSL"></a>Step3.配置Tomcat支持SSL</h3><p>编辑server.xml，我的配置文件位于/www/server/apache-tomcat-8.5.32/conf/下面， </p>
 <ul>
 <li>修改此处为如下，</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;Connector port=&quot;8080&quot; protocol=&quot;HTTP/1.1&quot;</span><br><span class="line">   connectionTimeout=&quot;20000&quot;</span><br><span class="line">   redirectPort=&quot;443&quot;</span><br><span class="line">   proxyPort=&quot;443&quot; /&gt;</span><br></pre></td></tr></table></figure>
-
-<ul>
+<pre><code>&lt;Connector port=&quot;8080&quot; protocol=&quot;HTTP/1.1&quot;
+   connectionTimeout=&quot;20000&quot;
+   redirectPort=&quot;443&quot;
+   proxyPort=&quot;443&quot; /&gt;</code></pre><ul>
 <li>修改Host,节点下新增一个Valve</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;Host name=&quot;localhost&quot;  appBase=&quot;webapps&quot;</span><br><span class="line">	unpackWARs=&quot;true&quot; autoDeploy=&quot;true&quot;&gt;</span><br><span class="line"></span><br><span class="line">	&lt;Valve className=&quot;org.apache.catalina.valves.RemoteIpValve&quot;</span><br><span class="line">              remoteIpHeader=&quot;x-forwarded-for&quot;</span><br><span class="line">              remoteIpProxiesHeader=&quot;x-forwarded-by&quot;</span><br><span class="line">              protocolHeader=&quot;x-forwarded-proto&quot; /&gt;</span><br><span class="line"></span><br><span class="line">&lt;/Host&gt;</span><br></pre></td></tr></table></figure>
+<pre><code>&lt;Host name=&quot;localhost&quot;  appBase=&quot;webapps&quot;
+    unpackWARs=&quot;true&quot; autoDeploy=&quot;true&quot;&gt;
 
-<h3 id="Step4-保存文件到服务器上，重启一下Nginx和Tomcat，到此结束，就这么简单！"><a href="#Step4-保存文件到服务器上，重启一下Nginx和Tomcat，到此结束，就这么简单！" class="headerlink" title="Step4.保存文件到服务器上，重启一下Nginx和Tomcat，到此结束，就这么简单！"></a>Step4.保存文件到服务器上，重启一下Nginx和Tomcat，到此结束，就这么简单！</h3>
+    &lt;Valve className=&quot;org.apache.catalina.valves.RemoteIpValve&quot;
+              remoteIpHeader=&quot;x-forwarded-for&quot;
+              remoteIpProxiesHeader=&quot;x-forwarded-by&quot;
+              protocolHeader=&quot;x-forwarded-proto&quot; /&gt;
+
+&lt;/Host&gt;</code></pre><h3 id="Step4-保存文件到服务器上，重启一下Nginx和Tomcat，到此结束，就这么简单！"><a href="#Step4-保存文件到服务器上，重启一下Nginx和Tomcat，到此结束，就这么简单！" class="headerlink" title="Step4.保存文件到服务器上，重启一下Nginx和Tomcat，到此结束，就这么简单！"></a>Step4.保存文件到服务器上，重启一下Nginx和Tomcat，到此结束，就这么简单！</h3>
     </div>
     
     <div class="reward" ontouchstart>
@@ -233,17 +266,17 @@ Step1.获取证书并下载拷贝获取SSL证书并拷贝至指定目录：方�
 </article>
 <div class="article-nav prev-next-wrap clearfix">
     
-    <a href="/blog/2017/04/25/AndroidStudio打包apk输出文件目录自定义/" class="pre-post btn btn-default" title='AndroidStudio打包apk输出文件目录自定义'>
+    <a href="/blog/2016/09/15/Android的4大启动模式/" class="pre-post btn btn-default" title='Android的4大启动模式'>
         <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
         <span class="hidden-xs">
-            AndroidStudio打包apk输出文件目录自定义</span>
+            Android的4大启动模式</span>
     </a>
     
     
-    <a href="/blog/2016/02/13/Linux系统下忘记MySQL的root密码怎么办？/" class="next-post btn btn-default" title='Linux系统下忘记MySQL的root密码怎么办？'>
+    <a href="/blog/2016/05/29/Android客户端应用内检测升级框架AppUpdate/" class="next-post btn btn-default" title='Android客户端应用内检测升级框架AppUpdate'>
         <span class="hidden-lg">下一篇</span>
         <span class="hidden-xs">
-            Linux系统下忘记MySQL的root密码怎么办？</span><i class="fa fa-angle-right fa-fw"></i>
+            Android客户端应用内检测升级框架AppUpdate</span><i class="fa fa-angle-right fa-fw"></i>
     </a>
     
 </div>
@@ -323,6 +356,7 @@ TagCanvas.Start('tag-cloud-3d', '', tagOption);
 </script>
 
 
+<script src="/blog/assets/google-code-prettify/prettify.js?"></script>
 <script src="/blog/js/app.js?rev=@@hash"></script>
 </body>
 </html>

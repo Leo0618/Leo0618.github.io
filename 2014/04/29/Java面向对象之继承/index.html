@@ -1,0 +1,563 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+<head><meta name="generator" content="Hexo 3.9.0">
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="上帝之手-Work makes the workman">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="theme-version" content="1.2.3">
+    <meta name="root" content="/blog/">
+    <link rel="dns-prefetch" href="https://okfood.vip/blog">
+    <!--SEO-->
+
+<meta name="keywords" content="JavaSE">
+
+
+<meta name="description" content="继承好处：
+
+提高了代码的复用性。
+让类与类之间产生了关系，提供了另一个特征多态的前提。
+
+父类的由来：其实是由多个类不断向上抽取共性内容而来的。
+java中对于继承，java只支持单继承。ja...">
+
+
+<meta name="robots" content="all">
+<meta name="google" content="all">
+<meta name="googlebot" content="all">
+<meta name="verify" content="all">
+    <!--Title-->
+
+<title>
+    
+    Java面向对象之继承 |
+    
+    上帝之手-Work makes the workman
+</title>
+
+<link rel="alternate" href="/blog/atom.xml" title="上帝之手-Work makes the workman" type="application/atom+xml">
+
+
+<link rel="icon" href="/blog/img/avatar_circle.png">
+
+    
+
+<link rel="stylesheet" href="/blog/css/bootstrap.min.css?rev=3.3.7">
+<link rel="stylesheet" href="/blog/css/font-awesome.min.css?rev=4.7.0">
+<link rel="stylesheet" href="/blog/css/style.css?rev=@@hash">
+<link rel="stylesheet" href="/blog/assets/google-code-prettify/prettify.css">
+    
+
+
+
+    
+
+</head></html>
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+<body>
+    <header class="main-header"  style="background-image:url(
+    /blog/img/banner.jpg)"
+     >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/blog/" title='Leo'>
+            <img src="/blog/img/avatar.jpg" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+            
+            <img src="/blog/img/branding.png" alt="博客-Leo" class="img-responsive center-block">
+            
+        </div>
+    </div>
+</header>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                        <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="https://okfood.vip/blog">
+                        上帝之手-Work makes the workman</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/blog/"><i class="fa "></i>
+                                首页</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/blog/categories/Java/"><i class="fa "></i>
+                                Java</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/blog/categories/Android/"><i class="fa "></i>
+                                Android</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/blog/categories/前端/"><i class="fa "></i>
+                                前端</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/blog/categories/后端/"><i class="fa "></i>
+                                后端</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/blog/categories/算法/"><i class="fa "></i>
+                                算法</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/blog/archives/"><i class="fa "></i>
+                                时间轴</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="Java面向对象之继承">
+            
+            Java面向对象之继承
+            
+        </h1>
+        <div class="post-meta">
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a class="category-link" href="/blog/categories/Java/">Java</a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            <a class="tag-link" href="/blog/tags/JavaSE/">JavaSE</a>
+            
+        </span>
+    </span>
+    
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta">
+            2014/04/29</span>
+    </span>
+    
+    
+</div>
+        
+        
+    </div>
+    
+    <div class="post-body post-content">
+        <h1 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h1><p><strong>好处</strong>：</p>
+<ol>
+<li>提高了代码的复用性。</li>
+<li>让类与类之间产生了关系，提供了另一个特征多态的前提。</li>
+</ol>
+<p>父类的由来：其实是由多个类不断向上抽取共性内容而来的。</p>
+<p>java中对于继承，java只支持单继承。java虽然不直接支持多继承，但是保留了这种多继承机制，进行改良（接口 多实现）。</p>
+<p>单继承：一个类只能有一个父类。</p>
+<p>多继承：一个类可以有多个父类。</p>
+<p>为什么不支持多继承呢？</p>
+<p>因为当一个类同时继承两个父类时，两个父类中有相同的功能，那么子类对象调用该功能时，运行哪一个呢？因为父类中的方法中存在方法体。</p>
+<p>但是java支持多重继承。A继承B  B继承C  C继承D。</p>
+<p>多重继承的出现，就有了继承体系。体系中的顶层父类是通过不断向上抽取而来的。它里面定义的该体系最基本最共性内容的功能。</p>
+<p>所以，一个体系要想被使用，直接查阅该系统中的父类的功能即可知道该体系的基本用法。那么想要使用一个体系时，需要建立对象。建立最子类对象，因为最子类不仅可以使用父类中的功能。还可以使用子类特有的一些功能。</p>
+<p>简单说：对于一个继承体系的使用，查阅顶层父类中的内容，创建最底层子类的对象。 </p>
+<p>子父类出现后，类中的成员都有了哪些特点：</p>
+<ul>
+<li><p>成员变量</p>
+<p>当子父类中出现一样的属性时，子类类型的对象，调用该属性，值是子类的属性值。</p>
+<p>如果想要调用父类中的属性值，需要使用一个关键字：super </p>
+<p>This：代表是本类类型的对象引用。</p>
+<p>Super：代表是子类所属的父类中的内存空间引用。</p>
+<p>注意：子父类中通常是不会出现同名成员变量的，因为父类中只要定义了，子类就不用在定义了，直接继承过来用就可以了。</p>
+</li>
+<li><p>成员函数</p>
+</li>
+</ul>
+<p>当子父类中出现了一模一样的方法时，建立子类对象会运行子类中的方法。好像父类中的方法被覆盖掉一样。所以这种情况，是函数的另一个特性：覆盖(复写，重写)</p>
+<p>什么时候使用覆盖呢？当一个类的功能内容需要修改时，可以通过覆盖来实现。</p>
+<ul>
+<li>构造函数</li>
+</ul>
+<p>发现子类构造函数运行时，先运行了父类的构造函数。为什么呢?</p>
+<p>原因：子类的所有构造函数中的第一行，其实都有一条隐身的语句super();</p>
+<p>super(): 表示父类的构造函数，并会调用于参数相对应的父类中的构造函数。而super():是在调用父类中空参数的构造函数。</p>
+<p>Q:为什么子类对象初始化时，都需要调用父类中的函数？(为什么要在子类构造函数的第一行加入这个super()?)</p>
+<p>因为子类继承父类，会继承到父类中的数据，所以必须要看父类是如何对自己的数据进行初始化的。所以子类在进行对象初始化时，先调用父类的构造函数，这就是子类的实例化过程。</p>
+<p>注意：子类中所有的构造函数都会默认访问父类中的空参数的构造函数，因为每一个子类构造内第一行都有默认的语句super(); </p>
+<p>如果父类中没有空参数的构造函数，那么子类的构造函数内，必须通过super语句指定要访问的父类中的构造函数。</p>
+<p>如果子类构造函数中用this来指定调用子类自己的构造函数，那么被调用的构造函数也一样会访问父类中的构造函数。</p>
+<p>举例：</p>
+<pre><code>class Fu{
+    Fu(){
+        System.out.println(&quot;我是爸&quot;);
+    }
+    Fu(int x){
+        System.out.println(&quot;我是二爸&quot;);
+    }
+}
+class Son extends Fu{
+    Son(){
+        System.out.println(&quot;我是儿子&quot;);
+    }
+    Son(int x){    
+        this();
+        System.out.println(&quot;我是二儿子&quot;);
+    }
+    public static void show(){
+        System.out.println(&quot;我们是一家人&quot;);
+    }
+}
+
+class Test{
+    public static void main(String[] args){
+        System.out.println(&quot;----------0----------&quot;);
+        new Son();
+        System.out.println(&quot;----------1----------&quot;);
+        new Fu();
+        System.out.println(&quot;----------2----------&quot;);
+        Son s = new Son();    
+        System.out.println(&quot;----------3----------&quot;);
+        Fu f1 = new Fu();
+        System.out.println(&quot;----------4----------&quot;);
+        Fu f = new Son(2);
+        System.out.println(&quot;----------5----------&quot;);
+        //f.show();//此句错误，Fu中没有show方法
+        //Son s1 = new Fu();//此句错误，Fu无法转换成Son
+        new Son().show();
+        System.out.println(&quot;----------6----------&quot;);
+    }
+}</code></pre><p>打印结果如下：</p>
+<p>加this();之前</p>
+<p><img src="https://raw.githubusercontent.com/Leo0618/images/master/17.png" alt></p>
+<p>加this();之后</p>
+<p><img src="https://raw.githubusercontent.com/Leo0618/images/master/18.png" alt></p>
+<p><strong>问题：</strong></p>
+<p>super()和this()是否可以同时出现的构造函数中？</p>
+<p>两个语句只能有一个定义在第一行，所以只能出现其中一个。</p>
+<p>super()或者this():为什么一定要定义在第一行？</p>
+<p>因为super()或者this()都是调用构造函数，构造函数用于初始化，所以初始化的动作要先完成。</p>
+<p>函数的细节</p>
+<p><strong>细节一：</strong></p>
+<p>什么时候使用继承呢？</p>
+<p>当类与类之间存在着所属关系时，才具备了继承的前提。a是b中的一种。a继承b。狼是犬科中的一种。</p>
+<p>英文书中，所属关系：” is a “</p>
+<p>注意：不要仅仅为了获取其他类中的已有成员进行继承。</p>
+<p>所以判断所属关系，可以简单看，如果继承后，被继承的类中的功能，都可以被该子类所具备，那么继承成立。如果不是，不可以继承。</p>
+<p><strong>细节二：</strong></p>
+<p>在方法覆盖时，注意两点：</p>
+<ol>
+<li>子类覆盖父类时，必须要保证，子类方法的权限必须大于等于父类方法权限可以实现继承。否则，编译失败。</li>
+<li>覆盖时，要么都静态，要么都不静态。 (静态只能覆盖静态，或者被静态覆盖)</li>
+</ol>
+<p>继承的一个弊端：打破了封装性。对于一些类，或者类中功能，是需要被继承，或者复写的。</p>
+<p>这时如何解决问题呢？介绍一个关键字，final:最终。</p>
+<p><strong>final特点：</strong></p>
+<ol>
+<li>这个关键字是一个修饰符，可以修饰类，方法，变量。</li>
+<li>被final修饰的类是一个最终类，不可以被继承。</li>
+<li>被final修饰的方法是一个最终方法，不可以被覆盖。</li>
+<li>被final修饰的变量是一个常量，只能赋值一次。</li>
+</ol>
+<p>其实这样的原因的就是给一些固定的数据起个阅读性较强的名称。</p>
+<p>不加final修饰不是也可以使用吗？</p>
+<p>那么这个值是一个变量，是可以更改的。加了final，程序更为严谨。常量名称定义时，有规范，所有字母都大写，如果由多个单词组成，中间用 _ 连接。</p>
+<h1 id="抽象类"><a href="#抽象类" class="headerlink" title="抽象类"></a>抽象类</h1><p>抽象：不具体，看不明白。抽象类表象体现。</p>
+<p>在不断抽取过程中，将共性内容中的方法声明抽取，但是方法不一样，没有抽取，这时抽取到的方法，并不具体，需要被指定关键字abstract所标示，声明为抽象方法。</p>
+<p>抽象方法所在类一定要标示为抽象类，也就是说该类需要被abstract关键字所修饰。</p>
+<p><strong>抽象类的特点：</strong></p>
+<ol>
+<li>抽象方法只能定义在抽象类中，抽象类和抽象方法必须由abstract关键字修饰（可以描述类和方法，不可以描述变量）。</li>
+<li>抽象方法只定义方法声明，并不定义方法实现。</li>
+<li>抽象类不可以被创建对象(实例化)。</li>
+<li>只有通过子类继承抽象类并覆盖了抽象类中的所有抽象方法后，该子类才可以实例化。否则，该子类还是一个抽象类。</li>
+</ol>
+<p><strong>抽象类的细节：</strong></p>
+<ol>
+<li><p>抽象类中是否有构造函数？ </p>
+<p> 有，用于给子类对象进行初始化。</p>
+</li>
+<li><p>抽象类中是否可以定义非抽象方法？</p>
+<p> 可以。其实，抽象类和一般类没有太大的区别，都是在描述事物，只不过抽象类在描述事物时，有些功能不具体。所以抽象类和一般类在定义上，都是需要定义属性和行为的。只不过，比一般类多了一个抽象函数。而且比一般类少了一个创建对象的部分。</p>
+</li>
+<li><p>抽象关键字abstract和哪些不可以共存？</p>
+<p> final ,private , static </p>
+</li>
+<li><p>抽象类中可不可以不定义抽象方法？</p>
+<p> 可以。抽象方法目的仅仅为了不让该类创建对象。</p>
+</li>
+</ol>
+<p>举例：</p>
+<pre><code>abstract class Student{
+    abstract void study();//抽象函数
+    void sleep(){
+        System.out.println(&quot;sleep...&quot;);
+    }
+}
+
+class BaseStudent extends Student{
+    void study(){
+        System.out.println(&quot;base study&quot;);
+    }
+}
+class AdvStudent extends Student{
+    void study(){
+        System.out.println(&quot;adv study&quot;);
+    }
+}
+
+class Test{
+     public static void main(String[] args){
+        new BaseStudent().study();
+        new BaseStudent().sleep();
+        //new Student().study();//编译不通过,抽象类无法实例化
+     }
+}</code></pre><h1 id="接口"><a href="#接口" class="headerlink" title="接口"></a>接口</h1><ul>
+<li>是用关键字interface定义的。</li>
+<li>接口中包含的成员，最常见的有全局常量、抽象方法。</li>
+</ul>
+<p>注意：接口中的成员都有固定的修饰符。</p>
+<p>成员变量：public static final </p>
+<p>成员方法：public abstract </p>
+<p>例如：</p>
+<pre><code>interface Inter{ 
+    //写为简单的 int x=3这样也可以，系统自动添加前面关键词
+    public static final int x = 3;
+    public abstract void show();
+}</code></pre><ul>
+<li><p>接口中有抽象方法，说明接口不可以实例化。</p>
+<p>  接口的子类必须实现了接口中所有的抽象方法后，该子类才可以实例化。否则，该子类还是一个抽象类。</p>
+</li>
+<li><p>类与类之间存在着继承关系，类与接口中间存在的是实现关系。</p>
+<p>  继承用extends  ；实现用implements ；</p>
+</li>
+<li><p>接口和类不一样的地方，就是，接口可以被多实现，这就是多继承改良后的结果。java将多继承机制通过多现实来体现。 </p>
+</li>
+<li><p>一个类在继承另一个类的同时，还可以实现多个接口。所以接口的出现避免了单继承的局限性。还可以将类进行功能的扩展。</p>
+</li>
+<li><p>其实java中是有多继承的。接口与接口之间存在着继承关系，接口可以多继承接口。</p>
+<p>举例：</p>
+<p>  interface A{</p>
+<pre><code>  void methodA();</code></pre><p>  }<br>  interface B {</p>
+<pre><code>  void methodB();</code></pre><p>  }<br>  //接口多继承<br>  interface C extends B,A{</p>
+<pre><code>  void methodC();</code></pre><p>  }<br>  interface Demo{</p>
+<pre><code>  void demoMethod();</code></pre><p>  }<br>  //类多实现<br>  class D implements C，Demo {</p>
+<pre><code>  public void methodA(){}
+  public void methodB(){}
+  public void methodC(){}</code></pre><p>  }</p>
+</li>
+</ul>
+<p>接口都用于设计上，设计上的特点：（可以理解主板上提供的接口）</p>
+<ol>
+<li>接口是对外提供的规则。</li>
+<li>接口是功能的扩展。</li>
+<li>接口的出现降低了耦合性。</li>
+</ol>
+<p>抽象类与接口：</p>
+<p><strong>抽象类：</strong>一般用于描述一个体系单元，将一组共性内容进行抽取，特点：可以在类中定义抽象内容让子类实现，可以定义非抽象内容让子类直接使用。它里面定义的都是一些体系中的基本内容。</p>
+<p><strong>接口：</strong>一般用于定义对象的扩展功能，是在继承之外还需这个对象具备的一些功能。</p>
+<p>抽象类和接口的共性：</p>
+<p>都是不断向上抽取的结果。</p>
+<p>抽象类和接口的区别：</p>
+<p>1)：</p>
+<p>抽象类只能被继承，而且只能单继承。</p>
+<p>接口需要被实现，而且可以多实现。 </p>
+<p>2)：</p>
+<p>抽象类中可以定义非抽象方法，子类可以直接继承使用。</p>
+<p>接口中都有抽象方法，需要子类去实现。</p>
+<p>3)：</p>
+<p>抽象类使用的是  is a 关系。</p>
+<p>接口使用的 like a 关系。 </p>
+<p>4)：</p>
+<p>抽象类的成员修饰符可以自定义。</p>
+<p>接口中的成员修饰符是固定的。全都是public的。</p>
+<p>在开发之前，先定义规则，A和B分别开发，A负责实现这个规则，B负责使用这个规则。至于A是如何对规则具体实现的，B是不需要知道的。这样这个接口的出现就降低了A和B直接耦合性。</p>
+<p>接口举例：</p>
+<pre><code>interface Inter{
+    public static int NUM = 3;
+    public abstract void show();
+}
+interface InterA{
+    public abstract void show();
+}
+
+class Demo{
+    public void function(){}
+}
+
+class TestDi extends Demo implements Inter,InterA{
+    public void show(){}
+}
+
+class Test {
+    public static void main(String[] args) {
+        TestDi t = new TestDi();
+        System.out.println(t.NUM);//3
+        System.out.println(TestDi.NUM);//3
+        System.out.println(Inter.NUM);//3
+    }
+}</code></pre>
+    </div>
+    
+    <div class="reward" ontouchstart>
+    <div class="reward-wrap">赏
+        <div class="reward-box">
+            
+            <span class="reward-type">
+                <img class="alipay" src="/blog/img/alipay.jpg"><b>支付宝打赏</b>
+            </span>
+            
+            
+            <span class="reward-type">
+                <img class="wechat" src="/blog/img/reward-wepay.jpg"><b>微信打赏</b>
+            </span>
+            
+        </div>
+    </div>
+    <p class="reward-tip">
+        赞赏是不耍流氓的鼓励
+    </p>
+</div>
+    
+    <div class="post-footer">
+        <div>
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+<div class="article-nav prev-next-wrap clearfix">
+    
+    <a href="/blog/2014/05/09/Java面向对象之多态、内部类/" class="pre-post btn btn-default" title='Java面向对象之多态、内部类'>
+        <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+        <span class="hidden-xs">
+            Java面向对象之多态、内部类</span>
+    </a>
+    
+    
+    <a href="/blog/2014/04/29/Java面向对象之封装/" class="next-post btn btn-default" title='Java面向对象之封装'>
+        <span class="hidden-lg">下一篇</span>
+        <span class="hidden-xs">
+            Java面向对象之封装</span><i class="fa fa-angle-right fa-fw"></i>
+    </a>
+    
+</div>
+
+<div id="comments">
+    
+<p>评论系统未开启，无法评论！</p>
+
+</div>
+
+                </main>
+                
+                    <aside id="article-toc" role="navigation" class="col-md-4">
+    <div class="widget">
+        <h3 class="title">
+            文章目录
+        </h3>
+        
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#继承"><span class="toc-text">继承</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#抽象类"><span class="toc-text">抽象类</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#接口"><span class="toc-text">接口</span></a></li></ol>
+        
+    </div>
+</aside>
+                
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+<a id="back-to-top" class="icon-btn hide">
+    <i class="fa fa-chevron-up"></i>
+</a>
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="busuanzi">
+    
+</div>
+            </div>
+            <div class="col-sm-12">
+                <span>Copyright &copy;
+                    2014
+                </span> |
+                <span>
+                    Powered by <a href="https://okfood.vip" class="copyright-links" target="_blank" rel="nofollow">Leo</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="/blog/assets/tagcanvas.min.js?rev=2.9"></script>
+<script>
+var tagOption = {
+    textColour: '#444', // 字体颜色
+    outlineMethod: 'block', // 选中模式
+    outlineColour: '#FFDAB9', // 选中模式的颜色
+    interval: 30 || 30, // 动画帧之间的时间间隔，值越大，转动幅度越大
+    textHeight: 13,
+    outlineRadius: 3,
+    freezeActive: true || '', // 选中的标签是否继续滚动
+    frontSelect: true || '', // 不选标签云后部的标签
+    initial: [0.1, -0.1],
+    depth: 0.5,
+    decel: 0.95,
+    maxSpeed: 0.03,
+    reverse: true || '', // 是否反向触发
+    fadeIn: 500, // 进入动画时间
+    wheelZoom: false || '' // 是否启用鼠标滚轮
+}
+TagCanvas.Start('tag-cloud-3d', '', tagOption);
+</script>
+
+
+<script src="/blog/assets/google-code-prettify/prettify.js?"></script>
+<script src="/blog/js/app.js?rev=@@hash"></script>
+</body>
+</html>

@@ -1,0 +1,656 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+<head><meta name="generator" content="Hexo 3.9.0">
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="上帝之手-Work makes the workman">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="theme-version" content="1.2.3">
+    <meta name="root" content="/blog/">
+    <link rel="dns-prefetch" href="https://okfood.vip/blog">
+    <!--SEO-->
+
+<meta name="keywords" content="JavaSE">
+
+
+<meta name="description" content="语句控制语句（1）、if(表达式)……else…….条件语句；
+（2）、for（表达式）…….       循环语句；
+（3）、while（表达式）…….     循环语句；
+（4）、do….....">
+
+
+<meta name="robots" content="all">
+<meta name="google" content="all">
+<meta name="googlebot" content="all">
+<meta name="verify" content="all">
+    <!--Title-->
+
+<title>
+    
+    Java基础：下 |
+    
+    上帝之手-Work makes the workman
+</title>
+
+<link rel="alternate" href="/blog/atom.xml" title="上帝之手-Work makes the workman" type="application/atom+xml">
+
+
+<link rel="icon" href="/blog/img/avatar_circle.png">
+
+    
+
+<link rel="stylesheet" href="/blog/css/bootstrap.min.css?rev=3.3.7">
+<link rel="stylesheet" href="/blog/css/font-awesome.min.css?rev=4.7.0">
+<link rel="stylesheet" href="/blog/css/style.css?rev=@@hash">
+<link rel="stylesheet" href="/blog/assets/google-code-prettify/prettify.css">
+    
+
+
+
+    
+
+</head></html>
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+<body>
+    <header class="main-header"  style="background-image:url(
+    /blog/img/banner.jpg)"
+     >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/blog/" title='Leo'>
+            <img src="/blog/img/avatar.jpg" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+            
+            <img src="/blog/img/branding.png" alt="博客-Leo" class="img-responsive center-block">
+            
+        </div>
+    </div>
+</header>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                        <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="https://okfood.vip/blog">
+                        上帝之手-Work makes the workman</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/blog/"><i class="fa "></i>
+                                首页</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/blog/categories/Java/"><i class="fa "></i>
+                                Java</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/blog/categories/Android/"><i class="fa "></i>
+                                Android</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/blog/categories/前端/"><i class="fa "></i>
+                                前端</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/blog/categories/后端/"><i class="fa "></i>
+                                后端</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/blog/categories/算法/"><i class="fa "></i>
+                                算法</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/blog/archives/"><i class="fa "></i>
+                                时间轴</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="Java基础：下">
+            
+            Java基础：下
+            
+        </h1>
+        <div class="post-meta">
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a class="category-link" href="/blog/categories/Java/">Java</a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            <a class="tag-link" href="/blog/tags/JavaSE/">JavaSE</a>
+            
+        </span>
+    </span>
+    
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta">
+            2014/04/27</span>
+    </span>
+    
+    
+</div>
+        
+        
+    </div>
+    
+    <div class="post-body post-content">
+        <h2 id="语句"><a href="#语句" class="headerlink" title="语句"></a>语句</h2><h3 id="控制语句"><a href="#控制语句" class="headerlink" title="控制语句"></a>控制语句</h3><p>（1）、if(表达式)……else…….条件语句；</p>
+<p>（2）、for（表达式）…….       循环语句；</p>
+<p>（3）、while（表达式）…….     循环语句；</p>
+<p>（4）、do…..while(表达式）……循环语句；</p>
+<p>（5）、switch                多分支选择结构；</p>
+<p>（6）、continue              结束本次循环语句；</p>
+<p>（7）、break                终止执行switch或循环语句；</p>
+<p>（8）、return               从方法返回语句。</p>
+<p><strong>1)、 条件语句</strong></p>
+<p>分为四种：</p>
+<p><strong>单分支条件语句</strong></p>
+<p>语法格式为：</p>
+<pre><code>if(条件表达式) {
+    语句或语句块；
+}</code></pre><p><strong>二分支条件语句</strong></p>
+<p>语法格式为：</p>
+<pre><code>if(条件表达式) {
+    语句或语句块1；
+} else {
+    语句或语句块2；
+}</code></pre><p><strong>嵌套条件语句</strong></p>
+<p>语法格式为：</p>
+<pre><code>if(条件表达式){
+    if(条件表达式){
+        语句或语句块1；
+    }
+} else {
+    语句或语句块2；
+}</code></pre><p><strong>多分支条件语句</strong></p>
+<p>语法格式为：</p>
+<pre><code>if(条件表达式1){
+    语句或语句块1；
+}
+else if(条件表达式2){
+    语句或语句块2；
+}
+  ……
+ ……
+}else if(条件表达式n){
+    语句或语句块n；
+}else{
+    语句0；
+}</code></pre><p><strong>2)、 for循环语句</strong></p>
+<p>语法格式为：</p>
+<pre><code>for(变量初始化表达式；循环条件表达式；迭代部分){
+    语句或语句块；//循环体
+｝</code></pre><p>for循环有一个特殊的循环，叫死循环。表现形式为：</p>
+<pre><code>boolean  isOk = true;       或     for(;;){}
+
+for(;isOk;){}  </code></pre><p>for循环可以再嵌套for循环。</p>
+<p>注意：在for循环的初始化或迭代部分，可以有多个表达式，表达式之间用逗号隔开。例如：   </p>
+<pre><code>int count =0;
+for(int a= 1,b=10;a&lt;b;a++,b－－){
+   count++;
+}  </code></pre><p>共循环多少次？</p>
+<p><strong>3)、 while循环语句</strong></p>
+<p>语法格式为：</p>
+<pre><code>while(循环条件 表达式)｛
+    语句或语句块；
+｝</code></pre><p><strong>4)、 do—–while循环语句</strong></p>
+<p>语法格式为：</p>
+<pre><code>do{
+    语句或语句块；
+｝while(表达式)；</code></pre><p>（注意分号绝对不能省略）</p>
+<p><strong>5)、 switch—–case多分支选择语句</strong></p>
+<p>语法格式为：</p>
+<pre><code>switch(条件表达式){
+case 常量1:
+        语句1；
+        break;
+case 常量2:
+        语句2；
+        break;
+……
+case 常量N:
+        语句N;
+        break;
+default:
+        语句;
+}</code></pre><p>注意：</p>
+<ul>
+<li>条件表达式的返回值类型必须是以下类型之一：int、byte、char、short。</li>
+<li>case子句中的值常量N必须是常量，而且所有case子句中的值应是不同的。</li>
+<li>default子句是可选的。</li>
+<li>break语句用来在执行完一个case分支后，是程序跳出switch语句，即终止switch语句的执行。</li>
+<li>在一些特殊情况下，多个不同的case值要执行一组相同的操作，这时可以不用break。</li>
+</ul>
+<p><strong>6)、 continue结束本次循环语句</strong></p>
+<p>使用continue语句可以立刻重新开始下一轮的循环，而不再执行循环后面的语句。</p>
+<p><strong>7)、 break终止执行switch和循环语句</strong></p>
+<p>使用break语句可以立刻终止循环，开始执行循环后面的语句。</p>
+<p><strong>8)、 return从方法返回语句</strong></p>
+<p>return语句主要作用是退出当前方法，将程序控制转移到方法的调用者。</p>
+<p>一般格式为：</p>
+<pre><code>return [值或表达式]；</code></pre><h3 id="方法调用语句"><a href="#方法调用语句" class="headerlink" title="方法调用语句"></a>方法调用语句</h3><p>方法调用语句是执行对象的某个方法。</p>
+<p>一个完整的方法调用语句由某个方法调用加上一个分号构成。</p>
+<p>调用语法格式为：类对象名称.方法名（参数）;</p>
+<p>例如：</p>
+<pre><code>System.out.println(“This is a statement call a method!”);</code></pre><p>调用对象System.out的println方法。</p>
+<h3 id="表达式语句"><a href="#表达式语句" class="headerlink" title="表达式语句"></a>表达式语句</h3><p>表达式语句就是由一个表达式加一个分号构成的语句。</p>
+<p>例如：</p>
+<p>常见的赋值语句：</p>
+<pre><code>i=i+1;而i=i+1只是一个表达式。</code></pre><h3 id="空语句"><a href="#空语句" class="headerlink" title="空语句"></a>空语句</h3><p>空语句就是只有一个分号构成的语句。例如：</p>
+<pre><code>  ;</code></pre><h3 id="复合语句"><a href="#复合语句" class="headerlink" title="复合语句"></a>复合语句</h3><p>复合语句又叫块，由{}将一些语句括起来就构成一个复合语句。例如：</p>
+<pre><code>{
+    a=b+c;
+    t=a*100;
+}</code></pre><h2 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h2><h3 id="1、函数的定义"><a href="#1、函数的定义" class="headerlink" title="1、函数的定义"></a>1、函数的定义</h3><p>1).函数就是定义在类中的具有特定功能的一段独立小程序。函数也称为方法。</p>
+<p>2).函数的格式：</p>
+<pre><code>修饰符 返回值类型 函数名(参数类型 形式参数1,参数类型 形式参数2...) {
+    执行语句;
+    return 返回值;
+}</code></pre><h3 id="2、函数的特点"><a href="#2、函数的特点" class="headerlink" title="2、函数的特点"></a>2、函数的特点</h3><p>1).定义函数可以将功能代码进行封装，便于对该功能进行复写。</p>
+<p>2).函数只有被调用才会被执行。</p>
+<p>3).函数的出现提高了代码的复用性。</p>
+<p>4).对于函数没有具体返回值的情况，返回值类型用关键字void表示，那么该函数中的 return语句如果在最后一行可以省略不写。</p>
+<p>5).函数中只能调用函数，不可以在函数内部定义函数。</p>
+<p>6).定义函数时，函数的结果应该返回给调用者，交由调用者处理。</p>
+<p>7).可以自定义一个访问权限。</p>
+<p><strong>定义函数时需要注意</strong></p>
+<p>1).功能中只定义所需内容，不是该功能所需的内容不要定义。</p>
+<p>2).如果非要定义，也是单独定义一个功能来体现。以后开发时，尽量都将功能以不同的函数来体现。</p>
+<p>3).不要将代码都定义在主函数中。</p>
+<p>4).主函数的作用是：对已有的功能的进行调用，可以理解为用于功能的测试。</p>
+<p>5).函数名就是一个自己定义的标示符。函数名的定义，要尽量体现出这个函数的功能。是为了增强该函数的阅读性，方便于调用者使用，所以函数名一定要有起的有意义。</p>
+<p>6).静态方法只能调用静态方法。主函数是静态的。</p>
+<p>7).返回值类型和参数类型没有直接关系。</p>
+<p><strong>定义函数时候需要有两个明确</strong></p>
+<p>1）这个函数会得到什么结果，也就是返回值是什么。</p>
+<p>2）有没有未知内数据参与运算。</p>
+<h3 id="3、函数的重载（Overload）"><a href="#3、函数的重载（Overload）" class="headerlink" title="3、函数的重载（Overload）"></a>3、函数的重载（Overload）</h3><p>1).重载的概念：在同一个类中，允许存在一个以上的同名函数，只要它们的参数个数和参数类型不同即可。</p>
+<p>2).重载的特点：与返回值类型无关，只看参数列表。</p>
+<p>3).重载的好处：方便于阅读，优化了程序设计。</p>
+<p>注:Java是严谨性语言，如果函数出现的调用不确定性，会编译失败。</p>
+<h3 id="4、函数重载什么时候使用？"><a href="#4、函数重载什么时候使用？" class="headerlink" title="4、函数重载什么时候使用？"></a>4、函数重载什么时候使用？</h3><p>重载：当定义的功能相同，但参与运算的未知内容不同，那么，这时就定义一个函数名称以表示其功能，方便阅读，而通过参数列表的不同来区分多个同名函数。</p>
+<h3 id="5、主函数"><a href="#5、主函数" class="headerlink" title="5、主函数"></a>5、主函数</h3><pre><code>/*
+public static void main(String[] args) 
+主函数：是一个特殊的函数，作为程序的入口，可以被jvm调用
+主函数的定义：
+public：代表着该函数访问权限是最大的
+static：代表主函数随着类的加载就已经存在了
+void：主函数没有具体的返回值
+main：不是关键字，但是是一个特殊的单词，可以被jvm识别
+（String[] arr）：函数的参数，参数类型是一个数组，该数组中的元素是字符串。字符串类型的数组
+主函数是固定格式的，jvm识别
+JVM在调用主函数时，传入的是new String[0];
+主函数传值：执行时 java MainDemo haha hehe heihei
+*/
+
+class MainDemo {
+    public static void main(String[] args) {
+        System.out.println(&quot;Hello World!&quot;);
+        System.out.println(args.length);//0
+        for(int x=0;x&lt;args.length;x++)
+            System.out.println(args[x]);
+    }
+}</code></pre><h2 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h2><p>（1）定义：是用来存储一组或多组相同类型数据的数据类型。</p>
+<p>（2）数据类型：可以是基本数据类型（例如：数字型、字符型、布尔型），也可以是复合数据类型（例如：数组、类、字符串和接口）。</p>
+<p> ※数组本身就是一种复合数据类型，因此，数组的元素也可以是数组，这样就构成了二维数组和多维数组。</p>
+<p>（3）数组作为复合数据类型，与基本数据类型最大的区别：</p>
+<p>数组是通过引用来控制的，而基本数据类型是通过值来控制的。</p>
+<h3 id="1、一维数组的声明"><a href="#1、一维数组的声明" class="headerlink" title="1、一维数组的声明"></a>1、一维数组的声明</h3><p>   格式： 类型 数组名[ ];   或  类型[ ] 数组名;</p>
+<p>   举例：</p>
+<pre><code>int a[ ];  String[ ] b;</code></pre><p>数组的初始化有两种方法：一种是直接初始化，另一种是动态初始化。</p>
+<p>直接初始化：</p>
+<p>格式： 类型  数组名[ ] = { 值1，值2，…，值n};</p>
+<p>举例：</p>
+<pre><code>int[ ]  a= {1,2,3};       
+int[ ] b;   b = {1,2,3};</code></pre><p>动态初始化：</p>
+<p>格式：</p>
+<p>（1）声明时初始化：</p>
+<pre><code>类型  数组名[ ] = new 类型[ 数组长度];</code></pre><p>举例：</p>
+<pre><code>int[ ] a  =  new  int[5];</code></pre><p>（2）声明后初始化：</p>
+<p>类型  数组名[ ];   </p>
+<pre><code>        数组名 = new 类型[数组长度];</code></pre><p>举例：</p>
+<pre><code>int[ ] a;
+a = new int[5];</code></pre><h3 id="2、访问数组元素"><a href="#2、访问数组元素" class="headerlink" title="2、访问数组元素"></a>2、访问数组元素</h3><p>数组元素是通过数组名和下标来访问。未被初始化的数组，不能进行访问。</p>
+<p>格式：数组名[下标]</p>
+<p>Java中，数组的下标从0开始，直到 &lt;数组长度-1&gt;结束。</p>
+<p>获得数组的长度，通过length属性来获得。</p>
+<p>举例：</p>
+<pre><code>System.out.println(arr.length);//打印输出数组arr的长度</code></pre><h3 id="3、数组的复制"><a href="#3、数组的复制" class="headerlink" title="3、数组的复制"></a>3、数组的复制</h3><p>方法：</p>
+<p>System.arraycopy（源数组，源数组起始位置，目标数组，目标数组起始位置，长度）；</p>
+<p>注：不管是要复制的数组，还是被复制的数组，都必须先初始化。</p>
+<p>举例：</p>
+<pre><code>int a[ ] = {1,2,3}, b[ ] = new int[3];
+System.arraycopy(a,0,b,0,3); //将数组a复制到b</code></pre><h3 id="4、对象数组"><a href="#4、对象数组" class="headerlink" title="4、对象数组"></a>4、对象数组</h3><p> 举例：</p>
+<pre><code>//定义一个对象数组，StringBuffer是一个字符串缓存类
+StringBuffer a[ ] = new StringBuffer[2];
+//给对象赋值
+a[0] = new StringBuffer(“Array[0]”);
+a[1] = new StringBuffer(“Array[1]”);
+System.out.println(“a[0]=” + a[0] + “  a[1]=” + a[1] );
+a[0].append(“ is Modified”); //追加字符串
+System.out.println(“a[0]=” + a[0]);</code></pre><h3 id="5、二维数组和多维数组"><a href="#5、二维数组和多维数组" class="headerlink" title="5、二维数组和多维数组"></a>5、二维数组和多维数组</h3><p>前面提到过，数组的元素也可以是数组，如果一个数组的每一个元素都是一个一维数组，这样就构成一个二维数组。</p>
+<p>定义格式：类型  数组名[ ][ ];  或  类型[ ][ ] 数组名;</p>
+<p>举例： </p>
+<pre><code>int a[ ][ ];     double[ ][ ] b;</code></pre><p>这几种定义不合法：int a[2][ ];     int b[ ][2];    int c[2][2];</p>
+<p>二维数组的初始化：二维数组的初始化也有直接和动态初始化两种方式。</p>
+<p>直接初始化格式：  类型  数组名[][]= {{ 值1，值2，…，值n} ,{ 值1，值2，…，值n}....};  
+
+举例：
+
+	int a[ ][ ] = {{1,2,3},{4,5,6},{7,8,9}};</p>
+<p>动态初始化格式</p>
+<p>1类型 数组名=new 类型[长度1][长度2]；   长度1表示行，长度2表示列。</p>
+<p>举例：</p>
+<pre><code>int a[][]=new[3][5];</code></pre><p>2类型 数组名=new 类型[长度1][]；</p>
+<p>数组名[0]=new 类型[长度20];</p>
+<p>数组名[1]=new 类型[长度21];</p>
+<p>……</p>
+<p>数组名[长度1-1]=new 类型[长度2n];</p>
+<p>举例：</p>
+<pre><code>int a[ ][ ];
+a=new int[3][ ];
+a[0]=new int[5];
+a[1]=new int[8];
+a[2]=new int[6];</code></pre><h3 id="6、内存区域划分"><a href="#6、内存区域划分" class="headerlink" title="6、内存区域划分"></a>6、内存区域划分</h3><p>（1）寄存器；（2）本地方法区；（3）方法区； （4）栈内存；（5）堆内存。</p>
+<p>为什么划分这么区域？因为每一个内存区域对数据的处理方式不同。</p>
+<p>1）栈内存的特点：存储都是局部变量</p>
+<p>(函数参数,函数内定义的变量,语句中定义的变量)变量一旦使用完(作用域结束)，就会在栈内存中自动释放。</p>
+<p>2）堆内存特点：存储的是实体</p>
+<p>(1).堆内存中的实体都有首内存地址值.</p>
+<p>(2).堆内存中的变量都有默认初始化值.</p>
+<p>(3).对于没有任何引用变量指向的实体，会视为垃圾，会被垃圾回收机制所回收。</p>
+<p>(数组和对象，只要是new的，都在堆内存中)</p>
+<h3 id="7、操作数组时常见问题"><a href="#7、操作数组时常见问题" class="headerlink" title="7、操作数组时常见问题"></a>7、操作数组时常见问题</h3><p>1).数组角标越界异常(ArrayIndexOutOfBoundsException):操作数组时，访问到了数组中不存在的角标。</p>
+<p>2).空指针异常(NullPointerException)：当引用没有任何指向值为null的情况，该引用还在用于操作实体。</p>
+<h3 id="8、对数组的常见操作"><a href="#8、对数组的常见操作" class="headerlink" title="8、对数组的常见操作"></a>8、对数组的常见操作</h3><p>1).获取数组中的元素 </p>
+<p>举例：</p>
+<pre><code>class Test {
+    public static void main(String[] args) {
+        int[] x = new int[3];
+        int[] y = {2,5,7,9};
+        System.out.println(x[1]);//打印结果：0 
+        System.out.println(y[1]);//打印结果：5
+    }
+}</code></pre><p>2).获取最值 </p>
+<p>举例：</p>
+<pre><code>/*
+给定一个数组{5,1,6,4,2,8,9}，获取其中最大值、最小值
+*/
+class Test {
+    //获取最大值
+    public static int getMax(int[] arr){
+        int max = arr[0];
+        for(int x=0;x&lt;arr.length;x++){
+            if(arr[x]&gt;max)
+                max = arr[x];
+        }
+        return max;
+    }
+    //获取最小值
+    public static int getMin(int[] arr){
+        int min = arr[0];
+        for(int x=0;x&lt;arr.length;x++){
+            if(arr[x]&lt;min)
+                min = arr[x];
+        }
+        return min;
+    }
+
+    public static void main(String[] args) {
+        int[] arr = {5,1,6,4,2,8,9};
+
+        int max = getMax(arr);
+        int min = getMin(arr);
+
+        System.out.println(&quot;max=&quot;+max);//打印结果：max=9
+        System.out.println(&quot;min=&quot;+min);//打印结果：min=1
+    }
+}</code></pre><p>3).排序（选择排序、冒泡排序 ） </p>
+<p>举例：</p>
+<pre><code>class Sort {
+    //选择排序法:一次用一个数与其他数挨着比较，符合条件就换位
+    public static void SelectSort(int[] arr){
+        for(int x=0;x&lt;arr.length-1;x++){
+            for(int y=x+1;y&lt;arr.length;y++){
+                if(arr[x]&gt;arr[y]){
+                    int temp = arr[x];
+                    arr[x] = arr[y];
+                    arr[y] = temp;
+                }
+            }
+        }
+    }
+    //冒泡排序法：相邻两个数进行比较，符合条件就换位
+    public static void BubbleSort(int[] arr){
+        for(int x=0;x&lt;arr.length-1;x++){
+            //-x:让每一次比较的数减少；-1：避免角标越界
+            for(int y=0;y&lt;arr.length-x-1;y++){
+                if(arr[y]&gt;arr[y+1]){
+                    int temp = arr[y];
+                    arr[y] = arr[y+1];
+                    arr[y+1] = temp;
+                }
+            }
+        }
+    }
+}</code></pre><p>4).查找（折半查找 只针对有序）插入（针对有序）</p>
+<p>举例：</p>
+<pre><code>class  Test{
+    //定义功能：获取key第一次出现在数组中的位置，如果返回是-1，代表该key在数组中不存在
+    public static int GetIndex(int[] arr,int key){
+        for(int x=0;x&lt;arr.length;x++){
+            if(arr[x]==key) return x;
+        }
+        return -1;
+    }
+
+    //折半查找法:可以提高效率，必须保证数组时有序的数组
+    public static int HalfSearch(int[] arr,int key){
+        int min,max,mid;
+        min = 0;
+        max = arr.length-1;
+        mid = (min+max)/2;
+
+        while(arr[mid]!=key){
+            if(key&gt;arr[mid])
+                min = mid + 1;
+            else if (key&lt;arr[mid])
+                max = mid - 1;
+
+            if(min&gt;max)
+                return -1;
+            mid = (max+min)/2;
+        }
+        return mid;
+    }
+
+    public static void main(String[] args) {
+        int[] arr = {1,3,5,7,8,23,54,12};//数组有序
+        int Index1 = HalfSearch(arr,54);//折半查找出54
+        System.out.println(&quot;index1=&quot;+Index1);//打印结果：index1=6
+    }
+}</code></pre><h3 id="9、使用包对数组的常见操作"><a href="#9、使用包对数组的常见操作" class="headerlink" title="9、使用包对数组的常见操作"></a>9、使用包对数组的常见操作</h3><p>数组的工具类Arrays：开发中主要用于操作数组用其工具类。</p>
+<p>此类包含用来操作数组（比如排序和搜索）的各种方法。 </p>
+<p>其主要方法为：</p>
+<p>1).排序：Arrays.sort( arr );</p>
+<p>2).二分查找：Arrays.binarySearch(arr, key);</p>
+<p>如果它包含在数组中，则返回搜索键的索引；否则返回(-(插入点) - 1)。</p>
+<p>3),复制指定的数组：Arrays.copyOf(arr, newLength);</p>
+<p>返回新数组，长度不足则填充响应值。</p>
+<p>4).复制指定范围的数组：Arrays.copyOfRange(arr,from,end);含头不含尾</p>
+<p>5).toString:  Arrays.toString(arr);  返回数组的字符串形式</p>
+
+    </div>
+    
+    <div class="reward" ontouchstart>
+    <div class="reward-wrap">赏
+        <div class="reward-box">
+            
+            <span class="reward-type">
+                <img class="alipay" src="/blog/img/alipay.jpg"><b>支付宝打赏</b>
+            </span>
+            
+            
+            <span class="reward-type">
+                <img class="wechat" src="/blog/img/reward-wepay.jpg"><b>微信打赏</b>
+            </span>
+            
+        </div>
+    </div>
+    <p class="reward-tip">
+        赞赏是不耍流氓的鼓励
+    </p>
+</div>
+    
+    <div class="post-footer">
+        <div>
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+<div class="article-nav prev-next-wrap clearfix">
+    
+    <a href="/blog/2014/04/27/构造函数详解/" class="pre-post btn btn-default" title='构造函数详解'>
+        <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+        <span class="hidden-xs">
+            构造函数详解</span>
+    </a>
+    
+    
+    <a href="/blog/2014/03/29/Java基础：上/" class="next-post btn btn-default" title='Java基础：上'>
+        <span class="hidden-lg">下一篇</span>
+        <span class="hidden-xs">
+            Java基础：上</span><i class="fa fa-angle-right fa-fw"></i>
+    </a>
+    
+</div>
+
+<div id="comments">
+    
+<p>评论系统未开启，无法评论！</p>
+
+</div>
+
+                </main>
+                
+                    <aside id="article-toc" role="navigation" class="col-md-4">
+    <div class="widget">
+        <h3 class="title">
+            文章目录
+        </h3>
+        
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#语句"><span class="toc-text">语句</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#控制语句"><span class="toc-text">控制语句</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#方法调用语句"><span class="toc-text">方法调用语句</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#表达式语句"><span class="toc-text">表达式语句</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#空语句"><span class="toc-text">空语句</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#复合语句"><span class="toc-text">复合语句</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#函数"><span class="toc-text">函数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1、函数的定义"><span class="toc-text">1、函数的定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2、函数的特点"><span class="toc-text">2、函数的特点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3、函数的重载（Overload）"><span class="toc-text">3、函数的重载（Overload）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4、函数重载什么时候使用？"><span class="toc-text">4、函数重载什么时候使用？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5、主函数"><span class="toc-text">5、主函数</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#数组"><span class="toc-text">数组</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1、一维数组的声明"><span class="toc-text">1、一维数组的声明</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2、访问数组元素"><span class="toc-text">2、访问数组元素</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3、数组的复制"><span class="toc-text">3、数组的复制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4、对象数组"><span class="toc-text">4、对象数组</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5、二维数组和多维数组"><span class="toc-text">5、二维数组和多维数组</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6、内存区域划分"><span class="toc-text">6、内存区域划分</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7、操作数组时常见问题"><span class="toc-text">7、操作数组时常见问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8、对数组的常见操作"><span class="toc-text">8、对数组的常见操作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#9、使用包对数组的常见操作"><span class="toc-text">9、使用包对数组的常见操作</span></a></li></ol></li></ol>
+        
+    </div>
+</aside>
+                
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+<a id="back-to-top" class="icon-btn hide">
+    <i class="fa fa-chevron-up"></i>
+</a>
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="busuanzi">
+    
+</div>
+            </div>
+            <div class="col-sm-12">
+                <span>Copyright &copy;
+                    2014
+                </span> |
+                <span>
+                    Powered by <a href="https://okfood.vip" class="copyright-links" target="_blank" rel="nofollow">Leo</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="/blog/assets/tagcanvas.min.js?rev=2.9"></script>
+<script>
+var tagOption = {
+    textColour: '#444', // 字体颜色
+    outlineMethod: 'block', // 选中模式
+    outlineColour: '#FFDAB9', // 选中模式的颜色
+    interval: 30 || 30, // 动画帧之间的时间间隔，值越大，转动幅度越大
+    textHeight: 13,
+    outlineRadius: 3,
+    freezeActive: true || '', // 选中的标签是否继续滚动
+    frontSelect: true || '', // 不选标签云后部的标签
+    initial: [0.1, -0.1],
+    depth: 0.5,
+    decel: 0.95,
+    maxSpeed: 0.03,
+    reverse: true || '', // 是否反向触发
+    fadeIn: 500, // 进入动画时间
+    wheelZoom: false || '' // 是否启用鼠标滚轮
+}
+TagCanvas.Start('tag-cloud-3d', '', tagOption);
+</script>
+
+
+<script src="/blog/assets/google-code-prettify/prettify.js?"></script>
+<script src="/blog/js/app.js?rev=@@hash"></script>
+</body>
+</html>

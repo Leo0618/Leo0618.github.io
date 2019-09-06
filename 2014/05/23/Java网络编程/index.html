@@ -1,0 +1,409 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+<head><meta name="generator" content="Hexo 3.9.0">
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="上帝之手-Work makes the workman">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="theme-version" content="1.2.3">
+    <meta name="root" content="/blog/">
+    <link rel="dns-prefetch" href="https://okfood.vip/blog">
+    <!--SEO-->
+
+<meta name="keywords" content="JavaSE,网络编程">
+
+
+<meta name="description" content="端口物理端口：
+逻辑端口：用于标识进程的逻辑地址，不同进程的标识；有效端口：065535，其中01024系统使用或保留端口。
+java 中ip对象：InetAddress.
+import jav...">
+
+
+<meta name="robots" content="all">
+<meta name="google" content="all">
+<meta name="googlebot" content="all">
+<meta name="verify" content="all">
+    <!--Title-->
+
+<title>
+    
+    Java网络编程 |
+    
+    上帝之手-Work makes the workman
+</title>
+
+<link rel="alternate" href="/blog/atom.xml" title="上帝之手-Work makes the workman" type="application/atom+xml">
+
+
+<link rel="icon" href="/blog/img/avatar_circle.png">
+
+    
+
+<link rel="stylesheet" href="/blog/css/bootstrap.min.css?rev=3.3.7">
+<link rel="stylesheet" href="/blog/css/font-awesome.min.css?rev=4.7.0">
+<link rel="stylesheet" href="/blog/css/style.css?rev=@@hash">
+<link rel="stylesheet" href="/blog/assets/google-code-prettify/prettify.css">
+    
+
+
+
+    
+
+</head></html>
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+<body>
+    <header class="main-header"  style="background-image:url(
+    /blog/img/banner.jpg)"
+     >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/blog/" title='Leo'>
+            <img src="/blog/img/avatar.jpg" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+            
+            <img src="/blog/img/branding.png" alt="博客-Leo" class="img-responsive center-block">
+            
+        </div>
+    </div>
+</header>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                        <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="https://okfood.vip/blog">
+                        上帝之手-Work makes the workman</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/blog/"><i class="fa "></i>
+                                首页</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/blog/categories/Java/"><i class="fa "></i>
+                                Java</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/blog/categories/Android/"><i class="fa "></i>
+                                Android</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/blog/categories/前端/"><i class="fa "></i>
+                                前端</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/blog/categories/后端/"><i class="fa "></i>
+                                后端</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/blog/categories/算法/"><i class="fa "></i>
+                                算法</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/blog/archives/"><i class="fa "></i>
+                                时间轴</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="Java网络编程">
+            
+            Java网络编程
+            
+        </h1>
+        <div class="post-meta">
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a class="category-link" href="/blog/categories/Java/">Java</a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            <a class="tag-link" href="/blog/tags/JavaSE/">JavaSE</a> <a class="tag-link" href="/blog/tags/网络编程/">网络编程</a>
+            
+        </span>
+    </span>
+    
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta">
+            2014/05/23</span>
+    </span>
+    
+    
+</div>
+        
+        
+    </div>
+    
+    <div class="post-body post-content">
+        <h1 id="端口"><a href="#端口" class="headerlink" title="端口"></a>端口</h1><p>物理端口：</p>
+<p>逻辑端口：用于标识进程的逻辑地址，不同进程的标识；有效端口：0<del>65535，其中0</del>1024系统使用或保留端口。</p>
+<p>java 中ip对象：InetAddress.</p>
+<pre><code>import java.net.*;
+class  IPDemo{
+    public static void main(String[] args) throws UnknownHostException{
+        //通过名称(ip字符串or主机名)来获取一个ip对象。
+        InetAddress ip = InetAddress.getByName(&quot;www.baidu.com&quot;);//java.net.UnknownHostException
+        System.out.println(&quot;addr:&quot;+ip.getHostAddress());
+        System.out.println(&quot;name:&quot;+ip.getHostName());
+    }
+}</code></pre><p>Socket：套接字，通信的端点。</p>
+<p>就是为网络服务提供的一种机制，通信的两端都有Socket，网络通信其实就是Socket间的通信，数据在两个Socket间通过IO传输。</p>
+<h2 id="UDP传输"><a href="#UDP传输" class="headerlink" title="UDP传输"></a>UDP传输</h2><p>1，只要是网络传输，必须有socket 。</p>
+<p>2，数据一定要封装到数据包中，数据包中包括目的地址、端口、数据等信息。</p>
+<p>直接操作udp不可能，对于java语言应该将udp封装成对象，易于我们的使用，这个对象就是DatagramSocket. 封装了udp传输协议的socket对象。</p>
+<p>因为数据包中包含的信息较多，为了操作这些信息方便，也一样会将其封装成对象。这个数据包对象就是：DatagramPacket.通过这个对象中的方法，就可以获取到数据包中的各种信息。</p>
+<p>DatagramSocket具备发送和接受功能，在进行udp传输时，需要明确一个是发送端，一个是接收端。</p>
+<h3 id="udp的发送端"><a href="#udp的发送端" class="headerlink" title="udp的发送端"></a>udp的发送端</h3><p>1，建立udp的socket服务，创建对象时如果没有明确端口，系统会自动分配一个未被使用的端口。</p>
+<p>2，明确要发送的具体数据。</p>
+<p>3，将数据封装成了数据包。</p>
+<p>4，用socket服务的send方法将数据包发送出去。</p>
+<p>5，关闭资源。</p>
+<pre><code>import java.net.*;
+class  UdpSend{
+    public static void main(String[] args)throws Exception {
+//        1，建立udp的socket服务。
+        DatagramSocket ds = new DatagramSocket(9999);//指定发送端口，不指定系统会随机分配。
+//        2，明确要发送的具体数据。
+        String text = &quot;udp传输演示 哥们来了&quot;;
+        byte[] buf = text.getBytes();
+//        3，将数据封装成了数据包。
+        DatagramPacket dp = new DatagramPacket(buf,
+　　　　　　　　　　　　　　buf.length,InetAddress.getByName(&quot;172.23.13.5&quot;),10000);
+//        4，用socket服务的send方法将数据包发送出去。
+        ds.send(dp);
+//        5，关闭资源。
+        ds.close();
+    }
+}</code></pre><h3 id="udp的接收端"><a href="#udp的接收端" class="headerlink" title="udp的接收端"></a>udp的接收端</h3><p>1，创建udp的socket服务，必须要明确一个端口，作用在于，只有发送到这个端口的数据才是这个接收端可以处理的数据。</p>
+<p>2，定义数据包，用于存储接收到数据。</p>
+<p>3，通过socket服务的接收方法将收到的数据存储到数据包中。</p>
+<p>4，通过数据包的方法获取数据包中的具体数据内容，比如ip、端口、数据等等。</p>
+<p>5，关闭资源。</p>
+<pre><code>class UdpRece {
+    public static void main(String[] args) throws Exception{
+//        1，创建udp的socket服务。
+        DatagramSocket ds = new DatagramSocket(9999);
+//        2，定义数据包，用于存储接收到数据。先定义字节数组，数据包会把数据存储到字节数组中。
+        byte[] buf = new byte[1024];
+        DatagramPacket dp = new DatagramPacket(buf,buf.length);
+//        3，通过socket服务的接收方法将收到的数据存储到数据包中。
+        ds.receive(dp);//该方法是阻塞式方法。
+//        4，通过数据包的方法获取数据包中的具体数据内容，比如ip，端口，数据等等。
+        String ip = dp.getAddress().getHostAddress();
+        int port = dp.getPort();
+        String text = new String(dp.getData(),0,dp.getLength());//将字节数组中的有效部分转成字符串。
+        System.out.println(ip+&quot;:&quot;+port+&quot;--&quot;+text);
+//        5，关闭资源。
+        ds.close();
+    }
+}</code></pre><h2 id="TCP传输"><a href="#TCP传输" class="headerlink" title="TCP传输"></a>TCP传输</h2><p>两个端点的建立连接后会有一个传输数据的通道，这通道称为流，而且是建立在网络基础上的流，称之为socket流。该流中既有读取，也有写入。</p>
+<p>tcp的两个端点：一个是客户端，一个是服务端。</p>
+<p>客户端：对应的对象，Socket</p>
+<p>服务端：对应的对象，ServerSocket</p>
+<h3 id="TCP客户端"><a href="#TCP客户端" class="headerlink" title="TCP客户端"></a>TCP客户端</h3><p>1，建立tcp的socket服务，最好明确具体的地址和端口。这个对象在创建时，就已经可以对指定ip和端口进行连接(三次握手)。</p>
+<p>2，如果连接成功，就意味着通道建立了，socket流就已经产生了。只要获取到socket流中的读取流和写入流即可，只要通过getInputStream和getOutputStream就可以获取两个流对象。</p>
+<p>3，关闭资源。</p>
+<pre><code>import java.net.*;
+import java.io.*;
+//需求：客户端给服务器端发送一个数据。
+class  TcpClient{
+    public static void main(String[] args) throws Exception{
+        Socket s = new Socket(&quot;172.23.13.5&quot;,8888);
+        OutputStream out = s.getOutputStream();//获取了socket流中的输出流对象。
+        out.write(&quot;tcp演示，哥们又来了!&quot;.getBytes());
+        s.close();
+    }
+}</code></pre><h3 id="TCP服务端"><a href="#TCP服务端" class="headerlink" title="TCP服务端"></a>TCP服务端</h3><p>1，创建服务端socket服务，并监听一个端口。</p>
+<p>2，服务端为了给客户端提供服务，获取客户端的内容，可以通过accept方法获取连接过来的客户端对象。</p>
+<p>3，可以通过获取到的socket对象中的socket流和具体的客户端进行通讯。</p>
+<p>4，如果通讯结束，关闭资源。注意：要先关客户端，再关服务端。</p>
+<pre><code>class  TcpServer{
+    public static void main(String[] args) throws Exception{
+        ServerSocket ss = new ServerSocket(8888);//建立服务端的socket服务
+        Socket s = ss.accept();//获取客户端对象
+        String ip = s.getInetAddress().getHostAddress();
+        System.out.println(ip+&quot;.....connected&quot;);
+//        可以通过获取到的socket对象中的socket流和具体的客户端进行通讯。
+        InputStream in = s.getInputStream();//读取客户端的数据，使用客户端对象的socket读取流
+        byte[] buf = new byte[1024];
+        int len = in.read(buf);
+        String text = new String(buf,0,len);
+        System.out.println(text);
+//        如果通讯结束，关闭资源。注意：要先关客户端，在关服务端。
+        s.close();
+        ss.close();
+    }
+}</code></pre>
+    </div>
+    
+    <div class="reward" ontouchstart>
+    <div class="reward-wrap">赏
+        <div class="reward-box">
+            
+            <span class="reward-type">
+                <img class="alipay" src="/blog/img/alipay.jpg"><b>支付宝打赏</b>
+            </span>
+            
+            
+            <span class="reward-type">
+                <img class="wechat" src="/blog/img/reward-wepay.jpg"><b>微信打赏</b>
+            </span>
+            
+        </div>
+    </div>
+    <p class="reward-tip">
+        赞赏是不耍流氓的鼓励
+    </p>
+</div>
+    
+    <div class="post-footer">
+        <div>
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+<div class="article-nav prev-next-wrap clearfix">
+    
+    <a href="/blog/2014/05/23/Java反射技术/" class="pre-post btn btn-default" title='Java反射技术'>
+        <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+        <span class="hidden-xs">
+            Java反射技术</span>
+    </a>
+    
+    
+    <a href="/blog/2014/05/20/Java IO流/" class="next-post btn btn-default" title='Java IO流'>
+        <span class="hidden-lg">下一篇</span>
+        <span class="hidden-xs">
+            Java IO流</span><i class="fa fa-angle-right fa-fw"></i>
+    </a>
+    
+</div>
+
+<div id="comments">
+    
+<p>评论系统未开启，无法评论！</p>
+
+</div>
+
+                </main>
+                
+                    <aside id="article-toc" role="navigation" class="col-md-4">
+    <div class="widget">
+        <h3 class="title">
+            文章目录
+        </h3>
+        
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#端口"><span class="toc-text">端口</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#UDP传输"><span class="toc-text">UDP传输</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#udp的发送端"><span class="toc-text">udp的发送端</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#udp的接收端"><span class="toc-text">udp的接收端</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#TCP传输"><span class="toc-text">TCP传输</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#TCP客户端"><span class="toc-text">TCP客户端</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#TCP服务端"><span class="toc-text">TCP服务端</span></a></li></ol></li></ol></li></ol>
+        
+    </div>
+</aside>
+                
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+<a id="back-to-top" class="icon-btn hide">
+    <i class="fa fa-chevron-up"></i>
+</a>
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="busuanzi">
+    
+</div>
+            </div>
+            <div class="col-sm-12">
+                <span>Copyright &copy;
+                    2014
+                </span> |
+                <span>
+                    Powered by <a href="https://okfood.vip" class="copyright-links" target="_blank" rel="nofollow">Leo</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="/blog/assets/tagcanvas.min.js?rev=2.9"></script>
+<script>
+var tagOption = {
+    textColour: '#444', // 字体颜色
+    outlineMethod: 'block', // 选中模式
+    outlineColour: '#FFDAB9', // 选中模式的颜色
+    interval: 30 || 30, // 动画帧之间的时间间隔，值越大，转动幅度越大
+    textHeight: 13,
+    outlineRadius: 3,
+    freezeActive: true || '', // 选中的标签是否继续滚动
+    frontSelect: true || '', // 不选标签云后部的标签
+    initial: [0.1, -0.1],
+    depth: 0.5,
+    decel: 0.95,
+    maxSpeed: 0.03,
+    reverse: true || '', // 是否反向触发
+    fadeIn: 500, // 进入动画时间
+    wheelZoom: false || '' // 是否启用鼠标滚轮
+}
+TagCanvas.Start('tag-cloud-3d', '', tagOption);
+</script>
+
+
+<script src="/blog/assets/google-code-prettify/prettify.js?"></script>
+<script src="/blog/js/app.js?rev=@@hash"></script>
+</body>
+</html>

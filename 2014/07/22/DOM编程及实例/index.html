@@ -1,0 +1,411 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+<head><meta name="generator" content="Hexo 3.9.0">
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="上帝之手-Work makes the workman">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="theme-version" content="1.2.3">
+    <meta name="root" content="/blog/">
+    <link rel="dns-prefetch" href="https://okfood.vip/blog">
+    <!--SEO-->
+
+<meta name="keywords" content="DOM">
+
+
+<meta name="description" content="DOMDocument Object Model 文档对象模型
+dom三层模型
+dom1:将html文档封装成对象。
+dom2:将xml文档封装成对象。
+dom3:将xml文档封装成对象。
+
+标...">
+
+
+<meta name="robots" content="all">
+<meta name="google" content="all">
+<meta name="googlebot" content="all">
+<meta name="verify" content="all">
+    <!--Title-->
+
+<title>
+    
+    DOM编程及实例 |
+    
+    上帝之手-Work makes the workman
+</title>
+
+<link rel="alternate" href="/blog/atom.xml" title="上帝之手-Work makes the workman" type="application/atom+xml">
+
+
+<link rel="icon" href="/blog/img/avatar_circle.png">
+
+    
+
+<link rel="stylesheet" href="/blog/css/bootstrap.min.css?rev=3.3.7">
+<link rel="stylesheet" href="/blog/css/font-awesome.min.css?rev=4.7.0">
+<link rel="stylesheet" href="/blog/css/style.css?rev=@@hash">
+<link rel="stylesheet" href="/blog/assets/google-code-prettify/prettify.css">
+    
+
+
+
+    
+
+</head></html>
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+<body>
+    <header class="main-header"  style="background-image:url(
+    /blog/img/banner.jpg)"
+     >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/blog/" title='Leo'>
+            <img src="/blog/img/avatar.jpg" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+            
+            <img src="/blog/img/branding.png" alt="博客-Leo" class="img-responsive center-block">
+            
+        </div>
+    </div>
+</header>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                        <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="https://okfood.vip/blog">
+                        上帝之手-Work makes the workman</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/blog/"><i class="fa "></i>
+                                首页</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/blog/categories/Java/"><i class="fa "></i>
+                                Java</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/blog/categories/Android/"><i class="fa "></i>
+                                Android</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/blog/categories/前端/"><i class="fa "></i>
+                                前端</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/blog/categories/后端/"><i class="fa "></i>
+                                后端</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/blog/categories/算法/"><i class="fa "></i>
+                                算法</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/blog/archives/"><i class="fa "></i>
+                                时间轴</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="DOM编程及实例">
+            
+            DOM编程及实例
+            
+        </h1>
+        <div class="post-meta">
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a class="category-link" href="/blog/categories/前端/">前端</a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            <a class="tag-link" href="/blog/tags/DOM/">DOM</a>
+            
+        </span>
+    </span>
+    
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta">
+            2014/07/22</span>
+    </span>
+    
+    
+</div>
+        
+        
+    </div>
+    
+    <div class="post-body post-content">
+        <h1 id="DOM"><a href="#DOM" class="headerlink" title="DOM"></a>DOM</h1><p>Document Object Model 文档对象模型</p>
+<h2 id="dom三层模型"><a href="#dom三层模型" class="headerlink" title="dom三层模型"></a>dom三层模型</h2><ul>
+<li>dom1:将html文档封装成对象。</li>
+<li>dom2:将xml文档封装成对象。</li>
+<li>dom3:将xml文档封装成对象。</li>
+</ul>
+<p>标签之间存在层次关系：（树形结构）</p>
+<pre><code>window
+
+document
+
+html
+|--head
+|--title
+|--base
+|--mate
+|--link
+|--style
+|--script
+|--body
+|--table
+|--tbody
+|--tr
+|--td
+|--th
+|--div
+|--form
+|--a</code></pre><ul>
+<li><p>DOM树（标记性文档加载进内存后就有了一个对应的DOM树）</p>
+<p>  有个弊端：文档过大，相对耗费资源，而是使用SAX方式解析。</p>
+</li>
+<li><p>节点（文档中所有的标签和内容即为节点）</p>
+</li>
+</ul>
+<p>html,xhtml,xml:都是标记性语言.</p>
+<h2 id="DHTML"><a href="#DHTML" class="headerlink" title="DHTML"></a>DHTML</h2><p>叫做动态的html. 是html,css,dom,javascript四项技术的综合体。</p>
+<ul>
+<li>html:将数据进行封装。</li>
+<li>dom:将标签封装成对象。</li>
+<li>css:负责标签中数据的样式。</li>
+<li>javascript:将上面三个进行融合，通过程序设计方式来完成动态效果的操作。</li>
+</ul>
+<p>xmlGttpRequest——&gt;AJAX</p>
+<p>节点类型：</p>
+<ul>
+<li>标签型节点：类型 1</li>
+<li>属性节点：类型 2</li>
+<li>文本型节点：类型 3</li>
+<li>注释型节点：类型 8</li>
+<li>document： 类型 9</li>
+</ul>
+<p>注意：标签之间存在空行时，会出现一个空白的文本节点，在获取节点的时一定要注意！！！</p>
+<p>节点的关系：</p>
+<p>父节点：parentNode</p>
+<p>子节点:childNodes 直接子节点</p>
+<p>兄弟节点</p>
+<p>上一个兄弟节点：previousSibling</p>
+<p>下一个兄弟节点：nextSibling</p>
+<p>获取节点可以通过节点的层次关系完成，也可以通过document对象来完成</p>
+<ul>
+<li>getElementById 获取对 ID 标签属性为指定值的第一个对象的引用。 （通过ID）</li>
+<li>getElementsByName 根据 NAME 标签属性的值获取对象的集合。 （通过name属性）</li>
+<li>getElementsByTagName 获取基于指定元素名称的对象集合。 （通过标签名）</li>
+</ul>
+<h1 id="DOM编程实例"><a href="#DOM编程实例" class="headerlink" title="DOM编程实例"></a>DOM编程实例</h1><h2 id="table标签示例"><a href="#table标签示例" class="headerlink" title="table标签示例"></a>table标签示例</h2><pre><code>1.定义界面：
+通过html的标签将数据进行封装
+2.定义一些静态样式：
+通过css
+3.需要动态的完成和用户的交互：
+a.先明确事件源
+b.明确事件将事件注册到事件源上
+c.通过javascript的函数对象事件进行处理
+d.在处理过程中需要明确被处理的区域</code></pre><h3 id="一-在页面上通过按钮创建一个表格。"><a href="#一-在页面上通过按钮创建一个表格。" class="headerlink" title="一.在页面上通过按钮创建一个表格。"></a>一.在页面上通过按钮创建一个表格。</h3><p>思路：</p>
+<pre><code>1.创建一个table节点，document。createElement（“table”）；
+2.通过table节点的insertRow（）方法创建表格的行对象并添加到rows集合中
+3.通过行对象的insertCell（）方法创建单元格对象，并添加到cells集合中
+4.给单元格添加数据
+    a.创建一个节点如文本节点，document。createTextNode(&quot;文本内容&quot;)，通过单元格对象appendChild方法将文本节点添加到单元格的尾部
+    b.可以通过单元格的innerHTML，添加单元格中的元素。e: tdNode.innerHTML = &quot;&lt;img src &#39;1.png&#39; alt=&#39;图片说明信息&#39;/&gt;&quot;
+5.建立好表格节点，添加到DOM树中，也就是页面的指定位置</code></pre><h3 id="二-如何删除表格中的行或列。"><a href="#二-如何删除表格中的行或列。" class="headerlink" title="二.如何删除表格中的行或列。"></a>二.如何删除表格中的行或列。</h3><p>思路：</p>
+<pre><code>1.删除行：获取表格对象，通过表格对象中deleteRow方法，将指定的行索引传入deleteRow方法中
+2.删除列：表格没有直接删除列的方法，要通过删除每一行中指定的单元格来完成删除列的动作。获取所有行对象，并进行遍历，通过行对象的deleteCell方法将指定的单元格删除。</code></pre><h3 id="三-对表格中的数据进行排序。"><a href="#三-对表格中的数据进行排序。" class="headerlink" title="三.对表格中的数据进行排序。"></a>三.对表格中的数据进行排序。</h3><p>思路：</p>
+<pre><code>1.获取表格中的所有对象
+2.定义临时存储，将需要进行排序的行对象存入到数组中
+3.对数组进行排序，通过比较每一行对象中指定单元格中的数据，如果是整数要通过parseInt转换
+4.将排序后的数组通过遍历，将每一个行对象重新添加回表格，通过tbody节点的appendChild方法
+5.其实排序就是每一个行对象的引用取出</code></pre><h3 id="四-表格的行颜色间隔显示，并在鼠标指定的行上高亮。"><a href="#四-表格的行颜色间隔显示，并在鼠标指定的行上高亮。" class="headerlink" title="四.表格的行颜色间隔显示，并在鼠标指定的行上高亮。"></a>四.表格的行颜色间隔显示，并在鼠标指定的行上高亮。</h3><p>思路：</p>
+<pre><code>1.获取所有行对象，将需要间隔颜色显示的行对象进行动态className属性指定，那么前提是：先定义好类选择器
+2.为了完成高亮，需要用到两个事件，onmouseover(鼠标进入)和onmouseout(鼠标移出)
+3.为了方便可以在遍历行对象时，将每一个行对象都进行两个事件属性的指定，并通过匿名函数完成该事件的处理
+4.高亮的原理就是将鼠标进入时的指定颜色改变，改变前先记录原来行对象的样式，这样在鼠标离开时可以将原样式还原
+5.该样式需要在页面加载完后直接显示，所有使用window.onload事件来完成</code></pre><h3 id="五-制作大小写切换界面"><a href="#五-制作大小写切换界面" class="headerlink" title="五.制作大小写切换界面"></a>五.制作大小写切换界面</h3><p>通过DOM编程步骤实现.</p>
+<h3 id="六-表单中的组件"><a href="#六-表单中的组件" class="headerlink" title="六.表单中的组件"></a>六.表单中的组件</h3><p>单选框，复选框</p>
+<p>这两个组件都一个属性来表示器选中与否的状态，checked</p>
+<h3 id="七-获取鼠标的坐标，让指定区域随着鼠标移动"><a href="#七-获取鼠标的坐标，让指定区域随着鼠标移动" class="headerlink" title="七.获取鼠标的坐标，让指定区域随着鼠标移动"></a>七.获取鼠标的坐标，让指定区域随着鼠标移动</h3><p>获取鼠标坐标：event.x,event.y</p>
+<p>指定区域随鼠标移动其实就是改变了指定区域的left top属性的值</p>
+<p>这里需要用到的时间：body对象onmouseover事件；css样式，直接定义页面，所以区域在同一层次，为了对某一区域进行定位，将该区域分离到另一个层次，用到css中的position属性</p>
+
+    </div>
+    
+    <div class="reward" ontouchstart>
+    <div class="reward-wrap">赏
+        <div class="reward-box">
+            
+            <span class="reward-type">
+                <img class="alipay" src="/blog/img/alipay.jpg"><b>支付宝打赏</b>
+            </span>
+            
+            
+            <span class="reward-type">
+                <img class="wechat" src="/blog/img/reward-wepay.jpg"><b>微信打赏</b>
+            </span>
+            
+        </div>
+    </div>
+    <p class="reward-tip">
+        赞赏是不耍流氓的鼓励
+    </p>
+</div>
+    
+    <div class="post-footer">
+        <div>
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+<div class="article-nav prev-next-wrap clearfix">
+    
+    <a href="/blog/2015/04/27/xUtils框架原理分析/" class="pre-post btn btn-default" title='xUtils框架原理分析'>
+        <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+        <span class="hidden-xs">
+            xUtils框架原理分析</span>
+    </a>
+    
+    
+    <a href="/blog/2014/07/13/JavaScript及基本语法/" class="next-post btn btn-default" title='JavaScript及基本语法'>
+        <span class="hidden-lg">下一篇</span>
+        <span class="hidden-xs">
+            JavaScript及基本语法</span><i class="fa fa-angle-right fa-fw"></i>
+    </a>
+    
+</div>
+
+<div id="comments">
+    
+<p>评论系统未开启，无法评论！</p>
+
+</div>
+
+                </main>
+                
+                    <aside id="article-toc" role="navigation" class="col-md-4">
+    <div class="widget">
+        <h3 class="title">
+            文章目录
+        </h3>
+        
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#DOM"><span class="toc-text">DOM</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#dom三层模型"><span class="toc-text">dom三层模型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#DHTML"><span class="toc-text">DHTML</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#DOM编程实例"><span class="toc-text">DOM编程实例</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#table标签示例"><span class="toc-text">table标签示例</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#一-在页面上通过按钮创建一个表格。"><span class="toc-text">一.在页面上通过按钮创建一个表格。</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#二-如何删除表格中的行或列。"><span class="toc-text">二.如何删除表格中的行或列。</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#三-对表格中的数据进行排序。"><span class="toc-text">三.对表格中的数据进行排序。</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#四-表格的行颜色间隔显示，并在鼠标指定的行上高亮。"><span class="toc-text">四.表格的行颜色间隔显示，并在鼠标指定的行上高亮。</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#五-制作大小写切换界面"><span class="toc-text">五.制作大小写切换界面</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#六-表单中的组件"><span class="toc-text">六.表单中的组件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#七-获取鼠标的坐标，让指定区域随着鼠标移动"><span class="toc-text">七.获取鼠标的坐标，让指定区域随着鼠标移动</span></a></li></ol></li></ol></li></ol>
+        
+    </div>
+</aside>
+                
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+<a id="back-to-top" class="icon-btn hide">
+    <i class="fa fa-chevron-up"></i>
+</a>
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="busuanzi">
+    
+</div>
+            </div>
+            <div class="col-sm-12">
+                <span>Copyright &copy;
+                    2014
+                </span> |
+                <span>
+                    Powered by <a href="https://okfood.vip" class="copyright-links" target="_blank" rel="nofollow">Leo</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="/blog/assets/tagcanvas.min.js?rev=2.9"></script>
+<script>
+var tagOption = {
+    textColour: '#444', // 字体颜色
+    outlineMethod: 'block', // 选中模式
+    outlineColour: '#FFDAB9', // 选中模式的颜色
+    interval: 30 || 30, // 动画帧之间的时间间隔，值越大，转动幅度越大
+    textHeight: 13,
+    outlineRadius: 3,
+    freezeActive: true || '', // 选中的标签是否继续滚动
+    frontSelect: true || '', // 不选标签云后部的标签
+    initial: [0.1, -0.1],
+    depth: 0.5,
+    decel: 0.95,
+    maxSpeed: 0.03,
+    reverse: true || '', // 是否反向触发
+    fadeIn: 500, // 进入动画时间
+    wheelZoom: false || '' // 是否启用鼠标滚轮
+}
+TagCanvas.Start('tag-cloud-3d', '', tagOption);
+</script>
+
+
+<script src="/blog/assets/google-code-prettify/prettify.js?"></script>
+<script src="/blog/js/app.js?rev=@@hash"></script>
+</body>
+</html>

@@ -1,0 +1,663 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+<head><meta name="generator" content="Hexo 3.9.0">
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="上帝之手-Work makes the workman">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="theme-version" content="1.2.3">
+    <meta name="root" content="/blog/">
+    <link rel="dns-prefetch" href="https://okfood.vip/blog">
+    <!--SEO-->
+
+<meta name="keywords" content="JavaSE">
+
+
+<meta name="description" content="集合框架用于存储数据的容器。
+特点：
+1：对象封装数据，对象多了也需要存储。集合用于存储对象。
+2：对象的个数确定可以使用数组，但是不确定怎么办？可以用集合。因为集合是可变长度的。
+集合和数组的...">
+
+
+<meta name="robots" content="all">
+<meta name="google" content="all">
+<meta name="googlebot" content="all">
+<meta name="verify" content="all">
+    <!--Title-->
+
+<title>
+    
+    Java集合框架 |
+    
+    上帝之手-Work makes the workman
+</title>
+
+<link rel="alternate" href="/blog/atom.xml" title="上帝之手-Work makes the workman" type="application/atom+xml">
+
+
+<link rel="icon" href="/blog/img/avatar_circle.png">
+
+    
+
+<link rel="stylesheet" href="/blog/css/bootstrap.min.css?rev=3.3.7">
+<link rel="stylesheet" href="/blog/css/font-awesome.min.css?rev=4.7.0">
+<link rel="stylesheet" href="/blog/css/style.css?rev=@@hash">
+<link rel="stylesheet" href="/blog/assets/google-code-prettify/prettify.css">
+    
+
+
+
+    
+
+</head></html>
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+<body>
+    <header class="main-header"  style="background-image:url(
+    /blog/img/banner.jpg)"
+     >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/blog/" title='Leo'>
+            <img src="/blog/img/avatar.jpg" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+            
+            <img src="/blog/img/branding.png" alt="博客-Leo" class="img-responsive center-block">
+            
+        </div>
+    </div>
+</header>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                        <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="https://okfood.vip/blog">
+                        上帝之手-Work makes the workman</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/blog/"><i class="fa "></i>
+                                首页</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/blog/categories/Java/"><i class="fa "></i>
+                                Java</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/blog/categories/Android/"><i class="fa "></i>
+                                Android</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/blog/categories/前端/"><i class="fa "></i>
+                                前端</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/blog/categories/后端/"><i class="fa "></i>
+                                后端</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/blog/categories/算法/"><i class="fa "></i>
+                                算法</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/blog/archives/"><i class="fa "></i>
+                                时间轴</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="Java集合框架">
+            
+            Java集合框架
+            
+        </h1>
+        <div class="post-meta">
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a class="category-link" href="/blog/categories/Java/">Java</a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            <a class="tag-link" href="/blog/tags/JavaSE/">JavaSE</a>
+            
+        </span>
+    </span>
+    
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta">
+            2014/05/14</span>
+    </span>
+    
+    
+</div>
+        
+        
+    </div>
+    
+    <div class="post-body post-content">
+        <h1 id="集合框架"><a href="#集合框架" class="headerlink" title="集合框架"></a>集合框架</h1><p>用于存储数据的容器。</p>
+<p>特点：</p>
+<p>1：对象封装数据，对象多了也需要存储。集合用于存储对象。</p>
+<p>2：对象的个数确定可以使用数组，但是不确定怎么办？可以用集合。因为集合是可变长度的。</p>
+<p>集合和数组的区别：</p>
+<p>1：数组是固定长度的；集合可变长度的。</p>
+<p>2：数组可以存储基本数据类型，也可以存储引用数据类型；集合只能存储引用数据类型。</p>
+<p>3：数组存储的元素必须是同一个数据类型；集合存储的对象可以是不同数据类型。</p>
+<p>数据结构：就是容器中存储数据的方式。</p>
+<p>对于集合容器，有很多种。因为每一个容器的自身特点不同，其实原理在于每个容器的内部数据结构不同。</p>
+<p>集合容器在不断向上抽取过程中。出现了集合体系。</p>
+<p>在使用一个体系时，原则：参阅顶层内容。建立底层对象。</p>
+<h1 id="Collection接口"><a href="#Collection接口" class="headerlink" title="Collection接口"></a>Collection接口</h1><h2 id="Collection"><a href="#Collection" class="headerlink" title="Collection"></a>Collection</h2><p>|–List：有序(元素存入集合的顺序和取出的顺序一致)，元素都有索引。元素可以重复。</p>
+<p>|–Set：无序(存入和取出顺序有可能不一致)，不可以存储重复元素。必须保证元素唯一性。</p>
+<p>1，添加：</p>
+<p>add(object)：添加一个元素</p>
+<p>addAll(Collection) ：添加一个集合中的所有元素。</p>
+<p>2，删除：</p>
+<p>clear()：将集合中的元素全删除，清空集合。</p>
+<p>remove(obj) ：删除集合中指定的对象。注意：删除成功，集合的长度会改变。</p>
+<p>removeAll(collection) ：删除部分元素。部分元素和传入Collection一致。</p>
+<p>3，判断：</p>
+<p>boolean contains(obj) ：集合中是否包含指定元素 。</p>
+<p>boolean containsAll(Collection) ：集合中是否包含指定的多个元素。</p>
+<p>boolean isEmpty()：集合中是否有元素。 </p>
+<p>4，获取：</p>
+<p>int size()：集合中有几个元素。</p>
+<p>5，取交集：</p>
+<p>boolean  retainAll(Collection) ：对当前集合中保留和指定集合中的相同的元素。如果两个集合元素相同，返回flase；如果retainAll修改了当前集合，返回true。</p>
+<p>6，获取集合中所有元素：</p>
+<p>Iterator  iterator()：迭代器</p>
+<p>7，将集合变成数组：</p>
+<p>toArray();</p>
+<h2 id="Iterator接口"><a href="#Iterator接口" class="headerlink" title="Iterator接口"></a>Iterator接口</h2><p>迭代器：是一个接口。作用：用于取集合中的元素。</p>
+<p><img src="https://raw.githubusercontent.com/Leo0618/images/master/21.png" alt></p>
+<p>每一个集合都有自己的数据结构，都有特定的取出自己内部元素的方式。为了便于操作所有的容器，取出元素。将容器内部的取出方式按照一个统一的规则向外提供，这个规则就是Iterator接口。</p>
+<p>也就说，只要通过该接口就可以取出Collection集合中的元素，至于每一个具体的容器依据自己的数据结构，如何实现的具体取出细节，这个不用关心，这样就降低了取出元素和具体集合的耦合性。</p>
+<p>Iterator it = coll.iterator();//获取容器中的迭代器对象，至于这个对象是是什么不重要。这对象肯定符合一个规则Iterator接口。</p>
+<h2 id="List接口"><a href="#List接口" class="headerlink" title="List接口"></a>List接口</h2><p>List本身是Collection接口的子接口，具备了Collection的所有方法。现在学习List体系特有的共性方法，查阅方法发现List的特有方法都有索引，这是该集合最大的特点。</p>
+<p>List：有序(元素存入集合的顺序和取出的顺序一致)，元素都有索引。元素可以重复。</p>
+<p>|–ArrayList：底层的数据结构是数组,线程不同步，ArrayList替代了Vector，查询元素的速度非常快。</p>
+<p>|–LinkedList：底层的数据结构是链表，线程不同步，增删元素的速度非常快。</p>
+<p>|–Vector：底层的数据结构就是数组，线程同步的，Vector无论查询和增删都巨慢。</p>
+<p>1，添加：</p>
+<p>add(index,element) ：在指定的索引位插入元素。</p>
+<p>addAll(index,collection) ：在指定的索引位插入一堆元素。</p>
+<p>2，删除：</p>
+<p>remove(index) ：删除指定索引位的元素。 返回被删的元素。</p>
+<p>3，获取：</p>
+<p>Object get(index) ：通过索引获取指定元素。</p>
+<p>int indexOf(obj) ：获取指定元素第一次出现的索引位，如果该元素不存在返回-1；</p>
+<p>  所以，通过-1，可以判断一个元素是否存在。</p>
+<p>int lastIndexOf(Object o) ：反向索引指定元素的位置。</p>
+<p>List subList(start,end) ：获取子列表。</p>
+<p>4，修改：</p>
+<p>Object set(index,element) ：对指定索引位进行元素的修改。</p>
+<p>5，获取所有元素：</p>
+<p>ListIterator listIterator()：list集合特有的迭代器。</p>
+<p>List集合支持对元素的增、删、改、查。</p>
+<p>List集合因为角标有了自己的获取元素的方式： 遍历。</p>
+<p>for(int x=0; x&lt;list.size(); x++){</p>
+<p>sop(“get:”+list.get(x));</p>
+<p>}</p>
+<p>在进行list列表元素迭代的时候，如果想要在迭代过程中，想要对元素进行操作的时候，比如满足条件添加新元素。会发生.ConcurrentModificationException并发修改异常。</p>
+<p>导致的原因是：</p>
+<p>集合引用和迭代器引用在同时操作元素，通过集合获取到对应的迭代器后，在迭代中，进行集合引用的元素添加，迭代器并不知道，所以会出现异常情况。</p>
+<p>如何解决呢？</p>
+<p>既然是在迭代中对元素进行操作,找迭代器的方法最为合适.可是Iterator中只有hasNext,next,remove方法.通过查阅的它的子接口,ListIterator,发现该列表迭代器接口具备了对元素的增、删、改、查的动作。</p>
+<p>ListIterator是List集合特有的迭代器。</p>
+<p>ListIterator it = list.listIterator;//取代Iterator it = list.iterator;</p>
+<p><img src="https://raw.githubusercontent.com/Leo0618/images/master/22.png" alt></p>
+<p>可变长度数组的原理：</p>
+<p>当元素超出数组长度，会产生一个新数组，将原数组的数据复制到新数组中，再将新的元素添加到新数组中。</p>
+<p>ArrayList：是按照原数组的50%延长。构造一个初始容量为 10 的空列表。</p>
+<p>Vector：是按照原数组的100%延长。</p>
+<p>注意：对于list集合，底层判断元素是否相同，其实用的是元素自身的equals方法完成的。所以建议元素都要复写equals方法，建立元素对象自己的比较相同的条件依据。</p>
+<p>LinkedList：的特有方法。</p>
+<p>addFirst();</p>
+<p>addLast();</p>
+<p>在jdk1.6以后。</p>
+<p>offerFirst();</p>
+<p>offerLast();</p>
+<p>getFirst():获取链表中的第一个元素。如果链表为空，抛出NoSuchElementException;</p>
+<p>getLast();</p>
+<p>在jdk1.6以后。</p>
+<p>peekFirst();获取链表中的第一个元素。如果链表为空，返回null。</p>
+<p>peekLast();</p>
+<p>removeFirst()：获取链表中的第一个元素，但是会删除链表中的第一个元素。如果链表为空，抛出NoSuchElementException</p>
+<p>removeLast();</p>
+<p>在jdk1.6以后。</p>
+<p>pollFirst();获取链表中的第一个元素，但是会删除链表中的第一个元素。如果链表为空，返回null。</p>
+<p>pollLast();</p>
+<h2 id="Set接口"><a href="#Set接口" class="headerlink" title="Set接口"></a>Set接口</h2><p>Set接口中的方法和Collection中方法一致的。Set接口取出方式只有一种，迭代器。</p>
+<p>|–HashSet：底层数据结构是哈希表，线程是不同步的。无序，高效；</p>
+<p>HashSet集合保证元素唯一性：通过元素的hashCode方法，和equals方法完成的。</p>
+<p>当元素的hashCode值相同时，才继续判断元素的equals是否为true。</p>
+<p>如果为true，那么视为相同元素，不存。如果为false，那么存储。</p>
+<p>如果hashCode值不同，那么不判断equals，从而提高对象比较的速度。</p>
+<p>|–LinkedHashSet：有序，hashset的子类。</p>
+<p>|–TreeSet：对Set集合中的元素的进行指定顺序的排序。不同步。TreeSet底层的数据结构就是二叉树。</p>
+<h2 id="哈希表的原理"><a href="#哈希表的原理" class="headerlink" title="哈希表的原理"></a>哈希表的原理</h2><p>1，对对象元素中的关键字(对象中的特有数据)，进行哈希算法的运算，并得出一个具体的算法值，这个值 称为哈希值。</p>
+<p>2，哈希值就是这个元素的位置。</p>
+<p>3，如果哈希值出现冲突，再次判断这个关键字对应的对象是否相同。如果对象相同，就不存储，因为元素重复。如果对象不同，就存储，在原来对象的哈希值基础 +1顺延。</p>
+<p>4，存储哈希值的结构，我们称为哈希表。</p>
+<p>5，既然哈希表是根据哈希值存储的，为了提高效率，最好保证对象的关键字是唯一的。</p>
+<p>这样可以尽量少的判断关键字对应的对象是否相同，提高了哈希表的操作效率。</p>
+<p>对于ArrayList集合，判断元素是否存在，或者删元素底层依据都是equals方法。</p>
+<p>对于HashSet集合，判断元素是否存在，或者删除元素，底层依据的是hashCode方法和equals方法。</p>
+<h2 id="TreeSet"><a href="#TreeSet" class="headerlink" title="TreeSet"></a>TreeSet</h2><p>用于对Set集合进行元素的指定顺序排序，排序需要依据元素自身具备的比较性。</p>
+<p>如果元素不具备比较性，在运行时会发生ClassCastException异常。</p>
+<p>所以需要元素实现Comparable接口，强制让元素具备比较性，复写compareTo方法。</p>
+<p>依据compareTo方法的返回值，确定元素在TreeSet数据结构中的位置。</p>
+<p>TreeSet方法保证元素唯一性的方式：就是参考比较方法的结果是否为0，如果return 0，视为两个对象重复，不存。</p>
+<p>注意：在进行比较时，如果判断元素不唯一，比如，同姓名，同年龄，才视为同一个人。</p>
+<p>在判断时，需要分主要条件和次要条件，当主要条件相同时，再判断次要条件，按照次要条件排序。</p>
+<p>TreeSet集合排序有两种方式，Comparable和Comparator区别：</p>
+<p>1：让元素自身具备比较性，需要元素对象实现Comparable接口，覆盖compareTo方法。</p>
+<p>2：让集合自身具备比较性，需要定义一个实现了Comparator接口的比较器，并覆盖compare方法，并将该类对象作为实际参数传递给TreeSet集合的构造函数。</p>
+<p>第二种方式较为灵活。</p>
+<h2 id="Map集合"><a href="#Map集合" class="headerlink" title="Map集合"></a>Map集合</h2><p>|–Hashtable：底层是哈希表数据结构，是线程同步的。不可以存储null键，null值。</p>
+<p>|–HashMap：底层是哈希表数据结构，是线程不同步的。可以存储null键，null值。替代了Hashtable.</p>
+<p>|–TreeMap：底层是二叉树结构，可以对map集合中的键进行指定顺序的排序。</p>
+<p>Map集合存储和Collection有着很大不同：</p>
+<p>Collection一次存一个元素；Map一次存一对元素。</p>
+<p>Collection是单列集合；Map是双列集合。</p>
+<p>Map中的存储的一对元素：一个是键，一个是值，键与值之间有对应(映射)关系。</p>
+<p>特点：要保证map集合中键的唯一性。</p>
+<p>1，添加。</p>
+<p> put(key,value)：当存储的键相同时，新的值会替换老的值，并将老值返回。如果键没有重复，返回null。</p>
+<p>void putAll(Map);</p>
+<p>2，删除。</p>
+<p>void clear()：清空</p>
+<p>value remove(key) ：删除指定键。</p>
+<p>3，判断。</p>
+<p>boolean isEmpty()：</p>
+<p>boolean containsKey(key)：是否包含key</p>
+<p>boolean containsValue(value) ：是否包含value</p>
+<p>4，取出。</p>
+<p>int size()：返回长度</p>
+<p>value get(key) ：通过指定键获取对应的值。如果返回null，可以判断该键不存在。当然有特殊情况，就是在hashmap集合中，是可以存储null键null值的。</p>
+<p>Collection values()：获取map集合中的所有的值。</p>
+<p>5，想要获取map中的所有元素：</p>
+<p>原理：map中是没有迭代器的，collection具备迭代器，只要将map集合转成Set集合，可以使用迭代器了。之所以转成set，是因为map集合具备着键的唯一性，其实set集合就来自于map，set集合底层其实用的就是map的方法。</p>
+<p>把map集合转成set的方法：</p>
+<p>Set keySet();</p>
+<p>Set entrySet();//取的是键和值的映射关系。</p>
+<p>Entry就是Map接口中的内部接口；</p>
+<p>为什么要定义在map内部呢？entry是访问键值关系的入口，是map的入口，访问的是map中的键值对。</p>
+<p>取出map集合中所有元素的方式一：keySet()方法。</p>
+<p>可以将map集合中的键都取出存放到set集合中。对set集合进行迭代。迭代完成，再通过get方法对获取到的键进行值的获取。</p>
+<p>取出map集合中所有元素的方式二：entrySet()方法。</p>
+<p>举例：</p>
+<pre><code>//第一种取出方式
+Set&lt;Student&gt; keySet = hm.keySet();
+Iterator&lt;Student&gt; it = keySet.iterator();
+while(it.hasNext())
+{
+    Student stu = it.next();
+    String addr = hm.get(stu);
+    System.out.println(stu+&quot;...&quot;+addr);
+}
+
+//第二种取出方式
+Set&lt;Map.Entry&lt;Student,String&gt;&gt; entrySet = hm.entrySet();
+Iterator&lt;Map.Entry&lt;Student,String&gt;&gt; iter = entrySet.iterator();
+while(iter.hasNext())
+{
+    Map.Entry&lt;Student,String&gt; me = iter.next();
+    Student stu = me.getKey();
+    String addr = me.getValue();
+    System.out.println(stu+&quot;-----&quot;+addr);
+}</code></pre><p>使用集合的技巧：</p>
+<p>看到Array就是数组结构，有角标，查询速度很快。</p>
+<p>看到link就是链表结构：增删速度快，而且有特有方法。addFirst； addLast； removeFirst()； removeLast()； getFirst()；getLast()；</p>
+<p>看到hash就是哈希表，就要想要哈希值，就要想到唯一性，就要想到存入到该结构的中的元素必须覆盖hashCode，equals方法。</p>
+<p>看到tree就是二叉树，就要想到排序，就想要用到比较。</p>
+<p>比较的两种方式：</p>
+<p>一个是Comparable：覆盖compareTo方法；</p>
+<p>一个是Comparator：覆盖compare方法。</p>
+<p>LinkedHashSet，LinkedHashMap:这两个集合可以保证哈希表有存入顺序和取出顺序一致，保证哈希表有序。</p>
+<p>集合什么时候用？</p>
+<p>当存储的是一个元素时，就用Collection。当存储对象之间存在着映射关系时，就使用Map集合。</p>
+<p>保证唯一，就用Set。不保证唯一，就用List。</p>
+<h1 id="Collections"><a href="#Collections" class="headerlink" title="Collections"></a>Collections</h1><p>它的出现给集合操作提供了更多的功能。这个类不需要创建对象，内部提供的都是静态方法。</p>
+<p>静态方法：</p>
+<p>Collections.sort(list);//list集合进行元素的自然顺序排序。</p>
+<p>Collections.sort(list,new ComparatorByLen());//按指定的比较器方法排序。</p>
+<p>Collections.max(list); //返回list中字典顺序最大的元素。</p>
+<p>int index = Collections.binarySearch(list,”zz”);//二分查找，返回角标。</p>
+<p>Collections.reverseOrder();//逆向反转排序。</p>
+<p>Collections.shuffle(list);//随机对list中的元素进行位置的置换。</p>
+<p>将非同步集合转成同步集合的方法：Collections中的  XXX synchronizedXXX(XXX);</p>
+<p>List synchronizedList(list);</p>
+<p>Map synchronizedMap(map);</p>
+<p>原理：定义一个类，将集合所有的方法加同一把锁后返回。</p>
+<p>Collection 和 Collections的区别：</p>
+<p>Collections是个java.util下的类，是针对集合类的一个工具类,提供一系列静态方法,实现对集合的查找、排序、替换、线程安全化（将非同步的集合转换成同步的）等操作。</p>
+<p>Collection是个java.util下的接口，它是各种集合结构的父接口，继承于它的接口主要有Set和List,提供了关于集合的一些操作,如插入、删除、判断一个元素是否其成员、遍历等。</p>
+<h1 id="Arrays"><a href="#Arrays" class="headerlink" title="Arrays"></a>Arrays</h1><p>用于操作数组对象的工具类，里面都是静态方法。</p>
+<p>asList方法：将数组转换成list集合。</p>
+<p>String[] arr = {“abc”,”kk”,”qq”};</p>
+<p>List<string> list = Arrays.asList(arr);//将arr数组转成list集合。</string></p>
+<p>将数组转换成集合，有什么好处呢？用aslist方法，将数组变成集合；</p>
+<p>可以通过list集合中的方法来操作数组中的元素：isEmpty()、contains、indexOf、set； </p>
+<p>注意（局限性）：数组是固定长度，不可以使用集合对象增加或者删除等，会改变数组长度的功能方法。比如add、remove、clear。（会报不支持操作异常UnsupportedOperationException）；</p>
+<p>如果数组中存储的引用数据类型，直接作为集合的元素可以直接用集合方法操作。</p>
+<p>如果数组中存储的是基本数据类型，asList会将数组实体作为集合元素存在。</p>
+<p>集合变数组：用的是Collection接口中的方法：toArray();</p>
+<p>如果给toArray传递的指定类型的数据长度小于了集合的size，那么toArray方法，会自定再创建一个该类型的数据，长度为集合的size。</p>
+<p>如果传递的指定的类型的数组的长度大于了集合的size，那么toArray方法，就不会创建新数组，直接使用该数组即可，并将集合中的元素存储到数组中，其他为存储元素的位置默认值null。</p>
+<p>所以，在传递指定类型数组时，最好的方式就是指定的长度和size相等的数组。</p>
+<p>将集合变成数组后有什么好处？限定了对集合中的元素进行增删操作，只要获取这些元素即可。</p>
+<h2 id="Jdk5-0新特性"><a href="#Jdk5-0新特性" class="headerlink" title="Jdk5.0新特性"></a>Jdk5.0新特性</h2><p>Collection在jdk1.5以后，有了一个父接口Iterable，这个接口的出现的将iterator方法进行抽取，提高了扩展性。</p>
+<p>增强for循环：foreach语句，foreach简化了迭代器。</p>
+<p>格式：// 增强for循环括号里写两个参数，第一个是声明一个变量，第二个就是需要迭代的容器</p>
+<p>for( 元素类型 变量名 : Collection集合 &amp; 数组 ) {</p>
+<p>…</p>
+<p>}</p>
+<p>高级for循环和传统for循环的区别：</p>
+<p>高级for循环在使用时，必须要明确被遍历的目标。这个目标，可以是Collection集合或者数组，如果遍历Collection集合，在遍历过程中还需要对元素进行操作，比如删除，需要使用迭代器。</p>
+<p>如果遍历数组，还需要对数组元素进行操作，建议用传统for循环因为可以定义角标通过角标操作元素。如果只为遍历获取，可以简化成高级for循环，它的出现为了简化书写。</p>
+<p>高级for循环可以遍历map集合吗？不可以。但是可以将map转成set后再使用foreach语句。</p>
+<p>1)、作用：对存储对象的容器进行迭代： 数组  collection   map</p>
+<p>2)、增强for循环迭代数组：</p>
+<pre><code>String [] arr = {&quot;a&quot;, &quot;b&quot;, &quot;c&quot;};//数组的静态定义方式，只试用于数组首次定义的时候
+for(String s : arr) {
+    System.out.println(s);
+}</code></pre><p>3)、单列集合 Collection：</p>
+<pre><code>List list = new ArrayList();
+list.add(&quot;aaa&quot;);
+// 增强for循环, 没有使用泛型的集合能不能使用增强for循环迭代？能
+for(Object obj : list) {
+    String s = (String) obj;
+    System.out.println(s);
+}</code></pre><p>4)、双列集合 Map：</p>
+<pre><code>Map map = new HashMap();
+map.put(&quot;a&quot;, &quot;aaa&quot;);
+// 传统方式：必须掌握这种方式
+Set entrys = map.entrySet(); // 1.获得所有的键值对Entry对象
+iter = entrys.iterator(); // 2.迭代出所有的entry
+while(iter.hasNext()) {
+    Map.Entry entry = (Entry) iter.next();
+    String key = (String) entry.getKey(); // 分别获得key和value
+    String value = (String) entry.getValue();
+    System.out.println(key + &quot;=&quot; + value);
+}
+
+// 增强for循环迭代：原则上map集合是无法使用增强for循环来迭代的，因为增强for循环只能针对实现了Iterable接口的集合进行迭代；Iterable是jdk5中新定义的接口，就一个方法iterator方法，只有实现了Iterable接口的类，才能保证一定有iterator方法，java有这样的限定是因为增强for循环内部还是用迭代器实现的，而实际上，我们可以通过某种方式来使用增强for循环。
+
+for(Object obj : map.entrySet()) {
+    Map.Entry entry = (Entry) obj;  // obj 依次表示Entry
+    System.out.println(entry.getKey() + &quot;=&quot; + entry.getValue());
+}</code></pre><p>5）、集合迭代注意问题：在迭代集合的过程中，不能对集合进行增删操作（会报并发访问异常）；可以用迭代器的方法进行操作（子类listIterator：有增删的方法）。</p>
+<p>6)、增强for循环注意问题：在使用增强for循环时，不能对元素进行赋值；</p>
+<pre><code>int[] arr = {1,2,3};
+for(int num : arr) {
+    num = 0; //不能改变数组的值
+}
+System.out.println(arr[1]); //2</code></pre><p>可变参数（…）：用到函数的参数上，当要操作的同一个类型元素个数不确定的时候，可是用这个方式，这个参数可以接受任意个数的同一类型的数据。</p>
+<p>和以前接收数组不一样的是：</p>
+<p>以前定义数组类型，需要先创建一个数组对象，再将这个数组对象作为参数传递给函数。现在，直接将数组中的元素作为参数传递即可。底层其实是将这些元素进行数组的封装，而这个封装动作，是在底层完成的，被隐藏了。所以简化了用户的书写，少了调用者定义数组的动作。</p>
+<p>如果在参数列表中使用了可变参数，可变参数必须定义在参数列表结尾(也就是必须是最后一个参数，否则编译会失败。)。</p>
+<p>如果要获取多个int数的和呢？可以使用将多个int数封装到数组中，直接对数组求和即可。</p>
+<p>静态导入：导入了类中的所有静态成员，简化静态成员的书写。</p>
+<pre><code>import static java.util.Collections.*;  //导入了Collections类中的所有静态成员</code></pre><h2 id="枚举：关键字-enum"><a href="#枚举：关键字-enum" class="headerlink" title="枚举：关键字 enum"></a>枚举：关键字 enum</h2><p>问题：对象的某个属性的值不能是任意的，必须为固定的一组取值其中的某一个；</p>
+<p>解决办法：</p>
+<p>1）、在setGrade方法中做判断，不符合格式要求就抛出异常；</p>
+<p>2）、直接限定用户的选择，通过自定义类模拟枚举的方式来限定用户的输入，写一个Grade类，私有构造函数，对外提供5个静态的常量表示类的实例；</p>
+<p>3)、jdk5中新定义了枚举类型，专门用于解决此类问题；</p>
+<p>4)、枚举就是一个特殊的java类，可以定义属性、方法、构造函数、实现接口、继承类；</p>
+<p><strong>自动拆装箱</strong>：java中数据类型分为两种 ： 基本数据类型   引用数据类型(对象)</p>
+<p>在 java程序中所有的数据都需要当做对象来处理，针对8种基本数据类型提供了包装类，如下：</p>
+<p>int –&gt; Integer</p>
+<p>byte –&gt; Byte</p>
+<p>short –&gt; Short</p>
+<p>long –&gt; Long</p>
+<p>char –&gt; Character</p>
+<p>double –&gt; Double</p>
+<p>float –&gt; Float</p>
+<p>boolean –&gt; Boolean</p>
+<p>jdk5以前基本数据类型和包装类之间需要互转：</p>
+<p>基本—引用   Integer x = new Integer(x);</p>
+<p>引用—基本   int num = x.intValue();</p>
+<p>1)、Integer x = 1; x = x + 1;  经历了什么过程？装箱 à 拆箱 à 装箱；</p>
+<p>2)、为了优化，虚拟机为包装类提供了缓冲池，Integer池的大小 -128~127 一个字节的大小；</p>
+<p>3)、String池：Java为了优化字符串操作 提供了一个缓冲池；</p>
+<p>泛型：jdk1.5版本以后出现的一个安全机制。表现格式：&lt; &gt;</p>
+<p>好处：</p>
+<p>1：将运行时期的问题ClassCastException问题转换成了编译失败，体现在编译时期，程序员就可以解决问题。</p>
+<p>2：避免了强制转换的麻烦。</p>
+<p>只要带有&lt;&gt;的类或者接口，都属于带有类型参数的类或者接口，在使用这些类或者接口时，必须给&lt;&gt;中传递一个具体的引用数据类型。</p>
+<p>泛型技术：其实应用在编译时期，是给编译器使用的技术，到了运行时期，泛型就不存在了。</p>
+<p>为什么? 因为泛型的擦除：也就是说，编辑器检查了泛型的类型正确后，在生成的类文件中是没有泛型的。</p>
+<p>在运行时，如何知道获取的元素类型而不用强转呢？</p>
+<p>泛型的补偿：因为存储的时候，类型已经确定了是同一个类型的元素，所以在运行时，只要获取到该元素的类型，在内部进行一次转换即可，所以使用者不用再做转换动作了。</p>
+<p>什么时候用泛型类呢？</p>
+<p>当类中的操作的引用数据类型不确定的时候，以前用的Object来进行扩展的，现在可以用泛型来表示。这样可以避免强转的麻烦，而且将运行问题转移到的编译时期。</p>
+<p>泛型在程序定义上的体现：</p>
+<pre><code>//泛型类：将泛型定义在类上。
+class Tool&lt;Q&gt; {
+    private Q obj;
+    public  void setObject(Q obj) {
+        this.obj = obj;
+    }
+
+    public Q getObject() {
+        return obj;
+    }
+}
+
+//当方法操作的引用数据类型不确定的时候，可以将泛型定义在方法上。
+public &lt;W&gt; void method(W w) {
+    System.out.println(&quot;method:&quot;+w);
+}
+
+//静态方法上的泛型：静态方法无法访问类上定义的泛型。如果静态方法操作的引用数据类型不确定的时候，必须要将泛型定义在方法上。
+
+public static &lt;Q&gt; void function(Q t) {
+    System.out.println(&quot;function:&quot;+t);
+}
+
+//泛型接口.
+interface Inter&lt;T&gt; {
+    void show(T t);
+}
+
+class InterImpl&lt;R&gt; implements Inter&lt;R&gt; {
+    public void show(R r) {
+        System.out.println(&quot;show:&quot;+r);
+    }
+}</code></pre><p>泛型中的通配符：可以解决当具体类型不确定的时候，这个通配符就是 ?  ；当操作类型时，不需要使用类型的具体功能时，只使用Object类中的功能。那么可以用 ? 通配符来表未知类型。</p>
+<p>泛型限定：</p>
+<p>上限：？extends E：可以接收E类型或者E的子类型对象。</p>
+<p>下限：？super E：可以接收E类型或者E的父类型对象。</p>
+<p>上限什么时候用：往集合中添加元素时，既可以添加E类型对象，又可以添加E的子类型对象。为什么？因为取的时候，E类型既可以接收E类对象，又可以接收E的子类型对象。</p>
+<p>下限什么时候用：当从集合中获取元素进行操作的时候，可以用当前元素的类型接收，也可以用当前元素的父类型接收。</p>
+<p>泛型的细节：</p>
+<p>1）、泛型到底代表什么类型取决于调用者传入的类型，如果没传，默认是Object类型；</p>
+<p>2）、使用带泛型的类创建对象时，等式两边指定的泛型必须一致；</p>
+<p>原因：编译器检查对象调用方法时只看变量，然而程序运行期间调用方法时就要考虑对象具体类型了；</p>
+<p>3）、等式两边可以在任意一边使用泛型，在另一边不使用(考虑向后兼容)；</p>
+<pre><code>ArrayList&lt;String&gt; al = new ArrayList&lt;Object&gt;();  //错
+//要保证左右两边的泛型具体类型一致就可以了，这样不容易出错。
+ArrayList&lt;? extends Object&gt; al = new ArrayList&lt;String&gt;();
+al.add(&quot;aa&quot;);  //错
+
+//因为集合具体对象中既可存储String，也可以存储Object的其他子类，所以添加具体的类型对象不合适，类型检查会出现安全问题。 ？extends Object 代表Object的子类型不确定，怎么能添加具体类型的对象呢？
+
+public static void method(ArrayList&lt;? extends Object&gt; al) {
+    al.add(&quot;abc&quot;);  //错
+    //只能对al集合中的元素调用Object类中的方法，具体子类型的方法都不能用，因为子类型不确定。
+} </code></pre>
+    </div>
+    
+    <div class="reward" ontouchstart>
+    <div class="reward-wrap">赏
+        <div class="reward-box">
+            
+            <span class="reward-type">
+                <img class="alipay" src="/blog/img/alipay.jpg"><b>支付宝打赏</b>
+            </span>
+            
+            
+            <span class="reward-type">
+                <img class="wechat" src="/blog/img/reward-wepay.jpg"><b>微信打赏</b>
+            </span>
+            
+        </div>
+    </div>
+    <p class="reward-tip">
+        赞赏是不耍流氓的鼓励
+    </p>
+</div>
+    
+    <div class="post-footer">
+        <div>
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+<div class="article-nav prev-next-wrap clearfix">
+    
+    <a href="/blog/2014/05/20/Java IO流/" class="pre-post btn btn-default" title='Java IO流'>
+        <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+        <span class="hidden-xs">
+            Java IO流</span>
+    </a>
+    
+    
+    <a href="/blog/2014/05/11/Java String、StringBuffer、StringBuilder/" class="next-post btn btn-default" title='Java String、StringBuffer、StringBuilder'>
+        <span class="hidden-lg">下一篇</span>
+        <span class="hidden-xs">
+            Java String、StringBuffer、StringBuilder</span><i class="fa fa-angle-right fa-fw"></i>
+    </a>
+    
+</div>
+
+<div id="comments">
+    
+<p>评论系统未开启，无法评论！</p>
+
+</div>
+
+                </main>
+                
+                    <aside id="article-toc" role="navigation" class="col-md-4">
+    <div class="widget">
+        <h3 class="title">
+            文章目录
+        </h3>
+        
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#集合框架"><span class="toc-text">集合框架</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Collection接口"><span class="toc-text">Collection接口</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Collection"><span class="toc-text">Collection</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Iterator接口"><span class="toc-text">Iterator接口</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#List接口"><span class="toc-text">List接口</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Set接口"><span class="toc-text">Set接口</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#哈希表的原理"><span class="toc-text">哈希表的原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#TreeSet"><span class="toc-text">TreeSet</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Map集合"><span class="toc-text">Map集合</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Collections"><span class="toc-text">Collections</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Arrays"><span class="toc-text">Arrays</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Jdk5-0新特性"><span class="toc-text">Jdk5.0新特性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#枚举：关键字-enum"><span class="toc-text">枚举：关键字 enum</span></a></li></ol></li></ol>
+        
+    </div>
+</aside>
+                
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+<a id="back-to-top" class="icon-btn hide">
+    <i class="fa fa-chevron-up"></i>
+</a>
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="busuanzi">
+    
+</div>
+            </div>
+            <div class="col-sm-12">
+                <span>Copyright &copy;
+                    2014
+                </span> |
+                <span>
+                    Powered by <a href="https://okfood.vip" class="copyright-links" target="_blank" rel="nofollow">Leo</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="/blog/assets/tagcanvas.min.js?rev=2.9"></script>
+<script>
+var tagOption = {
+    textColour: '#444', // 字体颜色
+    outlineMethod: 'block', // 选中模式
+    outlineColour: '#FFDAB9', // 选中模式的颜色
+    interval: 30 || 30, // 动画帧之间的时间间隔，值越大，转动幅度越大
+    textHeight: 13,
+    outlineRadius: 3,
+    freezeActive: true || '', // 选中的标签是否继续滚动
+    frontSelect: true || '', // 不选标签云后部的标签
+    initial: [0.1, -0.1],
+    depth: 0.5,
+    decel: 0.95,
+    maxSpeed: 0.03,
+    reverse: true || '', // 是否反向触发
+    fadeIn: 500, // 进入动画时间
+    wheelZoom: false || '' // 是否启用鼠标滚轮
+}
+TagCanvas.Start('tag-cloud-3d', '', tagOption);
+</script>
+
+
+<script src="/blog/assets/google-code-prettify/prettify.js?"></script>
+<script src="/blog/js/app.js?rev=@@hash"></script>
+</body>
+</html>

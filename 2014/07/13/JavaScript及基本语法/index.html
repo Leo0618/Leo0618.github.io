@@ -1,0 +1,368 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+<head><meta name="generator" content="Hexo 3.9.0">
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="上帝之手-Work makes the workman">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="theme-version" content="1.2.3">
+    <meta name="root" content="/blog/">
+    <link rel="dns-prefetch" href="https://okfood.vip/blog">
+    <!--SEO-->
+
+<meta name="keywords" content="JavaScript">
+
+
+<meta name="description" content="Javascript是Netscape公司语言，基于对象和事件驱动。和java的不同之处：
+1. 所属公司不一样，java是sun公司的，现在Oracle公司
+2. js是基于对象，java是面...">
+
+
+<meta name="robots" content="all">
+<meta name="google" content="all">
+<meta name="googlebot" content="all">
+<meta name="verify" content="all">
+    <!--Title-->
+
+<title>
+    
+    JavaScript及基本语法 |
+    
+    上帝之手-Work makes the workman
+</title>
+
+<link rel="alternate" href="/blog/atom.xml" title="上帝之手-Work makes the workman" type="application/atom+xml">
+
+
+<link rel="icon" href="/blog/img/avatar_circle.png">
+
+    
+
+<link rel="stylesheet" href="/blog/css/bootstrap.min.css?rev=3.3.7">
+<link rel="stylesheet" href="/blog/css/font-awesome.min.css?rev=4.7.0">
+<link rel="stylesheet" href="/blog/css/style.css?rev=@@hash">
+<link rel="stylesheet" href="/blog/assets/google-code-prettify/prettify.css">
+    
+
+
+
+    
+
+</head></html>
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+<body>
+    <header class="main-header"  style="background-image:url(
+    /blog/img/banner.jpg)"
+     >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/blog/" title='Leo'>
+            <img src="/blog/img/avatar.jpg" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+            
+            <img src="/blog/img/branding.png" alt="博客-Leo" class="img-responsive center-block">
+            
+        </div>
+    </div>
+</header>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                        <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="https://okfood.vip/blog">
+                        上帝之手-Work makes the workman</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/blog/"><i class="fa "></i>
+                                首页</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/blog/categories/Java/"><i class="fa "></i>
+                                Java</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/blog/categories/Android/"><i class="fa "></i>
+                                Android</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/blog/categories/前端/"><i class="fa "></i>
+                                前端</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/blog/categories/后端/"><i class="fa "></i>
+                                后端</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/blog/categories/算法/"><i class="fa "></i>
+                                算法</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/blog/archives/"><i class="fa "></i>
+                                时间轴</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="JavaScript及基本语法">
+            
+            JavaScript及基本语法
+            
+        </h1>
+        <div class="post-meta">
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a class="category-link" href="/blog/categories/前端/">前端</a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            <a class="tag-link" href="/blog/tags/JavaScript/">JavaScript</a>
+            
+        </span>
+    </span>
+    
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta">
+            2014/07/13</span>
+    </span>
+    
+    
+</div>
+        
+        
+    </div>
+    
+    <div class="post-body post-content">
+        <h1 id="Javascript"><a href="#Javascript" class="headerlink" title="Javascript"></a>Javascript</h1><p>是Netscape公司语言，基于对象和事件驱动。和java的不同之处：</p>
+<pre><code>1. 所属公司不一样，java是sun公司的，现在Oracle公司
+2. js是基于对象，java是面向对象
+3. js是浏览器解释并执行，java是有jvm解释并执行
+4. js是弱类型语言，java是强类型语言
+5. js是非严谨的，java是严谨的</code></pre><p>javascript运行在客户端。</p>
+<p>js需要被浏览器所解释并执行，就必须将代码和html相结合</p>
+<pre><code>1. 通过定义&lt;script&gt;标签将js代码存入其中，并指定type属性，方便与浏览器启动指定的解释引擎。
+2. 也可通过&lt;script&gt;标签，使用src属性连接一个指定的js文件进来。</code></pre><h2 id="javascript的基本语法"><a href="#javascript的基本语法" class="headerlink" title="javascript的基本语法"></a>javascript的基本语法</h2><h3 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h3><p>通过var定义变量，该变量可以赋予不同类型的常量。</p>
+<pre><code>var x = 3;
+x = &quot;abc&quot;;</code></pre><p>特殊常量：undefined</p>
+<h3 id="语句"><a href="#语句" class="headerlink" title="语句"></a>语句</h3><pre><code>if,switch,while,do while,for.</code></pre><p>使用逻辑运算符进行布尔表达式连接的时候，需要使用短路与&amp;&amp;和短路或||。</p>
+<p>因为在js中，非0即为true,0为false;非null为true，null为false</p>
+<p>js特有语句：with，for in。</p>
+<pre><code>with(对象){}
+for(变量 in 对象)</code></pre><h3 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h3><p>对于js的数组，数组的长度是可变的，相当于java中的集合；该数组中可以存放的元素类型是可以不同的。</p>
+<p>定义格式：</p>
+<pre><code>var arr = [2,4,true,3,&quot;asd&quot;];
+var arr = new Array();
+var arr = [[1,33,54],[4,2]];</code></pre><p>操作形式和java一样，for遍历，用了指针的思想。</p>
+<h3 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h3><p>通过function关键字定义函数。</p>
+<p><strong>a.一般函数</strong></p>
+<p>格式：function 函数名（形式参数…）</p>
+<pre><code>{
+    执行语句；
+    return 返回值；
+}</code></pre><p><strong>b.动态函数</strong></p>
+<p>使用的Function对象。</p>
+<pre><code>var show = new Function(&quot;x&quot;,&quot;y&quot;,&quot;return x+y;&quot;);</code></pre><p>动态函数的特点：可以将参数列表和方法体作为参数传递</p>
+<p><strong>c.匿名函数</strong></p>
+<p>一般函数的简写形式，</p>
+<pre><code>function(){}</code></pre><p>匿名函数通常可以用于事件的处理。如：</p>
+<pre><code>window.onload = function(){alert(&quot;onload over&quot;);}</code></pre><p>在函数使用时需要注意的部分：</p>
+<pre><code>function show() {
+    return &quot;show run&quot;;
+}
+var method = show();
+var method = show;</code></pre><p>两句都是正确的，</p>
+<p>第一句表示的是show方法运行后的结果赋值给method变量；</p>
+<p>第二句表示将show指向的对象的地址赋给method，那么method也指向了该对象，那么就可以通过调用method();的形式来调用show方法。</p>
+<p>js可以通过对象形式将数据进行封装。</p>
+<p>首先对对象进行描述，通过函数完成。</p>
+<pre><code>function Person（name,age）{
+    this.name = name;
+    this.age = age; 
+}
+var p = new Person(&quot;lisi&quot;,20);
+alert(p[&quot;name&quot;]+&quot;..&quot;+p.age);
+p.show = function(){
+    alert(&quot;show run&quot;);
+}</code></pre><p>js中已经定义好的一些对象。</p>
+<p>String,Math,Date等,这些对象都有一个属性交prototype原型，prototype可以获取指定对象类型的引用，可以通过该引用给已有的对象赋予一些新的功能，即可以自定义一些好的新功能。</p>
+<p>常见的全局方法：</p>
+<pre><code>parseInt(numstr,[radix]);//将数字格式按照radix进制进行转换
+var num = parseInt(&quot;110&quot;,2);
+alert(&quot;num=&quot;+num);//num = 6
+
+var x = 6;
+alert(x.toString(2));//x的二进制表现形式</code></pre>
+    </div>
+    
+    <div class="reward" ontouchstart>
+    <div class="reward-wrap">赏
+        <div class="reward-box">
+            
+            <span class="reward-type">
+                <img class="alipay" src="/blog/img/alipay.jpg"><b>支付宝打赏</b>
+            </span>
+            
+            
+            <span class="reward-type">
+                <img class="wechat" src="/blog/img/reward-wepay.jpg"><b>微信打赏</b>
+            </span>
+            
+        </div>
+    </div>
+    <p class="reward-tip">
+        赞赏是不耍流氓的鼓励
+    </p>
+</div>
+    
+    <div class="post-footer">
+        <div>
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+<div class="article-nav prev-next-wrap clearfix">
+    
+    <a href="/blog/2014/07/22/DOM编程及实例/" class="pre-post btn btn-default" title='DOM编程及实例'>
+        <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+        <span class="hidden-xs">
+            DOM编程及实例</span>
+    </a>
+    
+    
+    <a href="/blog/2014/06/25/CSS层叠样式表/" class="next-post btn btn-default" title='CSS层叠样式表'>
+        <span class="hidden-lg">下一篇</span>
+        <span class="hidden-xs">
+            CSS层叠样式表</span><i class="fa fa-angle-right fa-fw"></i>
+    </a>
+    
+</div>
+
+<div id="comments">
+    
+<p>评论系统未开启，无法评论！</p>
+
+</div>
+
+                </main>
+                
+                    <aside id="article-toc" role="navigation" class="col-md-4">
+    <div class="widget">
+        <h3 class="title">
+            文章目录
+        </h3>
+        
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Javascript"><span class="toc-text">Javascript</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#javascript的基本语法"><span class="toc-text">javascript的基本语法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#变量"><span class="toc-text">变量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#语句"><span class="toc-text">语句</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#数组"><span class="toc-text">数组</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#函数"><span class="toc-text">函数</span></a></li></ol></li></ol></li></ol>
+        
+    </div>
+</aside>
+                
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+<a id="back-to-top" class="icon-btn hide">
+    <i class="fa fa-chevron-up"></i>
+</a>
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="busuanzi">
+    
+</div>
+            </div>
+            <div class="col-sm-12">
+                <span>Copyright &copy;
+                    2014
+                </span> |
+                <span>
+                    Powered by <a href="https://okfood.vip" class="copyright-links" target="_blank" rel="nofollow">Leo</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="/blog/assets/tagcanvas.min.js?rev=2.9"></script>
+<script>
+var tagOption = {
+    textColour: '#444', // 字体颜色
+    outlineMethod: 'block', // 选中模式
+    outlineColour: '#FFDAB9', // 选中模式的颜色
+    interval: 30 || 30, // 动画帧之间的时间间隔，值越大，转动幅度越大
+    textHeight: 13,
+    outlineRadius: 3,
+    freezeActive: true || '', // 选中的标签是否继续滚动
+    frontSelect: true || '', // 不选标签云后部的标签
+    initial: [0.1, -0.1],
+    depth: 0.5,
+    decel: 0.95,
+    maxSpeed: 0.03,
+    reverse: true || '', // 是否反向触发
+    fadeIn: 500, // 进入动画时间
+    wheelZoom: false || '' // 是否启用鼠标滚轮
+}
+TagCanvas.Start('tag-cloud-3d', '', tagOption);
+</script>
+
+
+<script src="/blog/assets/google-code-prettify/prettify.js?"></script>
+<script src="/blog/js/app.js?rev=@@hash"></script>
+</body>
+</html>

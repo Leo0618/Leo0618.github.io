@@ -51,6 +51,7 @@
 <link rel="stylesheet" href="/blog/css/bootstrap.min.css?rev=3.3.7">
 <link rel="stylesheet" href="/blog/css/font-awesome.min.css?rev=4.7.0">
 <link rel="stylesheet" href="/blog/css/style.css?rev=@@hash">
+<link rel="stylesheet" href="/blog/assets/google-code-prettify/prettify.css">
     
 
 
@@ -186,11 +187,11 @@
 <li><p>保存配置文件后，重启MySQL服务 service mysqld restart</p>
 </li>
 <li><p>再次进入MySQL命令行 mysql -u root -p,输入密码时直接回车，就会进入MySQL数据库了，这个时候按照常规流程修改root密码即可。依次输入：</p>
-<pre><code>&gt;use mysql;    更改数据库
-&gt;UPDATE user SET PASSWORD =password(&quot;这里写新密码&quot;) WHERE USER= &apos;root&apos;;  重设密码
-&gt;flush privileges;  刷新MySQL的系统权限相关表，以防止更改后拒绝访问；或或者重启MySQL服务器
-注意：若出现找不到PASSWORD字段时，使用authentication_string,即：
-&gt;UPDATE user SET authentication_string =password(&quot;这里写新密码&quot;) WHERE USER= &apos;root&apos;;  重设密码</code></pre></li>
+<pre><code> &gt;use mysql;    更改数据库
+ &gt;UPDATE user SET PASSWORD =password(&quot;这里写新密码&quot;) WHERE USER= &#39;root&#39;;  重设密码
+ &gt;flush privileges;  刷新MySQL的系统权限相关表，以防止更改后拒绝访问；或或者重启MySQL服务器
+ 注意：若出现找不到PASSWORD字段时，使用authentication_string,即：
+ &gt;UPDATE user SET authentication_string =password(&quot;这里写新密码&quot;) WHERE USER= &#39;root&#39;;  重设密码</code></pre></li>
 <li><p>密码修改完毕后，再按照步骤1中的流程，删掉配置文件中的那行，并且重启MySQL服务，新密码就生效了。</p>
 </li>
 </ol>
@@ -228,12 +229,18 @@
 </article>
 <div class="article-nav prev-next-wrap clearfix">
     
-    <a href="/blog/2016/08/08/Nginx-Tomcat极简方式配置Https/" class="pre-post btn btn-default" title='Nginx-Tomcat极简方式配置Https'>
+    <a href="/blog/2016/05/29/Android客户端应用内检测升级框架AppUpdate/" class="pre-post btn btn-default" title='Android客户端应用内检测升级框架AppUpdate'>
         <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
         <span class="hidden-xs">
-            Nginx-Tomcat极简方式配置Https</span>
+            Android客户端应用内检测升级框架AppUpdate</span>
     </a>
     
+    
+    <a href="/blog/2015/10/22/sleep 、wait、yield的区别，wait的线程如何唤醒它/" class="next-post btn btn-default" title='sleep 、wait、yield的区别，wait的线程如何唤醒它'>
+        <span class="hidden-lg">下一篇</span>
+        <span class="hidden-xs">
+            sleep 、wait、yield的区别，wait的线程如何唤醒它</span><i class="fa fa-angle-right fa-fw"></i>
+    </a>
     
 </div>
 
@@ -312,6 +319,7 @@ TagCanvas.Start('tag-cloud-3d', '', tagOption);
 </script>
 
 
+<script src="/blog/assets/google-code-prettify/prettify.js?"></script>
 <script src="/blog/js/app.js?rev=@@hash"></script>
 </body>
 </html>

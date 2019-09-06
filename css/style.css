@@ -568,8 +568,8 @@ pre {
 }
 
 .post .post-body p {
-    font-size: 1em;
-    line-height: 1.5;
+    font-size: 14px;
+    line-height: 2;
 }
 
 .post .post-body p img {
@@ -615,51 +615,57 @@ pre {
   main post content
 ====================================================*/
 .post-content {
-    font: 400 16px/1.62 "Georgia", "Xin Gothic", "Hiragino Sans GB", "Droid Sans Fallback", "Microsoft YaHei", sans-serif;
+    font: 300 15px/1.62 "Microsoft YaHei", sans-serif;
     color: #333;
+	line-height: 2;
 }
 
 .post-content h1 {
-    font-family: "Georgia", "Xin Gothic", "Hiragino Sans GB", "Droid Sans Fallback", "Microsoft YaHei", "SimSun", sans-serif;
+    font-family: "Microsoft YaHei", "SimSun", sans-serif;
     color: #333;
     font-size: 1.8em;
     margin: 0.67em 0;
+	font-weight: bold;
 }
 
 .post-content h2 {
-    font-family: "Georgia", "Xin Gothic", "Hiragino Sans GB", "Droid Sans Fallback", "Microsoft YaHei", "SimSun", sans-serif;
+    font-family: "Microsoft YaHei", "SimSun", sans-serif;
     color: #333;
     font-size: 1.5em;
     margin: 0.83em 0;
+	font-weight: bold;
 }
 
 .post-content h3 {
-    font-family: "Georgia", "Xin Gothic", "Hiragino Sans GB", "Droid Sans Fallback", "Microsoft YaHei", "SimSun", sans-serif;
+    font-family: "Microsoft YaHei", "SimSun", sans-serif;
     color: #333;
     font-size: 1.17em;
     margin: 1em 0;
+	font-weight: bold;
 }
 
 .post-content h4 {
-    font-family: "Georgia", "Xin Gothic", "Hiragino Sans GB", "Droid Sans Fallback", "Microsoft YaHei", "SimSun", sans-serif;
+    font-family: "Microsoft YaHei", "SimSun", sans-serif;
     color: #333;
     font-size: 1em;
     margin: 1.6em 0 1em 0;
+	font-weight: bold;
 }
 
 .post-content h5 {
-    font-family: "Georgia", "Xin Gothic", "Hiragino Sans GB", "Droid Sans Fallback", "Microsoft YaHei", "SimSun", sans-serif;
+    font-family: "Microsoft YaHei", "SimSun", sans-serif;
     color: #333;
     font-size: 1em;
     margin: 1.6em 0 1em 0;
+	font-weight: bold;
 }
 
 .post-content h6 {
-    font-family: "Georgia", "Xin Gothic", "Hiragino Sans GB", "Droid Sans Fallback", "Microsoft YaHei", "SimSun", sans-serif;
+    font-family: "Microsoft YaHei", "SimSun", sans-serif;
     color: #333;
     font-size: 1em;
     margin: 1.6em 0 1em 0;
-    font-weight: 500;
+    font-weight: bold;
 }
 
 .post-content>h1 {
@@ -753,29 +759,29 @@ pre {
 }
 
 .post-content blockquote a {
-    color: #666666;
+    color: #e67e22;
 }
 
 .post-content ul {
-    margin: 0 0 24px 6px;
-    padding-left: 16px;
-    list-style-type: square;
+    margin: 10px;
+    padding-left: 10px;
+    list-style-type: disc;
 }
 
 .post-content ol {
-    margin: 0 0 24px 6px;
-    padding-left: 16px;
+    margin: 10px;
+    padding-left: 10px;
     list-style-type: decimal;
 }
 
 .post-content li {
-    margin-bottom: 0.2em;
+    margin-bottom: 0;
 }
 
 .post-content li ul {
     margin-top: 0;
     margin-bottom: 0;
-    margin-left: 14px;
+    margin-left: 10px;
     list-style-type: disc;
 }
 
@@ -786,7 +792,7 @@ pre {
 .post-content li ol {
     margin-top: 0;
     margin-bottom: 0;
-    margin-left: 14px;
+    margin-left: 10px;
 }
 
 .post-content li p {
@@ -826,22 +832,23 @@ pre {
 }
 
 .post-content pre {
-    margin: 1.64em 0;
+    margin: 0;
     border: none;
-    border-left: 3px solid #dadada;
-    padding-left: 10px;
+    padding-left: 15px;
+	padding-right: 0;
     overflow: auto;
     line-height: 1.5;
     font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
-    color: #808080;
-    background-color: #f9f9f9;
+    color: #CCCCCC;
+    background-color: #2D2D2D;
 }
 
 .post-content pre code {
-    color: #808080;
+    color: #CCCCCC;
     border: none;
     background: none;
     padding: 0;
+	white-space:pre;
 }
 
 .post-content pre tt {

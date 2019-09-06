@@ -1,0 +1,451 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+<head><meta name="generator" content="Hexo 3.9.0">
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="上帝之手-Work makes the workman">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="theme-version" content="1.2.3">
+    <meta name="root" content="/blog/">
+    <link rel="dns-prefetch" href="https://okfood.vip/blog">
+    <!--SEO-->
+
+<meta name="keywords" content="Java内省,注解,类加载器">
+
+
+<meta name="description" content="Javabeans内省JavaBean是一种特殊的Java类，主要用于传递数据信息，这种Java类中的方法主要用于访问私有的字段，且方法名符合某种命名规则。
+应用情景如果要在两个模块之间传递多个...">
+
+
+<meta name="robots" content="all">
+<meta name="google" content="all">
+<meta name="googlebot" content="all">
+<meta name="verify" content="all">
+    <!--Title-->
+
+<title>
+    
+    JavaBean内省、注解、类加载器 |
+    
+    上帝之手-Work makes the workman
+</title>
+
+<link rel="alternate" href="/blog/atom.xml" title="上帝之手-Work makes the workman" type="application/atom+xml">
+
+
+<link rel="icon" href="/blog/img/avatar_circle.png">
+
+    
+
+<link rel="stylesheet" href="/blog/css/bootstrap.min.css?rev=3.3.7">
+<link rel="stylesheet" href="/blog/css/font-awesome.min.css?rev=4.7.0">
+<link rel="stylesheet" href="/blog/css/style.css?rev=@@hash">
+<link rel="stylesheet" href="/blog/assets/google-code-prettify/prettify.css">
+    
+
+
+
+    
+
+</head></html>
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+<body>
+    <header class="main-header"  style="background-image:url(
+    /blog/img/banner.jpg)"
+     >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/blog/" title='Leo'>
+            <img src="/blog/img/avatar.jpg" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+            
+            <img src="/blog/img/branding.png" alt="博客-Leo" class="img-responsive center-block">
+            
+        </div>
+    </div>
+</header>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                        <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="https://okfood.vip/blog">
+                        上帝之手-Work makes the workman</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/blog/"><i class="fa "></i>
+                                首页</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/blog/categories/Java/"><i class="fa "></i>
+                                Java</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/blog/categories/Android/"><i class="fa "></i>
+                                Android</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/blog/categories/前端/"><i class="fa "></i>
+                                前端</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/blog/categories/后端/"><i class="fa "></i>
+                                后端</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/blog/categories/算法/"><i class="fa "></i>
+                                算法</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/blog/archives/"><i class="fa "></i>
+                                时间轴</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="JavaBean内省、注解、类加载器">
+            
+            JavaBean内省、注解、类加载器
+            
+        </h1>
+        <div class="post-meta">
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a class="category-link" href="/blog/categories/Java/">Java</a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            <a class="tag-link" href="/blog/tags/Java内省/">Java内省</a> <a class="tag-link" href="/blog/tags/注解/">注解</a> <a class="tag-link" href="/blog/tags/类加载器/">类加载器</a>
+            
+        </span>
+    </span>
+    
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta">
+            2014/05/26</span>
+    </span>
+    
+    
+</div>
+        
+        
+    </div>
+    
+    <div class="post-body post-content">
+        <h1 id="Javabeans内省"><a href="#Javabeans内省" class="headerlink" title="Javabeans内省"></a>Javabeans内省</h1><p>JavaBean是一种特殊的Java类，主要用于传递数据信息，这种Java类中的方法主要用于访问私有的字段，且方法名符合某种命名规则。</p>
+<h2 id="应用情景"><a href="#应用情景" class="headerlink" title="应用情景"></a>应用情景</h2><p>如果要在两个模块之间传递多个信息，可以将这些信息封装到一个JavaBean中，这种JavaBean的实例对象通常称之为值对象（Value Object，简称VO）。这些信息在类中用私有字段来存储，如果读取或设置这些字段的值，则需要通过一些相应的方法来访问。</p>
+<h2 id="JavaBean的规则"><a href="#JavaBean的规则" class="headerlink" title="JavaBean的规则"></a>JavaBean的规则</h2><p>JavaBean的属性是根据其中的setter和getter方法来确定的，而不是根据其中的成员变量。如果方法名为setId，中文意思即为设置id，至于你把它存到哪个变量上，则不用管。如果方法名为getId，中文意思即为获取id，至于你从哪个变量上取，也不用管。去掉set前缀，剩余部分就是属性名，如果剩余部分的第二个字母是小写的，则把剩余部分的首字母改成小的。</p>
+<p>例如：</p>
+<ul>
+<li>setId()的属性名：id</li>
+<li>isEmpty()的属性名：empty</li>
+<li>setCPU的属性名：CPU</li>
+<li>gettime的属性名：time</li>
+</ul>
+<p>总之，一个类被当作JavaBean使用时，JavaBean的属性是根据方法名推断出来的，它根本看不到Java类内部的成员变量。</p>
+<p>一个符合JavaBean特点的类可以当作普通类一样进行使用，但把它当JavaBean用肯定需要带来一些额外的好处，我们才会去了解和应用JavaBean！</p>
+<h2 id="JavaBean的好处"><a href="#JavaBean的好处" class="headerlink" title="JavaBean的好处"></a>JavaBean的好处</h2><p>好处如下：</p>
+<p>1、在Java EE开发中，经常要使用到JavaBean。很多环境就要求按JavaBean方式进行操作，别人都这么用和要求这么做，那你就没什么挑选的余地！</p>
+<p>2、JDK中提供了对JavaBean进行操作的一些API，这套API就称为内省。如果要你自己去通过getX方法来访问私有的x，怎么做，有一定难度吧？用内省这套API操作JavaBean比用普通类的方式更方便。</p>
+<p>对JavaBean的简单内省操作</p>
+<p>通过内省的方式对Person对象中的成员变量进行读写操作。</p>
+<p>并对生成的代码进行重构。</p>
+<p>通过反射对某个属性进行读写操作的代码可以抽取为通用方法</p>
+<p>步骤如下：选中需要重构的代码，右击–&gt;Refactor–&gt;Extract Method…。</p>
+<p>给抽取后的方法取一个名字，然后点击OK。</p>
+<p>注意：抽取方法之后，为了使抽取后的方法具备通用性，一定要把方法中某些参数设置为Object类型。</p>
+<p>举例：</p>
+<pre><code>package pack.leo;
+
+import java.beans.PropertyDescriptor;
+import java.lang.reflect.Method;
+
+public class JavaBeanDemo {
+    public static void main(String[] args) throws Exception {
+        Person p = new Person();
+        setProperty(p, &quot;age&quot;, 21);
+        setProperty(p, &quot;name&quot;, &quot;lisi&quot;);
+        Object obj1 = getProperty(p, &quot;age&quot;);
+        Object obj2 = getProperty(p, &quot;name&quot;);
+        System.out.println(obj1);
+        System.out.println(obj2);
+    }
+    //获取属性方法，传入对象名和对象的属性名即返回属性值
+    private static Object getProperty(Object obj, String propertyName)throws Exception {
+        PropertyDescriptor pd = new PropertyDescriptor(propertyName,obj.getClass());
+        Method methodGetAge = pd.getReadMethod();
+        Object retVal = methodGetAge.invoke(obj);
+        return retVal;
+    }
+    //设置属性方法 
+    private static void setProperty(Object obj, String propertyName, int value)throws Exception {
+        PropertyDescriptor pd = new PropertyDescriptor(propertyName,obj.getClass());
+        Method methodSetAge = pd.getWriteMethod();
+        methodSetAge.invoke(obj, value);
+    }
+    //设置属性方法 ，重载
+    private static void setProperty(Object obj, String propertyName, String value)throws Exception {
+        PropertyDescriptor pd = new PropertyDescriptor(propertyName,obj.getClass());
+        Method methodSetAge = pd.getWriteMethod();
+        methodSetAge.invoke(obj, value);
+    }
+}</code></pre><h1 id="注解"><a href="#注解" class="headerlink" title="注解"></a>注解</h1><h2 id="SuppressWarnings-“deprecation”"><a href="#SuppressWarnings-“deprecation”" class="headerlink" title="@SuppressWarnings(“deprecation”)"></a>@SuppressWarnings(“deprecation”)</h2><p>代码示例：</p>
+<pre><code>package com.leo;
+public class AnnotationTest {
+    public static void main(String[] args) {
+        System.runFinalizersOnExit(true);
+    }
+}</code></pre><p>由上面的示例可以看到当执行一切过时的方法时，MyEclipse会自动划线，提示开发人员调用的方法已经过时，建议不要调用。</p>
+<p>通过命令行进行编译也可以看到过时的提示，如下：</p>
+<p>如果要看哪个方法已经过期，直接在编译时期加上详细信息重新编译。</p>
+<p>此时，在main方法上添加一个注解：@SuppressWarnings(“deprecation”)，此注解的作用就是告诉编译器，虽然我用的方法过时了，但是我还是坚持要用，你就不要再提示了。</p>
+<p>Java 5.0代码示例：</p>
+<pre><code>package com.leo;
+public class AnnotationTest {
+    @SuppressWarnings(&quot;deprecation&quot;)
+    public static void main(String[] args) {
+        System.runFinalizersOnExit(true);
+    }
+}</code></pre><p>再在命令行窗口中进行编译，就不会出现过时提示了。</p>
+<h2 id="Deprecated"><a href="#Deprecated" class="headerlink" title="@Deprecated"></a>@Deprecated</h2><p>有时候我们写的方法被别人调用了，但是如果这个方法有一些Bug需要修改，可是如果我们修改了又会影响以前已经调用这个方法的程序。</p>
+<p>这时候我们可以把这个方法设置为过时，然后重新写一个方法，这时候就需要用到@Deprecated注解。</p>
+<p>Java 5.0代码示例：</p>
+<pre><code>package com.leo;
+public class AnnotationTest {
+    public static void main(String[] args) {
+        sayHello();
+    }
+
+    @Deprecated
+    public static void sayHello(){
+        System.out.println(&quot;Hello 程序员&quot;);
+    }
+}</code></pre><p>由上面的示例可以看到，我们的sayHello方法可以通过@Deprecated注解标记为过时，然后调用者调用该方法的地方就会被MyEclipse划上横线作为过时的提示。</p>
+<h2 id="Override"><a href="#Override" class="headerlink" title="@Override"></a>@Override</h2><p>有时候我们写的某些方法需要覆盖父类的方法，但是可能方法名或者参数会出现不小心写错的情况。</p>
+<p>这时候就可以为这个方法打上@Override注解，如果有任何差错，MyEclipse就会报错。</p>
+<p>例如：equals方法的参数为Object obj，但是经常会被写错，这时候就可以通过@Override注解避免这种情况。</p>
+<p><strong>注意：</strong></p>
+<p>1、注解是JDK1.5的新特性。</p>
+<p>2、一个注解就是一个类，使用注解，就相当于创建了一个类的实例对象。</p>
+<p>3、注解相当于一种标记，在程序中加了注解就等于为程序打上了某种标记，没加，则等于没有某种标记。</p>
+<p>以后，Javac编译器，开发工具和其他程序可以用反射来了解你的类及各种元素上有无何种标记，看</p>
+<p>你有什么标记，就去干相应的事。标记可以加在包，类，字段，方法，方法的参数以及局部变量上。</p>
+<p>4、看Java.lang包，可看到JDK中提供的最基本的Annotation。</p>
+<p>5、注解就相当于一个你的源程序中要调用的一个类，要在源程序中应用某个注解，得先准备好了这个注解类。</p>
+<p>就像你要调用某个类，得先有开发好这个类</p>
+<h2 id="什么是注解的属性"><a href="#什么是注解的属性" class="headerlink" title="什么是注解的属性"></a>什么是注解的属性</h2><p> 一个注解相当于一个胸牌，如果你胸前贴了胸牌，就是学生，否则，就不是。如果还想区分出是</p>
+<p>哪个班的学生，这时候可以为胸牌再增加一个属性来进行区分。</p>
+<p>加了属性的标记效果为：@HeiMaAnnotation(color=”red”)。</p>
+<p>定义基本类型的属性和应用属性：在注解类中增加String color(); </p>
+<p>被添加的注解设置属性值：@HeiMaAnnotation(color=”red”)。</p>
+<p>用反射方式获得注解对应的实例对象后，再通过该对象调用属性对应的方法</p>
+<p>HeiMaAnnotation heimaannotation = AnnotationTest.class.getAnnotation(HeiMaAnnotation.class);</p>
+<p>System.out.println(heimaannotation.color());</p>
+<p>可以认为上面这个@HeiMaAnnotation是HeiMaAnnotaion类的一个实例对象。</p>
+<p>为属性指定缺省值：String color() default “Yellow”;</p>
+<p>value属性：String value()default “程序员”;</p>
+<p>如果注解中有一个名称为value的属性，且你只想设置value属性（即其他属性都采用默认值或者你只有一个value属性），那么可以省略value=部分，例如：@HeiMaAnnotation(“CSDN社区”)。</p>
+<p>数组类型的属性</p>
+<p>int [] arrayAttr() default{1,2,3}; 被添加的注解设置属性值：@HeiMaAnnotation(arrayAttr={2,3,4})。</p>
+<p>如果数组属性中只有一个元素，这时候属性值部分可以省略大括号。</p>
+<p>枚举类型的属性</p>
+<p>Lamp lamp() ; 被添加的注解设置属性值：@HeiMaAnnotation(lamp=Lamp.GREEN)。</p>
+<p>注解类型的属性</p>
+<p>MetaAnnotation annotationAttr() default@MetaAnnotation(“程序员”); </p>
+<p>被添加的注解设置属性值：@HeiMaAnnotation(annotationAttr = @MetaAnnotation(“社区”) )</p>
+<p>可以认为上面这个@HeiAnnotation是HeiMaAnnotaion类的一个实例对象，同样的道理，可以认为上面这</p>
+<p>@MetaAnnotation是MetaAnnotation类的一个实例对象，调用代码如下：</p>
+<p>MetaAnnotation ma =  HeiMaAnnotation.annotationAttr();</p>
+<p>System.out.println(ma.value());</p>
+<h1 id="类加载器"><a href="#类加载器" class="headerlink" title="类加载器"></a>类加载器</h1><p>Java虚拟机中可以安装多个类加载器，系统默认有三个主要的类加载器，每个类加载器负责加载特定位置的类：</p>
+<p>BootStrap,ExtClassLoader,AppClassLoader。<br>类加载器也是Java类，因此Java类的类加载器本身也要被其他的类加载器加载，显然必须有第一个类加载器不是Java类，它就是BootStrap类加载器。</p>
+<p>注意：</p>
+<p>JVM内核启动的时候，BootStrap就已经被加载了，它是内嵌在JVM内核中的，是用C++语言编写的二进制代码，因此不需要其他类加载器加载。</p>
+<p>Java虚拟机中的所有类装载器采用了具有父子关系的树形结构进行组织。</p>
+<p>在实例化每个类加载器对象时，需要为其指定一个父级类加载器对象或者默认采用系统类加载器为其父级类加载。</p>
+<h2 id="类加载器的委托机制"><a href="#类加载器的委托机制" class="headerlink" title="类加载器的委托机制"></a>类加载器的委托机制</h2><p>当Java虚拟机要加载一个类时，到底派出哪个类加载器去加载呢？</p>
+<p>首先当前线程的类加载器去加载线程中的第一个类。</p>
+<p>如果类A中引用了类B，Java虚拟机将使用加载类A的类加载器来加载类B。</p>
+<p>还可以直接调用ClassLoader.loadClass()方法来指定某个类加载器去加载某个类。</p>
+<p>每个类加载器加载类时，又先委托给其上级类加载器。</p>
+<p>当所有祖宗类加载器没有加载到类，回到发起者类加载器，还加载不了，则抛ClassNotFoundException，不是再去找发起者类加载器的儿子，因为没有getChild方法，即使有，那有多个儿子，找哪一个呢？</p>
+<p>注意：</p>
+<p>每个ClassLoader本身只能分别加载特定位置和目录中的类，但它们可以委托其他的类装载器去加载类，这就是类加载器的委托模式。类加载器一级级委托到BootStrap类加载器，当BootStrap无法加载当前所要加载的类时，然后才一级级回退到子孙类装载器去进行真正的加载。当回退到最初的类装载器时，如果它自己也不能完成类的装加载，那就会告ClassNotFoundException异常。</p>
+<p>有一道面试题，能不能自己写个类叫java.lang.System？</p>
+<p>答案是不能，即使写了也不会被类加载器加载。为了不让我们写System类，类加载机制采用委托机制，这样可以保证父级类加载器优先，也就是总是使用父级类加载器能找到的类，结果就是总是使用Java系统自身提供的System类，而不会使用我们自己所写的System类。</p>
+<h2 id="自定义类加载器的编写原理分析"><a href="#自定义类加载器的编写原理分析" class="headerlink" title="自定义类加载器的编写原理分析"></a>自定义类加载器的编写原理分析</h2><p>类加载器中的loadClass方法内部实现了父类委托机制，因此我们没有必要自己覆盖loadClass，否则需要自己去实现父类委托机制。我们只需要覆盖findClass法。loadClass方法中调用了findClass方法，使用的是模板设计模式。我们得到了Class文件后，就可以通过defineClass方法将二进制数据转换成字节码。这就是自定义类加载器的编写原理。</p>
+
+    </div>
+    
+    <div class="reward" ontouchstart>
+    <div class="reward-wrap">赏
+        <div class="reward-box">
+            
+            <span class="reward-type">
+                <img class="alipay" src="/blog/img/alipay.jpg"><b>支付宝打赏</b>
+            </span>
+            
+            
+            <span class="reward-type">
+                <img class="wechat" src="/blog/img/reward-wepay.jpg"><b>微信打赏</b>
+            </span>
+            
+        </div>
+    </div>
+    <p class="reward-tip">
+        赞赏是不耍流氓的鼓励
+    </p>
+</div>
+    
+    <div class="post-footer">
+        <div>
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+<div class="article-nav prev-next-wrap clearfix">
+    
+    <a href="/blog/2014/05/27/Java代理/" class="pre-post btn btn-default" title='Java代理'>
+        <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+        <span class="hidden-xs">
+            Java代理</span>
+    </a>
+    
+    
+    <a href="/blog/2014/05/24/Java正则表达式/" class="next-post btn btn-default" title='Java正则表达式'>
+        <span class="hidden-lg">下一篇</span>
+        <span class="hidden-xs">
+            Java正则表达式</span><i class="fa fa-angle-right fa-fw"></i>
+    </a>
+    
+</div>
+
+<div id="comments">
+    
+<p>评论系统未开启，无法评论！</p>
+
+</div>
+
+                </main>
+                
+                    <aside id="article-toc" role="navigation" class="col-md-4">
+    <div class="widget">
+        <h3 class="title">
+            文章目录
+        </h3>
+        
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Javabeans内省"><span class="toc-text">Javabeans内省</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#应用情景"><span class="toc-text">应用情景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JavaBean的规则"><span class="toc-text">JavaBean的规则</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JavaBean的好处"><span class="toc-text">JavaBean的好处</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#注解"><span class="toc-text">注解</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#SuppressWarnings-“deprecation”"><span class="toc-text">@SuppressWarnings(“deprecation”)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Deprecated"><span class="toc-text">@Deprecated</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Override"><span class="toc-text">@Override</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#什么是注解的属性"><span class="toc-text">什么是注解的属性</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#类加载器"><span class="toc-text">类加载器</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#类加载器的委托机制"><span class="toc-text">类加载器的委托机制</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#自定义类加载器的编写原理分析"><span class="toc-text">自定义类加载器的编写原理分析</span></a></li></ol></li></ol>
+        
+    </div>
+</aside>
+                
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+<a id="back-to-top" class="icon-btn hide">
+    <i class="fa fa-chevron-up"></i>
+</a>
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="busuanzi">
+    
+</div>
+            </div>
+            <div class="col-sm-12">
+                <span>Copyright &copy;
+                    2014
+                </span> |
+                <span>
+                    Powered by <a href="https://okfood.vip" class="copyright-links" target="_blank" rel="nofollow">Leo</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="/blog/assets/tagcanvas.min.js?rev=2.9"></script>
+<script>
+var tagOption = {
+    textColour: '#444', // 字体颜色
+    outlineMethod: 'block', // 选中模式
+    outlineColour: '#FFDAB9', // 选中模式的颜色
+    interval: 30 || 30, // 动画帧之间的时间间隔，值越大，转动幅度越大
+    textHeight: 13,
+    outlineRadius: 3,
+    freezeActive: true || '', // 选中的标签是否继续滚动
+    frontSelect: true || '', // 不选标签云后部的标签
+    initial: [0.1, -0.1],
+    depth: 0.5,
+    decel: 0.95,
+    maxSpeed: 0.03,
+    reverse: true || '', // 是否反向触发
+    fadeIn: 500, // 进入动画时间
+    wheelZoom: false || '' // 是否启用鼠标滚轮
+}
+TagCanvas.Start('tag-cloud-3d', '', tagOption);
+</script>
+
+
+<script src="/blog/assets/google-code-prettify/prettify.js?"></script>
+<script src="/blog/js/app.js?rev=@@hash"></script>
+</body>
+</html>

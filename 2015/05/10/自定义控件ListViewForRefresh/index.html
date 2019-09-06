@@ -1,0 +1,692 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+<head><meta name="generator" content="Hexo 3.9.0">
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="上帝之手-Work makes the workman">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="theme-version" content="1.2.3">
+    <meta name="root" content="/blog/">
+    <link rel="dns-prefetch" href="https://okfood.vip/blog">
+    <!--SEO-->
+
+<meta name="keywords" content="自定义控件">
+
+
+<meta name="description" content="
+功能描述：
+
+支持自定义顶部视图，以视图+ListView方式展示
+支持下拉刷新，可选择打开或关闭
+支持加载更多，可选择打开或关闭
+
+
+
+使用步骤
+调用addCustomHeadView添加顶...">
+
+
+<meta name="robots" content="all">
+<meta name="google" content="all">
+<meta name="googlebot" content="all">
+<meta name="verify" content="all">
+    <!--Title-->
+
+<title>
+    
+    自定义控件ListViewForRefresh |
+    
+    上帝之手-Work makes the workman
+</title>
+
+<link rel="alternate" href="/blog/atom.xml" title="上帝之手-Work makes the workman" type="application/atom+xml">
+
+
+<link rel="icon" href="/blog/img/avatar_circle.png">
+
+    
+
+<link rel="stylesheet" href="/blog/css/bootstrap.min.css?rev=3.3.7">
+<link rel="stylesheet" href="/blog/css/font-awesome.min.css?rev=4.7.0">
+<link rel="stylesheet" href="/blog/css/style.css?rev=@@hash">
+<link rel="stylesheet" href="/blog/assets/google-code-prettify/prettify.css">
+    
+
+
+
+    
+
+</head></html>
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+<body>
+    <header class="main-header"  style="background-image:url(
+    /blog/img/banner.jpg)"
+     >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/blog/" title='Leo'>
+            <img src="/blog/img/avatar.jpg" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+            
+            <img src="/blog/img/branding.png" alt="博客-Leo" class="img-responsive center-block">
+            
+        </div>
+    </div>
+</header>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                        <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="https://okfood.vip/blog">
+                        上帝之手-Work makes the workman</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/blog/"><i class="fa "></i>
+                                首页</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/blog/categories/Java/"><i class="fa "></i>
+                                Java</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/blog/categories/Android/"><i class="fa "></i>
+                                Android</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/blog/categories/前端/"><i class="fa "></i>
+                                前端</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/blog/categories/后端/"><i class="fa "></i>
+                                后端</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/blog/categories/算法/"><i class="fa "></i>
+                                算法</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/blog/archives/"><i class="fa "></i>
+                                时间轴</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="自定义控件ListViewForRefresh">
+            
+            自定义控件ListViewForRefresh
+            
+        </h1>
+        <div class="post-meta">
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a class="category-link" href="/blog/categories/Android/">Android</a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            <a class="tag-link" href="/blog/tags/自定义控件/">自定义控件</a>
+            
+        </span>
+    </span>
+    
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta">
+            2015/05/10</span>
+    </span>
+    
+    
+</div>
+        
+        
+    </div>
+    
+    <div class="post-body post-content">
+        <blockquote>
+<p>功能描述：</p>
+<ul>
+<li>支持自定义顶部视图，以视图+ListView方式展示</li>
+<li>支持下拉刷新，可选择打开或关闭</li>
+<li>支持加载更多，可选择打开或关闭</li>
+</ul>
+</blockquote>
+<hr>
+<h2 id="使用步骤"><a href="#使用步骤" class="headerlink" title="使用步骤"></a>使用步骤</h2><ol>
+<li><p>调用addCustomHeadView添加顶部视图，如轮播广告图等。</p>
+<pre><code> mListView.addCustomHeadView(View.inflate(this, R.layout.view_custom, null));</code></pre></li>
+<li><p>调用enablePullDownRefresh和enableLoadMoreRefresh分别设置打开或关闭下拉刷新、加载更多.</p>
+<pre><code> mListView.enablePullDownRefresh(true);
+ mListView.enableLoadMoreRefresh(true);</code></pre></li>
+<li><p>调用setOnRefreshListener设置监听，在回调接口中实现数据加载，数据加载完成发送消息通知视图刷新.</p>
+<pre><code> mListView.setOnRefreshListener(mListener);</code></pre><p> 监听mListener如下：</p>
+<pre><code> private onRefreshListener mListener = new onRefreshListener() {
+     @Override
+     public void onPullDownRefresh() {
+         // 异步加载数据
+         new Thread(new Runnable() {
+             @Override
+             public void run() {
+                 SystemClock.sleep(3000);
+                 mData.add(0, &quot;test--data--&gt;newdata&quot;);
+                 mHandler.obtainMessage(WHAT_DATA_LOAD_FINISH).sendToTarget();
+             }
+         }).start();
+     }
+
+     @Override
+     public void onLoadMoreRefresh() {
+         // 异步加载数据
+         new Thread(new Runnable() {
+             @Override
+             public void run() {
+                 SystemClock.sleep(3000);
+                 mData.add(&quot;test--data--&gt;newdata&quot;);
+                 mHandler.obtainMessage(WHAT_DATA_LOAD_FINISH).sendToTarget();
+             }
+         }).start();
+     }
+  };</code></pre></li>
+<li><p>接收到消息后关闭刷新视图</p>
+<pre><code> private Handler mHandler = new Handler(Looper.getMainLooper()) {
+     public void handleMessage(android.os.Message msg) {
+         switch (msg.what) {
+         case WHAT_DATA_LOAD_FINISH:
+             mListView.FinishRefesh();
+             mAdapter.notifyDataSetChanged();
+             break;
+         }
+     };
+ }</code></pre></li>
+</ol>
+<p>效果图：</p>
+<ul>
+<li><p>下拉刷新</p>
+<p>  <img src="https://imgconvert.csdnimg.cn/aHR0cDovL2ltZy5ibG9nLmNzZG4ubmV0LzIwMTUwNTA0MTYyNjIyNjMx?x-oss-process=image/format,png" alt="下拉刷新"></p>
+</li>
+<li><p>加载更多</p>
+<p>  <img src="https://imgconvert.csdnimg.cn/aHR0cDovL2ltZy5ibG9nLmNzZG4ubmV0LzIwMTUwNTA0MTYyNjUwMDI1?x-oss-process=image/format,png" alt="加载更多"></p>
+</li>
+</ul>
+<hr>
+<p>直接上代码—&gt;自定义RefreshListView code:</p>
+<pre><code>package com.leo.demo;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import android.annotation.SuppressLint;
+import android.content.Context;
+import android.util.AttributeSet;
+import android.util.Log;
+import android.view.MotionEvent;
+import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.RotateAnimation;
+import android.widget.AbsListView;
+import android.widget.AbsListView.OnScrollListener;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.ListView;
+import android.widget.ProgressBar;
+import android.widget.TextView;
+
+public class RefreshListView extends ListView implements OnScrollListener {
+    private static final String TAG = &quot;RefreshListView&quot;;
+    private static final Boolean DEBUG = false;
+    /** 头控件整个布局(包含下拉刷新和用户自定义需要添加的控件) */
+    private LinearLayout mHeadView;
+    /** 下拉刷新控件 */
+    private View mPullDownHeadView;
+    /** 下拉刷新布局高度 */
+    private int mPullDownHeadViewHeigth;
+    /** 触摸按下的Y坐标 */
+    private int downY = -1;
+    /** 下拉刷新状态 */
+    private static final int STATE_PULL_DOWN_REFRESH = 0x000;
+    /** 释放刷新状态 */
+    private static final int STATE_RELEASE_REFRESH = 0x001;
+    /** 正在刷新状态 */
+    private static final int STATE_REFRESHING = 0x002;
+    /** 当前刷新状态 */
+    private int currentState = STATE_PULL_DOWN_REFRESH;// 默认是下拉刷新状态
+    /** 向上旋转动画 */
+    private RotateAnimation upRa;
+    /** 向下旋转动画 */
+    private RotateAnimation downRa;
+    /** 下拉刷新 动画箭头 */
+    private ImageView mRefreshArrow;
+    /** 下拉刷新 进度环 */
+    private ProgressBar mRefreshProgressBar;
+    /** 下拉刷新 状态文字显示 */
+    private TextView mRefreshState;
+    /** 下拉刷新 上次刷新时间 */
+    private TextView mRefreshDate;
+    /** 用户自定义的需要加在头部的view */
+    private View mCustomView;
+    /** ListView左上角在屏幕上的位置Y */
+    private int mListViewHeigthOnScreen = -1;
+    /** 刷新列表回调监听器 */
+    private onRefreshListener mListener;
+    /** 底部加载更多控件 */
+    private View mLoadMoreView;
+    /** 底部加载更多控件的测量高度 */
+    private int mLoadMoreViewHeight;
+    /** 是否加载更多 */
+    private boolean isLoadMore = false;
+    /** 是否启用下拉刷新 (默认关闭下拉刷新) */
+    private boolean isEnablePullDownRefresh = false;
+    /** 是否启用加载更多 (默认关闭加载更多) */
+    private boolean isEnableLoadMoreRefresh = false;
+
+    public RefreshListView(Context context) {
+        super(context);
+        initHeadView();
+        initFootView();
+    }
+
+    public RefreshListView(Context context, AttributeSet attrs, int defStyle) {
+        super(context, attrs, defStyle);
+        initHeadView();
+        initFootView();
+    }
+
+    public RefreshListView(Context context, AttributeSet attrs) {
+        super(context, attrs);
+        initHeadView();
+        initFootView();
+    }
+
+    /** 初始化底部加载更多控件 */
+    private void initFootView() {
+        mLoadMoreView = View.inflate(getContext(), R.layout.refresh_load_more, null);
+        mLoadMoreView.measure(0, 0);
+        mLoadMoreViewHeight = mLoadMoreView.getMeasuredHeight();
+        mLoadMoreView.setPadding(0, -mLoadMoreViewHeight, 0, 0);
+        this.addFooterView(mLoadMoreView);
+        this.setOnScrollListener(this);// 给当前Listview设置一个滑动的监听事件
+    }
+
+    /** 初始化头部下拉刷新控件 */
+    private void initHeadView() {
+        mHeadView = (LinearLayout) View.inflate(getContext(), R.layout.refresh_pull_down, null);
+        mPullDownHeadView = mHeadView.findViewById(R.id.ll_pull_down_refresh_root);
+        mRefreshArrow = (ImageView) mHeadView.findViewById(R.id.iv_pull_dowd_refresh_arrow);
+        mRefreshProgressBar = (ProgressBar) mHeadView.findViewById(R.id.pb_pull_dowd_refresh_progressbar);
+        mRefreshState = (TextView) mHeadView.findViewById(R.id.tv_pull_dowd_refresh_state_desc);
+        mRefreshDate = (TextView) mHeadView.findViewById(R.id.tv_pull_dowd_refresh_date);
+
+        mRefreshDate.setText(&quot;上次刷新:&quot; + getCurentTime());// 设置默认显示上次刷新时间
+        mPullDownHeadView.measure(0, 0);// 测量，以获取测量高度
+        mPullDownHeadViewHeigth = mPullDownHeadView.getMeasuredHeight();
+        mPullDownHeadView.setPadding(0, -mPullDownHeadViewHeigth, 0, 0);// 默认隐藏头控件
+        this.addHeaderView(mHeadView);// 添加到头控件中
+        initAnimation();// 初始化箭头动画
+    }
+
+    /** 初始化头部控件中箭头的旋转动画 */
+    private void initAnimation() {
+        upRa = new RotateAnimation(0, -180, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
+        upRa.setDuration(500);
+        upRa.setFillAfter(true);
+
+        downRa = new RotateAnimation(-180, -360, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
+        downRa.setDuration(500);
+        downRa.setFillAfter(true);
+    }
+
+    /** 在头部控件内添加用户自定义的view */
+    public void addCustomHeadView(View v) {
+        this.mCustomView = v;
+        mHeadView.addView(v);
+    }
+
+    @SuppressLint(&quot;ClickableViewAccessibility&quot;)
+    @Override
+    public boolean onTouchEvent(MotionEvent ev) {
+        switch (ev.getAction()) {
+        case MotionEvent.ACTION_DOWN:
+            downY = (int) ev.getY();
+            break;
+
+        case MotionEvent.ACTION_MOVE:
+            if (downY == -1) {
+                downY = (int) ev.getY();
+            }
+            // 如果是没有启用下拉刷新 则跳出循环
+            if (!isEnablePullDownRefresh) {
+                break;
+            }
+            // 如果当前是正在刷新中，则跳出循环
+            if (currentState == STATE_REFRESHING) {
+                break;
+            }
+            // 判断添加的顶部View是否完全显示了, 如果没有完全显示,跳出switch语句, 执行父元素的touch事件.
+            if (mCustomView != null) {
+                int[] location = new int[2];// 0位是x轴的值, 1位是y轴的值
+                // 获取Listview在屏幕中y轴的值.
+                if (mListViewHeigthOnScreen == -1) {
+                    this.getLocationOnScreen(location);
+                    mListViewHeigthOnScreen = location[1];
+                    showLog(&quot;ListView--Y:&quot; + mListViewHeigthOnScreen);
+                }
+                // 获取mCustomHeaderView在屏幕y轴的值.
+                mCustomView.getLocationOnScreen(location);
+                int mCustomViewHeigthOnScreen = location[1];
+                showLog(&quot;mCustomView--Y:&quot; + mCustomViewHeigthOnScreen);
+
+                if (mCustomViewHeigthOnScreen &lt; mListViewHeigthOnScreen) {
+                    break;// 未完全显示自定义的view,jump out
+                }
+            }
+
+            int moveY = (int) ev.getY();
+            int dy = moveY - downY;
+            if (dy &gt; 0 &amp;&amp; getFirstVisiblePosition() == 0) {
+                // 如果是下拉，并且当前第一个可视条目是列表中的第一个，可以拉出头控件
+                int paddingTop = -mPullDownHeadViewHeigth + dy;
+                if (paddingTop &gt; 0 &amp;&amp; currentState != STATE_RELEASE_REFRESH) {
+                    // 完全拉出来了，并且当前状态不是释放刷新，则切换到释放刷新状态
+                    currentState = STATE_RELEASE_REFRESH;
+                    changeRefreshState();
+                } else if (paddingTop &lt; 0 &amp;&amp; currentState != STATE_PULL_DOWN_REFRESH) {
+                    // 没有完全拉出来，并且当前状态不是下拉刷新，则切换到下拉刷新状态
+                    currentState = STATE_PULL_DOWN_REFRESH;
+                    changeRefreshState();
+                }
+                mPullDownHeadView.setPadding(0, paddingTop, 0, 0);
+                return true;
+            }
+            break;
+
+        case MotionEvent.ACTION_UP:
+            downY = -1;
+            if (currentState == STATE_PULL_DOWN_REFRESH) {
+                // 如果当前是下拉刷新状态,则直接隐藏
+                mPullDownHeadView.setPadding(0, -mPullDownHeadViewHeigth, 0, 0);
+            } else if (currentState == STATE_RELEASE_REFRESH) {
+                // 如果当前是释放刷新状态，则切换到正在刷新
+                currentState = STATE_REFRESHING;
+                changeRefreshState();
+                mPullDownHeadView.setPadding(0, 0, 0, 0);
+                // 回调用户处理操作
+                if (mListener != null) {
+                    mListener.onPullDownRefresh();
+                }
+            }
+            break;
+        }
+        return super.onTouchEvent(ev);
+    }
+
+    /** 切换当前头控件显示的刷新状态 */
+    private void changeRefreshState() {
+        switch (currentState) {
+        case STATE_PULL_DOWN_REFRESH: // 下拉刷新
+            mRefreshArrow.startAnimation(downRa);
+            mRefreshState.setText(&quot;下拉刷新&quot;);
+            break;
+        case STATE_RELEASE_REFRESH: // 释放刷新
+            mRefreshArrow.startAnimation(upRa);
+            mRefreshState.setText(&quot;释放刷新&quot;);
+            break;
+        case STATE_REFRESHING: // 正在刷新
+            mRefreshArrow.clearAnimation();
+            mRefreshArrow.setVisibility(View.INVISIBLE);
+            mRefreshProgressBar.setVisibility(View.VISIBLE);
+            mRefreshState.setText(&quot;正在刷新中...&quot;);
+            break;
+        }
+    }
+
+    /** 当刷新完成后调用此方法，隐藏头部上拉刷新和底部加在更多 */
+    public void FinishRefesh() {
+        if (isLoadMore) {
+            // 隐藏加载更多,复位变量
+            isLoadMore = false;
+            mLoadMoreView.setPadding(0, -mLoadMoreViewHeight, 0, 0);
+        } else {
+            // 隐藏上拉刷新,复位变量
+            mPullDownHeadView.setPadding(0, -mPullDownHeadViewHeigth, 0, 0);
+            currentState = STATE_PULL_DOWN_REFRESH;
+            mRefreshState.setText(&quot;下拉刷新&quot;);
+            mRefreshArrow.setVisibility(View.VISIBLE);
+            mRefreshProgressBar.setVisibility(View.INVISIBLE);
+            mRefreshDate.setText(&quot;上次刷新:&quot; + getCurentTime());
+        }
+    }
+
+    /** 获取当前时间, 格式为: 1990-09-09 09:09:09 */
+    @SuppressLint(&quot;SimpleDateFormat&quot;)
+    private String getCurentTime() {
+        SimpleDateFormat format = new SimpleDateFormat(&quot;yyyy-MM-dd HH:mm:ss&quot;);
+        return format.format(new Date());
+    }
+
+    /** 下拉刷新回调接口 */
+    public interface onRefreshListener {
+        /** 下拉刷新 加载数据处理 */
+        void onPullDownRefresh();
+
+        /** 加载更多 加载数据处理 */
+        void onLoadMoreRefresh();
+    }
+
+    /** 设置下拉刷新回调监听器 */
+    public void setOnRefreshListener(onRefreshListener listener) {
+        this.mListener = listener;
+    }
+
+    /** 监听滑动状态，设置加载更多 */
+    @Override
+    public void onScrollStateChanged(AbsListView view, int scrollState) {
+        if (!isEnableLoadMoreRefresh) {
+            return;// false 关闭加载更多，直接返回
+        }
+        if (currentState == SCROLL_STATE_IDLE || currentState == SCROLL_STATE_FLING) {
+            if (getLastVisiblePosition() == getCount() - 1 &amp;&amp; !isLoadMore) {
+                // 滑动到listview最后一个条目,显示加载更多
+                isLoadMore = true;
+                mLoadMoreView.setPadding(0, 0, 0, 0);// 显示加载更多控件
+                setSelection(getCount());// 显示最后一个条目
+                // 处理用户的回调操作
+                if (mListener != null) {
+                    mListener.onLoadMoreRefresh();
+                }
+            }
+        }
+    }
+
+    @Override
+    public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+
+    }
+
+    /** 是否启用下拉刷新 */
+    public void enablePullDownRefresh(boolean isEnable) {
+        this.isEnablePullDownRefresh = isEnable;
+    }
+
+    /** 是否启用加载更多 */
+    public void enableLoadMoreRefresh(boolean isEnable) {
+        this.isEnableLoadMoreRefresh = isEnable;
+    }
+
+    /** 打印log信息 */
+    private static void showLog(String msg) {
+        if (DEBUG) {
+            Log.e(TAG, msg);
+        }
+    }
+}</code></pre>
+    </div>
+    
+    <div class="reward" ontouchstart>
+    <div class="reward-wrap">赏
+        <div class="reward-box">
+            
+            <span class="reward-type">
+                <img class="alipay" src="/blog/img/alipay.jpg"><b>支付宝打赏</b>
+            </span>
+            
+            
+            <span class="reward-type">
+                <img class="wechat" src="/blog/img/reward-wepay.jpg"><b>微信打赏</b>
+            </span>
+            
+        </div>
+    </div>
+    <p class="reward-tip">
+        赞赏是不耍流氓的鼓励
+    </p>
+</div>
+    
+    <div class="post-footer">
+        <div>
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+<div class="article-nav prev-next-wrap clearfix">
+    
+    <a href="/blog/2015/05/18/自定义控件dialog/" class="pre-post btn btn-default" title='自定义控件dialog'>
+        <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+        <span class="hidden-xs">
+            自定义控件dialog</span>
+    </a>
+    
+    
+    <a href="/blog/2015/05/04/Volley框架原理分析/" class="next-post btn btn-default" title='Volley框架原理分析'>
+        <span class="hidden-lg">下一篇</span>
+        <span class="hidden-xs">
+            Volley框架原理分析</span><i class="fa fa-angle-right fa-fw"></i>
+    </a>
+    
+</div>
+
+<div id="comments">
+    
+<p>评论系统未开启，无法评论！</p>
+
+</div>
+
+                </main>
+                
+                    <aside id="article-toc" role="navigation" class="col-md-4">
+    <div class="widget">
+        <h3 class="title">
+            文章目录
+        </h3>
+        
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#使用步骤"><span class="toc-text">使用步骤</span></a></li></ol>
+        
+    </div>
+</aside>
+                
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+<a id="back-to-top" class="icon-btn hide">
+    <i class="fa fa-chevron-up"></i>
+</a>
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="busuanzi">
+    
+</div>
+            </div>
+            <div class="col-sm-12">
+                <span>Copyright &copy;
+                    2014
+                </span> |
+                <span>
+                    Powered by <a href="https://okfood.vip" class="copyright-links" target="_blank" rel="nofollow">Leo</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="/blog/assets/tagcanvas.min.js?rev=2.9"></script>
+<script>
+var tagOption = {
+    textColour: '#444', // 字体颜色
+    outlineMethod: 'block', // 选中模式
+    outlineColour: '#FFDAB9', // 选中模式的颜色
+    interval: 30 || 30, // 动画帧之间的时间间隔，值越大，转动幅度越大
+    textHeight: 13,
+    outlineRadius: 3,
+    freezeActive: true || '', // 选中的标签是否继续滚动
+    frontSelect: true || '', // 不选标签云后部的标签
+    initial: [0.1, -0.1],
+    depth: 0.5,
+    decel: 0.95,
+    maxSpeed: 0.03,
+    reverse: true || '', // 是否反向触发
+    fadeIn: 500, // 进入动画时间
+    wheelZoom: false || '' // 是否启用鼠标滚轮
+}
+TagCanvas.Start('tag-cloud-3d', '', tagOption);
+</script>
+
+
+<script src="/blog/assets/google-code-prettify/prettify.js?"></script>
+<script src="/blog/js/app.js?rev=@@hash"></script>
+</body>
+</html>

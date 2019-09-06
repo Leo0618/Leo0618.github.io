@@ -1,0 +1,397 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+<head><meta name="generator" content="Hexo 3.9.0">
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="上帝之手-Work makes the workman">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="theme-version" content="1.2.3">
+    <meta name="root" content="/blog/">
+    <link rel="dns-prefetch" href="https://okfood.vip/blog">
+    <!--SEO-->
+
+<meta name="keywords" content="JavaSE">
+
+
+<meta name="description" content="编程中首先需要明确特定的思维和习惯性的步骤格式：
+写代码
+明确需求。我要做什么？
+
+分析思路。我要怎么做？1,2,3。
+
+确定步骤。每一个思路部分用到哪些语句，方法，和对象。
+
+代码实现。用具体...">
+
+
+<meta name="robots" content="all">
+<meta name="google" content="all">
+<meta name="googlebot" content="all">
+<meta name="verify" content="all">
+    <!--Title-->
+
+<title>
+    
+    认识Java |
+    
+    上帝之手-Work makes the workman
+</title>
+
+<link rel="alternate" href="/blog/atom.xml" title="上帝之手-Work makes the workman" type="application/atom+xml">
+
+
+<link rel="icon" href="/blog/img/avatar_circle.png">
+
+    
+
+<link rel="stylesheet" href="/blog/css/bootstrap.min.css?rev=3.3.7">
+<link rel="stylesheet" href="/blog/css/font-awesome.min.css?rev=4.7.0">
+<link rel="stylesheet" href="/blog/css/style.css?rev=@@hash">
+<link rel="stylesheet" href="/blog/assets/google-code-prettify/prettify.css">
+    
+
+
+
+    
+
+</head></html>
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+<body>
+    <header class="main-header"  style="background-image:url(
+    /blog/img/banner.jpg)"
+     >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/blog/" title='Leo'>
+            <img src="/blog/img/avatar.jpg" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+            
+            <img src="/blog/img/branding.png" alt="博客-Leo" class="img-responsive center-block">
+            
+        </div>
+    </div>
+</header>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                        <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="https://okfood.vip/blog">
+                        上帝之手-Work makes the workman</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/blog/"><i class="fa "></i>
+                                首页</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/blog/categories/Java/"><i class="fa "></i>
+                                Java</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/blog/categories/Android/"><i class="fa "></i>
+                                Android</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/blog/categories/前端/"><i class="fa "></i>
+                                前端</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/blog/categories/后端/"><i class="fa "></i>
+                                后端</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/blog/categories/算法/"><i class="fa "></i>
+                                算法</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/blog/archives/"><i class="fa "></i>
+                                时间轴</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="认识Java">
+            
+            认识Java
+            
+        </h1>
+        <div class="post-meta">
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a class="category-link" href="/blog/categories/Java/">Java</a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            <a class="tag-link" href="/blog/tags/JavaSE/">JavaSE</a>
+            
+        </span>
+    </span>
+    
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta">
+            2014/03/27</span>
+    </span>
+    
+    
+</div>
+        
+        
+    </div>
+    
+    <div class="post-body post-content">
+        <p>编程中首先需要明确特定的思维和习惯性的步骤格式：</p>
+<h2 id="写代码"><a href="#写代码" class="headerlink" title="写代码"></a>写代码</h2><ol>
+<li><p>明确需求。我要做什么？</p>
+</li>
+<li><p>分析思路。我要怎么做？1,2,3。</p>
+</li>
+<li><p>确定步骤。每一个思路部分用到哪些语句，方法，和对象。</p>
+</li>
+<li><p>代码实现。用具体的java语言代码把思路体现出来。</p>
+</li>
+</ol>
+<h2 id="学习新技术的四点"><a href="#学习新技术的四点" class="headerlink" title="学习新技术的四点"></a>学习新技术的四点</h2><ol>
+<li><p>该技术是什么？</p>
+</li>
+<li><p>该技术有什么特点(使用注意)：</p>
+</li>
+<li><p>该技术怎么使用。demo</p>
+</li>
+<li><p>该技术什么时候用？test</p>
+</li>
+</ol>
+<h2 id="java概述"><a href="#java概述" class="headerlink" title="java概述"></a>java概述</h2><p>1991 年Sun公司的James Gosling等人开始开发名称为 Oak 的语言，希望用于控制嵌入在有线电视交换盒、PDA等的微处理器。</p>
+<p>1994年将Oak语言更名为Java。<br>随着Java技术在We方面的不断成熟，已经成为Web应用程序的首选开发语言。<br>是简单易学，完全面向对象，安全可靠，与平台无关的编程语言。</p>
+<h2 id="Java的三种技术架构"><a href="#Java的三种技术架构" class="headerlink" title="Java的三种技术架构"></a>Java的三种技术架构</h2><ul>
+<li><p>JAVAEE：Java Platform Enterprise Edition，开发企业环境下的应用程序，主要针对web程序开发</p>
+</li>
+<li><p>JAVASE：Java Platform Standard Edition，完成桌面应用程序的开发，是其它两者的基础</p>
+</li>
+<li><p>JAVAME：Java Platform Micro Edition，开发电子消费产品和嵌入式设备，如手机中的程序</p>
+</li>
+</ul>
+<h2 id="JDK：Java-Development-Kit"><a href="#JDK：Java-Development-Kit" class="headerlink" title="JDK：Java Development Kit"></a>JDK：Java Development Kit</h2><ul>
+<li><p>java的开发和运行环境，包括java的开发工具和JRE。</p>
+</li>
+<li><p>JDK包含的基本组件包括：</p>
+</li>
+<li><p>javac – 编译器，将源程序转成字节码;</p>
+</li>
+<li><p>jar – 打包工具，将相关的类文件打包成一个文件;</p>
+</li>
+<li><p>javadoc – 文档生成器，从源码注释中提取文档;</p>
+</li>
+<li><p>jdb – debugger，查错工具;</p>
+</li>
+<li><p>java – 运行编译后的java程序（.class后缀的）;</p>
+</li>
+<li><p>appletviewer：小程序浏览器，一种执行HTML文件上的Java小程序的Java浏览器;</p>
+</li>
+<li><p>Javah：产生可以调用Java过程的C过程，或建立能被Java程序调用的C过程的头文件;</p>
+</li>
+<li><p>Javap：Java反汇编器，显示编译类文件中的可访问功能和数据，同时显示字节代码含义;</p>
+</li>
+<li><p>Jconsole: Java进行系统调试和监控的工具.</p>
+</li>
+</ul>
+<h2 id="常用的包"><a href="#常用的包" class="headerlink" title="常用的包"></a>常用的包</h2><ul>
+<li><p>java.lang： 这个是系统的基础类，比如String等都是这里面的，这个包是唯一一个可以不用引入(import)就可以使用的包；</p>
+</li>
+<li><p>java.io： 这里面是所有输入输出有关的类，比如文件操作等；</p>
+</li>
+<li><p>java.nio：为了完善io包中的功能，提高io包中性能而写的一个新包 ，例如NIO非堵塞应用；</p>
+</li>
+<li><p>java.net: 这里面是与网络有关的类，比如URL，URLConnection等；</p>
+</li>
+<li><p>java.util： 这个是系统辅助类，特别是集合类Collection，List，Map等；</p>
+</li>
+<li><p>java.sql： 这个是数据库操作的类，Connection， Statement，ResultSet等；</p>
+</li>
+<li><p>javax.servlet：这个是JSP，Servlet等使用到的类。</p>
+</li>
+</ul>
+<h2 id="JRE：Java-Runtime-Environment"><a href="#JRE：Java-Runtime-Environment" class="headerlink" title="JRE：Java Runtime Environment"></a>JRE：Java Runtime Environment</h2><p>java程序的运行环境，包括java运行的所需的类库、JVM和支持文件。</p>
+<h2 id="JVM：Java-Virtual-Machine"><a href="#JVM：Java-Virtual-Machine" class="headerlink" title="JVM：Java Virtual Machine"></a>JVM：Java Virtual Machine</h2><p>java虚拟机，一种用于计算设备的规范，它是一个虚构出来的计算机，是通过在实际的计算机上仿真模拟各种计算机功能来实现的。Java虚拟机包括一套字节码指令集、一组寄存器、一个栈、一个回收垃圾堆和一个存储方法域。 JVM屏蔽了与具体操作系统平台相关的信息，使Java程序只需生成在Java虚拟机上运行的目标代码（字节码），就可以在多种平台上不加修改地运行。</p>
+<h2 id="Java特点"><a href="#Java特点" class="headerlink" title="Java特点"></a>Java特点</h2><ol>
+<li><p>简单易用、完全面向对象；</p>
+</li>
+<li><p>与平台无关性、可扩展性强；</p>
+</li>
+<li><p>可移植性高、支持分布式编程；</p>
+</li>
+<li><p>健壮、安全可靠并性能优异；</p>
+</li>
+<li><p>支持多线程开发技术；</p>
+</li>
+<li><p>支持动态开发。</p>
+</li>
+</ol>
+
+    </div>
+    
+    <div class="reward" ontouchstart>
+    <div class="reward-wrap">赏
+        <div class="reward-box">
+            
+            <span class="reward-type">
+                <img class="alipay" src="/blog/img/alipay.jpg"><b>支付宝打赏</b>
+            </span>
+            
+            
+            <span class="reward-type">
+                <img class="wechat" src="/blog/img/reward-wepay.jpg"><b>微信打赏</b>
+            </span>
+            
+        </div>
+    </div>
+    <p class="reward-tip">
+        赞赏是不耍流氓的鼓励
+    </p>
+</div>
+    
+    <div class="post-footer">
+        <div>
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+<div class="article-nav prev-next-wrap clearfix">
+    
+    <a href="/blog/2014/03/29/Java基础：上/" class="pre-post btn btn-default" title='Java基础：上'>
+        <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+        <span class="hidden-xs">
+            Java基础：上</span>
+    </a>
+    
+    
+</div>
+
+<div id="comments">
+    
+<p>评论系统未开启，无法评论！</p>
+
+</div>
+
+                </main>
+                
+                    <aside id="article-toc" role="navigation" class="col-md-4">
+    <div class="widget">
+        <h3 class="title">
+            文章目录
+        </h3>
+        
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#写代码"><span class="toc-text">写代码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#学习新技术的四点"><span class="toc-text">学习新技术的四点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#java概述"><span class="toc-text">java概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Java的三种技术架构"><span class="toc-text">Java的三种技术架构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JDK：Java-Development-Kit"><span class="toc-text">JDK：Java Development Kit</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#常用的包"><span class="toc-text">常用的包</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JRE：Java-Runtime-Environment"><span class="toc-text">JRE：Java Runtime Environment</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JVM：Java-Virtual-Machine"><span class="toc-text">JVM：Java Virtual Machine</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Java特点"><span class="toc-text">Java特点</span></a></li></ol>
+        
+    </div>
+</aside>
+                
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+<a id="back-to-top" class="icon-btn hide">
+    <i class="fa fa-chevron-up"></i>
+</a>
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="busuanzi">
+    
+</div>
+            </div>
+            <div class="col-sm-12">
+                <span>Copyright &copy;
+                    2014
+                </span> |
+                <span>
+                    Powered by <a href="https://okfood.vip" class="copyright-links" target="_blank" rel="nofollow">Leo</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="/blog/assets/tagcanvas.min.js?rev=2.9"></script>
+<script>
+var tagOption = {
+    textColour: '#444', // 字体颜色
+    outlineMethod: 'block', // 选中模式
+    outlineColour: '#FFDAB9', // 选中模式的颜色
+    interval: 30 || 30, // 动画帧之间的时间间隔，值越大，转动幅度越大
+    textHeight: 13,
+    outlineRadius: 3,
+    freezeActive: true || '', // 选中的标签是否继续滚动
+    frontSelect: true || '', // 不选标签云后部的标签
+    initial: [0.1, -0.1],
+    depth: 0.5,
+    decel: 0.95,
+    maxSpeed: 0.03,
+    reverse: true || '', // 是否反向触发
+    fadeIn: 500, // 进入动画时间
+    wheelZoom: false || '' // 是否启用鼠标滚轮
+}
+TagCanvas.Start('tag-cloud-3d', '', tagOption);
+</script>
+
+
+<script src="/blog/assets/google-code-prettify/prettify.js?"></script>
+<script src="/blog/js/app.js?rev=@@hash"></script>
+</body>
+</html>

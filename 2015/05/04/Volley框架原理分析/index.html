@@ -1,0 +1,558 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+<head><meta name="generator" content="Hexo 3.9.0">
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="上帝之手-Work makes the workman">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="theme-version" content="1.2.3">
+    <meta name="root" content="/blog/">
+    <link rel="dns-prefetch" href="https://okfood.vip/blog">
+    <!--SEO-->
+
+<meta name="keywords" content="网络框架">
+
+
+<meta name="description" content="1. 功能介绍1.1. VolleyVolley 是 Google 推出的 Android 异步网络请求框架和图片加载框架。在 Google I/O 2013 大会上发布。
+
+名字由来：a bu...">
+
+
+<meta name="robots" content="all">
+<meta name="google" content="all">
+<meta name="googlebot" content="all">
+<meta name="verify" content="all">
+    <!--Title-->
+
+<title>
+    
+    Volley框架原理分析 |
+    
+    上帝之手-Work makes the workman
+</title>
+
+<link rel="alternate" href="/blog/atom.xml" title="上帝之手-Work makes the workman" type="application/atom+xml">
+
+
+<link rel="icon" href="/blog/img/avatar_circle.png">
+
+    
+
+<link rel="stylesheet" href="/blog/css/bootstrap.min.css?rev=3.3.7">
+<link rel="stylesheet" href="/blog/css/font-awesome.min.css?rev=4.7.0">
+<link rel="stylesheet" href="/blog/css/style.css?rev=@@hash">
+<link rel="stylesheet" href="/blog/assets/google-code-prettify/prettify.css">
+    
+
+
+
+    
+
+</head></html>
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+<body>
+    <header class="main-header"  style="background-image:url(
+    /blog/img/banner.jpg)"
+     >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/blog/" title='Leo'>
+            <img src="/blog/img/avatar.jpg" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+            
+            <img src="/blog/img/branding.png" alt="博客-Leo" class="img-responsive center-block">
+            
+        </div>
+    </div>
+</header>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                        <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="https://okfood.vip/blog">
+                        上帝之手-Work makes the workman</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/blog/"><i class="fa "></i>
+                                首页</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/blog/categories/Java/"><i class="fa "></i>
+                                Java</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/blog/categories/Android/"><i class="fa "></i>
+                                Android</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/blog/categories/前端/"><i class="fa "></i>
+                                前端</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/blog/categories/后端/"><i class="fa "></i>
+                                后端</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/blog/categories/算法/"><i class="fa "></i>
+                                算法</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/blog/archives/"><i class="fa "></i>
+                                时间轴</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="Volley框架原理分析">
+            
+            Volley框架原理分析
+            
+        </h1>
+        <div class="post-meta">
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a class="category-link" href="/blog/categories/Android/">Android</a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            <a class="tag-link" href="/blog/tags/网络框架/">网络框架</a>
+            
+        </span>
+    </span>
+    
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta">
+            2015/05/04</span>
+    </span>
+    
+    
+</div>
+        
+        
+    </div>
+    
+    <div class="post-body post-content">
+        <h3 id="1-功能介绍"><a href="#1-功能介绍" class="headerlink" title="1. 功能介绍"></a>1. 功能介绍</h3><h4 id="1-1-Volley"><a href="#1-1-Volley" class="headerlink" title="1.1. Volley"></a>1.1. Volley</h4><p>Volley 是 Google 推出的 Android 异步网络请求框架和图片加载框架。在 Google I/O 2013 大会上发布。</p>
+<blockquote>
+<p>名字由来：a burst or emission of many things or a large amount at once<br>发布演讲时候的配图<br><img src="https://imgconvert.csdnimg.cn/aHR0cDovL2ltZy5ibG9nLmNzZG4ubmV0LzIwMTUwNTA0MTM1MzMzNjA2?x-oss-process=image/format,png" alt="Volley"></p>
+</blockquote>
+<p>从名字由来和配图中无数急促的火箭可以看出 Volley 的特点：特别适合<strong>数据量小，通信频繁</strong>的网络操作。（个人认为 Android 应用中绝大多数的网络操作都属于这种类型）。</p>
+<h4 id="1-2-Volley-的主要特点"><a href="#1-2-Volley-的主要特点" class="headerlink" title="1.2 Volley 的主要特点"></a>1.2 Volley 的主要特点</h4><p>(1). 扩展性强。Volley 中大多是基于接口的设计，可配置性强。<br>(2). 一定程度符合 Http 规范，包括返回 ResponseCode(2xx、3xx、4xx、5xx）的处理，请求头的处理，缓存机制的支持等。并支持重试及优先级定义。<br>(3). 默认 Android2.3 及以上基于 HttpURLConnection，2.3 以下基于 HttpClient 实现，这两者的区别及优劣在<code>4.2.1 Volley</code>中具体介绍。<br>(4). 提供简便的图片加载工具。  </p>
+<h3 id="2-总体设计"><a href="#2-总体设计" class="headerlink" title="2. 总体设计"></a>2. 总体设计</h3><h4 id="2-1-总体设计图"><a href="#2-1-总体设计图" class="headerlink" title="2.1. 总体设计图"></a>2.1. 总体设计图</h4><p><img src="https://imgconvert.csdnimg.cn/aHR0cDovL2ltZy5ibG9nLmNzZG4ubmV0LzIwMTUwNTA0MTM1NDMwNzY0?x-oss-process=image/format,png" alt="总体设计图">  </p>
+<p>上面是 Volley 的总体设计图，主要是通过两种<code>Diapatch Thread</code>不断从<code>RequestQueue</code>中取出请求，根据是否已缓存调用<code>Cache</code>或<code>Network</code>这两类数据获取接口之一，从内存缓存或是服务器取得请求的数据，然后交由<code>ResponseDelivery</code>去做结果分发及回调处理。  </p>
+<h4 id="2-2-Volley-中的概念"><a href="#2-2-Volley-中的概念" class="headerlink" title="2.2. Volley 中的概念"></a>2.2. Volley 中的概念</h4><p>简单介绍一些概念，在<code>详细设计</code>中会仔细介绍。<br>Volley 的调用比较简单，通过 newRequestQueue(…) 函数新建并启动一个请求队列<code>RequestQueue</code>后，只需要往这个<code>RequestQueue</code>不断 add Request 即可。  </p>
+<p><strong>Volley：</strong>Volley 对外暴露的 API，通过 newRequestQueue(…) 函数新建并启动一个请求队列<code>RequestQueue</code>。  </p>
+<p><strong>Request：</strong>表示一个请求的抽象类。<code>StringRequest</code>、<code>JsonRequest</code>、<code>ImageRequest</code> 都是它的子类，表示某种类型的请求。  </p>
+<p><strong>RequestQueue：</strong>表示请求队列，里面包含一个<code>CacheDispatcher</code>(用于处理走缓存请求的调度线程)、<code>NetworkDispatcher</code>数组(用于处理走网络请求的调度线程)，一个<code>ResponseDelivery</code>(返回结果分发接口)，通过 start() 函数启动时会启动<code>CacheDispatcher</code>和<code>NetworkDispatchers</code>。  </p>
+<p><strong>CacheDispatcher：</strong>一个线程，用于调度处理走缓存的请求。启动后会不断从缓存请求队列中取请求处理，队列为空则等待，请求处理结束则将结果传递给<code>ResponseDelivery</code>去执行后续处理。当结果未缓存过、缓存失效或缓存需要刷新的情况下，该请求都需要重新进入<code>NetworkDispatcher</code>去调度处理。  </p>
+<p><strong>NetworkDispatcher：</strong>一个线程，用于调度处理走网络的请求。启动后会不断从网络请求队列中取请求处理，队列为空则等待，请求处理结束则将结果传递给<code>ResponseDelivery</code>去执行后续处理，并判断结果是否要进行缓存。  </p>
+<p><strong>ResponseDelivery：</strong>返回结果分发接口，目前只有基于<code>ExecutorDelivery</code>的在入参 handler 对应线程内进行分发。  </p>
+<p><strong>HttpStack：</strong>处理 Http 请求，返回请求结果。目前 Volley 中有基于 HttpURLConnection 的<code>HurlStack</code>和 基于 Apache HttpClient 的<code>HttpClientStack</code>。  </p>
+<p><strong>Network：</strong>调用<code>HttpStack</code>处理请求，并将结果转换为可被<code>ResponseDelivery</code>处理的<code>NetworkResponse</code>。  </p>
+<p><strong>Cache：</strong>缓存请求结果，Volley 默认使用的是基于 sdcard 的<code>DiskBasedCache</code>。<code>NetworkDispatcher</code>得到请求结果后判断是否需要存储在 Cache，<code>CacheDispatcher</code>会从 Cache 中取缓存结果。  </p>
+<h3 id="3-流程图"><a href="#3-流程图" class="headerlink" title="3. 流程图"></a>3. 流程图</h3><p>Volley 请求流程图<br><img src="https://imgconvert.csdnimg.cn/aHR0cDovL2ltZy5ibG9nLmNzZG4ubmV0LzIwMTUwNTA0MTM1NTA5MTI1?x-oss-process=image/format,png" alt="Volley请求流程图">  </p>
+<blockquote>
+<p><strong>上图是 Volley 请求时的流程图，在  Volley 的发布演讲中给出，我在这里将其用中文重新画出。</strong>   </p>
+</blockquote>
+<h3 id="4-详细设计"><a href="#4-详细设计" class="headerlink" title="4. 详细设计"></a>4. 详细设计</h3><h4 id="4-1-类关系图"><a href="#4-1-类关系图" class="headerlink" title="4.1 类关系图"></a>4.1 类关系图</h4><p><img src="https://imgconvert.csdnimg.cn/aHR0cDovL2ltZy5ibG9nLmNzZG4ubmV0LzIwMTUwNTA0MTM1NzQzMTk0?x-oss-process=image/format,png" alt="类关系图">  </p>
+<p>这是 Volley 框架的主要类关系图   </p>
+<blockquote>
+<p>图中<strong>红色圈内</strong>的部分，组成了 Volley 框架的核心，围绕 RequestQueue 类，将各个功能点以<strong>组合</strong>的方式结合在了一起。各个功能点也都是以<strong>接口</strong>或者<strong>抽象类</strong>的形式提供。<br>红色圈外面的部分，在 Volley 源码中放在了toolbox包中，作为 Volley 为各个功能点提供的默认的具体实现。<br>通过类图我们看出， Volley 有着非常好的拓展性。通过各个功能点的接口，我们可以给出自定义的，更符合我们需求的具体实现。</p>
+<p><strong>多用组合，少用继承；针对接口编程，不针对具体实现编程。</strong>  </p>
+<p><strong>优秀框架的设计，令人叫绝，受益良多。</strong>  </p>
+</blockquote>
+<h3 id="4-2-核心类功能介绍"><a href="#4-2-核心类功能介绍" class="headerlink" title="4.2 核心类功能介绍"></a>4.2 核心类功能介绍</h3><h4 id="4-2-1-Volley-java"><a href="#4-2-1-Volley-java" class="headerlink" title="4.2.1 Volley.java"></a>4.2.1 Volley.java</h4><p>这个和 Volley 框架同名的类，其实是个工具类，作用是构建一个可用于添加网络请求的<code>RequestQueue</code>对象。  </p>
+<p><strong>(1). 主要函数</strong>   </p>
+<p>Volley.java 有两个重载的静态方法。  </p>
+<pre><code class="java">public static RequestQueue newRequestQueue(Context context)
+
+public static RequestQueue newRequestQueue(Context context, HttpStack stack)</code></pre>
+<p>第一个方法的实现调用了第二个方法，传 HttpStack 参数为 null。<br>第二个方法中，如果 HttpStatck 参数为 null，则如果系统在 Gingerbread 及之后(即 API Level &gt;= 9)，采用基于 HttpURLConnection 的 HurlStack，如果小于 9，采用基于 HttpClient 的 HttpClientStack。  </p>
+<pre><code class="java">if (stack == null) {
+    if (Build.VERSION.SDK_INT &gt;= 9) {
+        stack = new HurlStack();
+    } else {
+        stack = new HttpClientStack(AndroidHttpClient.newInstance(userAgent));
+    }
+}</code></pre>
+<p>得到了 HttpStack,然后通过它构造一个代表网络（Network）的具体实现<code>BasicNetwork</code>。<br>接着构造一个代表缓存（Cache）的基于 Disk 的具体实现<code>DiskBasedCache</code>。<br>最后将网络（Network）对象和缓存（Cache）对象传入构建一个 RequestQueue，启动这个 RequestQueue，并返回。</p>
+<pre><code class="java">Network network = new BasicNetwork(stack);
+RequestQueue queue = new RequestQueue(new DiskBasedCache(cacheDir), network);
+queue.start();
+return queue;</code></pre>
+<blockquote>
+<p>我们平时大多采用<code>Volly.newRequestQueue(context)</code>的默认实现，构建RequestQueue。<br>通过源码可以看出，我们可以抛开 Volley 工具类构建自定义的RequestQueue，采用自定义的<code>HttpStatck</code>，采用自定义的<code>Network</code>实现，采用自定义的Cache实现等来构建<code>RequestQueue</code>。<br><strong>优秀框架的高可拓展性的魅力来源于此啊</strong></p>
+</blockquote>
+<p><strong>(2). HttpURLConnection 和 AndroidHttpClient(HttpClient 的封装)如何选择及原因：</strong><br>在 Froyo(2.2) 之前，HttpURLConnection 有个重大 Bug，调用 close() 函数会影响连接池，导致连接复用失效，所以在 Froyo 之前使用 HttpURLConnection 需要关闭 keepAlive。<br>另外在 Gingerbread(2.3) HttpURLConnection 默认开启了 gzip 压缩，提高了 HTTPS 的性能，Ice Cream Sandwich(4.0) HttpURLConnection 支持了请求结果缓存。<br>再加上 HttpURLConnection 本身 API 相对简单，所以对 Android 来说，在 2.3 之后建议使用 HttpURLConnection，之前建议使用 AndroidHttpClient。  </p>
+<p><strong>(3). 关于 User Agent</strong><br>通过代码我们发现如果是使用 AndroidHttpClient，Volley 还会将请求头中的 User-Agent 字段设置为 App 的 ${packageName}/${versionCode}，如果异常则使用 “volley/0”，不过这个获取 User-Agent 的操作应该放到 if else 内部更合适。而对于 HttpURLConnection 却没有任何操作，为什么呢？<br>如果用 <a href="http://www.trinea.cn/android/android-network-sniffer/" target="_blank" rel="noopener">Fiddler 或 Charles</a> 对数据抓包我们会发现，我们会发现 HttpURLConnection 默认是有 User-Agent 的，类似：  </p>
+<pre><code class="xml">Dalvik/1.6.0 (Linux; U; Android 4.1.1; Google Nexus 4 - 4.1.1 - API 16 - 768x1280_1 Build/JRO03S)</code></pre>
+<p>经常用 WebView 的同学会也许会发现似曾相识，是的，WebView 默认的 User-Agent 也是这个。实际在请求发出之前，会检测 User-Agent 是否为空，如果不为空，则加上系统默认 User-Agent。在 Android 2.1 之后，我们可以通过</p>
+<pre><code class="java">String userAgent = System.getProperty(&quot;http.agent&quot;);</code></pre>
+<p>得到系统默认的 User-Agent，Volley 如果希望自定义 User-Agent，可在自定义 Request 中重写 getHeaders() 函数</p>
+<pre><code class="java">@Override
+public Map&lt;String, String&gt; getHeaders() throws AuthFailureError {
+    // self-defined user agent
+    Map&lt;String, String&gt; headerMap = new HashMap&lt;String, String&gt;();
+    headerMap.put(&quot;User-Agent&quot;, &quot;android-open-project-analysis/1.0&quot;);
+    return headerMap;
+}</code></pre>
+<h4 id="4-2-2-Request-java"><a href="#4-2-2-Request-java" class="headerlink" title="4.2.2 Request.java"></a>4.2.2 Request.java</h4><p>代表一个网络请求的抽象类。我们通过构建一个<code>Request</code>类的非抽象子类(StringRequest、JsonRequest、ImageRequest或自定义)对象，并将其加入到·RequestQueue·中来完成一次网络请求操作。<br>Volley 支持 8 种 Http 请求方式 <strong>GET, POST, PUT, DELETE, HEAD, OPTIONS, TRACE, PATCH</strong><br>Request 类中包含了请求 url，请求请求方式，请求 Header，请求 Body，请求的优先级等信息。  </p>
+<p><strong>因为是抽象类，子类必须重写的两个方法。</strong>  </p>
+<pre><code class="java">abstract protected Response&lt;T&gt; parseNetworkResponse(NetworkResponse response);</code></pre>
+<p>子类重写此方法，将网络返回的原生字节内容，转换成合适的类型。此方法会在工作线程中被调用。  </p>
+<pre><code class="java">abstract protected void deliverResponse(T response);</code></pre>
+<p>子类重写此方法，将解析成合适类型的内容传递给它们的监听回调。</p>
+<p><strong>以下两个方法也经常会被重写</strong></p>
+<pre><code class="java">public byte[] getBody()</code></pre>
+<p>重写此方法，可以构建用于 POST、PUT、PATCH 请求方式的 Body 内容。</p>
+<pre><code class="java">protected Map&lt;String, String&gt; getParams()</code></pre>
+<p>在上面<code>getBody</code>函数没有被重写情况下，此方法的返回值会被 key、value 分别编码后拼装起来转换为字节码作为 Body 内容。  </p>
+<h4 id="4-2-3-RequestQueue-java"><a href="#4-2-3-RequestQueue-java" class="headerlink" title="4.2.3 RequestQueue.java"></a>4.2.3 RequestQueue.java</h4><p>Volley 框架的核心类，将请求Request加入到一个运行的<code>RequestQueue</code>中，来完成请求操作。</p>
+<h4 id="1-主要成员变量"><a href="#1-主要成员变量" class="headerlink" title="(1). 主要成员变量"></a>(1). 主要成员变量</h4><p>RequestQueue 中维护了两个<strong>基于优先级</strong>的 Request 队列，缓存请求队列和网络请求队列。<br>放在缓存请求队列中的 Request，将通过缓存获取数据；放在网络请求队列中的 Request，将通过网络获取数据。  </p>
+<pre><code class="java">private final PriorityBlockingQueue&lt;Request&lt;?&gt;&gt; mCacheQueue = new PriorityBlockingQueue&lt;Request&lt;?&gt;&gt;();
+private final PriorityBlockingQueue&lt;Request&lt;?&gt;&gt; mNetworkQueue = new PriorityBlockingQueue&lt;Request&lt;?&gt;&gt;();</code></pre>
+<p>维护了一个正在进行中，尚未完成的请求集合。   </p>
+<pre><code class="java">private final Set&lt;Request&lt;?&gt;&gt; mCurrentRequests = new HashSet&lt;Request&lt;?&gt;&gt;();</code></pre>
+<p>维护了一个等待请求的集合，如果一个请求正在被处理并且可以被缓存，后续的相同 url 的请求，将进入此等待队列。  </p>
+<pre><code class="java">private final Map&lt;String, Queue&lt;Request&lt;?&gt;&gt;&gt; mWaitingRequests = new HashMap&lt;String, Queue&lt;Request&lt;?&gt;&gt;&gt;();</code></pre>
+<h4 id="2-启动队列"><a href="#2-启动队列" class="headerlink" title="(2). 启动队列"></a>(2). 启动队列</h4><p>创建出 RequestQueue 以后，调用 start 方法，启动队列。  </p>
+<pre><code class="java">/**
+ * Starts the dispatchers in this queue.
+ */
+public void start() {
+    stop();  // Make sure any currently running dispatchers are stopped.
+    // Create the cache dispatcher and start it.
+    mCacheDispatcher = new CacheDispatcher(mCacheQueue, mNetworkQueue, mCache, mDelivery);
+    mCacheDispatcher.start();
+
+    // Create network dispatchers (and corresponding threads) up to the pool size.
+    for (int i = 0; i &lt; mDispatchers.length; i++) {
+        NetworkDispatcher networkDispatcher = new NetworkDispatcher(mNetworkQueue, mNetwork,
+                mCache, mDelivery);
+        mDispatchers[i] = networkDispatcher;
+        networkDispatcher.start();
+    }
+}</code></pre>
+<p>start 方法中，开启一个<strong>缓存调度线程<code>CacheDispatcher</code></strong>和 n 个<strong>网络调度线程<code>NetworkDispatcher</code></strong>，这里 n 默认为4，存在优化的余地，比如可以根据 CPU 核数以及网络类型计算更合适的并发数。<br>缓存调度线程不断的从缓存请求队列中取出 Request 去处理，网络调度线程不断的从网络请求队列中取出 Request 去处理。  </p>
+<h4 id="3-加入请求"><a href="#3-加入请求" class="headerlink" title="(3). 加入请求"></a>(3). 加入请求</h4><pre><code class="java">public &lt;T&gt; Request&lt;T&gt; add(Request&lt;T&gt; request);</code></pre>
+<p>流程图如下：<br><img src="https://imgconvert.csdnimg.cn/aHR0cDovL2ltZy5ibG9nLmNzZG4ubmV0LzIwMTUwNTA0MTM1ODQ2NDYy?x-oss-process=image/format,png" alt="加入请求流程图">  </p>
+<h4 id="4-请求完成"><a href="#4-请求完成" class="headerlink" title="(4). 请求完成"></a>(4). 请求完成</h4><pre><code class="java">void finish(Request&lt;?&gt; request)</code></pre>
+<p>Request 请求结束  </p>
+<blockquote>
+<p>(1). 首先从正在进行中请求集合<code>mCurrentRequests</code>中移除该请求。<br>(2). 然后查找请求等待集合<code>mWaitingRequests</code>中是否存在等待的请求，如果存在，则将等待队列移除，并将等待队列所有的请求添加到缓存请求队列中，让缓存请求处理线程<code>CacheDispatcher</code>自动处理。  </p>
+</blockquote>
+<h4 id="5-请求取消"><a href="#5-请求取消" class="headerlink" title="(5). 请求取消"></a>(5). 请求取消</h4><pre><code class="java">public void cancelAll(RequestFilter filter)
+public void cancelAll(final Object tag)</code></pre>
+<p>取消当前请求集合中所有符合条件的请求。<br>filter 参数表示可以按照自定义的过滤器过滤需要取消的请求。<br>tag 表示按照<code>Request.setTag</code>设置好的 tag 取消请求，比如同属于某个 Activity 的。  </p>
+<h4 id="4-2-4-CacheDispatcher-java"><a href="#4-2-4-CacheDispatcher-java" class="headerlink" title="4.2.4 CacheDispatcher.java"></a>4.2.4 CacheDispatcher.java</h4><p>一个线程，用于调度处理走缓存的请求。启动后会不断从缓存请求队列中取请求处理，队列为空则等待，请求处理结束则将结果传递给<code>ResponseDelivery</code> 去执行后续处理。当结果未缓存过、缓存失效或缓存需要刷新的情况下，该请求都需要重新进入<code>NetworkDispatcher</code>去调度处理。  </p>
+<h4 id="1-成员变量"><a href="#1-成员变量" class="headerlink" title="(1). 成员变量"></a>(1). 成员变量</h4><p><code>BlockingQueue&lt;Request&lt;?&gt;&gt; mCacheQueue</code> 缓存请求队列<br><code>BlockingQueue&lt;Request&lt;?&gt;&gt; mNetworkQueue</code> 网络请求队列<br><code>Cache mCache</code> 缓存类，代表了一个可以获取请求结果，存储请求结果的缓存<br><code>ResponseDelivery mDelivery</code> 请求结果传递类  </p>
+<h4 id="2-处理流程图"><a href="#2-处理流程图" class="headerlink" title="(2). 处理流程图"></a>(2). 处理流程图</h4><p><img src="https://imgconvert.csdnimg.cn/aHR0cDovL2ltZy5ibG9nLmNzZG4ubmV0LzIwMTUwNTA0MTM1OTE3OTA4?x-oss-process=image/format,png" alt="缓存调度线程处理流程图">  </p>
+<h4 id="4-2-5-NetworkDispatcher-java"><a href="#4-2-5-NetworkDispatcher-java" class="headerlink" title="4.2.5 NetworkDispatcher.java"></a>4.2.5 NetworkDispatcher.java</h4><p>一个线程，用于调度处理走网络的请求。启动后会不断从网络请求队列中取请求处理，队列为空则等待，请求处理结束则将结果传递给 ResponseDelivery 去执行后续处理，并判断结果是否要进行缓存。</p>
+<h4 id="1-成员变量-1"><a href="#1-成员变量-1" class="headerlink" title="(1). 成员变量"></a>(1). 成员变量</h4><p><code>BlockingQueue&lt;Request&lt;?&gt;&gt; mQueue</code> 网络请求队列<br><code>Network mNetwork</code> 网络类，代表了一个可以执行请求的网络<br><code>Cache mCache</code>  缓存类，代表了一个可以获取请求结果，存储请求结果的缓存<br><code>ResponseDelivery mDelivery</code> 请求结果传递类，可以传递请求的结果或者错误到调用者  </p>
+<h4 id="2-处理流程图-1"><a href="#2-处理流程图-1" class="headerlink" title="(2). 处理流程图"></a>(2). 处理流程图</h4><p><img src="https://imgconvert.csdnimg.cn/aHR0cDovL2ltZy5ibG9nLmNzZG4ubmV0LzIwMTUwNTA0MTM1NzM2MTcx?x-oss-process=image/format,png" alt="网络调度线程处理流程图">  </p>
+<h4 id="4-2-6-Cache-java"><a href="#4-2-6-Cache-java" class="headerlink" title="4.2.6 Cache.java"></a>4.2.6 Cache.java</h4><p>缓存接口，代表了一个可以获取请求结果，存储请求结果的缓存。</p>
+<h4 id="1-主要方法："><a href="#1-主要方法：" class="headerlink" title="(1). 主要方法："></a>(1). 主要方法：</h4><p><code>public Entry get(String key);</code> 通过 key 获取请求的缓存实体<br><code>public void put(String key, Entry entry);</code> 存入一个请求的缓存实体<br><code>public void remove(String key);</code> 移除指定的缓存实体<br><code>public void clear();</code> 清空缓存  </p>
+<h4 id="2-代表缓存实体的内部类-Entry"><a href="#2-代表缓存实体的内部类-Entry" class="headerlink" title="(2). 代表缓存实体的内部类 Entry"></a>(2). 代表缓存实体的内部类 Entry</h4><p>成员变量和方法<br><code>byte[] data</code> 请求返回的数据（Body 实体）<br><code>String etag</code> Http 响应首部中用于缓存新鲜度验证的 ETag<br><code>long serverDate</code> Http 响应首部中的响应产生时间<br><code>long ttl</code> 缓存的过期时间<br><code>long softTtl</code> 缓存的新鲜时间<br><code>Map&lt;String, String&gt; responseHeaders</code> 响应的 Headers<br><code>boolean isExpired()</code> 判断缓存是否过期，过期缓存不能继续使用<br><code>boolean refreshNeeded()</code> 判断缓存是否新鲜，不新鲜的缓存需要发到服务端做新鲜度的检测  </p>
+<h4 id="4-2-7-DiskBasedCache-java"><a href="#4-2-7-DiskBasedCache-java" class="headerlink" title="4.2.7 DiskBasedCache.java"></a>4.2.7 DiskBasedCache.java</h4><p>继承 Cache 类，基于 Disk 的缓存实现类。</p>
+<h4 id="1-主要方法：-1"><a href="#1-主要方法：-1" class="headerlink" title="(1). 主要方法："></a>(1). 主要方法：</h4><p><code>public synchronized void initialize()</code> 初始化，扫描缓存目录得到所有缓存数据摘要信息放入内存。<br><code>public synchronized Entry get(String key)</code> 从缓存中得到数据。先从摘要信息中得到摘要信息，然后读取缓存数据文件得到内容。<br><code>public synchronized void put(String key, Entry entry)</code> 将数据存入缓存内。先检查缓存是否会满，会则先删除缓存中部分数据，然后再新建缓存文件。<br><code>private void pruneIfNeeded(int neededSpace)</code> 检查是否能再分配 neededSpace 字节的空间，如果不能则删除缓存中部分数据。<br><code>public synchronized void clear()</code> 清空缓存。<br><code>public synchronized void remove(String key)</code> 删除缓存中某个元素。  </p>
+<h4 id="2-CacheHeader-类"><a href="#2-CacheHeader-类" class="headerlink" title="(2). CacheHeader 类"></a>(2). CacheHeader 类</h4><p>CacheHeader 是缓存文件摘要信息，存储在缓存文件的头部，与上面的<code>Cache.Entry</code>相似。  </p>
+<h4 id="4-2-8-NoCache-java"><a href="#4-2-8-NoCache-java" class="headerlink" title="4.2.8 NoCache.java"></a>4.2.8 NoCache.java</h4><p>继承 Cache 类，不做任何操作的缓存实现类，可将它作为构建<code>RequestQueue</code>的参数以实现一个不带缓存的请求队列。  </p>
+<h4 id="4-2-9-Network-java"><a href="#4-2-9-Network-java" class="headerlink" title="4.2.9 Network.java"></a>4.2.9 Network.java</h4><p>代表网络的接口，处理网络请求。<br>唯一的方法，用于执行特定请求。  </p>
+<pre><code class="java">public NetworkResponse performRequest(Request&lt;?&gt; request) throws VolleyError;</code></pre>
+<h4 id="4-2-10-NetworkResponse-java"><a href="#4-2-10-NetworkResponse-java" class="headerlink" title="4.2.10 NetworkResponse.java"></a>4.2.10 NetworkResponse.java</h4><p><code>Network</code>中方法 performRequest 的返回值，<code>Request</code>的 parseNetworkResponse(…) 方法入参，是 Volley 中用于内部 Response 转换的一级。<br>封装了网络请求响应的 StatusCode，Headers 和 Body 等。  </p>
+<h4 id="1-成员变量-2"><a href="#1-成员变量-2" class="headerlink" title="(1). 成员变量"></a>(1). 成员变量</h4><p><code>int statusCode</code> Http 响应状态码<br><code>byte[] data</code> Body 数据<br><code>Map&lt;String, String&gt; headers</code> 响应 Headers<br><code>boolean notModified</code> 表示是否为 304 响应<br><code>long networkTimeMs</code> 请求耗时  </p>
+<h4 id="2-Volley-的内部-Response-转换流程图"><a href="#2-Volley-的内部-Response-转换流程图" class="headerlink" title="(2). Volley 的内部 Response 转换流程图"></a>(2). Volley 的内部 Response 转换流程图</h4><p><img src="https://imgconvert.csdnimg.cn/aHR0cDovL2ltZy5ibG9nLmNzZG4ubmV0LzIwMTUwNTA0MTQwMDI0MDQ3?x-oss-process=image/format,png" alt="Volley"><br>从上到下表示从得到数据后一步步的处理，箭头旁的注释表示该步处理后的实体类。  </p>
+<h4 id="4-2-11-BasicNetwork-java"><a href="#4-2-11-BasicNetwork-java" class="headerlink" title="4.2.11 BasicNetwork.java"></a>4.2.11 BasicNetwork.java</h4><p>实现 Network，Volley 中默认的网络接口实现类。调用<code>HttpStack</code>处理请求，并将结果转换为可被<code>ResponseDelivery</code>处理的<code>NetworkResponse</code>。<br>主要实现了以下功能：<br>(1). 利用 HttpStack 执行网络请求。<br>(2). 如果 Request 中带有实体信息，如 Etag,Last-Modify 等，则进行缓存新鲜度的验证，并处理 304（Not Modify）响应。<br>(3). 如果发生超时，认证失败等错误，进行重试操作，直到成功、抛出异常(不满足重试策略等)结束。  </p>
+<h4 id="4-2-12-HttpStack-java"><a href="#4-2-12-HttpStack-java" class="headerlink" title="4.2.12 HttpStack.java"></a>4.2.12 HttpStack.java</h4><p>用于处理 Http 请求，返回请求结果的接口。目前 Volley 中的实现有基于 HttpURLConnection 的 HurlStack 和 基于 Apache HttpClient 的 HttpClientStack。<br>唯一方法，执行请求  </p>
+<pre><code class="java">public HttpResponse performRequest(Request&lt;?&gt; request, Map&lt;String, String&gt; additionalHeaders)
+        throws IOException, AuthFailureError;</code></pre>
+<p>执行 Request 代表的请求，第二个参数表示发起请求之前，添加额外的请求 Headers。  </p>
+<h4 id="4-2-13-HttpClientStack-java"><a href="#4-2-13-HttpClientStack-java" class="headerlink" title="4.2.13 HttpClientStack.java"></a>4.2.13 HttpClientStack.java</h4><p>实现 HttpStack 接口，利用 Apache 的 HttpClient 进行各种请求方式的请求。<br>基本就是 org.apache.http 包下面相关类的常见用法，不做详解，不过与下面 HttpURLConnection 做下对比就能发现 HttpURLConnection 的 API 相对简单的多。  </p>
+<h4 id="4-2-14-HurlStack-java"><a href="#4-2-14-HurlStack-java" class="headerlink" title="4.2.14 HurlStack.java"></a>4.2.14 HurlStack.java</h4><p>实现 HttpStack 接口，利用 Java 的 HttpURLConnection 进行各种请求方式的请求。  </p>
+<h4 id="4-2-15-Response-java"><a href="#4-2-15-Response-java" class="headerlink" title="4.2.15 Response.java"></a>4.2.15 Response.java</h4><p>封装了经过解析后的数据，用于传输。并且有两个内部接口 Listener 和 ErrorListener 分别可表示请求失败和成功后的回调。<br>Response 的构造函数被私有化，而通过两个函数名更易懂的静态方法构建对象。  </p>
+<h4 id="4-2-16-ByteArrayPool-java"><a href="#4-2-16-ByteArrayPool-java" class="headerlink" title="4.2.16 ByteArrayPool.java"></a>4.2.16 ByteArrayPool.java</h4><p>byte[] 的回收池，用于 byte[] 的回收再利用，减少了内存的分配和回收。<br>主要通过一个元素长度从小到大排序的<code>ArrayList</code>作为 byte[] 的缓存，另有一个按使用时间先后排序的<code>ArrayList</code>属性用于缓存满时清理元素。  </p>
+<pre><code class="java">public synchronized void returnBuf(byte[] buf)</code></pre>
+<p>将用过的 byte[] 回收，根据 byte[] 长度按照从小到大的排序将 byte[] 插入到缓存中合适位置。  </p>
+<pre><code class="java">public synchronized byte[] getBuf(int len)</code></pre>
+<p>获取长度不小于 len 的 byte[]，遍历缓存，找出第一个长度大于传入参数<code>len</code>的 byte[]，并返回；如果最终没有合适的byte[]，new 一个返回。  </p>
+<pre><code class="java">private synchronized void trim()</code></pre>
+<p>当缓存的 byte 超过预先设置的大小时，按照先进先出的顺序删除最早的 byte[]。  </p>
+<h4 id="4-2-17-PoolingByteArrayOutputStream-java"><a href="#4-2-17-PoolingByteArrayOutputStream-java" class="headerlink" title="4.2.17 PoolingByteArrayOutputStream.java"></a>4.2.17 PoolingByteArrayOutputStream.java</h4><p>继承ByteArrayOutputStream，原始 ByteArrayOutputStream 中用于接受写入 bytes 的 buf，每次空间不足时便会 new 更大容量的 byte[]，而 PoolingByteArrayOutputStream 使用了 ByteArrayPool 作为 Byte[] 缓存来减少这种操作，从而提高性能。  </p>
+<h4 id="4-2-18-HttpHeaderParser-java"><a href="#4-2-18-HttpHeaderParser-java" class="headerlink" title="4.2.18 HttpHeaderParser.java"></a>4.2.18 HttpHeaderParser.java</h4><p>Http header 的解析工具类，在 Volley 中主要作用是用于解析 Header 从而判断返回结果是否需要缓存，如果需要返回 Header 中相关信息。<br>有三个方法  </p>
+<pre><code class="java">public static long parseDateAsEpoch(String dateStr)</code></pre>
+<p>解析时间，将 RFC1123 的时间格式，解析成 epoch 时间</p>
+<pre><code class="java">public static String parseCharset(Map&lt;String, String&gt; headers)</code></pre>
+<p>解析编码集，在 Content-Type 首部中获取编码集，如果没有找到，默认返回 ISO-8859-1</p>
+<pre><code class="java">public static Cache.Entry parseCacheHeaders(NetworkResponse response)</code></pre>
+<p><strong>比较重要的方法</strong>，通过网络响应中的缓存控制 Header 和 Body 内容，构建缓存实体。如果 Header 的 Cache-Control 字段含有<code>no-cache</code>或<code>no-store</code>表示不缓存，返回 null。<br>(1). 根据 Date 首部，获取响应生成时间<br>(2). 根据 ETag 首部，获取响应实体标签<br>(3). 根据 Cache－Control 和 Expires 首部，计算出缓存的过期时间，和缓存的新鲜度时间</p>
+<blockquote>
+<p>两点需要说明下：<br>1.没有处理<code>Last-Modify</code>首部，而是处理存储了<code>Date</code>首部，并在后续的新鲜度验证时，使用<code>Date</code>来构建<code>If-Modified-Since</code>。<br>这与 Http 1.1 的语义有些违背。<br>2.计算过期时间，Cache－Control 首部优先于 Expires 首部。  </p>
+</blockquote>
+<h4 id="4-2-19-RetryPolicy-java"><a href="#4-2-19-RetryPolicy-java" class="headerlink" title="4.2.19 RetryPolicy.java"></a>4.2.19 RetryPolicy.java</h4><p>重试策略接口<br>有三个方法：  </p>
+<pre><code class="java">public int getCurrentTimeout();</code></pre>
+<p>获取当前请求用时（用于Log）</p>
+<pre><code class="java">public int getCurrentRetryCount();</code></pre>
+<p>获取已经重试的次数（用于Log）</p>
+<pre><code class="java">public void retry(VolleyError error) throws VolleyError;</code></pre>
+<p>确定是否重试，参数为这次异常的具体信息。在请求异常时此接口会被调用，可在此函数实现中抛出传入的异常表示停止重试。  </p>
+<h4 id="4-2-20-DefaultRetryPolicy-java"><a href="#4-2-20-DefaultRetryPolicy-java" class="headerlink" title="4.2.20 DefaultRetryPolicy.java"></a>4.2.20 DefaultRetryPolicy.java</h4><p>实现 RetryPolicy，Volley 默认的重试策略实现类。主要通过在 retry(…) 函数中判断重试次数是否达到上限确定是否继续重试。<br>其中<code>mCurrentTimeoutMs</code>变量表示已经重试次数。<br><code>mBackoffMultiplier</code>表示每次重试之前的 timeout 该乘以的因子。<br><code>mCurrentTimeoutMs</code>变量表示当前重试的 timeout 时间，会以<code>mBackoffMultiplier</code>作为因子累计前几次重试的 timeout。  </p>
+<h4 id="4-2-21-ResponseDelivery-java"><a href="#4-2-21-ResponseDelivery-java" class="headerlink" title="4.2.21 ResponseDelivery.java"></a>4.2.21 ResponseDelivery.java</h4><p>请求结果的传输接口，用于传递请求结果或者请求错误。<br>有三个方法：  </p>
+<pre><code class="java">public void postResponse(Request&lt;?&gt; request, Response&lt;?&gt; response);</code></pre>
+<p>此方法用于传递请求结果，<code>request</code> 和 <code>response</code> 参数分别表示请求信息和返回结果信息。  </p>
+<pre><code class="java">public void postResponse(Request&lt;?&gt; request, Response&lt;?&gt; response, Runnable runnable);</code></pre>
+<p>此方法用于传递请求结果，并在完成传递后执行 Runnable。</p>
+<pre><code class="java">public void postError(Request&lt;?&gt; request, VolleyError error);</code></pre>
+<p>此方法用于传输请求错误。  </p>
+<h4 id="4-2-22-ExecutorDelivery-java"><a href="#4-2-22-ExecutorDelivery-java" class="headerlink" title="4.2.22 ExecutorDelivery.java"></a>4.2.22 ExecutorDelivery.java</h4><p>请求结果传输接口具体实现类。<br>在 Handler 对应线程中传输缓存调度线程或者网络调度线程中产生的请求结果或请求错误，会在请求成功的情况下调用 Request.deliverResponse(…) 函数，失败时调用 Request.deliverError(…) 函数。  </p>
+<h4 id="4-2-23-StringRequest-java"><a href="#4-2-23-StringRequest-java" class="headerlink" title="4.2.23 StringRequest.java"></a>4.2.23 StringRequest.java</h4><p>继承 Request 类,代表了一个返回值为 String 的请求。将网络返回的结果数据解析为 String 类型。通过构造函数的 listener 传参，支持请求成功后的 onResponse(…) 回调。  </p>
+<h4 id="4-2-24-JsonRequest-java"><a href="#4-2-24-JsonRequest-java" class="headerlink" title="4.2.24 JsonRequest.java"></a>4.2.24 JsonRequest.java</h4><p>抽象类，继承自 Request，代表了 body 为 JSON 的请求。提供了构建 JSON 请求参数的方法。  </p>
+<h4 id="4-2-25-JsonObjectRequest-java"><a href="#4-2-25-JsonObjectRequest-java" class="headerlink" title="4.2.25 JsonObjectRequest.java"></a>4.2.25 JsonObjectRequest.java</h4><p>继承自 JsonRequest，将网络返回的结果数据解析为 JSONObject 类型。  </p>
+<h4 id="4-2-26-JsonArrayRequest-java"><a href="#4-2-26-JsonArrayRequest-java" class="headerlink" title="4.2.26 JsonArrayRequest.java"></a>4.2.26 JsonArrayRequest.java</h4><p>继承自 JsonRequest，将网络返回的结果数据解析为 JSONArray 类型。  </p>
+<h4 id="4-2-27-ImageRequest-java"><a href="#4-2-27-ImageRequest-java" class="headerlink" title="4.2.27 ImageRequest.java"></a>4.2.27 ImageRequest.java</h4><p>继承 Request 类，代表了一个返回值为 Image 的请求。将网络返回的结果数据解析为 Bitmap 类型。<br>可以设置图片的最大宽度和最大高度，并计算出合适尺寸返回。每次最多解析一张图片防止 OOM。  </p>
+<h4 id="4-2-28-ImageLoader-java"><a href="#4-2-28-ImageLoader-java" class="headerlink" title="4.2.28 ImageLoader.java"></a>4.2.28 ImageLoader.java</h4><p>封装了 ImageRequst 的方便使用的图片加载工具类。 </p>
+<blockquote>
+<p>1.可以设置自定义的<code>ImageCache</code>，可以是内存缓存，也可以是 Disk 缓存，将获取的图片缓存起来，重复利用，减少请求。<br>2.可以定义图片请求过程中显示的图片和请求失败后显示的图片。<br>3.相同请求（相同地址，相同大小）只发送一个，可以避免重复请求。<br>// TODO  </p>
+</blockquote>
+<h4 id="4-2-29-NetworkImageView-java"><a href="#4-2-29-NetworkImageView-java" class="headerlink" title="4.2.29 NetworkImageView.java"></a>4.2.29 NetworkImageView.java</h4><p>利用 ImageLoader，可以加载网络图片的 ImageView<br>有三个公开的方法：  </p>
+<pre><code class="java">public void setDefaultImageResId(int defaultImage)</code></pre>
+<p>设置默认图片，加载图片过程中显示。  </p>
+<pre><code class="java">public void setErrorImageResId(int errorImage)</code></pre>
+<p>设置错误图片，加载图片失败后显示。  </p>
+<pre><code class="java">public void setImageUrl(String url, ImageLoader imageLoader)</code></pre>
+<p>设置网络图片的 Url 和 ImageLoader，将利用这个 ImageLoader 去获取网络图片。  </p>
+<blockquote>
+<p>如果有新的图片加载请求，会把这个ImageView上旧的加载请求取消。  </p>
+</blockquote>
+<h4 id="4-2-30-ClearCacheRequest-java"><a href="#4-2-30-ClearCacheRequest-java" class="headerlink" title="4.2.30 ClearCacheRequest.java"></a>4.2.30 ClearCacheRequest.java</h4><p>用于人为清空 Http 缓存的请求。<br>添加到 RequestQueue 后能很快执行，因为优先级很高，为<code>Priority.IMMEDIATE</code>。并且清空缓存的方法<code>mCache.clear()</code>写在了<code>isCanceled()</code>方法体中，能最早的得到执行。  </p>
+<p>ClearCacheRequest 的写法不敢苟同，目前看来唯一的好处就是可以将清空缓存操作也当做一个请求。而在<code>isCanceled()</code>中做清空操作本身就造成了歧义，不看源码没人知道在<code>NetworkDispatcher</code> run 方法循环的过程中，<code>isCanceled()</code>这个读操作竟然做了可能造成缓存被清空。只能跟源码的解释一样当做一个 Hack 操作。  </p>
+<h4 id="4-2-31-Authenticator-java"><a href="#4-2-31-Authenticator-java" class="headerlink" title="4.2.31 Authenticator.java"></a>4.2.31 Authenticator.java</h4><p>身份认证接口，用于基本认证或者摘要认证。这个类是 Volley 用于和身份验证打通的接口，比如 OAuth，不过目前的使用不是特别广泛和 Volley 的内部结合也不是特别紧密。  </p>
+<h4 id="4-2-32-AndroidAuthenticator-java"><a href="#4-2-32-AndroidAuthenticator-java" class="headerlink" title="4.2.32 AndroidAuthenticator.java"></a>4.2.32 AndroidAuthenticator.java</h4><p>继承 Authenticator，基于 Android AccountManager 的认证交互实现类。  </p>
+<h4 id="4-2-33-VolleyLog-java"><a href="#4-2-33-VolleyLog-java" class="headerlink" title="4.2.33 VolleyLog.java"></a>4.2.33 VolleyLog.java</h4><p>Volley 的 Log 工具类。  </p>
+<h4 id="4-2-34-VolleyError-java"><a href="#4-2-34-VolleyError-java" class="headerlink" title="4.2.34 VolleyError.java"></a>4.2.34 VolleyError.java</h4><p>Volley 中所有错误异常的父类，继承自 Exception，可通过此类设置和获取 NetworkResponse 或者请求的耗时。  </p>
+<h4 id="4-2-35-AuthFailureError-java"><a href="#4-2-35-AuthFailureError-java" class="headerlink" title="4.2.35 AuthFailureError.java"></a>4.2.35 AuthFailureError.java</h4><p>继承自 VolleyError，代表请求认证失败错误，如 RespondeCode 的 401 和 403。  </p>
+<h4 id="4-2-36-NetworkError-java"><a href="#4-2-36-NetworkError-java" class="headerlink" title="4.2.36 NetworkError.java"></a>4.2.36 NetworkError.java</h4><p>继承自 VolleyError，代表网络错误。  </p>
+<h4 id="4-2-37-ParseError-java"><a href="#4-2-37-ParseError-java" class="headerlink" title="4.2.37 ParseError.java"></a>4.2.37 ParseError.java</h4><p>继承自 VolleyError，代表内容解析错误。  </p>
+<h4 id="4-2-38-ServerError-java"><a href="#4-2-38-ServerError-java" class="headerlink" title="4.2.38 ServerError.java"></a>4.2.38 ServerError.java</h4><p>继承自 VolleyError，代表服务端错误。  </p>
+<h4 id="4-2-39-TimeoutError-java"><a href="#4-2-39-TimeoutError-java" class="headerlink" title="4.2.39 TimeoutError.java"></a>4.2.39 TimeoutError.java</h4><p>继承自 VolleyError，代表请求超时错误。  </p>
+<h4 id="4-2-40-NoConnectionError-java"><a href="#4-2-40-NoConnectionError-java" class="headerlink" title="4.2.40 NoConnectionError.java"></a>4.2.40 NoConnectionError.java</h4><p>继承自NetworkError，代表无法建立连接错误。  </p>
+<h3 id="5-杂谈"><a href="#5-杂谈" class="headerlink" title="5. 杂谈"></a>5. 杂谈</h3><h4 id="5-1-关于-Http-缓存"><a href="#5-1-关于-Http-缓存" class="headerlink" title="5.1 关于 Http 缓存"></a>5.1 关于 Http 缓存</h4><p>Volley 构建了一套相对完整的符合 Http 语义的缓存机制。<br><strong>优点和特点</strong><br>(1). 根据<code>Cache-Control</code>和<code>Expires</code>首部来计算缓存的过期时间。如果两个首部都存在情况下，以<code>Cache-Control</code>为准。<br>(2). 利用<code>If-None-Match</code>和<code>If-Modified-Since</code>对过期缓存或者不新鲜缓存，进行请求再验证，并处理 304 响应，更新缓存。<br>(3). 默认的缓存实现，将缓存以文件的形式存储在 Disk，程序退出后不会丢失。</p>
+<p><strong>我个人认为的不足之处</strong><br>缓存的再验证方面，在构建<code>If-Modified-Since</code>请求首部时，Volley 使用了服务端响应的<code>Date</code>首部，没有使用<code>Last-Modified</code>首部。整个框架没有使用<code>Last-Modified</code>首部。这与 Http 语义不符。    </p>
+<pre><code class="java">private void addCacheHeaders(Map&lt;String, String&gt; headers, Cache.Entry entry) {
+    // If there&#39;s no cache entry, we&#39;re done.
+    if (entry == null) {
+        return;
+    }
+
+    if (entry.etag != null) {
+        headers.put(&quot;If-None-Match&quot;, entry.etag);
+    }
+
+    if (entry.serverDate &gt; 0) {
+        Date refTime = new Date(entry.serverDate);
+        headers.put(&quot;If-Modified-Since&quot;, DateUtils.formatDate(refTime));
+    }
+}</code></pre>
+<p>服务端根据请求时通过<code>If-Modified-Since</code>首部传过来的时间，判断资源文件是否在<code>If-Modified-Since</code>时间 <strong>以后</strong> 有改动，如果有改动，返回新的请求结果。如果没有改动，返回 304 not modified。<br><code>Last-Modified</code>代表了资源文件的最后修改时间。通常使用这个首部构建<code>If-Modified-Since</code>的时间。<br><code>Date</code>代表了响应产生的时间，正常情况下<code>Date</code>时间在<code>Last-Modified</code>时间之后。也就是<code>Date</code>&gt;=<code>Last-Modified</code>。<br>通过以上原理，既然<code>Date</code>&gt;=<code>Last-Modified</code>。那么我利用<code>Date</code>构建，也是完全正确的。  </p>
+<p><strong>可能的问题出在服务端的 Http 实现上，如果服务端完全遵守 Http 语义，采用时间比较的方式来验证<code>If-Modified-Since</code>，判断服务器资源文件修改时间是不是在<code>If-Modified-Since</code>之后。那么使用<code>Date</code>完全正确。</strong><br><strong>可是有的服务端实现不是比较时间，而是直接的判断服务器资源文件修改时间，是否和<code>If-Modified-Since</code>所传时间相等。这样使用<code>Date</code>就不能实现正确的再验证，因为<code>Date</code>的时间总不会和服务器资源文件修改时间相等。</strong>  </p>
+<p>尽管使用<code>Date</code>可能出现的不正确情况，归结于服务端没有正确的实现 Http 语义。<br><strong>但我还是希望Volley也能完全正确的实现Http语义，至少同时处理<code>Last-Modified</code>和<code>Date</code>,并且优先使用<code>Last-Modified</code>。</strong>  </p>
+<h4 id="5-2-Bug"><a href="#5-2-Bug" class="headerlink" title="5.2 Bug"></a>5.2 Bug</h4><h5 id="1-BasicNetwork-performRequest-…"><a href="#1-BasicNetwork-performRequest-…" class="headerlink" title="(1). BasicNetwork.performRequest(…)"></a>(1). BasicNetwork.performRequest(…)</h5><p>如下代码：  </p>
+<pre><code class="java">@Override
+public NetworkResponse performRequest(Request&lt;?&gt; request) throws VolleyError {
+    ……
+    while (true) {
+        ……
+        try {
+            ……
+        } catch (IOException e) {
+            int statusCode = 0;
+            NetworkResponse networkResponse = null;
+            ……
+            if (responseContents != null) {
+              ……
+            } else {
+                throw new NetworkError(networkResponse);
+            }
+        }
+    }
+}</code></pre>
+<p>BasicNetwork.performRequest(…) 最后的  </p>
+<pre><code class="java">throw new NetworkError(networkResponse);</code></pre>
+<p>应该是  </p>
+<pre><code class="java">throw new NetworkError(e);</code></pre>
+<p>更合理。  </p>
+
+    </div>
+    
+    <div class="reward" ontouchstart>
+    <div class="reward-wrap">赏
+        <div class="reward-box">
+            
+            <span class="reward-type">
+                <img class="alipay" src="/blog/img/alipay.jpg"><b>支付宝打赏</b>
+            </span>
+            
+            
+            <span class="reward-type">
+                <img class="wechat" src="/blog/img/reward-wepay.jpg"><b>微信打赏</b>
+            </span>
+            
+        </div>
+    </div>
+    <p class="reward-tip">
+        赞赏是不耍流氓的鼓励
+    </p>
+</div>
+    
+    <div class="post-footer">
+        <div>
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+<div class="article-nav prev-next-wrap clearfix">
+    
+    <a href="/blog/2015/05/10/自定义控件ListViewForRefresh/" class="pre-post btn btn-default" title='自定义控件ListViewForRefresh'>
+        <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+        <span class="hidden-xs">
+            自定义控件ListViewForRefresh</span>
+    </a>
+    
+    
+    <a href="/blog/2015/04/27/xUtils框架原理分析/" class="next-post btn btn-default" title='xUtils框架原理分析'>
+        <span class="hidden-lg">下一篇</span>
+        <span class="hidden-xs">
+            xUtils框架原理分析</span><i class="fa fa-angle-right fa-fw"></i>
+    </a>
+    
+</div>
+
+<div id="comments">
+    
+<p>评论系统未开启，无法评论！</p>
+
+</div>
+
+                </main>
+                
+                    <aside id="article-toc" role="navigation" class="col-md-4">
+    <div class="widget">
+        <h3 class="title">
+            文章目录
+        </h3>
+        
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-功能介绍"><span class="toc-text">1. 功能介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-1-Volley"><span class="toc-text">1.1. Volley</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-2-Volley-的主要特点"><span class="toc-text">1.2 Volley 的主要特点</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-总体设计"><span class="toc-text">2. 总体设计</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-1-总体设计图"><span class="toc-text">2.1. 总体设计图</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-2-Volley-中的概念"><span class="toc-text">2.2. Volley 中的概念</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-流程图"><span class="toc-text">3. 流程图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-详细设计"><span class="toc-text">4. 详细设计</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#4-1-类关系图"><span class="toc-text">4.1 类关系图</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-核心类功能介绍"><span class="toc-text">4.2 核心类功能介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#4-2-1-Volley-java"><span class="toc-text">4.2.1 Volley.java</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-2-2-Request-java"><span class="toc-text">4.2.2 Request.java</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-2-3-RequestQueue-java"><span class="toc-text">4.2.3 RequestQueue.java</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-主要成员变量"><span class="toc-text">(1). 主要成员变量</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-启动队列"><span class="toc-text">(2). 启动队列</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-加入请求"><span class="toc-text">(3). 加入请求</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-请求完成"><span class="toc-text">(4). 请求完成</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-请求取消"><span class="toc-text">(5). 请求取消</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-2-4-CacheDispatcher-java"><span class="toc-text">4.2.4 CacheDispatcher.java</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-成员变量"><span class="toc-text">(1). 成员变量</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-处理流程图"><span class="toc-text">(2). 处理流程图</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-2-5-NetworkDispatcher-java"><span class="toc-text">4.2.5 NetworkDispatcher.java</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-成员变量-1"><span class="toc-text">(1). 成员变量</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-处理流程图-1"><span class="toc-text">(2). 处理流程图</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-2-6-Cache-java"><span class="toc-text">4.2.6 Cache.java</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-主要方法："><span class="toc-text">(1). 主要方法：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-代表缓存实体的内部类-Entry"><span class="toc-text">(2). 代表缓存实体的内部类 Entry</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-2-7-DiskBasedCache-java"><span class="toc-text">4.2.7 DiskBasedCache.java</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-主要方法：-1"><span class="toc-text">(1). 主要方法：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-CacheHeader-类"><span class="toc-text">(2). CacheHeader 类</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-2-8-NoCache-java"><span class="toc-text">4.2.8 NoCache.java</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-2-9-Network-java"><span class="toc-text">4.2.9 Network.java</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-2-10-NetworkResponse-java"><span class="toc-text">4.2.10 NetworkResponse.java</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-成员变量-2"><span class="toc-text">(1). 成员变量</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-Volley-的内部-Response-转换流程图"><span class="toc-text">(2). Volley 的内部 Response 转换流程图</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-2-11-BasicNetwork-java"><span class="toc-text">4.2.11 BasicNetwork.java</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-2-12-HttpStack-java"><span class="toc-text">4.2.12 HttpStack.java</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-2-13-HttpClientStack-java"><span class="toc-text">4.2.13 HttpClientStack.java</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-2-14-HurlStack-java"><span class="toc-text">4.2.14 HurlStack.java</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-2-15-Response-java"><span class="toc-text">4.2.15 Response.java</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-2-16-ByteArrayPool-java"><span class="toc-text">4.2.16 ByteArrayPool.java</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-2-17-PoolingByteArrayOutputStream-java"><span class="toc-text">4.2.17 PoolingByteArrayOutputStream.java</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-2-18-HttpHeaderParser-java"><span class="toc-text">4.2.18 HttpHeaderParser.java</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-2-19-RetryPolicy-java"><span class="toc-text">4.2.19 RetryPolicy.java</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-2-20-DefaultRetryPolicy-java"><span class="toc-text">4.2.20 DefaultRetryPolicy.java</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-2-21-ResponseDelivery-java"><span class="toc-text">4.2.21 ResponseDelivery.java</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-2-22-ExecutorDelivery-java"><span class="toc-text">4.2.22 ExecutorDelivery.java</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-2-23-StringRequest-java"><span class="toc-text">4.2.23 StringRequest.java</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-2-24-JsonRequest-java"><span class="toc-text">4.2.24 JsonRequest.java</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-2-25-JsonObjectRequest-java"><span class="toc-text">4.2.25 JsonObjectRequest.java</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-2-26-JsonArrayRequest-java"><span class="toc-text">4.2.26 JsonArrayRequest.java</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-2-27-ImageRequest-java"><span class="toc-text">4.2.27 ImageRequest.java</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-2-28-ImageLoader-java"><span class="toc-text">4.2.28 ImageLoader.java</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-2-29-NetworkImageView-java"><span class="toc-text">4.2.29 NetworkImageView.java</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-2-30-ClearCacheRequest-java"><span class="toc-text">4.2.30 ClearCacheRequest.java</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-2-31-Authenticator-java"><span class="toc-text">4.2.31 Authenticator.java</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-2-32-AndroidAuthenticator-java"><span class="toc-text">4.2.32 AndroidAuthenticator.java</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-2-33-VolleyLog-java"><span class="toc-text">4.2.33 VolleyLog.java</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-2-34-VolleyError-java"><span class="toc-text">4.2.34 VolleyError.java</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-2-35-AuthFailureError-java"><span class="toc-text">4.2.35 AuthFailureError.java</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-2-36-NetworkError-java"><span class="toc-text">4.2.36 NetworkError.java</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-2-37-ParseError-java"><span class="toc-text">4.2.37 ParseError.java</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-2-38-ServerError-java"><span class="toc-text">4.2.38 ServerError.java</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-2-39-TimeoutError-java"><span class="toc-text">4.2.39 TimeoutError.java</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-2-40-NoConnectionError-java"><span class="toc-text">4.2.40 NoConnectionError.java</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-杂谈"><span class="toc-text">5. 杂谈</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#5-1-关于-Http-缓存"><span class="toc-text">5.1 关于 Http 缓存</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-2-Bug"><span class="toc-text">5.2 Bug</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-BasicNetwork-performRequest-…"><span class="toc-text">(1). BasicNetwork.performRequest(…)</span></a></li></ol></li></ol></li></ol>
+        
+    </div>
+</aside>
+                
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+<a id="back-to-top" class="icon-btn hide">
+    <i class="fa fa-chevron-up"></i>
+</a>
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="busuanzi">
+    
+</div>
+            </div>
+            <div class="col-sm-12">
+                <span>Copyright &copy;
+                    2014
+                </span> |
+                <span>
+                    Powered by <a href="https://okfood.vip" class="copyright-links" target="_blank" rel="nofollow">Leo</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="/blog/assets/tagcanvas.min.js?rev=2.9"></script>
+<script>
+var tagOption = {
+    textColour: '#444', // 字体颜色
+    outlineMethod: 'block', // 选中模式
+    outlineColour: '#FFDAB9', // 选中模式的颜色
+    interval: 30 || 30, // 动画帧之间的时间间隔，值越大，转动幅度越大
+    textHeight: 13,
+    outlineRadius: 3,
+    freezeActive: true || '', // 选中的标签是否继续滚动
+    frontSelect: true || '', // 不选标签云后部的标签
+    initial: [0.1, -0.1],
+    depth: 0.5,
+    decel: 0.95,
+    maxSpeed: 0.03,
+    reverse: true || '', // 是否反向触发
+    fadeIn: 500, // 进入动画时间
+    wheelZoom: false || '' // 是否启用鼠标滚轮
+}
+TagCanvas.Start('tag-cloud-3d', '', tagOption);
+</script>
+
+
+<script src="/blog/assets/google-code-prettify/prettify.js?"></script>
+<script src="/blog/js/app.js?rev=@@hash"></script>
+</body>
+</html>

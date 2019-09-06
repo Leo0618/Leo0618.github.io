@@ -1,0 +1,479 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+<head><meta name="generator" content="Hexo 3.9.0">
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="上帝之手-Work makes the workman">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="theme-version" content="1.2.3">
+    <meta name="root" content="/blog/">
+    <link rel="dns-prefetch" href="https://okfood.vip/blog">
+    <!--SEO-->
+
+<meta name="keywords" content="JavaSE">
+
+
+<meta name="description" content="多态多态的概念多态是同一个行为具有多个不同表现形式或形态的能力。
+比如我们说的“宠物”这个对象，它就有很多不同的表达或实现，比如有小猫、小狗等等，那我们到宠物店说“请给我一只宠物”，服务员给我小...">
+
+
+<meta name="robots" content="all">
+<meta name="google" content="all">
+<meta name="googlebot" content="all">
+<meta name="verify" content="all">
+    <!--Title-->
+
+<title>
+    
+    Java面向对象之多态、内部类 |
+    
+    上帝之手-Work makes the workman
+</title>
+
+<link rel="alternate" href="/blog/atom.xml" title="上帝之手-Work makes the workman" type="application/atom+xml">
+
+
+<link rel="icon" href="/blog/img/avatar_circle.png">
+
+    
+
+<link rel="stylesheet" href="/blog/css/bootstrap.min.css?rev=3.3.7">
+<link rel="stylesheet" href="/blog/css/font-awesome.min.css?rev=4.7.0">
+<link rel="stylesheet" href="/blog/css/style.css?rev=@@hash">
+<link rel="stylesheet" href="/blog/assets/google-code-prettify/prettify.css">
+    
+
+
+
+    
+
+</head></html>
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+<body>
+    <header class="main-header"  style="background-image:url(
+    /blog/img/banner.jpg)"
+     >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/blog/" title='Leo'>
+            <img src="/blog/img/avatar.jpg" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+            
+            <img src="/blog/img/branding.png" alt="博客-Leo" class="img-responsive center-block">
+            
+        </div>
+    </div>
+</header>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                        <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="https://okfood.vip/blog">
+                        上帝之手-Work makes the workman</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/blog/"><i class="fa "></i>
+                                首页</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/blog/categories/Java/"><i class="fa "></i>
+                                Java</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/blog/categories/Android/"><i class="fa "></i>
+                                Android</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/blog/categories/前端/"><i class="fa "></i>
+                                前端</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/blog/categories/后端/"><i class="fa "></i>
+                                后端</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/blog/categories/算法/"><i class="fa "></i>
+                                算法</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/blog/archives/"><i class="fa "></i>
+                                时间轴</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="Java面向对象之多态、内部类">
+            
+            Java面向对象之多态、内部类
+            
+        </h1>
+        <div class="post-meta">
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a class="category-link" href="/blog/categories/Java/">Java</a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            <a class="tag-link" href="/blog/tags/JavaSE/">JavaSE</a>
+            
+        </span>
+    </span>
+    
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta">
+            2014/05/09</span>
+    </span>
+    
+    
+</div>
+        
+        
+    </div>
+    
+    <div class="post-body post-content">
+        <h1 id="多态"><a href="#多态" class="headerlink" title="多态"></a>多态</h1><h2 id="多态的概念"><a href="#多态的概念" class="headerlink" title="多态的概念"></a>多态的概念</h2><p>多态是同一个行为具有多个不同表现形式或形态的能力。</p>
+<p>比如我们说的“宠物”这个对象，它就有很多不同的表达或实现，比如有小猫、小狗等等，那我们到宠物店说“请给我一只宠物”，服务员给我小猫、小狗都可以，我们就说“宠物”这个对象具备多态性。</p>
+<h2 id="多态的体现"><a href="#多态的体现" class="headerlink" title="多态的体现"></a>多态的体现</h2><p>父类的引用指向了自己的子类对象</p>
+<p>父类的引用也可以接受自己的子类对象</p>
+<h2 id="多态的前提"><a href="#多态的前提" class="headerlink" title="多态的前提"></a>多态的前提</h2><p>必须是类与类之间有关系，要么继承，要么实现</p>
+<h2 id="多态的好处"><a href="#多态的好处" class="headerlink" title="多态的好处"></a>多态的好处</h2><p>多态的出现大大的提高程序的扩展性</p>
+<p>通常还有一个前提，存在覆盖</p>
+<h2 id="多态的弊端"><a href="#多态的弊端" class="headerlink" title="多态的弊端"></a>多态的弊端</h2><p>提高了扩展性，但是只能使用父类的引用访问父类的成员</p>
+<h2 id="多态在子父类中的成员上的体现的特点：（多态的使用注意事项）"><a href="#多态在子父类中的成员上的体现的特点：（多态的使用注意事项）" class="headerlink" title="多态在子父类中的成员上的体现的特点：（多态的使用注意事项）"></a>多态在子父类中的成员上的体现的特点：（多态的使用注意事项）</h2><h3 id="成员变量"><a href="#成员变量" class="headerlink" title="成员变量"></a>成员变量</h3><p>在多态中，子父类成员变量同名。</p>
+<p>在编译时期：参考的是引用型变量所属的类中是否有调用的成员。（编译时不产生对象，只检查语法错误）</p>
+<p>运行时期：也是参考引用型变量所属的类中是否有调用的成员。</p>
+<p>简单一句话：无论编译和运行，成员变量参考的都是引用变量所属的类中的成员变量。</p>
+<p>再说的更容易记忆一些：成员变量 — 编译运行都看 = 左边。</p>
+<h3 id="成员函数"><a href="#成员函数" class="headerlink" title="成员函数"></a>成员函数</h3><p>编译时期：参考引用型变量所属的类中是否有调用的方法。</p>
+<p>运行事情：参考的是对象所属的类中是否有调用的方法。</p>
+<p>为什么是这样的呢？因为在子父类中，对于一模一样的成员函数，有一个特性：覆盖。</p>
+<p>简单一句：成员函数，编译看引用型变量所属的类，运行看对象所属的类。</p>
+<p>更简单：成员函数 — 编译看 = 左边，运行看 = 右边。</p>
+<h3 id="静态函数"><a href="#静态函数" class="headerlink" title="静态函数"></a>静态函数</h3><p>编译时期：参考的是引用型变量所属的类中是否有调用的成员。</p>
+<p>运行时期：也是参考引用型变量所属的类中是否有调用的成员。</p>
+<p>为什么是这样的呢？因为静态方法，其实不所属于对象，而是所属于该方法所在的类。</p>
+<p>调用静态的方法引用是哪个类的引用调用的就是哪个类中的静态方法。</p>
+<p>简单说：静态函数 — 编译运行都看 = 左边。</p>
+<h2 id="instanceof运算符"><a href="#instanceof运算符" class="headerlink" title="instanceof运算符"></a>instanceof运算符</h2><p>多态性带来了一个问题：如何判断一耳光变量所属引用的对象类型，java使用instanceof操作符。</p>
+<p>功能：用来判断某个实例变量是否属于某种类的类型，一旦确定了变量所引用的对象的类型后，可以将对象恢复给对应的子类变量，以获取对象的完整功能。</p>
+<p>举例：</p>
+<pre><code>//定义一个抽象类
+abstract class Animal{
+    abstract void eat();
+}
+
+class Cat extends Animal{
+    public void eat(){
+        System.out.println(&quot;吃鱼&quot;);
+    }
+    public void catchMouse(){
+        System.out.println(&quot;抓老鼠&quot;);
+    }
+}
+
+class Dog extends Animal{
+    public void eat(){
+        System.out.println(&quot;吃骨头&quot;);
+    }
+    public void kanJia(){
+        System.out.println(&quot;看家&quot;);
+    }
+}
+
+class Pig extends Animal{
+    public void eat(){
+        System.out.println(&quot;饲料&quot;);
+    }
+    public void gongDi(){
+        System.out.println(&quot;拱地&quot;);
+    }
+}
+
+class Test {
+    public static void main(String[] args) {
+        Cat c = new Cat();
+        c.eat();
+        c.catchMouse();
+        System.out.println(&quot;---------------&quot;);
+        Dog d = new Dog();
+        d.eat();
+        d.kanJia();
+        System.out.println(&quot;---------------&quot;);
+        Pig p = new Pig();
+        p.eat();
+        p.gongDi();
+        System.out.println(&quot;---------------&quot;);
+
+        Animal a = new Cat();//类型提升，向上转型
+        a.eat();
+        //a.catchMouse();//编译不通过，成员变量编译运行都看左边，Animal中无catchMouse方法
+
+        Cat cc = (Cat)a;//强制将父类的引用转成子类类型，向下转型
+        cc.catchMouse();//此时可以调用子类 的特有方法
+        System.out.println(&quot;---------------&quot;);
+
+        function(new Cat());
+        System.out.println(&quot;---------------&quot;);
+        function(new Dog());
+        System.out.println(&quot;---------------&quot;);
+        function(new Pig());
+    }
+
+    //Animal a = new Cat();
+    public static void function(Animal a) {
+        a.eat();
+
+        if(a instanceof Cat){
+            Cat c = (Cat)a;
+            c.catchMouse();
+        }
+        else if (a instanceof Dog){
+            Dog d = (Dog)a;
+            d.kanJia();
+        }else{
+            Pig p = (Pig)a;
+            p.gongDi();
+        }
+    }
+}</code></pre><h1 id="内部类"><a href="#内部类" class="headerlink" title="内部类"></a>内部类</h1><h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p>如果A类需要直接访问B类中的成员，而B类又需要建立A类的对象。这时,为了方便设计和访问，直接将A类定义在B类中。就可以了。A类就称为内部类。</p>
+<h2 id="内部类的访问规则"><a href="#内部类的访问规则" class="headerlink" title="内部类的访问规则"></a>内部类的访问规则</h2><p>1）内部类可以直接访问外部类中的成员，包括私有<br>之所以可以直接访问外部类的成员，是因为内部类中持有了一个外部类的引用，格式：外部类名.this</p>
+<p>2）外部类要访问内部类，必须建立内部类对象</p>
+<h2 id="内部类的访问格式"><a href="#内部类的访问格式" class="headerlink" title="内部类的访问格式"></a>内部类的访问格式</h2><p>1）当内部类定义在外部类的成员位置上，而且非私有，可以再外部其他类中直接建立内部对象<br>格式：</p>
+<pre><code>外部类名.内部类名 变量名 = 外部类对象.内部类对象
+Outer.Inner in = new Outer().new Inner();</code></pre><p>2）当内部类在成员位置上，就可以被成员修饰符所修饰</p>
+<p>比如，private:将内部类在外部类中进行封装</p>
+<p>static：内部类就具备static的特性，当内部类被static修饰后，只能直接访问外部类中的static成员，出现了访问权限</p>
+<p>在外部其他类中，如何直接访问static内部类的非静态成员？</p>
+<pre><code>new Outer.Inner().function();</code></pre><p>在外部其他类中，如何直接访问static内部类的静态成员？</p>
+<pre><code>Outer.Inner.function();</code></pre><p>注意：</p>
+<p>当内部类中定义了静态成员，该内部类必须是static；当外部类中的静态方法访问内部类时，内部类也必须是static的。</p>
+<p>当描述事物时，事物的内部还有事物，该事物用内部类来描述，因为内部事物在使用外部事物的内容 </p>
+<p><strong>内部类编译后</strong>的文件名为：“外部类名$内部类名.java”；</p>
+<p>试题举例：</p>
+<pre><code>//1
+new Object(){
+        void show(){
+            System.out.println(&quot;show run&quot;);
+        }
+    }.show();
+
+//2
+Object obj = new Object(){
+    void show(){
+        System.out.println(&quot;show run&quot;);
+    }
+};
+obj.show();</code></pre><p>1和2的写法正确吗？有区别吗？说出原因。</p>
+<p>写法是正确，1和2都是在通过匿名内部类建立一个Object类的子类对象。</p>
+<p>区别：</p>
+<p>第一个可是编译通过，并运行。</p>
+<p>第二个编译失败，因为匿名内部类是一个子类对象，当用Object的obj引用指向时，就被提升为了Object类型，而编译时检查Object类中是否有show方法，所以编译失败。</p>
+<p>内部类举例：</p>
+<pre><code>class Outer{
+    int x =3;
+
+    //内部类
+    class Inner{ 
+        int x = 4;
+        void function(){
+            int x = 6;
+            System.out.println(&quot;inner:&quot;+x);
+            System.out.println(&quot;inner:&quot;+Outer.this.x);
+        }
+    }
+
+    void method(){
+        Inner in = new Inner();
+        in.function();
+    }
+}
+
+class  Test{
+    public static void main(String[] args) {
+        Outer out = new Outer();
+        out.method();
+        System.out.println(&quot;-------------------&quot;);
+
+        //直接访问内部类中的成员
+        Outer.Inner in = new Outer().new Inner();
+        in.function();
+
+        System.out.println(&quot;-------------------&quot;);
+        new Outer().new Inner().function();
+    }
+}</code></pre>
+    </div>
+    
+    <div class="reward" ontouchstart>
+    <div class="reward-wrap">赏
+        <div class="reward-box">
+            
+            <span class="reward-type">
+                <img class="alipay" src="/blog/img/alipay.jpg"><b>支付宝打赏</b>
+            </span>
+            
+            
+            <span class="reward-type">
+                <img class="wechat" src="/blog/img/reward-wepay.jpg"><b>微信打赏</b>
+            </span>
+            
+        </div>
+    </div>
+    <p class="reward-tip">
+        赞赏是不耍流氓的鼓励
+    </p>
+</div>
+    
+    <div class="post-footer">
+        <div>
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+<div class="article-nav prev-next-wrap clearfix">
+    
+    <a href="/blog/2014/05/09/Java异常、package/" class="pre-post btn btn-default" title='Java异常、package'>
+        <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+        <span class="hidden-xs">
+            Java异常、package</span>
+    </a>
+    
+    
+    <a href="/blog/2014/04/29/Java面向对象之继承/" class="next-post btn btn-default" title='Java面向对象之继承'>
+        <span class="hidden-lg">下一篇</span>
+        <span class="hidden-xs">
+            Java面向对象之继承</span><i class="fa fa-angle-right fa-fw"></i>
+    </a>
+    
+</div>
+
+<div id="comments">
+    
+<p>评论系统未开启，无法评论！</p>
+
+</div>
+
+                </main>
+                
+                    <aside id="article-toc" role="navigation" class="col-md-4">
+    <div class="widget">
+        <h3 class="title">
+            文章目录
+        </h3>
+        
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#多态"><span class="toc-text">多态</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#多态的概念"><span class="toc-text">多态的概念</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#多态的体现"><span class="toc-text">多态的体现</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#多态的前提"><span class="toc-text">多态的前提</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#多态的好处"><span class="toc-text">多态的好处</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#多态的弊端"><span class="toc-text">多态的弊端</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#多态在子父类中的成员上的体现的特点：（多态的使用注意事项）"><span class="toc-text">多态在子父类中的成员上的体现的特点：（多态的使用注意事项）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#成员变量"><span class="toc-text">成员变量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#成员函数"><span class="toc-text">成员函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#静态函数"><span class="toc-text">静态函数</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#instanceof运算符"><span class="toc-text">instanceof运算符</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#内部类"><span class="toc-text">内部类</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#概念"><span class="toc-text">概念</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#内部类的访问规则"><span class="toc-text">内部类的访问规则</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#内部类的访问格式"><span class="toc-text">内部类的访问格式</span></a></li></ol></li></ol>
+        
+    </div>
+</aside>
+                
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+<a id="back-to-top" class="icon-btn hide">
+    <i class="fa fa-chevron-up"></i>
+</a>
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="busuanzi">
+    
+</div>
+            </div>
+            <div class="col-sm-12">
+                <span>Copyright &copy;
+                    2014
+                </span> |
+                <span>
+                    Powered by <a href="https://okfood.vip" class="copyright-links" target="_blank" rel="nofollow">Leo</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="/blog/assets/tagcanvas.min.js?rev=2.9"></script>
+<script>
+var tagOption = {
+    textColour: '#444', // 字体颜色
+    outlineMethod: 'block', // 选中模式
+    outlineColour: '#FFDAB9', // 选中模式的颜色
+    interval: 30 || 30, // 动画帧之间的时间间隔，值越大，转动幅度越大
+    textHeight: 13,
+    outlineRadius: 3,
+    freezeActive: true || '', // 选中的标签是否继续滚动
+    frontSelect: true || '', // 不选标签云后部的标签
+    initial: [0.1, -0.1],
+    depth: 0.5,
+    decel: 0.95,
+    maxSpeed: 0.03,
+    reverse: true || '', // 是否反向触发
+    fadeIn: 500, // 进入动画时间
+    wheelZoom: false || '' // 是否启用鼠标滚轮
+}
+TagCanvas.Start('tag-cloud-3d', '', tagOption);
+</script>
+
+
+<script src="/blog/assets/google-code-prettify/prettify.js?"></script>
+<script src="/blog/js/app.js?rev=@@hash"></script>
+</body>
+</html>

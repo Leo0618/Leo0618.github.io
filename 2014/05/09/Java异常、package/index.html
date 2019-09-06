@@ -1,0 +1,589 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+<head><meta name="generator" content="Hexo 3.9.0">
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="上帝之手-Work makes the workman">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="theme-version" content="1.2.3">
+    <meta name="root" content="/blog/">
+    <link rel="dns-prefetch" href="https://okfood.vip/blog">
+    <!--SEO-->
+
+<meta name="keywords" content="JavaSE">
+
+
+<meta name="description" content="异常认识异常在java编程中，异常是指当程序出错时创建的一种特殊的运行是错误对象。注意这个错误不是编译时的语法错误。
+java创建异常对象后，就发送给java程序，即抛出异常（Throwing ...">
+
+
+<meta name="robots" content="all">
+<meta name="google" content="all">
+<meta name="googlebot" content="all">
+<meta name="verify" content="all">
+    <!--Title-->
+
+<title>
+    
+    Java异常、package |
+    
+    上帝之手-Work makes the workman
+</title>
+
+<link rel="alternate" href="/blog/atom.xml" title="上帝之手-Work makes the workman" type="application/atom+xml">
+
+
+<link rel="icon" href="/blog/img/avatar_circle.png">
+
+    
+
+<link rel="stylesheet" href="/blog/css/bootstrap.min.css?rev=3.3.7">
+<link rel="stylesheet" href="/blog/css/font-awesome.min.css?rev=4.7.0">
+<link rel="stylesheet" href="/blog/css/style.css?rev=@@hash">
+<link rel="stylesheet" href="/blog/assets/google-code-prettify/prettify.css">
+    
+
+
+
+    
+
+</head></html>
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+<body>
+    <header class="main-header"  style="background-image:url(
+    /blog/img/banner.jpg)"
+     >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/blog/" title='Leo'>
+            <img src="/blog/img/avatar.jpg" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+            
+            <img src="/blog/img/branding.png" alt="博客-Leo" class="img-responsive center-block">
+            
+        </div>
+    </div>
+</header>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                        <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="https://okfood.vip/blog">
+                        上帝之手-Work makes the workman</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/blog/"><i class="fa "></i>
+                                首页</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/blog/categories/Java/"><i class="fa "></i>
+                                Java</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/blog/categories/Android/"><i class="fa "></i>
+                                Android</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/blog/categories/前端/"><i class="fa "></i>
+                                前端</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/blog/categories/后端/"><i class="fa "></i>
+                                后端</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/blog/categories/算法/"><i class="fa "></i>
+                                算法</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/blog/archives/"><i class="fa "></i>
+                                时间轴</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="Java异常、package">
+            
+            Java异常、package
+            
+        </h1>
+        <div class="post-meta">
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a class="category-link" href="/blog/categories/Java/">Java</a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            <a class="tag-link" href="/blog/tags/JavaSE/">JavaSE</a>
+            
+        </span>
+    </span>
+    
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta">
+            2014/05/09</span>
+    </span>
+    
+    
+</div>
+        
+        
+    </div>
+    
+    <div class="post-body post-content">
+        <h1 id="异常"><a href="#异常" class="headerlink" title="异常"></a>异常</h1><h2 id="认识异常"><a href="#认识异常" class="headerlink" title="认识异常"></a>认识异常</h2><p>在java编程中，异常是指当程序出错时创建的一种特殊的运行是错误对象。注意这个错误不是编译时的语法错误。</p>
+<p>java创建异常对象后，就发送给java程序，即抛出异常（Throwing an exception），程序捕捉到这个异常后，可以编写相应的异常处理代码进行处理，而不是让程序中断。使用异常处理提高程序的健壮性，有助于调试和后期维护。在执行程序中，任何中断正常程序流程的异常条件就是错误或异常。例如，发生下列情况时会出现异常：</p>
+<ul>
+<li>想打开的文件不存在</li>
+<li>网络连接中断</li>
+<li>受控操作数超出预定范围</li>
+<li>正在装在的类文件丢失</li>
+</ul>
+<p>错误类定义被认为是不能恢复的严重错误条件，在大多数情况下，当遇到这样的错误时，建议让程序中断。</p>
+<p>出现的问题有很多种，比如角标越界，空指针等都是。就对这些问题进行分类。而且这些问题都有共性内容比如：每一个问题都有名称，同时还有问题描述的信息，问题出现的位置，所以可以不断的向上抽取。形成了异常体系。 </p>
+<p>——–java.lang.Throwable：</p>
+<p>Throwable：可抛出的。 </p>
+<p>|–Error：错误，一般情况下，不编写针对性的代码进行处理，通常是jvm发生的，需要对程序进行修正。</p>
+<p>|–Exception：异常，可以有针对性的处理方式</p>
+<h2 id="对于问题的划分：两种"><a href="#对于问题的划分：两种" class="headerlink" title="对于问题的划分：两种"></a>对于问题的划分：两种</h2><p>一种是严重的问题：Java通过Error类进行描述。对于Error一般不编写针对性的代码对其进行处理</p>
+<p>一种是非严重问题：Java通过Exception类进行描述。对于Exception可以使用针对性的处理方式进行处理</p>
+<h2 id="异常分两种"><a href="#异常分两种" class="headerlink" title="异常分两种"></a>异常分两种</h2><p>1）编译时被检查的异常，只要是Exception及其子类都是编译时被检测的异常。</p>
+<p>2）运行时异常，其中Exception有一个特殊的子类RuntimeException，以及RuntimeException的子类是运行异常，也就说这个异常是编译时不被检查的异常。</p>
+<p><strong>两者区别：</strong></p>
+<p>编译被检查的异常：在函数内被抛出，函数必须要声明，否编译失败。</p>
+<p>声明的原因：是需要调用者对该异常进行处理。</p>
+<p>运行时异常：如果在函数内被抛出，在函数上不需要声明。</p>
+<p>不声明的原因：不需要调用者处理，运行时异常发生，已经无法再让程序继续运行，所以，不让调用处理的，直接让程序停止，由调用者对代码进行修正。</p>
+<h2 id="throw-和throws关键字的区别："><a href="#throw-和throws关键字的区别：" class="headerlink" title="throw 和throws关键字的区别："></a>throw 和throws关键字的区别：</h2><p>throw用于抛出异常对象，后面跟的是异常对象；throw用在函数内。</p>
+<p>throws用于抛出异常类，后面跟的异常类名，可以跟多个，用逗号隔开；throws用在函数上。</p>
+<p>通常情况：函数内容如果有throw，抛出异常对象，并没有进行处理，那么函数上一定要声明，否则编译失败。但是也有特殊情况。</p>
+<h2 id="异常处理"><a href="#异常处理" class="headerlink" title="异常处理"></a>异常处理</h2><p>处理方式有两种：1、捕捉；2、抛出。</p>
+<p>对于捕捉：java有针对性的语句块进行处理。</p>
+<pre><code>try{
+    需要被检测的代码；
+}catch(异常类 变量名){
+    异常处理代码；
+}fianlly{
+    一定会执行的代码；
+}
+
+catch (Exception e) { //e用于接收try检测到的异常对象。
+    System.out.println(&quot;message:&quot;+e.getMessage());//获取的是异常的信息。
+    System.out.println(&quot;toString:&quot;+e.toString());//获取的是异常的名字+异常的信息。
+    e.printStackTrace();//打印异常在堆栈中信息；异常名称+异常信息+异常的位置。
+}</code></pre><p><strong>异常处理原则：</strong></p>
+<p>1）声明异常时，建议声明更为具体的异常，这样处理的可以更具体.如Exception改为ArithmeticException</p>
+<p>2）对方声明几个异常，就对应有几个catch块，如果多个catch块中的异常出血继承关系，父类异常catch块放在最下面，建立在进行catch处理时，catch中一定要定义具体处理方式，不要简单定义一句 e.printStackTrace();也不要简单的就写一条输出语句</p>
+<h2 id="定义异常"><a href="#定义异常" class="headerlink" title="定义异常"></a>定义异常</h2><p>定义异常处理时，什么时候定义try，什么时候定义throws呢？</p>
+<p>功能内部如果出现异常，如果内部可以处理，就用try；如果功能内部处理不了，就必须声明出来，让调用者处理。</p>
+<p>自定义异常：当开发时，项目中出现了java中没有定义过的问题时，这时就需要我们按照java异常建立思想，将项目的中的特有问题也进行对象的封装。这个异常，称为自定义异常。</p>
+<p>对于除法运算，0作为除数是不可以的。java中对这种问题用ArithmeticException类进行描述。对于这个功能，在我们项目中，除数除了不可以为0外，还不可以为负数。可是负数的部分java并没有针对描述。所以我们就需要自定义这个异常。</p>
+<p>自定义异常的步骤：</p>
+<p>1）定义一个子类继承Exception或RuntimeException，让该类具备可抛性。</p>
+<p>2）通过throw 或者throws进行操作。</p>
+<p>异常的转换思想：当出现的异常是调用者处理不了的，就需要将此异常转换为一个调用者可以处理的异常抛出。</p>
+<p>try  catch  finally的3种结合方式：</p>
+<pre><code>1） try catch finally
+
+2） try catch
+
+3） try finally</code></pre><p>最后这种情况，如果出现异常，并不处理，但是资源一定关闭，所以try  finally集合只为关闭资源。</p>
+<p>记住：finally很有用，主要用户关闭资源。无论是否发生异常，资源都必须进行关闭。</p>
+<pre><code>System.exit(0); //退出jvm，只有这种情况finally不执行。</code></pre><p>当异常出现后，在子父类进行覆盖时，有了一些新的特点：</p>
+<p>1）子类在覆盖父类时，如果父类的方法抛出异常，那么子类的覆盖方法只能抛出父类的异常或者该异常的子类。</p>
+<p>2）如果父类方法抛出多个异常，那么子类在覆盖方法时，只能抛出父类异常的子集。</p>
+<p>3）如果父类或者接口的方法中没有异常抛出，那么子类在覆盖方法时，也不可以抛出异常；如果子类方法发生了异常，就必须进行try处理，绝对不能抛。</p>
+<p>注意：</p>
+<p>如果父类或者接口中的方法没有抛出过异常，那么子类是不可以抛出异常的，如果子类的覆盖的方法中出现了异常，只能try不能throws。</p>
+<p>如果这个异常子类无法处理，已经影响了子类方法的具体运算，这时可以在子类方法中，通过throw抛出RuntimeException异常或者其子类，这样，子类的方法上是不需要throws声明的。</p>
+<p>常见异常：</p>
+<ul>
+<li><p>脚标越界异常（IndexOutOfBoundsException）包括数组、字符串；</p>
+</li>
+<li><p>空指针异常（NullPointerException）</p>
+</li>
+<li><p>类型转换异常：ClassCastException</p>
+</li>
+<li><p>没有这个元素异常：NullPointerException</p>
+</li>
+<li><p>不支持操作异常；</p>
+</li>
+</ul>
+<p>异常要尽量避免，如果避免不了，需要预先给出处理方式。</p>
+<p>异常举例：</p>
+<pre><code>class Demo
+{
+    int div(int a,int b)throws ArithmeticException,ArrayIndexOutOfBoundsException  //在功能上通过throws的关键字声明该功能有可能会出现问题
+    {
+        int[] arr = new int[a];
+        System.out.println(arr[4]);
+        return a/b;//除0，封装对象new AritchmeticException()
+    }
+}
+
+class ExceptionDemo 
+{
+    public static void main(String[] args) 
+    {
+        Demo d = new Demo();
+        try
+        {
+            int x = d.div(4,1);//new AritchmeticException()
+            System.out.println(&quot;x=&quot;+x);
+        }        
+
+        catch (ArithmeticException e)//Exception e = new AritchmeticException();
+        {
+            System.out.println(&quot;被零除啦！&quot;);
+        // System.out.println(e.getMessage());//  /by zero
+        // System.out.println(e.toString());// 异常名称，异常信息 
+        // e.printStackTrace();//异常名称，异常信息，异常出血的位置
+        }
+        catch (ArrayIndexOutOfBoundsException e)
+        {
+            System.out.println(e.toString());
+            System.out.println(&quot;角标越界啦！&quot;);
+        }
+
+        catch (Exception e)
+        {
+            System.out.println(&quot;异常：&quot;+e.toString());
+        }
+
+        System.out.println(&quot;over&quot;);
+    }
+}</code></pre><p>异常案例：</p>
+<pre><code>/*
+    有一个圆形和长方形
+    都可以获取面积，对于面积如果出现非法的数值，视为是获取面积出现问题
+    问题通过异常来表示。
+*/
+
+class NoValueException extends RuntimeException //自定义异常并继承RuntimeException
+{
+    NoValueException(String message)
+    {
+        super(message);
+    }
+}
+
+interface Shape
+{
+    void getArea();
+}
+
+class Rec implements Shape
+{
+    private int len,wid;
+
+    Rec(int len,int wid)//throws NoValueException
+    {
+        if(len&lt;=0 || wid&lt;=0)
+            throw new NoValueException(&quot;出现非法值！&quot;);
+
+        this.len = len;
+        this.wid = wid;
+    }
+
+    public void getArea()
+    {
+        System.out.println(len*wid);
+    }
+}
+
+class Circle implements Shape
+{
+    private int radius;
+    public static final double PI = 3.14;
+
+    Circle(int radius)
+    {
+        if(radius&lt;=0)
+            throw new NoValueException(&quot;非法值&quot;);
+        this.radius = radius;
+    }
+
+    public void getArea()
+    {
+        System.out.println(radius*radius*PI);
+    }
+}
+
+class  ExceptionTest
+{
+    public static void main(String[] args) 
+    {    
+        try
+        {
+            Rec r = new Rec(-3,4);
+            r.getArea();
+            Circle c = new Circle(-8);
+            c.getArea();
+        }
+        catch (NoValueException e)
+        {
+            System.out.println(e.toString());
+        }
+
+        System.out.println(&quot;over&quot;);
+    }
+}</code></pre><h1 id="包package"><a href="#包package" class="headerlink" title="包package"></a>包package</h1><h2 id="定义包用package关键字"><a href="#定义包用package关键字" class="headerlink" title="定义包用package关键字"></a>定义包用package关键字</h2><p>1）对类文件进行分类管理。</p>
+<p>2）给类文件提供多层名称空间。</p>
+<p>如果生成的包不在当前目录下，需要最好执行classpath，将包所在父目录定义到classpath变量中即可。</p>
+<p>一般在定义包名时，因为包的出现是为了区分重名的类。所以包名要尽量唯一。怎么保证唯一性呢？可以使用url域名来进行包名称的定义。</p>
+<pre><code>package pack;//定义了一个包，名称为pack。 注意：包名的写法规范：所有字母都小写。
+
+//package com.leo.pack.demo;</code></pre><p>类的全名称是 包名.类名</p>
+<p>编译命令：javac –d 位置（.当前路径） java源文件 （就可以自动生成包）</p>
+<p>例如：javac -d D:\myclass Demo.java</p>
+<p>包是一种封装形式，用于封装类，想要被包以外的程序访问，该类必须public；</p>
+<p>类中的成员，如果被包以外访问，也必须public；</p>
+<p>包与包之间访问可以使用的权限有两种：</p>
+<ol>
+<li><p>public </p>
+</li>
+<li><p>protected：只能是不同包中的子类可以使用的权限。</p>
+</li>
+</ol>
+<h2 id="总结java中的四种权限"><a href="#总结java中的四种权限" class="headerlink" title="总结java中的四种权限"></a>总结java中的四种权限</h2><p><img src="https://raw.githubusercontent.com/Leo0618/images/master/19.png" alt></p>
+<p>Import - 导入：类名称变长，写起来很麻烦。为了简化，使用了一个关键字：import，可以使用这个关键字导入指定包中的类。记住：实际开发时,到的哪个类就导入哪个类，不建议使用*.</p>
+<p>import packa.*;//这个仅仅是导入了packa当前目录下的所有的类。不包含子包。</p>
+<p>import packa.abc.*;//导入了packa包中的子包abc下的当前的所有类。</p>
+<p>如果导入的两个包中存在着相同名称的类。这时如果用到该类，必须在代码中指定包名。</p>
+<h2 id="常见的软件包"><a href="#常见的软件包" class="headerlink" title="常见的软件包"></a>常见的软件包</h2><ul>
+<li>java.lang : language java的核心包，Object System  String Throwable jdk1.2版本后，该包中的类自动被导入。</li>
+<li>java.awt : 定义的都是用于java图形界面开发的对象。</li>
+<li>javax.swing: 提供所有的windows桌面应用程序包括的控件,比如：Frame , Dialog, Table, List 等等,就是java的图形界面库。</li>
+<li>java.net : 用于java网络编程方面的对象都在该包中。</li>
+<li>java.io : input  output 用于操作设备上数据的对象都在该包中。比如：读取硬盘数据，往硬盘写入数据。</li>
+<li>java.util : java的工具包，时间对象，集合框架。</li>
+<li>java.applet: application+let 客户端java小程序。server+let  –&gt;  servlet 服务端java小程序。</li>
+</ul>
+<p>jar ：java的压缩包，主要用于存储类文件，或者配置文件等。</p>
+<p>命令格式：jar –cf 包名.jar 包目录</p>
+<p>解压缩：jar –xvf 包名.jar </p>
+<p>将jar包目录列表重定向到一个文件中：jar –tf 包名.jar &gt;c:\1.txt</p>
+<p>包举例：</p>
+<pre><code>package pack;//包名所有均小写
+
+import packb.*;    //把packb中的所有类导入
+import packa.*;
+
+class  PackageDemo
+{
+    public static void main(String[] args) 
+    {
+        packa.DemoA d = new packa.DemoA();
+        d.show();
+
+//        packb.DemoB d = new packb.DemoB();
+//        d.methodB();//加入protected后，此处不能访问该方法，编译失败
+
+//        DemoC d = new DemoC();
+//        d.methodC();//编译失败
+    }
+}
+package packa;
+
+public class  DemoA extends packb.DemoB
+{
+    public void show()
+    {
+        System.out.println(&quot;DemoA show Run&quot;);
+        methodB();
+    }
+}
+package packb;
+
+public class  DemoB extends DemoC
+{
+    protected/*保护权限*/ void methodB()
+    {
+        System.out.println(&quot;DemoB show Run&quot;);
+        methodC();
+    }
+}
+package packb;
+
+public class  DemoC
+{
+    protected/*保护权限*/ void methodC()
+    {
+        System.out.println(&quot;DemoC show Run&quot;);
+    }
+}</code></pre>
+    </div>
+    
+    <div class="reward" ontouchstart>
+    <div class="reward-wrap">赏
+        <div class="reward-box">
+            
+            <span class="reward-type">
+                <img class="alipay" src="/blog/img/alipay.jpg"><b>支付宝打赏</b>
+            </span>
+            
+            
+            <span class="reward-type">
+                <img class="wechat" src="/blog/img/reward-wepay.jpg"><b>微信打赏</b>
+            </span>
+            
+        </div>
+    </div>
+    <p class="reward-tip">
+        赞赏是不耍流氓的鼓励
+    </p>
+</div>
+    
+    <div class="post-footer">
+        <div>
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+<div class="article-nav prev-next-wrap clearfix">
+    
+    <a href="/blog/2014/05/10/Java多线程基础/" class="pre-post btn btn-default" title='Java多线程基础'>
+        <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+        <span class="hidden-xs">
+            Java多线程基础</span>
+    </a>
+    
+    
+    <a href="/blog/2014/05/09/Java面向对象之多态、内部类/" class="next-post btn btn-default" title='Java面向对象之多态、内部类'>
+        <span class="hidden-lg">下一篇</span>
+        <span class="hidden-xs">
+            Java面向对象之多态、内部类</span><i class="fa fa-angle-right fa-fw"></i>
+    </a>
+    
+</div>
+
+<div id="comments">
+    
+<p>评论系统未开启，无法评论！</p>
+
+</div>
+
+                </main>
+                
+                    <aside id="article-toc" role="navigation" class="col-md-4">
+    <div class="widget">
+        <h3 class="title">
+            文章目录
+        </h3>
+        
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#异常"><span class="toc-text">异常</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#认识异常"><span class="toc-text">认识异常</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#对于问题的划分：两种"><span class="toc-text">对于问题的划分：两种</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#异常分两种"><span class="toc-text">异常分两种</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#throw-和throws关键字的区别："><span class="toc-text">throw 和throws关键字的区别：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#异常处理"><span class="toc-text">异常处理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#定义异常"><span class="toc-text">定义异常</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#包package"><span class="toc-text">包package</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#定义包用package关键字"><span class="toc-text">定义包用package关键字</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#总结java中的四种权限"><span class="toc-text">总结java中的四种权限</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#常见的软件包"><span class="toc-text">常见的软件包</span></a></li></ol></li></ol>
+        
+    </div>
+</aside>
+                
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+<a id="back-to-top" class="icon-btn hide">
+    <i class="fa fa-chevron-up"></i>
+</a>
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="busuanzi">
+    
+</div>
+            </div>
+            <div class="col-sm-12">
+                <span>Copyright &copy;
+                    2014
+                </span> |
+                <span>
+                    Powered by <a href="https://okfood.vip" class="copyright-links" target="_blank" rel="nofollow">Leo</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="/blog/assets/tagcanvas.min.js?rev=2.9"></script>
+<script>
+var tagOption = {
+    textColour: '#444', // 字体颜色
+    outlineMethod: 'block', // 选中模式
+    outlineColour: '#FFDAB9', // 选中模式的颜色
+    interval: 30 || 30, // 动画帧之间的时间间隔，值越大，转动幅度越大
+    textHeight: 13,
+    outlineRadius: 3,
+    freezeActive: true || '', // 选中的标签是否继续滚动
+    frontSelect: true || '', // 不选标签云后部的标签
+    initial: [0.1, -0.1],
+    depth: 0.5,
+    decel: 0.95,
+    maxSpeed: 0.03,
+    reverse: true || '', // 是否反向触发
+    fadeIn: 500, // 进入动画时间
+    wheelZoom: false || '' // 是否启用鼠标滚轮
+}
+TagCanvas.Start('tag-cloud-3d', '', tagOption);
+</script>
+
+
+<script src="/blog/assets/google-code-prettify/prettify.js?"></script>
+<script src="/blog/js/app.js?rev=@@hash"></script>
+</body>
+</html>

@@ -1,0 +1,463 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+<head><meta name="generator" content="Hexo 3.9.0">
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="上帝之手-Work makes the workman">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="theme-version" content="1.2.3">
+    <meta name="root" content="/blog/">
+    <link rel="dns-prefetch" href="https://okfood.vip/blog">
+    <!--SEO-->
+
+<meta name="keywords" content="JavaSE,正则">
+
+
+<meta name="description" content="正则表达式其实是用来操作字符串的一些规则。
+好处：正则的出现，对字符串的复杂操作变得更为简单。
+特点：将对字符串操作的代码用一些符号来表示。只要使用了指定符号，就可以调用底层的代码对字符串进行操...">
+
+
+<meta name="robots" content="all">
+<meta name="google" content="all">
+<meta name="googlebot" content="all">
+<meta name="verify" content="all">
+    <!--Title-->
+
+<title>
+    
+    Java正则表达式 |
+    
+    上帝之手-Work makes the workman
+</title>
+
+<link rel="alternate" href="/blog/atom.xml" title="上帝之手-Work makes the workman" type="application/atom+xml">
+
+
+<link rel="icon" href="/blog/img/avatar_circle.png">
+
+    
+
+<link rel="stylesheet" href="/blog/css/bootstrap.min.css?rev=3.3.7">
+<link rel="stylesheet" href="/blog/css/font-awesome.min.css?rev=4.7.0">
+<link rel="stylesheet" href="/blog/css/style.css?rev=@@hash">
+<link rel="stylesheet" href="/blog/assets/google-code-prettify/prettify.css">
+    
+
+
+
+    
+
+</head></html>
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+<body>
+    <header class="main-header"  style="background-image:url(
+    /blog/img/banner.jpg)"
+     >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/blog/" title='Leo'>
+            <img src="/blog/img/avatar.jpg" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+            
+            <img src="/blog/img/branding.png" alt="博客-Leo" class="img-responsive center-block">
+            
+        </div>
+    </div>
+</header>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                        <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="https://okfood.vip/blog">
+                        上帝之手-Work makes the workman</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/blog/"><i class="fa "></i>
+                                首页</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/blog/categories/Java/"><i class="fa "></i>
+                                Java</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/blog/categories/Android/"><i class="fa "></i>
+                                Android</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/blog/categories/前端/"><i class="fa "></i>
+                                前端</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/blog/categories/后端/"><i class="fa "></i>
+                                后端</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/blog/categories/算法/"><i class="fa "></i>
+                                算法</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/blog/archives/"><i class="fa "></i>
+                                时间轴</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="Java正则表达式">
+            
+            Java正则表达式
+            
+        </h1>
+        <div class="post-meta">
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a class="category-link" href="/blog/categories/Java/">Java</a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            <a class="tag-link" href="/blog/tags/JavaSE/">JavaSE</a> <a class="tag-link" href="/blog/tags/正则/">正则</a>
+            
+        </span>
+    </span>
+    
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta">
+            2014/05/24</span>
+    </span>
+    
+    
+</div>
+        
+        
+    </div>
+    
+    <div class="post-body post-content">
+        <h1 id="正则表达式"><a href="#正则表达式" class="headerlink" title="正则表达式"></a>正则表达式</h1><p>其实是用来操作字符串的一些规则。</p>
+<p><strong>好处</strong>：正则的出现，对字符串的复杂操作变得更为简单。</p>
+<p>特点：将对字符串操作的代码用一些符号来表示。只要使用了指定符号，就可以调用底层的代码对字符串进行操作。符号的出现，简化了代码的书写。</p>
+<p><strong>弊端</strong>：符号的出现虽然简化了书写，但是却降低了阅读性。</p>
+<p>其实更多是用正则解决字符串操作的问题。</p>
+<p>组：用小括号标示，每定义一个小括号，就是一个组，而且有自动编号，从1开始。</p>
+<p>只要使用组，对应的数字就是使用该组的内容。别忘了，数组要加\。</p>
+<p>(aaa(wwww(ccc))(eee))技巧，从左括号开始数即可。有几个左括号就是几组。</p>
+<h2 id="常见操作"><a href="#常见操作" class="headerlink" title="常见操作"></a>常见操作</h2><p>1，匹配：其实用的就是String类中的matches方法。</p>
+<pre><code>String reg = &quot;[1-9][0-9]{4,14}&quot;;
+boolean b = qq.matches(reg);//将正则和字符串关联对字符串进行匹配。</code></pre><p>2，切割：其实用的就是String类中的split方法。</p>
+<p>3，替换：其实用的就是String类中的replaceAll();</p>
+<p>4，获取：</p>
+<p>1），先要将正则表达式编译成正则对象。使用的是Pattern中静态方法 compile(regex);</p>
+<p>2），通过Pattern对象获取Matcher对象。</p>
+<p>Pattern用于描述正则表达式，可以对正则表达式进行解析。</p>
+<p>而将规则操作字符串，需要从新封装到匹配器对象Matcher中。</p>
+<p>然后使用Matcher对象的方法来操作字符串。</p>
+<p>如何获取匹配器对象呢？</p>
+<p>通过Pattern对象中的matcher方法。该方法可以正则规则和字符串想关联。并返回匹配器对象。</p>
+<p>3），使用Matcher对象中的方法即可对字符串进行各种正则操作。</p>
+<p>举例1：</p>
+<pre><code>package pack.leo;
+public class RegexDemo {
+    public static void main(String... args) {
+        oldCheckQQ(&quot;123456&quot;);
+        checkQQ(&quot;619827587&quot;);
+        split(&quot;192.168.9.101&quot;);
+        replaceAll(&quot;heima#163.com&quot;);
+    }
+
+    public static void replaceAll(String E_mail) {
+        String regex = &quot;[#]&quot;;
+        String newStr = E_mail.replaceAll(regex, &quot;@&quot;);
+        System.out.println(newStr);
+    }
+
+    public static void split(String ip) {
+        String regex = &quot;\\.&quot;;
+        String[] arr = ip.split(regex);
+        for (String subString : arr) {
+            System.out.println(subString);
+        }
+    }
+
+    public static void checkQQ(String qq) {
+        String regex = &quot;[1-9]\\d{4,9}&quot;;
+        boolean flag = qq.matches(regex);
+        if (flag)
+            System.out.println(qq + &quot;is ok&quot;);
+        else
+            System.out.println(&quot;I don&#39;t know&quot;);
+    }
+
+    public static void oldCheckQQ(String qq) {
+        int len = qq.length();
+        if (len &gt;= 5 &amp;&amp; len &lt;= 10) {
+            if (!(qq.startsWith(&quot;0&quot;))) {
+                try {
+                    long l = Long.parseLong(qq);
+                    System.out.println(&quot;登录成功&quot;);
+                } catch (Exception e) {
+                    System.out.println(&quot;登录失败&quot;);
+                }
+            } else {
+                System.out.println(&quot;不能0开头&quot;);
+            }
+        } else {
+            System.out.println(&quot;长度错误&quot;);
+        }
+    }
+}</code></pre><p>举例2：</p>
+<pre><code>package com.leo;
+public class Test9 {
+    public static void main(String[] args) {
+        matchPhoneNumber(&quot;18601088888&quot;);
+        matchPhoneNumber(&quot;13912366666&quot;);
+        matchPhoneNumber(&quot;13912366646&quot;);
+    }
+    public static void matchPhoneNumber (String str) {
+
+        //1.定义正则表达式
+        String regex = &quot;1[3458]\\d{4}(\\d)\\1{4}&quot;;    
+
+        //2.匹配手机号是否符合规则 返回true或false
+        boolean flag = str.matches(regex);
+
+        if(flag)
+            System.out.println(&quot;手机号码与规则相符!&quot;);
+        else
+            System.out.println(&quot;手机号码与规则不相符!&quot;);
+    }
+}</code></pre><h2 id="常用正则表达式"><a href="#常用正则表达式" class="headerlink" title="常用正则表达式"></a>常用正则表达式</h2><ul>
+<li><p>匹配中文字符的正则表达式：[u4e00-u9fa5]</p>
+<p>  评注：匹配中文还真是个头疼的事，有了这个表达式就好办了</p>
+</li>
+<li><p>匹配双字节字符(包括汉字在内)：[^x00-xff]</p>
+<p>  评注：可以用来计算字符串的长度（一个双字节字符长度计2，ASCII字符计1）</p>
+</li>
+<li><p>匹配空白行的正则表达式：ns*r</p>
+<p>  评注：可以用来删除空白行</p>
+</li>
+<li><p>匹配HTML标记的正则表达式：&lt;(S<em>?)[^&gt;]</em>&gt;.<em>?&lt;/1&gt;|&lt;.</em>? /&gt;</p>
+<p>  评注：网上流传的版本太糟糕，上面这个也仅仅能匹配部分，对于复杂的嵌套标记依旧无能为力</p>
+</li>
+<li><p>匹配首尾空白字符的正则表达式：^s<em>|s</em>$</p>
+<p>  评注：可以用来删除行首行尾的空白字符(包括空格、制表符、换页符等等)，非常有用的表达式</p>
+</li>
+<li><p>匹配Email地址的正则表达式：w+([-+.]w+)<em>@w+([-.]w+)</em>.w+([-.]w+)*</p>
+<p>  评注：表单验证时很实用</p>
+</li>
+<li><p>匹配网址URL的正则表达式：[a-zA-z]+://[^s]*</p>
+<p>  评注：网上流传的版本功能很有限，上面这个基本可以满足需求</p>
+</li>
+<li><p>匹配帐号是否合法(字母开头，允许5-16字节，允许字母数字下划线)：^[a-zA-Z][a-zA-Z0-9_]{4,15}$</p>
+<p>  评注：表单验证时很实用</p>
+</li>
+<li><p>匹配国内电话号码：d{3}-d{8}|d{4}-d{7}</p>
+<p>  评注：匹配形式如 0511-4405222 或 021-87888822</p>
+</li>
+<li><p>匹配腾讯QQ号：[1-9][0-9]{4,}</p>
+<p>  评注：腾讯QQ号从10000开始</p>
+</li>
+<li><p>匹配中国邮政编码：[1-9]d{5}(?!d)</p>
+<p>  评注：中国邮政编码为6位数字</p>
+</li>
+<li><p>匹配身份证：d{15}|d{18}</p>
+<p>  评注：中国的身份证为15位或18位</p>
+</li>
+<li><p>匹配ip地址：d+.d+.d+.d+</p>
+<p>  评注：提取ip地址时有用</p>
+</li>
+<li><p>匹配特定数字：</p>
+<pre><code>  ^[1-9]d*$　 　 //匹配正整数
+  ^-[1-9]d*$ 　 //匹配负整数
+  ^-?[1-9]d*$　　 //匹配整数
+  ^[1-9]d*|0$　 //匹配非负整数（正整数 + 0）
+  ^-[1-9]d*|0$　　 //匹配非正整数（负整数 + 0）
+  ^[1-9]d*.d*|0.d*[1-9]d*$　　 //匹配正浮点数
+  ^-([1-9]d*.d*|0.d*[1-9]d*)$　 //匹配负浮点数
+  ^-?([1-9]d*.d*|0.d*[1-9]d*|0?.0+|0)$　 //匹配浮点数
+  ^[1-9]d*.d*|0.d*[1-9]d*|0?.0+|0$　　 //匹配非负浮点数（正浮点数 + 0）
+  ^(-([1-9]d*.d*|0.d*[1-9]d*))|0?.0+|0$　　//匹配非正浮点数（负浮点数 + 0）</code></pre><p>  评注：处理大量数据时有用，具体应用时注意修正</p>
+</li>
+</ul>
+<ul>
+<li><p>匹配特定字符串：</p>
+<pre><code>  ^[A-Za-z]+$　　//匹配由26个英文字母组成的字符串
+  ^[A-Z]+$　　//匹配由26个英文字母的大写组成的字符串
+  ^[a-z]+$　　//匹配由26个英文字母的小写组成的字符串
+  ^[A-Za-z0-9]+$　　//匹配由数字和26个英文字母组成的字符串
+  ^w+$　　//匹配由数字、26个英文字母或者下划线组成的字符串</code></pre></li>
+</ul>
+
+    </div>
+    
+    <div class="reward" ontouchstart>
+    <div class="reward-wrap">赏
+        <div class="reward-box">
+            
+            <span class="reward-type">
+                <img class="alipay" src="/blog/img/alipay.jpg"><b>支付宝打赏</b>
+            </span>
+            
+            
+            <span class="reward-type">
+                <img class="wechat" src="/blog/img/reward-wepay.jpg"><b>微信打赏</b>
+            </span>
+            
+        </div>
+    </div>
+    <p class="reward-tip">
+        赞赏是不耍流氓的鼓励
+    </p>
+</div>
+    
+    <div class="post-footer">
+        <div>
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+<div class="article-nav prev-next-wrap clearfix">
+    
+    <a href="/blog/2014/05/26/JavaBean内省、注解、类加载器/" class="pre-post btn btn-default" title='JavaBean内省、注解、类加载器'>
+        <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+        <span class="hidden-xs">
+            JavaBean内省、注解、类加载器</span>
+    </a>
+    
+    
+    <a href="/blog/2014/05/23/Java反射技术/" class="next-post btn btn-default" title='Java反射技术'>
+        <span class="hidden-lg">下一篇</span>
+        <span class="hidden-xs">
+            Java反射技术</span><i class="fa fa-angle-right fa-fw"></i>
+    </a>
+    
+</div>
+
+<div id="comments">
+    
+<p>评论系统未开启，无法评论！</p>
+
+</div>
+
+                </main>
+                
+                    <aside id="article-toc" role="navigation" class="col-md-4">
+    <div class="widget">
+        <h3 class="title">
+            文章目录
+        </h3>
+        
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#正则表达式"><span class="toc-text">正则表达式</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#常见操作"><span class="toc-text">常见操作</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#常用正则表达式"><span class="toc-text">常用正则表达式</span></a></li></ol></li></ol>
+        
+    </div>
+</aside>
+                
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+<a id="back-to-top" class="icon-btn hide">
+    <i class="fa fa-chevron-up"></i>
+</a>
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="busuanzi">
+    
+</div>
+            </div>
+            <div class="col-sm-12">
+                <span>Copyright &copy;
+                    2014
+                </span> |
+                <span>
+                    Powered by <a href="https://okfood.vip" class="copyright-links" target="_blank" rel="nofollow">Leo</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="/blog/assets/tagcanvas.min.js?rev=2.9"></script>
+<script>
+var tagOption = {
+    textColour: '#444', // 字体颜色
+    outlineMethod: 'block', // 选中模式
+    outlineColour: '#FFDAB9', // 选中模式的颜色
+    interval: 30 || 30, // 动画帧之间的时间间隔，值越大，转动幅度越大
+    textHeight: 13,
+    outlineRadius: 3,
+    freezeActive: true || '', // 选中的标签是否继续滚动
+    frontSelect: true || '', // 不选标签云后部的标签
+    initial: [0.1, -0.1],
+    depth: 0.5,
+    decel: 0.95,
+    maxSpeed: 0.03,
+    reverse: true || '', // 是否反向触发
+    fadeIn: 500, // 进入动画时间
+    wheelZoom: false || '' // 是否启用鼠标滚轮
+}
+TagCanvas.Start('tag-cloud-3d', '', tagOption);
+</script>
+
+
+<script src="/blog/assets/google-code-prettify/prettify.js?"></script>
+<script src="/blog/js/app.js?rev=@@hash"></script>
+</body>
+</html>
