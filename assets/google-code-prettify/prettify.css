@@ -14,7 +14,6 @@ ol.linenums {
   color: #CCCCCC;
   background: #e67e22;
   padding-left: 2px;
-  margin-left: 1.5em;
 }
 
 li.L0,
@@ -29,7 +28,7 @@ li.L8,
 li.L9 {
   padding-left: 1em;
   background-color: #2D2D2D;
-  list-style-type: decimal;
+  list-style-type: none;
   font-size:14px;
 }
 

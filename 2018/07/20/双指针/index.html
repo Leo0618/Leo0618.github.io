@@ -1,0 +1,417 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+<head><meta name="generator" content="Hexo 3.9.0">
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="上帝之手-Work makes the workman">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="theme-version" content="1.2.3">
+    <meta name="root" content="/blog/">
+    <link rel="dns-prefetch" href="https://okfood.vip/blog">
+    <!--SEO-->
+
+<meta name="keywords" content="双指针">
+
+
+<meta name="description" content="双指针思想类型一般来说分为两类：快慢指针、左右指针。
+
+前者解决主要解决链表中的问题，比如典型的判定链表中是否包含环
+后者主要解决数组（或者字符串）中的问题，比如二分查找。
+
+快慢指针
+快慢指针...">
+
+
+<meta name="robots" content="all">
+<meta name="google" content="all">
+<meta name="googlebot" content="all">
+<meta name="verify" content="all">
+    <!--Title-->
+
+<title>
+    
+    双指针 |
+    
+    上帝之手-Work makes the workman
+</title>
+
+<link rel="alternate" href="/blog/atom.xml" title="上帝之手-Work makes the workman" type="application/atom+xml">
+
+
+<link rel="icon" href="/blog/img/avatar_circle.png">
+
+    
+
+<link rel="stylesheet" href="/blog/css/bootstrap.min.css?rev=3.3.7">
+<link rel="stylesheet" href="/blog/css/font-awesome.min.css?rev=4.7.0">
+<link rel="stylesheet" href="/blog/css/style.css?rev=@@hash">
+<link rel="stylesheet" href="/blog/assets/google-code-prettify/prettify.css">
+    
+
+
+
+    
+
+</head></html>
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+<body>
+    <header class="main-header"  style="background-image:url(
+    /blog/img/banner.jpg)"
+     >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/blog/" title='Leo'>
+            <img src="/blog/img/avatar.jpg" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+            
+            <img src="/blog/img/branding.png" alt="博客-Leo" class="img-responsive center-block">
+            
+        </div>
+    </div>
+</header>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                        <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="https://okfood.vip/blog">
+                        上帝之手-Work makes the workman</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/blog/"><i class="fa "></i>
+                                首页</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/blog/categories/Java/"><i class="fa "></i>
+                                Java</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/blog/categories/Android/"><i class="fa "></i>
+                                Android</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/blog/categories/前端/"><i class="fa "></i>
+                                前端</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/blog/categories/后端/"><i class="fa "></i>
+                                后端</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/blog/categories/算法/"><i class="fa "></i>
+                                算法</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/blog/archives/"><i class="fa "></i>
+                                时间轴</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="双指针">
+            
+            双指针
+            
+        </h1>
+        <div class="post-meta">
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a class="category-link" href="/blog/categories/算法/">算法</a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            <a class="tag-link" href="/blog/tags/双指针/">双指针</a>
+            
+        </span>
+    </span>
+    
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta">
+            2018/07/20</span>
+    </span>
+    
+    
+</div>
+        
+        
+    </div>
+    
+    <div class="post-body post-content">
+        <p>双指针思想类型一般来说分为两类：快慢指针、左右指针。</p>
+<ul>
+<li>前者解决主要解决链表中的问题，比如典型的判定链表中是否包含环</li>
+<li>后者主要解决数组（或者字符串）中的问题，比如二分查找。</li>
+</ul>
+<h1 id="快慢指针"><a href="#快慢指针" class="headerlink" title="快慢指针"></a>快慢指针</h1><blockquote>
+<p>快慢指针一般都初始化指向链表的头结点 head，前进时快指针 fast 在前，慢指针 slow 在后，巧妙解决一些链表中的问题。</p>
+</blockquote>
+<ul>
+<li><p>实例1、判定链表中是否含有环</p>
+<p>  用两个指针，一个每次前进两步，一个每次前进一步。如果不含有环，跑得快的那个指针最终会遇到 null，说明链表不含环；如果含有环，快指针最终会超慢指针一圈，和慢指针相遇，说明链表含有环。</p>
+<pre><code>  boolean hasCycle(ListNode head) {
+      ListNode fast, slow;
+      fast = slow = head;
+      while(fast != null &amp;&amp; fast.next != null) {
+          fast = fast.next.next;
+          slow = slow.next;
+          if (fast == slow){
+              return true;
+          }
+      }
+      return false;
+  }</code></pre></li>
+<li><p>实例2、<a href="http://note.youdao.com/noteshare?id=790af5eeb6428727996ed4433d9b81a9&sub=96700803A047410EB12218B7F620F399" target="_blank" rel="noopener">已知链表中含有环，返回这个环的起始位置</a></p>
+</li>
+<li><p>实例3、寻找链表的中点</p>
+<p>  可以让快指针一次前进两步，慢指针一次前进一步，当快指针到达链表尽头时，慢指针就处于链表的中间位置</p>
+</li>
+<li><p>实例4、<a href="http://note.youdao.com/noteshare?id=6cf7f9a92e8696d528fba05ea2db272b&sub=390AF4E717804A228FC9D88B34082532" target="_blank" rel="noopener">寻找链表的倒数第 k 个元素</a></p>
+</li>
+</ul>
+<h1 id="左右指针"><a href="#左右指针" class="headerlink" title="左右指针"></a>左右指针</h1><blockquote>
+<p>左右指针在数组中实际是指两个索引值，一般初始化为 left = 0, right = nums.length - 1 。</p>
+</blockquote>
+<ul>
+<li><p>实例1、二分查找</p>
+</li>
+<li><p>实例2、<a href="https://leetcode-cn.com/problems/two-sum/" target="_blank" rel="noopener">两数之和</a></p>
+</li>
+<li><p>实例3、反转数组</p>
+<pre><code>  void reverse(int[] nums) {
+      int left = 0;
+      int right = nums.length - 1;
+      while (left &lt; right) {
+          // swap(nums[left], nums[right])
+          int temp = nums[left];
+          nums[left] = nums[right];
+          nums[right] = temp;
+          left++;
+          right--;
+      }
+  }</code></pre></li>
+<li><p>实例4、滑动窗口算法</p>
+</li>
+</ul>
+<p>该算法展示了如何将嵌套for循环在少数问题中转换为单个for循环，从而减少了时间的复杂性。</p>
+<p><strong>一个经典的问题</strong></p>
+<p>给一组大小为n的整数数组，计算长度为k的子数组的最大值, 我们希望的结果如下</p>
+<pre><code>Input  : arr[] = {100, 200, 300, 400}
+         k = 2
+Output : 700
+
+Input  : arr[] = {1, 4, 2, 10, 23, 3, 1, 0, 20}
+         k = 4 
+Output : 39
+We get maximum sum by adding subarray {4, 2, 10, 23}
+of size 4.
+
+Input  : arr[] = {2, 3}
+         k = 3
+Output : -1
+There is no subarray of size 3 as size of whole
+array is 2.</code></pre><p>该技术可以通过总线上的窗格得到最好的理解，考虑长度为n的窗口和长度为k的窗格。考虑一下，最初窗格处于极端的左边，即从左边开始的0个单位。现在，将窗口与大小为n和平面的数组arr []以k大小的元素的<code>current_sum</code>相关联。现在，如果我们在窗户上施加力量，使其向前移动一个单位距离。该窗格将覆盖下一个k个连续元素。</p>
+<p>考虑数组arr [] = { 5，2，-1，0，3 }，k = 3和n = 5的值</p>
+<p>应用滑动窗口技术：</p>
+<ol>
+<li>我们使用线性循环计算n个项中前k个元素的总和，并将总和存储在变量<code>window_sum</code>中。</li>
+<li>然后，我们将在阵列上线性滑动直至达到最终并同时追踪最大和。</li>
+<li>要获得k个元素块的当前总和，只需从前一个块中减去第一个元素并添加当前块的最后一个元素即可。 下面的表示将清楚说明窗口如何在阵列上滑动。</li>
+</ol>
+<p>这是我们计算从索引0开始的初始窗口总和的初始阶段。在这个阶段，窗口和为6.现在，我们将<code>maximum_sum</code>设置为<code>current_window</code>，即6。</p>
+<p><img src="https://raw.githubusercontent.com/Leo0618/images/master/56.png" alt></p>
+<p>现在，我们用单位索引来滑动我们的窗口。因此，现在它从窗口中丢弃5并将0添加到窗口。因此，我们将得到新的窗口总和，减去5，然后加上0。所以，我们的窗口和现在变成1.现在，我们将比较这个窗口和与<code>maximum_sum</code>。因为它更小，我们不会改变<code>maximum_sum</code>。</p>
+<p><img src="https://raw.githubusercontent.com/Leo0618/images/master/57.png" alt></p>
+<p>同样，现在我们再次用一个单位索引来滑动我们的窗口，并获得新的窗口总和为2.我们再一次检查这个当前窗口总和是否大于<code>maximum_sum</code>，直到现在。有一次，它再小一些，所以我们不改变<code>maximum_sum</code>。</p>
+<p>因此，对于上面的数组，我们的<code>maximum_sum</code>是6。</p>
+<p><img src="https://raw.githubusercontent.com/Leo0618/images/master/58.png" alt></p>
+<pre><code>public static int slideWindowForMaxSum(int arr[], int k) {
+    if(arr.length &lt; k) return -1;
+    int max_sum = 0;
+    for(int i = 0; i &lt; k; i++) {
+        max_sum += arr[i];
+    }
+    int windows_sum = max_sum;
+    for(int i = k; i &lt; arr.length; i++) {
+        windows_sum += arr[i]-arr[i-k];
+        max_sum = Math.max(max_sum, windows_sum);
+    }
+    return max_sum;
+}</code></pre>
+    </div>
+    
+    <div class="reward" ontouchstart>
+    <div class="reward-wrap">赏
+        <div class="reward-box">
+            
+            <span class="reward-type">
+                <img class="alipay" src="/blog/img/alipay.jpg"><b>支付宝打赏</b>
+            </span>
+            
+            
+            <span class="reward-type">
+                <img class="wechat" src="/blog/img/reward-wepay.jpg"><b>微信打赏</b>
+            </span>
+            
+        </div>
+    </div>
+    <p class="reward-tip">
+        赞赏是不耍流氓的鼓励
+    </p>
+</div>
+    
+    <div class="post-footer">
+        <div>
+            
+            声明：
+            文章部分内容可能来自网络摘要，若有侵犯，请联系管理员（leo0618@126.com）
+            
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+<div class="article-nav prev-next-wrap clearfix">
+    
+    <a href="/blog/2018/08/28/HashMap之10问/" class="pre-post btn btn-default" title='HashMap之10问'>
+        <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+        <span class="hidden-xs">
+            HashMap之10问</span>
+    </a>
+    
+    
+    <a href="/blog/2018/06/26/二分查找/" class="next-post btn btn-default" title='二分查找'>
+        <span class="hidden-lg">下一篇</span>
+        <span class="hidden-xs">
+            二分查找</span><i class="fa fa-angle-right fa-fw"></i>
+    </a>
+    
+</div>
+
+<div id="comments">
+    
+<p>评论系统未开启，无法评论！</p>
+
+</div>
+
+                </main>
+                
+                    <aside id="article-toc" role="navigation" class="col-md-4">
+    <div class="widget">
+        <h3 class="title">
+            文章目录
+        </h3>
+        
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#快慢指针"><span class="toc-text">快慢指针</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#左右指针"><span class="toc-text">左右指针</span></a></li></ol>
+        
+    </div>
+</aside>
+                
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+<a id="back-to-top" class="icon-btn hide">
+    <i class="fa fa-chevron-up"></i>
+</a>
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="busuanzi">
+    
+</div>
+            </div>
+            <div class="col-sm-12">
+                <span>Copyright &copy;
+                    2014
+                </span> |
+                <span>
+                    Powered by <a href="https://okfood.vip" class="copyright-links" target="_blank" rel="nofollow">Leo</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="/blog/assets/tagcanvas.min.js?rev=2.9"></script>
+<script>
+var tagOption = {
+    textColour: '#444', // 字体颜色
+    outlineMethod: 'block', // 选中模式
+    outlineColour: '#FFDAB9', // 选中模式的颜色
+    interval: 30 || 30, // 动画帧之间的时间间隔，值越大，转动幅度越大
+    textHeight: 13,
+    outlineRadius: 3,
+    freezeActive: true || '', // 选中的标签是否继续滚动
+    frontSelect: true || '', // 不选标签云后部的标签
+    initial: [0.1, -0.1],
+    depth: 0.5,
+    decel: 0.95,
+    maxSpeed: 0.03,
+    reverse: true || '', // 是否反向触发
+    fadeIn: 500, // 进入动画时间
+    wheelZoom: false || '' // 是否启用鼠标滚轮
+}
+TagCanvas.Start('tag-cloud-3d', '', tagOption);
+</script>
+
+
+<script src="/blog/assets/google-code-prettify/prettify.js?"></script>
+<script src="/blog/js/app.js?rev=@@hash"></script>
+</body>
+</html>
