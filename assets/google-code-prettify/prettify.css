@@ -1,5 +1,6 @@
 /*! Color themes for Google Code Prettify | MIT License | github.com/jmblog/color-themes-for-google-code-prettify */
 .prettyprint {
+  padding: 10px;
   background: #2D2D2D;
   font-family: Menlo, "Bitstream Vera Sans Mono", "DejaVu Sans Mono", Monaco, Consolas, monospace;
   border: 0 !important;
@@ -12,8 +13,6 @@
 /* Specify class=linenums on a pre to get line numbering */
 ol.linenums {
   color: #CCCCCC;
-  background: #e67e22;
-  padding-left: 2px;
 }
 
 li.L0,
@@ -26,7 +25,6 @@ li.L6,
 li.L7,
 li.L8,
 li.L9 {
-  padding-left: 1em;
   background-color: #2D2D2D;
   list-style-type: none;
   font-size:14px;

@@ -795,7 +795,7 @@ pre {
 .post-content li ol {
     margin-top: 0;
     margin-bottom: 0;
-    margin-left: 10px;
+    margin-left: 0;
 }
 
 .post-content li p {
