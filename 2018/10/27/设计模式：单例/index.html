@@ -19,12 +19,16 @@
     <link rel="dns-prefetch" href="https://okfood.vip/blog">
     <!--SEO-->
 
-<meta name="keywords" content="Flutter">
+<meta name="keywords" content="单例,设计模式">
 
 
-<meta name="description" content="flutter-img-synca plugin for flutter images synchronization
+<meta name="description" content="
+单例模式就是确保一个类只有一个实例，并为整个系统提供一个全局访问点 (向整个系统提供这个实例)。
 
-Android Studio及IDEA可在插件商店中搜索并安装: flu...">
+单例三要素
+私有的构造方法；
+指向自己实例的私有静态引用；
+以自己实例为返回值的静态的公有方...">
 
 
 <meta name="robots" content="all">
@@ -35,7 +39,7 @@ Android Studio及IDEA可在插件商店中搜索并安装: flu...">
 
 <title>
     
-    Flutter插件flutter-img-sync使用指南 |
+    设计模式：单例 |
     
     上帝之手-Work makes the workman
 </title>
@@ -143,16 +147,16 @@ Android Studio及IDEA可在插件商店中搜索并安装: flu...">
                     <p id="process"></p>
 <article class="post">
     <div class="post-head">
-        <h1 id="Flutter插件flutter-img-sync使用指南">
+        <h1 id="设计模式：单例">
             
-            Flutter插件flutter-img-sync使用指南
+            设计模式：单例
             
         </h1>
         <div class="post-meta">
     
     <span class="categories-meta fa-wrap">
         <i class="fa fa-folder-open-o"></i>
-        <a class="category-link" href="/blog/categories/Android/">Android</a>
+        <a class="category-link" href="/blog/categories/Java/">Java</a>
     </span>
     
     
@@ -160,7 +164,7 @@ Android Studio及IDEA可在插件商店中搜索并安装: flu...">
         <i class="fa fa-tags"></i>
         <span class="tags-meta">
             
-            <a class="tag-link" href="/blog/tags/Flutter/">Flutter</a>
+            <a class="tag-link" href="/blog/tags/单例/">单例</a> <a class="tag-link" href="/blog/tags/设计模式/">设计模式</a>
             
         </span>
     </span>
@@ -170,7 +174,7 @@ Android Studio及IDEA可在插件商店中搜索并安装: flu...">
     <span class="fa-wrap">
         <i class="fa fa-clock-o"></i>
         <span class="date-meta">
-            2019/05/28</span>
+            2018/10/27</span>
     </span>
     
     
@@ -180,25 +184,127 @@ Android Studio及IDEA可在插件商店中搜索并安装: flu...">
     </div>
     
     <div class="post-body post-content">
-        <h1 id="flutter-img-sync"><a href="#flutter-img-sync" class="headerlink" title="flutter-img-sync"></a>flutter-img-sync</h1><p>a plugin for flutter images synchronization</p>
-<blockquote>
-<p>Android Studio及IDEA可在插件商店中搜索并安装: <strong>flutter-img-sync</strong>  <a href="https://www.jianshu.com/p/c7c063ce9e19" target="_blank" rel="noopener">使用说明</a></p>
-<p>vs code编辑器在扩展商店中搜索并安装： <strong>flutter-img-sync</strong>  <a href="https://www.jianshu.com/p/74b71719bc6d" target="_blank" rel="noopener">使用说明</a></p>
-<p>功能：将资产目录下的图片自动添加到pubspec.yaml的assets配置下面，并生成R文件，代码中直接引用R文件下的定义即可</p>
+        <blockquote>
+<p><strong>单例模式就是确保一个类只有一个实例，并为整个系统提供一个全局访问点 (向整个系统提供这个实例)。</strong></p>
 </blockquote>
-<h2 id="效果演示-Android-Studio-or-IDEA"><a href="#效果演示-Android-Studio-or-IDEA" class="headerlink" title="效果演示(Android Studio or IDEA)"></a>效果演示(Android Studio or IDEA)</h2><p><img src="https://raw.githubusercontent.com/Leo0618/flutter-img-sync/master/androidstudio-play.gif" alt="Android Studio or IDEA"></p>
-<h2 id="效果演示-vs-code"><a href="#效果演示-vs-code" class="headerlink" title="效果演示(vs code)"></a>效果演示(vs code)</h2><p><img src="https://raw.githubusercontent.com/Leo0618/flutter-img-sync/master/vscode-play.gif" alt="vs code"></p>
-<h1 id="How-To-Use"><a href="#How-To-Use" class="headerlink" title="How To Use"></a>How To Use</h1><h2 id="step1-创建资产图片存放目录"><a href="#step1-创建资产图片存放目录" class="headerlink" title="step1.创建资产图片存放目录"></a>step1.创建资产图片存放目录</h2><p>创建资产图片存放目录 如: ./assets/img</p>
-<h2 id="step2-修改pubspec-yaml"><a href="#step2-修改pubspec-yaml" class="headerlink" title="step2.修改pubspec.yaml"></a>step2.修改pubspec.yaml</h2><p>定义资产图片存放目录，如:</p>
-<pre><code>assets:
-# assets-generator-begin
-# assets/img/*
-# assets-generator-end</code></pre><h2 id="step3-执行-FlutterImgSync-flutter-img-sync-AS和IDEA需要输入自定义图片预览的端口再点击确定执行插件"><a href="#step3-执行-FlutterImgSync-flutter-img-sync-AS和IDEA需要输入自定义图片预览的端口再点击确定执行插件" class="headerlink" title="step3.执行 FlutterImgSync (flutter-img-sync),AS和IDEA需要输入自定义图片预览的端口再点击确定执行插件"></a>step3.执行 FlutterImgSync (flutter-img-sync),AS和IDEA需要输入自定义图片预览的端口再点击确定执行插件</h2><ul>
-<li>命令执行后，图片将会被自动放置到pubspec.yaml文件的assets变量中</li>
-<li>./lib/r.dart 将会被创建</li>
-<li>在代码中导入r.dart文件，然后引用R类的变量</li>
+<h1 id="单例三要素"><a href="#单例三要素" class="headerlink" title="单例三要素"></a>单例三要素</h1><ul>
+<li>私有的构造方法；</li>
+<li>指向自己实例的私有静态引用；</li>
+<li>以自己实例为返回值的静态的公有方法。</li>
 </ul>
-<h2 id="step4-pub-get-刷新一下"><a href="#step4-pub-get-刷新一下" class="headerlink" title="step4.pub get 刷新一下"></a>step4.pub get 刷新一下</h2>
+<h1 id="1-饿汉式"><a href="#1-饿汉式" class="headerlink" title="1.饿汉式"></a>1.饿汉式</h1><pre><code>public class S {
+
+    private static S singleton = new S();
+
+    public static S getS() {
+        return singleton;
+    }
+
+    private S() {}
+}</code></pre><p><strong>类加载的方式是按需加载，且加载一次。</strong></p>
+<p>因此，在上述单例类被加载时，就会实例化一个对象并交给自己的引用，供系统使用；而且，由于这个类在整个生命周期中只会被加载一次，因此只会创建一个实例，即能够充分保证单例。</p>
+<h1 id="2-懒汉式"><a href="#2-懒汉式" class="headerlink" title="2.懒汉式"></a>2.懒汉式</h1><pre><code>public class S {
+
+    private static S singleton;
+
+    public static S getS() {
+        if(singleton == null) {
+            singleton = new S();
+        }
+        return singleton;
+    }
+
+    private S() {}
+}</code></pre><p>懒汉式单例可以看到，单例实例被延迟加载，即只有在真正使用的时候才会实例化一个对象并交给自己的引用。</p>
+<p>在多线程环境下：由于<strong>饿汉式单例天生就是线程安全</strong>的，可以直接用于多线程而不会出现问题；但<strong>懒汉式单例本身是非线程安全</strong>的，因此会出现多个实例的情况。</p>
+<h1 id="3-synchronized同步单例"><a href="#3-synchronized同步单例" class="headerlink" title="3.synchronized同步单例"></a>3.synchronized同步单例</h1><h2 id="synchronized方法"><a href="#synchronized方法" class="headerlink" title="synchronized方法"></a>synchronized方法</h2><pre><code>public class S {
+
+    private static S singleton;
+
+    public static synchronized S getS() {
+        if(singleton == null) {
+            singleton = new S();
+        }
+        return singleton;
+    }
+
+    private S() {}
+}</code></pre><p>使用<code>synchronized</code>修饰<code>getS()</code>方法，保证了对临界资源的同步互斥访问，也就保证了单例。</p>
+<p>但是这种实现方式的运行效率会很低，因为同步块的作用域有点大，而且锁的粒度有点粗。</p>
+<h2 id="synchronized代码块"><a href="#synchronized代码块" class="headerlink" title="synchronized代码块"></a>synchronized代码块</h2><pre><code>public class S {
+
+    private static S singleton;
+
+    public static S getS() {
+        synchronized(S.class) {
+            if(singleton == null) {
+                singleton = new S();
+            }
+        }
+        return singleton;
+    }
+
+    private S() {}
+}</code></pre><p>但是这种实现方式的运行效率仍然比较低，事实上，和使用synchronized方法的版本相比，基本没有任何效率上的提高。</p>
+<h1 id="4-双重检查方式"><a href="#4-双重检查方式" class="headerlink" title="4.双重检查方式"></a>4.双重检查方式</h1><pre><code>public class S {
+    //使用volatile关键字防止重排序，
+    //因为 new S()是一个非原子操作，可能创建一个不完整的实例
+    private static S singleton;
+
+    public static S getS() {
+        if(singleton == null) {
+            synchronized(S.class) {
+                //只需在第一次创建实例时才同步
+                if(singleton == null) {
+                    singleton = new S();
+                }
+            }
+        }
+        return singleton;
+    }
+
+    private S() {}
+}</code></pre><p>为了在保证单例的前提下提高运行效率，对singleton进行第二次检查，目的是避开过多的同步（因为这里的同步只需在第一次创建实例时才同步，一旦创建成功，以后获取实例时就不需要同步获取锁了）。</p>
+<p><strong>必须使用volatile关键字修饰单例引用。</strong></p>
+<h1 id="5-静态内部类"><a href="#5-静态内部类" class="headerlink" title="5.静态内部类"></a>5.静态内部类</h1><pre><code>public class S {
+
+    // 私有内部类，按需加载，用时加载，也就是延迟加载
+    private static class Holder {
+        private static S singleton = new S();
+    }
+
+    public static S getS() {
+        return Holder.singleton;
+    }
+
+    private S() {}
+}</code></pre><p>使用内部类实现线程安全的懒汉式单例，这种方式也是一种效率比较高的做法，而且类加载是按需加载，只加载一次。</p>
+<h1 id="6-枚举"><a href="#6-枚举" class="headerlink" title="6.枚举"></a>6.枚举</h1><pre><code>public enum S {
+    INSTANCE;
+
+    public static S getS() {
+        return INSTANCE;
+    }
+}</code></pre><p>线程安全、调用效率高、没有延时加载。并且具有天然的防止反射和反序列化漏洞</p>
+<h1 id="7-原子操作"><a href="#7-原子操作" class="headerlink" title="7.原子操作"></a>7.原子操作</h1><pre><code>public class S {
+    private static final AtomicReference&lt;S&gt; INSTANCE = new AtomicReference&lt;&gt;();
+
+    public static S instance() {
+        for(; ; ) {
+            S instance = INSTANCE.get();
+            if(instance != null) {
+                return instance;
+            }
+            instance = new S();
+            if(INSTANCE.compareAndSet(null, instance)) {
+                return instance;
+            }
+        }
+    }
+
+    private S() {}
+}</code></pre><p>利用原子引用AtomicReference的CAS操作，确保线程安全并且单例。</p>
+
     </div>
     
     <div class="reward" ontouchstart>
@@ -236,17 +342,17 @@ Android Studio及IDEA可在插件商店中搜索并安装: flu...">
 </article>
 <div class="article-nav prev-next-wrap clearfix">
     
-    <a href="/blog/2019/09/05/HTTP请求相关的几个问题/" class="pre-post btn btn-default" title='HTTP请求相关的几个问题'>
+    <a href="/blog/2019/05/28/Flutter插件flutter-img-sync使用指南/" class="pre-post btn btn-default" title='Flutter插件flutter-img-sync使用指南'>
         <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
         <span class="hidden-xs">
-            HTTP请求相关的几个问题</span>
+            Flutter插件flutter-img-sync使用指南</span>
     </a>
     
     
-    <a href="/blog/2018/10/27/设计模式：单例/" class="next-post btn btn-default" title='设计模式：单例'>
+    <a href="/blog/2018/10/17/webpack的基本操作/" class="next-post btn btn-default" title='webpack的基本操作'>
         <span class="hidden-lg">下一篇</span>
         <span class="hidden-xs">
-            设计模式：单例</span><i class="fa fa-angle-right fa-fw"></i>
+            webpack的基本操作</span><i class="fa fa-angle-right fa-fw"></i>
     </a>
     
 </div>
@@ -265,7 +371,7 @@ Android Studio及IDEA可在插件商店中搜索并安装: flu...">
             文章目录
         </h3>
         
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#flutter-img-sync"><span class="toc-text">flutter-img-sync</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#效果演示-Android-Studio-or-IDEA"><span class="toc-text">效果演示(Android Studio or IDEA)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#效果演示-vs-code"><span class="toc-text">效果演示(vs code)</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#How-To-Use"><span class="toc-text">How To Use</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#step1-创建资产图片存放目录"><span class="toc-text">step1.创建资产图片存放目录</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#step2-修改pubspec-yaml"><span class="toc-text">step2.修改pubspec.yaml</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#step3-执行-FlutterImgSync-flutter-img-sync-AS和IDEA需要输入自定义图片预览的端口再点击确定执行插件"><span class="toc-text">step3.执行 FlutterImgSync (flutter-img-sync),AS和IDEA需要输入自定义图片预览的端口再点击确定执行插件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#step4-pub-get-刷新一下"><span class="toc-text">step4.pub get 刷新一下</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#单例三要素"><span class="toc-text">单例三要素</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#1-饿汉式"><span class="toc-text">1.饿汉式</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-懒汉式"><span class="toc-text">2.懒汉式</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-synchronized同步单例"><span class="toc-text">3.synchronized同步单例</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#synchronized方法"><span class="toc-text">synchronized方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#synchronized代码块"><span class="toc-text">synchronized代码块</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4-双重检查方式"><span class="toc-text">4.双重检查方式</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5-静态内部类"><span class="toc-text">5.静态内部类</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#6-枚举"><span class="toc-text">6.枚举</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#7-原子操作"><span class="toc-text">7.原子操作</span></a></li></ol>
         
     </div>
 </aside>
